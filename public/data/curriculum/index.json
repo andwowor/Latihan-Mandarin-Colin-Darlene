@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "generatedFrom": "Scan PDF YCT/HSK di /Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN",
+  "levels": [
+    {
+      "id": "yct1",
+      "code": "YCT 1",
+      "track": "YCT",
+      "level": 1,
+      "file": "yct1.json",
+      "status": "ready",
+      "color": "#37c8ab",
+      "emoji": "🌱",
+      "titleId": "Mulai dari nol",
+      "unlockAtXp": 0
+    },
+    {
+      "id": "yct2",
+      "code": "YCT 2",
+      "track": "YCT",
+      "level": 2,
+      "file": "yct2.json",
+      "status": "ready",
+      "color": "#7c6cf0",
+      "emoji": "🌿",
+      "titleId": "Kalimat sehari-hari",
+      "unlockAtXp": 300
+    },
+    {
+      "id": "yct3",
+      "code": "YCT 3",
+      "track": "YCT",
+      "level": 3,
+      "file": "yct3.json",
+      "status": "ready",
+      "color": "#f2971f",
+      "emoji": "🌳",
+      "titleId": "Bercerita",
+      "unlockAtXp": 1200
+    },
+    {
+      "id": "yct4",
+      "code": "YCT 4",
+      "track": "YCT",
+      "level": 4,
+      "file": "yct4.json",
+      "status": "pending-import",
+      "color": "#e2564f",
+      "emoji": "🏔️",
+      "titleId": "Belum diimpor",
+      "unlockAtXp": 3000
+    },
+    {
+      "id": "yct5",
+      "code": "YCT 5",
+      "track": "YCT",
+      "level": 5,
+      "file": "yct5.json",
+      "status": "pending-import",
+      "color": "#c1439c",
+      "emoji": "🚀",
+      "titleId": "Belum diimpor",
+      "unlockAtXp": 5000
+    },
+    {
+      "id": "yct6",
+      "code": "YCT 6",
+      "track": "YCT",
+      "level": 6,
+      "file": "yct6.json",
+      "status": "pending-import",
+      "color": "#5b7cf5",
+      "emoji": "👑",
+      "titleId": "Belum diimpor",
+      "unlockAtXp": 8000
+    },
+    {
+      "id": "hsk1",
+      "code": "HSK 1",
+      "track": "HSK",
+      "level": 1,
+      "file": "hsk1.json",
+      "status": "missing-source",
+      "color": "#37c8ab",
+      "emoji": "📕",
+      "titleId": "Folder HSK 1 kosong",
+      "unlockAtXp": 1200
+    },
+    {
+      "id": "hsk2",
+      "code": "HSK 2",
+      "track": "HSK",
+      "level": 2,
+      "file": "hsk2.json",
+      "status": "pending-import",
+      "color": "#7c6cf0",
+      "emoji": "📗",
+      "titleId": "Belum diimpor",
+      "unlockAtXp": 3000
+    },
+    {
+      "id": "hsk3",
+      "code": "HSK 3",
+      "track": "HSK",
+      "level": 3,
+      "file": "hsk3.json",
+      "status": "pending-import",
+      "color": "#f2971f",
+      "emoji": "📘",
+      "titleId": "Belum diimpor",
+      "unlockAtXp": 5000
+    }
+  ]
+}

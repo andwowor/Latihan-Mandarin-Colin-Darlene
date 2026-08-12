@@ -1,0 +1,264 @@
+{
+  "id": "yct3",
+  "track": "YCT",
+  "level": 3,
+  "code": "YCT 3",
+  "titleZh": "YCT标准教程 3",
+  "titleEn": "YCT Standard Course 3",
+  "titleId": "YCT Standar Kursus 3",
+  "vocabTarget": 300,
+  "recommendedFor": [],
+  "source": {
+    "book": "YCT3_standart_course.pdf",
+    "workbook": "YCT3活动手册.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 3",
+    "answerKeyPage": "Test Answers (hal. 70)",
+    "listeningScriptPage": "Test Listening Scripts (hal. 68)"
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "我三年级。",
+      "titleEn": "I'm in the third grade.",
+      "titleId": "Aku kelas tiga.",
+      "keySentences": [
+        { "zh": "我们都有汉语课。", "py": "Wǒmen dōu yǒu Hànyǔ kè.", "en": "We all have Chinese classes.", "id": "Kami semua ada pelajaran Mandarin." },
+        { "zh": "还有一个是女老师。", "py": "Hái yǒu yí ge shì nǚ lǎoshī.", "en": "And the other one is a female teacher.", "id": "Yang satu lagi guru perempuan." }
+      ],
+      "vocab": [
+        { "zh": "年级", "py": "niánjí", "en": "grade", "id": "kelas (tingkat)" },
+        { "zh": "课", "py": "kè", "en": "class, lesson", "id": "pelajaran" },
+        { "zh": "都", "py": "dōu", "en": "both, all", "id": "semua" },
+        { "zh": "班", "py": "bān", "en": "class", "id": "kelas" },
+        { "zh": "张", "py": "Zhāng", "en": "Zhang (a Chinese surname)", "id": "Zhang (marga Tionghoa)" },
+        { "zh": "还", "py": "hái", "en": "also, too", "id": "juga, masih" },
+        { "zh": "新", "py": "xīn", "en": "new", "id": "baru" },
+        { "zh": "男", "py": "nán", "en": "man, male", "id": "laki-laki" },
+        { "zh": "女", "py": "nǚ", "en": "woman, female", "id": "perempuan" }
+      ],
+      "listeningScripts": ["我们都有汉语课。", "还有一个是女老师。", "几年级？", "张老师"],
+      "bookAnswers": []
+    },
+    {
+      "number": 2,
+      "titleZh": "你喜欢什么运动？",
+      "titleEn": "What's your favorite sport?",
+      "titleId": "Kamu suka olahraga apa?",
+      "keySentences": [
+        { "zh": "太好了！", "py": "Tài hǎo le!", "en": "Great!", "id": "Bagus sekali!" },
+        { "zh": "我和你们一起踢，好吗？", "py": "Wǒ hé nǐmen yìqǐ tī, hǎo ma?", "en": "Can I play football with you?", "id": "Aku main bola bersama kalian, boleh?" }
+      ],
+      "vocab": [
+        { "zh": "游泳", "py": "yóuyǒng", "en": "swim", "id": "berenang" },
+        { "zh": "运动", "py": "yùndòng", "en": "sport", "id": "olahraga" },
+        { "zh": "打篮球", "py": "dǎ lánqiú", "en": "play basketball", "id": "main basket" },
+        { "zh": "踢足球", "py": "tī zúqiú", "en": "play soccer, play football", "id": "main sepak bola" },
+        { "zh": "太", "py": "tài", "en": "too, extremely", "id": "terlalu, sangat" },
+        { "zh": "每", "py": "měi", "en": "every, each", "id": "setiap" },
+        { "zh": "一起", "py": "yìqǐ", "en": "together", "id": "bersama" },
+        { "zh": "欢迎", "py": "huānyíng", "en": "to welcome", "id": "menyambut, selamat datang" }
+      ],
+      "listeningScripts": ["你喜欢什么运动？", "太好了！", "每天，每个人。", "一起玩，一起学习。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 3,
+      "titleZh": "我在画画儿呢。",
+      "titleEn": "I'm drawing a picture.",
+      "titleId": "Aku sedang menggambar.",
+      "keySentences": [
+        { "zh": "我在画画儿呢。", "py": "Wǒ zài huà huàr ne.", "en": "I'm drawing a picture.", "id": "Aku sedang menggambar." },
+        { "zh": "让我看看。", "py": "Ràng wǒ kànkan.", "en": "Let me have a look.", "id": "Coba aku lihat." }
+      ],
+      "vocab": [
+        { "zh": "太阳", "py": "tàiyáng", "en": "sun", "id": "matahari" },
+        { "zh": "月亮", "py": "yuèliang", "en": "moon", "id": "bulan" },
+        { "zh": "跑步", "py": "pǎobù", "en": "run, jog", "id": "berlari" },
+        { "zh": "爷爷", "py": "yéye", "en": "grandfather", "id": "kakek" },
+        { "zh": "奶奶", "py": "nǎinai", "en": "grandmother", "id": "nenek" },
+        { "zh": "唱歌", "py": "chànggē", "en": "sing", "id": "menyanyi" },
+        { "zh": "跳舞", "py": "tiàowǔ", "en": "dance", "id": "menari" },
+        { "zh": "让", "py": "ràng", "en": "to let, to allow", "id": "membiarkan, menyuruh" }
+      ],
+      "listeningScripts": ["我在画画儿呢。", "让我看看。", "让我说。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 4,
+      "titleZh": "喂，您好！",
+      "titleEn": "Hello! (on the telephone)",
+      "titleId": "Halo! (di telepon)",
+      "keySentences": [
+        { "zh": "喂，您好！", "py": "Wèi, nín hǎo!", "en": "Hello! (on the telephone)", "id": "Halo! (di telepon)" },
+        { "zh": "我找我妈妈。", "py": "Wǒ zhǎo wǒ māma.", "en": "I'm looking for my mom.", "id": "Aku mencari ibuku." }
+      ],
+      "vocab": [
+        { "zh": "喂", "py": "wèi", "en": "Hello! (on the telephone)", "id": "Halo! (di telepon)" },
+        { "zh": "您", "py": "nín", "en": "you (polite)", "id": "Anda" },
+        { "zh": "找", "py": "zhǎo", "en": "to look for", "id": "mencari" },
+        { "zh": "回", "py": "huí", "en": "to return, to go back", "id": "kembali, pulang" },
+        { "zh": "问题", "py": "wèntí", "en": "question", "id": "pertanyaan" },
+        { "zh": "问", "py": "wèn", "en": "to ask", "id": "bertanya" }
+      ],
+      "listeningScripts": ["喂，您好！", "我找我妈妈。", "你找谁？", "我有一个问题。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 5,
+      "titleZh": "再吃几个。",
+      "titleEn": "Have some more.",
+      "titleId": "Makan beberapa lagi.",
+      "keySentences": [
+        { "zh": "我最爱吃饺子。", "py": "Wǒ zuì ài chī jiǎozi.", "en": "I like Chinese dumplings the best.", "id": "Aku paling suka makan pangsit." },
+        { "zh": "再吃几个。", "py": "Zài chī jǐ ge.", "en": "Have some more.", "id": "Makan beberapa lagi." }
+      ],
+      "vocab": [
+        { "zh": "面条儿", "py": "miàntiáor", "en": "noodles", "id": "mi" },
+        { "zh": "饺子", "py": "jiǎozi", "en": "Chinese dumplings", "id": "pangsit" },
+        { "zh": "饿", "py": "è", "en": "hungry", "id": "lapar" },
+        { "zh": "想", "py": "xiǎng", "en": "to think, would like to", "id": "ingin, berpikir" },
+        { "zh": "最", "py": "zuì", "en": "best, most", "id": "paling" },
+        { "zh": "给", "py": "gěi", "en": "to give", "id": "memberi" },
+        { "zh": "再", "py": "zài", "en": "again", "id": "lagi" },
+        { "zh": "饱", "py": "bǎo", "en": "full (after eating)", "id": "kenyang" }
+      ],
+      "listeningScripts": ["我最爱吃饺子。", "再吃几个。", "我饿了。", "我饱了。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 6,
+      "titleZh": "我能自己穿。",
+      "titleEn": "I can put it on by myself.",
+      "titleId": "Aku bisa memakainya sendiri.",
+      "keySentences": [
+        { "zh": "我帮你，好不好？", "py": "Wǒ bāng nǐ, hǎo bu hǎo?", "en": "Can I help you?", "id": "Aku bantu kamu, ya?" },
+        { "zh": "我能自己穿。", "py": "Wǒ néng zìjǐ chuān.", "en": "I can put it on by myself.", "id": "Aku bisa memakainya sendiri." }
+      ],
+      "vocab": [
+        { "zh": "衣服", "py": "yīfu", "en": "clothes", "id": "baju" },
+        { "zh": "鞋", "py": "xié", "en": "shoes", "id": "sepatu" },
+        { "zh": "帮（助）", "py": "bāng (zhù)", "en": "to help", "id": "membantu" },
+        { "zh": "穿", "py": "chuān", "en": "to wear, to put on", "id": "memakai" },
+        { "zh": "能", "py": "néng", "en": "can", "id": "bisa, mampu" },
+        { "zh": "自己", "py": "zìjǐ", "en": "oneself", "id": "sendiri" }
+      ],
+      "listeningScripts": ["我帮你。", "我能自己穿。", "穿衣服，穿鞋。", "能不能"],
+      "bookAnswers": []
+    },
+    {
+      "number": 7,
+      "titleZh": "生日快乐！",
+      "titleEn": "Happy birthday!",
+      "titleId": "Selamat ulang tahun!",
+      "keySentences": [
+        { "zh": "我们给妈妈做一个蛋糕吧。", "py": "Wǒmen gěi māma zuò yí ge dàngāo ba.", "en": "Let's make a cake for mom.", "id": "Ayo kita buat kue untuk ibu." },
+        { "zh": "我不会做蛋糕，但是我会画蛋糕。", "py": "Wǒ bú huì zuò dàngāo, dànshì wǒ huì huà dàngāo.", "en": "I don't know how to make a cake, but I know how to draw a cake.", "id": "Aku tidak bisa membuat kue, tapi aku bisa menggambar kue." }
+      ],
+      "vocab": [
+        { "zh": "礼物", "py": "lǐwù", "en": "gift, present", "id": "hadiah" },
+        { "zh": "花", "py": "huā", "en": "flower", "id": "bunga" },
+        { "zh": "蛋糕", "py": "dàngāo", "en": "cake", "id": "kue" },
+        { "zh": "生日", "py": "shēngrì", "en": "birthday", "id": "ulang tahun" },
+        { "zh": "送", "py": "sòng", "en": "to give (a gift)", "id": "memberi (hadiah)" },
+        { "zh": "给", "py": "gěi", "en": "for, to", "id": "untuk, kepada" },
+        { "zh": "吧", "py": "ba", "en": "(mild suggestion particle)", "id": "(partikel ajakan)" },
+        { "zh": "但是", "py": "dànshì", "en": "but, however", "id": "tetapi" },
+        { "zh": "快乐", "py": "kuàilè", "en": "happy", "id": "gembira, selamat" }
+      ],
+      "listeningScripts": ["生日快乐！", "送你一个礼物。", "给妈妈做蛋糕。", "这个蛋糕好吃，但是不好看。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 8,
+      "titleZh": "下雪了。",
+      "titleEn": "It's snowing.",
+      "titleId": "Turun salju.",
+      "keySentences": [
+        { "zh": "外面很冷吧？", "py": "Wàimian hěn lěng ba?", "en": "It's very cold outside, isn't it?", "id": "Di luar dingin sekali, ya?" },
+        { "zh": "别出去跑步了。", "py": "Bié chūqu pǎobù le.", "en": "Don't go out jogging.", "id": "Jangan keluar lari lagi." }
+      ],
+      "vocab": [
+        { "zh": "下雪", "py": "xiàxuě", "en": "to snow", "id": "turun salju" },
+        { "zh": "听", "py": "tīng", "en": "to listen", "id": "mendengar" },
+        { "zh": "下雨", "py": "xiàyǔ", "en": "to rain", "id": "hujan" },
+        { "zh": "外面", "py": "wàimian", "en": "outside", "id": "di luar" },
+        { "zh": "出", "py": "chū", "en": "to go/come out", "id": "keluar" },
+        { "zh": "别", "py": "bié", "en": "don't", "id": "jangan" },
+        { "zh": "作业", "py": "zuòyè", "en": "homework", "id": "pekerjaan rumah" }
+      ],
+      "listeningScripts": ["下雪了。", "外面很冷吧？", "别出去跑步了。", "做作业"],
+      "bookAnswers": []
+    },
+    {
+      "number": 9,
+      "titleZh": "笑一笑！",
+      "titleEn": "Smile!",
+      "titleId": "Tersenyumlah!",
+      "keySentences": [
+        { "zh": "什么东西丢了？", "py": "Shénme dōngxi diū le?", "en": "What is lost?", "id": "Barang apa yang hilang?" },
+        { "zh": "笑一笑！", "py": "Xiào yi xiào!", "en": "Smile!", "id": "Tersenyumlah!" }
+      ],
+      "vocab": [
+        { "zh": "哭", "py": "kū", "en": "to cry", "id": "menangis" },
+        { "zh": "笑", "py": "xiào", "en": "to smile, to laugh", "id": "tersenyum, tertawa" },
+        { "zh": "东西", "py": "dōngxi", "en": "thing", "id": "barang" },
+        { "zh": "丢", "py": "diū", "en": "to lose", "id": "hilang, kehilangan" },
+        { "zh": "到", "py": "dào", "en": "(result complement)", "id": "(pelengkap hasil)" }
+      ],
+      "listeningScripts": ["什么东西丢了？", "笑一笑！", "买东西，找东西。", "看到，找到"],
+      "bookAnswers": []
+    },
+    {
+      "number": 10,
+      "titleZh": "谁跑得快？",
+      "titleEn": "Who runs fast?",
+      "titleId": "Siapa yang lari cepat?",
+      "keySentences": [
+        { "zh": "谁跑得快？", "py": "Shéi pǎo de kuài?", "en": "Who runs fast?", "id": "Siapa yang larinya cepat?" },
+        { "zh": "胖的第一。", "py": "Pàng de dì yī.", "en": "The fat one is first.", "id": "Yang gemuk juara pertama." }
+      ],
+      "vocab": [
+        { "zh": "老虎", "py": "lǎohǔ", "en": "tiger", "id": "harimau" },
+        { "zh": "第一", "py": "dì yī", "en": "the first", "id": "pertama" },
+        { "zh": "胖", "py": "pàng", "en": "fat", "id": "gemuk" },
+        { "zh": "瘦", "py": "shòu", "en": "thin, slim", "id": "kurus" },
+        { "zh": "些", "py": "xiē", "en": "some", "id": "beberapa" },
+        { "zh": "得", "py": "de", "en": "(a structural particle)", "id": "(partikel struktural)" },
+        { "zh": "快", "py": "kuài", "en": "fast", "id": "cepat" },
+        { "zh": "知道", "py": "zhīdào", "en": "to know", "id": "tahu" }
+      ],
+      "listeningScripts": ["谁跑得快？", "胖的第一。", "吃得多，说得很好。", "你知道吗？不知道。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 11,
+      "titleZh": "妈妈把糖给弟弟了。",
+      "titleEn": "Mom has given the candy to your brother.",
+      "titleId": "Ibu sudah memberikan permen itu kepada adik.",
+      "keySentences": [
+        { "zh": "把西瓜给我。", "py": "Bǎ xīguā gěi wǒ.", "en": "Pass me the watermelon.", "id": "Berikan semangka itu padaku." },
+        { "zh": "妈妈把糖给弟弟了。", "py": "Māma bǎ táng gěi dìdi le.", "en": "Mom has given the candy to your brother.", "id": "Ibu sudah memberikan permen itu kepada adik." }
+      ],
+      "vocab": [
+        { "zh": "水果", "py": "shuǐguǒ", "en": "fruit", "id": "buah" },
+        { "zh": "糖", "py": "táng", "en": "candy", "id": "permen" },
+        { "zh": "西瓜", "py": "xīguā", "en": "watermelon", "id": "semangka" },
+        { "zh": "鸡蛋", "py": "jīdàn", "en": "egg", "id": "telur" },
+        { "zh": "把", "py": "bǎ", "en": "(indicating a thing is disposed of)", "id": "(partikel objek)" }
+      ],
+      "listeningScripts": ["把西瓜给我。", "妈妈把糖给弟弟了。", "把面包给妈妈。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 12,
+      "titleZh": "复习",
+      "titleEn": "Review",
+      "titleId": "Ulangan",
+      "isReview": true,
+      "keySentences": [],
+      "vocab": [],
+      "listeningScripts": [],
+      "bookAnswers": []
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "mandarin-fun",
+  "version": "2.0.0",
+  "description": "Dashboard latihan Mandarin (YCT & HSK) untuk Colin dan Darlene — PWA tanpa build step.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "test": "node --test tests/*.test.js"
+  }
+}

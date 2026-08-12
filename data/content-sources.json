@@ -1,0 +1,104 @@
+{
+  "surveyedOn": "2026-08-12",
+  "surveyNotes": [
+    "Seluruh 16 berkas PDF adalah HASIL PINDAI (gambar), tanpa lapisan teks sama sekali.",
+    "Total 1.586 halaman. Satu-satunya teks yang bisa diekstrak otomatis adalah watermark 'www.aibochinese.com'.",
+    "Tidak ada satu pun berkas audio (mp3/wav) di seluruh folder sumber.",
+    "Kunci jawaban ADA di dalam buku itu sendiri, pada halaman 'Test Answers' di bagian belakang.",
+    "Naskah simakan ADA pada halaman 'Test Listening Scripts' di bagian belakang.",
+    "Isi kurikulum diekstraksi dengan membaca halaman pindaian secara visual, lalu ditulis ke public/data/curriculum/*.json."
+  ],
+  "sources": [
+    {
+      "code": "YCT 1",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 1",
+      "files": [
+        { "name": "YCT_1_book.pdf", "pages": 60, "scanned": true },
+        { "name": "YCT 1_work_book.pdf", "pages": 45, "scanned": true }
+      ],
+      "status": "imported",
+      "lessons": 12,
+      "answerKey": "Ada — halaman 62 (Test Answers), sudah disalin ke bookAnswers tiap pelajaran",
+      "listeningScripts": "Ada — halaman 61 (Test Listening Scripts), sudah disalin",
+      "notes": "Halaman 56-60 (词语表/terjemahan) tidak ikut terpindai, tetapi kosakata sudah lengkap diambil dari halaman pelajaran."
+    },
+    {
+      "code": "YCT 2",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 2",
+      "files": [
+        { "name": "YCT2_standard_course.pdf", "pages": 59, "scanned": true },
+        { "name": "YCT2_work_book.pdf", "pages": 45, "scanned": true }
+      ],
+      "status": "imported",
+      "lessons": 12,
+      "answerKey": "TIDAK ADA di scan — pemindaian berhenti di halaman cetak 60, sedangkan Test Answers ada di halaman 70",
+      "listeningScripts": "Tidak ada di scan; kalimat simakan diambil dari dialog 'Let's read', 'Mini story', dan halaman Test",
+      "notes": "Halaman cetak 53 (pembuka Pelajaran 11) juga terlewat saat pemindaian; kosakatanya diambil dari teks bacaan dan mini story pelajaran tersebut."
+    },
+    {
+      "code": "YCT 3",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 3",
+      "files": [
+        { "name": "YCT3_standart_course.pdf", "pages": 64, "scanned": true },
+        { "name": "YCT3活动手册.pdf", "pages": 54, "scanned": true }
+      ],
+      "status": "imported",
+      "lessons": 12,
+      "answerKey": "Ada di buku — halaman 70 (belum disalin ke JSON)",
+      "listeningScripts": "Ada di buku — halaman 68 (belum disalin; kalimat simakan sementara diambil dari kalimat kunci)",
+      "notes": "Kosakata dan kalimat kunci 11 pelajaran sudah lengkap."
+    },
+    {
+      "code": "YCT 4",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 4",
+      "files": [
+        { "name": "YCT4_standart_course.pdf", "pages": 75, "scanned": true },
+        { "name": "YCT4_activity book.pdf", "pages": 50, "scanned": true }
+      ],
+      "status": "pending-import"
+    },
+    {
+      "code": "YCT 5",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 5",
+      "files": [
+        { "name": "YCT5标准教程.pdf", "pages": 135, "scanned": true },
+        { "name": "YCT5活动手册.pdf", "pages": 81, "scanned": true }
+      ],
+      "status": "pending-import"
+    },
+    {
+      "code": "YCT 6",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 6",
+      "files": [
+        { "name": "YCT6标准教程.pdf", "pages": 135, "scanned": true },
+        { "name": "YCT 6 Activity book.pdf", "pages": 88, "scanned": true }
+      ],
+      "status": "pending-import"
+    },
+    {
+      "code": "HSK 1",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1",
+      "files": [],
+      "status": "missing-source",
+      "notes": "FOLDER KOSONG — tidak ada berkas apa pun di dalamnya."
+    },
+    {
+      "code": "HSK 2",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 2",
+      "files": [
+        { "name": "HSK标准教程2.pdf", "pages": 154, "scanned": true },
+        { "name": "HSK2练习册.pdf", "pages": 166, "scanned": true }
+      ],
+      "status": "pending-import"
+    },
+    {
+      "code": "HSK 3",
+      "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 3",
+      "files": [
+        { "name": "HSK-3-standard-course-pdf.pdf", "pages": 207, "scanned": true },
+        { "name": "HSK-3-Workbook.pdf", "pages": 168, "scanned": true }
+      ],
+      "status": "pending-import"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "id": "yct2",
+  "track": "YCT",
+  "level": 2,
+  "code": "YCT 2",
+  "titleZh": "YCT标准教程 2",
+  "titleEn": "YCT Standard Course 2",
+  "titleId": "YCT Standar Kursus 2",
+  "vocabTarget": 150,
+  "recommendedFor": ["colin"],
+  "source": {
+    "book": "YCT2_standard_course.pdf",
+    "workbook": "YCT2_work_book.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 2",
+    "note": "Halaman 词语表 / Test Listening Scripts / Test Answers (hal. 61-71) TIDAK ADA di file scan ini. Kalimat listening diambil dari dialog 'Let's read', 'Mini story', dan halaman Test yang ada di scan."
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "我可以坐这儿吗？",
+      "titleEn": "May I sit here?",
+      "titleId": "Bolehkah aku duduk di sini?",
+      "keySentences": [
+        { "zh": "我可以坐这儿吗？", "py": "Wǒ kěyǐ zuò zhèr ma?", "en": "May I sit here?", "id": "Bolehkah aku duduk di sini?" },
+        { "zh": "请不要说话。", "py": "Qǐng bú yào shuōhuà.", "en": "Please be quiet.", "id": "Tolong jangan berbicara." }
+      ],
+      "vocab": [
+        { "zh": "可以", "py": "kěyǐ", "en": "may, can", "id": "boleh" },
+        { "zh": "坐", "py": "zuò", "en": "to sit", "id": "duduk" },
+        { "zh": "请", "py": "qǐng", "en": "please", "id": "tolong, silakan" },
+        { "zh": "不客气", "py": "bú kèqi", "en": "You're welcome.", "id": "Sama-sama." },
+        { "zh": "不要", "py": "bú yào", "en": "don't", "id": "jangan" },
+        { "zh": "说话", "py": "shuōhuà", "en": "to talk, to speak", "id": "berbicara" },
+        { "zh": "对不起", "py": "duìbuqǐ", "en": "I'm sorry.", "id": "Maaf." },
+        { "zh": "没关系", "py": "méi guānxi", "en": "Never mind.", "id": "Tidak apa-apa." }
+      ],
+      "listeningScripts": ["我可以坐这儿吗？", "请不要说话。", "对不起。", "没关系。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 2,
+      "titleZh": "你早上几点起床？",
+      "titleEn": "When do you get up in the morning?",
+      "titleId": "Jam berapa kamu bangun pagi?",
+      "keySentences": [
+        { "zh": "我早上七点起床。", "py": "Wǒ zǎoshang qī diǎn qǐchuáng.", "en": "I get up at seven o'clock in the morning.", "id": "Aku bangun jam tujuh pagi." },
+        { "zh": "今天晚上我可以不睡觉吗？", "py": "Jīntiān wǎnshang wǒ kěyǐ bú shuìjiào ma?", "en": "Can I not go to bed tonight?", "id": "Malam ini bolehkah aku tidak tidur?" }
+      ],
+      "vocab": [
+        { "zh": "起床", "py": "qǐchuáng", "en": "to get up", "id": "bangun tidur" },
+        { "zh": "睡觉", "py": "shuìjiào", "en": "to sleep, go to bed", "id": "tidur" },
+        { "zh": "早上", "py": "zǎoshang", "en": "morning", "id": "pagi" },
+        { "zh": "晚上", "py": "wǎnshang", "en": "night, evening", "id": "malam" },
+        { "zh": "到", "py": "dào", "en": "up to, until", "id": "sampai" },
+        { "zh": "呢", "py": "ne", "en": "(a modal particle)", "id": "(partikel tanya)" },
+        { "zh": "要", "py": "yào", "en": "to want, would like", "id": "mau, ingin" }
+      ],
+      "listeningScripts": ["我早上七点起床。", "三点到五点，星期一到星期五。", "我是中国人，你呢？", "你要做什么？我要喝水。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 3,
+      "titleZh": "你的铅笔呢？",
+      "titleEn": "Where is your pencil?",
+      "titleId": "Mana pensilmu?",
+      "keySentences": [
+        { "zh": "你的铅笔呢？", "py": "Nǐ de qiānbǐ ne?", "en": "Where is your pencil?", "id": "Mana pensilmu?" },
+        { "zh": "我的书包在桌子上。", "py": "Wǒ de shūbāo zài zhuōzi shang.", "en": "My schoolbag is on the table.", "id": "Tasku ada di atas meja." }
+      ],
+      "vocab": [
+        { "zh": "房间", "py": "fángjiān", "en": "room", "id": "kamar" },
+        { "zh": "床", "py": "chuáng", "en": "bed", "id": "tempat tidur" },
+        { "zh": "电视", "py": "diànshì", "en": "television", "id": "televisi" },
+        { "zh": "桌子", "py": "zhuōzi", "en": "table", "id": "meja" },
+        { "zh": "椅子", "py": "yǐzi", "en": "chair", "id": "kursi" },
+        { "zh": "铅笔", "py": "qiānbǐ", "en": "pencil", "id": "pensil" },
+        { "zh": "书包", "py": "shūbāo", "en": "schoolbag", "id": "tas sekolah" },
+        { "zh": "里（面）", "py": "lǐ (mian)", "en": "in, inside", "id": "di dalam" },
+        { "zh": "上（边）", "py": "shàng (bian)", "en": "on, above", "id": "di atas" },
+        { "zh": "矮", "py": "ǎi", "en": "short (in height)", "id": "pendek" }
+      ],
+      "listeningScripts": ["你的铅笔呢？", "我的书包在桌子上。", "在里面；书包里。", "在上边；桌子上。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 4,
+      "titleZh": "书包里有两本书。",
+      "titleEn": "There are two books in the schoolbag.",
+      "titleId": "Di dalam tas ada dua buku.",
+      "keySentences": [
+        { "zh": "一只是绿色的。", "py": "Yì zhī shì lǜsè de.", "en": "One is green.", "id": "Satu berwarna hijau." },
+        { "zh": "书包里有两本书。", "py": "Shūbāo li yǒu liǎng běn shū.", "en": "There are two books in the schoolbag.", "id": "Di dalam tas ada dua buku." }
+      ],
+      "vocab": [
+        { "zh": "红色", "py": "hóngsè", "en": "red", "id": "merah" },
+        { "zh": "黄色", "py": "huángsè", "en": "yellow", "id": "kuning" },
+        { "zh": "绿色", "py": "lǜsè", "en": "green", "id": "hijau" },
+        { "zh": "只", "py": "zhī", "en": "(measure word for some animals/body parts)", "id": "(kata bantu bilangan hewan)" },
+        { "zh": "名字", "py": "míngzi", "en": "name", "id": "nama" },
+        { "zh": "漂亮", "py": "piàoliang", "en": "beautiful", "id": "cantik" },
+        { "zh": "颜色", "py": "yánsè", "en": "color", "id": "warna" },
+        { "zh": "两", "py": "liǎng", "en": "two", "id": "dua" },
+        { "zh": "本", "py": "běn", "en": "(measure word for books)", "id": "(kata bantu bilangan buku)" }
+      ],
+      "listeningScripts": ["书包里有两本书。", "一只是绿色的。", "书包是什么颜色的？", "名字叫豆豆。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 5,
+      "titleZh": "你会不会做饭？",
+      "titleEn": "Can you cook?",
+      "titleId": "Bisakah kamu memasak?",
+      "keySentences": [
+        { "zh": "你会不会做饭？", "py": "Nǐ huì bu huì zuò fàn?", "en": "Can you cook?", "id": "Bisakah kamu memasak?" },
+        { "zh": "你妈妈是不是厨师？", "py": "Nǐ māma shì bu shì chúshī?", "en": "Is your mother a chef?", "id": "Apakah ibumu seorang koki?" }
+      ],
+      "vocab": [
+        { "zh": "包子", "py": "bāozi", "en": "baozi (steamed bun)", "id": "bakpao" },
+        { "zh": "医生", "py": "yīshēng", "en": "doctor", "id": "dokter" },
+        { "zh": "厨师", "py": "chúshī", "en": "chef, cook", "id": "koki" },
+        { "zh": "会", "py": "huì", "en": "can, to be able to", "id": "bisa" },
+        { "zh": "做", "py": "zuò", "en": "to do, to make", "id": "melakukan, membuat" },
+        { "zh": "真", "py": "zhēn", "en": "really, real", "id": "sungguh" },
+        { "zh": "好吃", "py": "hǎochī", "en": "delicious", "id": "enak" }
+      ],
+      "listeningScripts": ["你会不会做饭？", "会做饭，不会做包子。", "真大，真漂亮。", "很好吃，不好吃。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 6,
+      "titleZh": "包子多少钱一个？",
+      "titleEn": "How much is one baozi?",
+      "titleId": "Berapa harga satu bakpao?",
+      "keySentences": [
+        { "zh": "包子多少钱一个？", "py": "Bāozi duōshao qián yí ge?", "en": "How much is one baozi?", "id": "Berapa harga satu bakpao?" },
+        { "zh": "两块钱一个。", "py": "Liǎng kuài qián yí ge.", "en": "Two kuai for one baozi.", "id": "Dua kuai satu." }
+      ],
+      "vocab": [
+        { "zh": "钱", "py": "qián", "en": "money", "id": "uang" },
+        { "zh": "茶", "py": "chá", "en": "tea", "id": "teh" },
+        { "zh": "买", "py": "mǎi", "en": "to buy", "id": "membeli" },
+        { "zh": "多少", "py": "duōshao", "en": "how much, how many", "id": "berapa" },
+        { "zh": "块", "py": "kuài", "en": "kuai (a unit for RMB)", "id": "kuai (satuan uang RMB)" },
+        { "zh": "杯", "py": "bēi", "en": "cup (measure word for drinks)", "id": "gelas (kata bantu bilangan)" },
+        { "zh": "太贵了", "py": "tài guì le", "en": "It's too expensive!", "id": "Terlalu mahal!" }
+      ],
+      "listeningScripts": ["包子多少钱一个？", "两块钱一个。", "太贵了！", "一杯茶。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 7,
+      "titleZh": "今天比昨天热。",
+      "titleEn": "Today is hotter than yesterday.",
+      "titleId": "Hari ini lebih panas daripada kemarin.",
+      "keySentences": [
+        { "zh": "北京天气怎么样？", "py": "Běijīng tiānqì zěnmeyàng?", "en": "How is the weather in Beijing?", "id": "Bagaimana cuaca di Beijing?" },
+        { "zh": "今天比昨天热。", "py": "Jīntiān bǐ zuótiān rè.", "en": "Today is hotter than yesterday.", "id": "Hari ini lebih panas daripada kemarin." }
+      ],
+      "vocab": [
+        { "zh": "冷", "py": "lěng", "en": "cold", "id": "dingin" },
+        { "zh": "热", "py": "rè", "en": "hot", "id": "panas" },
+        { "zh": "北京", "py": "Běijīng", "en": "Beijing", "id": "Beijing" },
+        { "zh": "纽约", "py": "Niǔyuē", "en": "New York", "id": "New York" },
+        { "zh": "冰水", "py": "bīng shuǐ", "en": "ice water", "id": "air es" },
+        { "zh": "天气", "py": "tiānqì", "en": "weather", "id": "cuaca" },
+        { "zh": "怎么样", "py": "zěnmeyàng", "en": "how", "id": "bagaimana" },
+        { "zh": "比", "py": "bǐ", "en": "than", "id": "daripada" },
+        { "zh": "昨天", "py": "zuótiān", "en": "yesterday", "id": "kemarin" },
+        { "zh": "觉得", "py": "juéde", "en": "to feel, to think", "id": "merasa" },
+        { "zh": "好喝", "py": "hǎohē", "en": "good to drink", "id": "enak (minuman)" }
+      ],
+      "listeningScripts": ["今天比昨天热。", "北京天气怎么样？", "天气很好。", "昨天很热；我昨天去商店了。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 8,
+      "titleZh": "马丁比我大三岁。",
+      "titleEn": "Martin is three years older than me.",
+      "titleId": "Martin tiga tahun lebih tua dariku.",
+      "keySentences": [
+        { "zh": "他们也是小学生。", "py": "Tāmen yě shì xiǎoxuéshēng.", "en": "They are elementary school students, too.", "id": "Mereka juga murid SD." },
+        { "zh": "马丁比我大三岁。", "py": "Mǎdīng bǐ wǒ dà sān suì.", "en": "Martin is three years older than me.", "id": "Martin tiga tahun lebih tua dariku." }
+      ],
+      "vocab": [
+        { "zh": "弟弟", "py": "dìdi", "en": "little brother", "id": "adik laki-laki" },
+        { "zh": "妹妹", "py": "mèimei", "en": "little sister", "id": "adik perempuan" },
+        { "zh": "朋友", "py": "péngyou", "en": "friend", "id": "teman" },
+        { "zh": "同学", "py": "tóngxué", "en": "classmate", "id": "teman sekelas" },
+        { "zh": "也", "py": "yě", "en": "also, too", "id": "juga" },
+        { "zh": "学生", "py": "xuésheng", "en": "student", "id": "murid" }
+      ],
+      "listeningScripts": ["马丁比我大三岁。", "他们也是小学生。", "我是学生，弟弟也是学生。", "我的同学。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 9,
+      "titleZh": "你今天做什么了？",
+      "titleEn": "What did you do today?",
+      "titleId": "Hari ini kamu melakukan apa?",
+      "keySentences": [
+        { "zh": "我吃了一个苹果和一个香蕉。", "py": "Wǒ chī le yí ge píngguǒ hé yí ge xiāngjiāo.", "en": "I ate an apple and a banana.", "id": "Aku makan satu apel dan satu pisang." },
+        { "zh": "我没画熊猫。", "py": "Wǒ méi huà xióngmāo.", "en": "I didn't draw a panda.", "id": "Aku tidak menggambar panda." }
+      ],
+      "vocab": [
+        { "zh": "香蕉", "py": "xiāngjiāo", "en": "banana", "id": "pisang" },
+        { "zh": "熊猫", "py": "xióngmāo", "en": "panda", "id": "panda" },
+        { "zh": "水果", "py": "shuǐguǒ", "en": "fruit", "id": "buah" },
+        { "zh": "了", "py": "le", "en": "(perfective particle)", "id": "(partikel sudah)" },
+        { "zh": "画", "py": "huà", "en": "to draw; picture", "id": "menggambar; gambar" },
+        { "zh": "没（有）", "py": "méi (yǒu)", "en": "didn't (do), haven't (done)", "id": "tidak/belum (melakukan)" }
+      ],
+      "listeningScripts": ["你吃什么了？", "我没吃香蕉。", "吃水果，很多水果。", "画小鸟，画画儿。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 10,
+      "titleZh": "你怎么了？",
+      "titleEn": "What's wrong with you?",
+      "titleId": "Kamu kenapa?",
+      "keySentences": [
+        { "zh": "你怎么了？", "py": "Nǐ zěnme le?", "en": "What's wrong with you?", "id": "Kamu kenapa?" },
+        { "zh": "现在我手不疼了。", "py": "Xiànzài wǒ shǒu bù téng le.", "en": "My hand doesn't hurt now.", "id": "Sekarang tanganku tidak sakit lagi." }
+      ],
+      "vocab": [
+        { "zh": "脚", "py": "jiǎo", "en": "foot", "id": "kaki" },
+        { "zh": "医院", "py": "yīyuàn", "en": "hospital", "id": "rumah sakit" },
+        { "zh": "怎么了", "py": "zěnme le", "en": "what's wrong with...", "id": "kenapa" },
+        { "zh": "疼", "py": "téng", "en": "painful", "id": "sakit" }
+      ],
+      "listeningScripts": ["你怎么了？", "我脚疼！", "我们去看医生。", "妈妈，我不去医院，我去学校。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 11,
+      "titleZh": "我来北京一年了。",
+      "titleEn": "I've been in Beijing for one year.",
+      "titleId": "Aku sudah setahun di Beijing.",
+      "keySentences": [
+        { "zh": "我和爸爸妈妈来北京一年了。", "py": "Wǒ hé bàba māma lái Běijīng yì nián le.", "en": "My parents and I have been in Beijing for one year.", "id": "Aku dan orang tuaku sudah setahun di Beijing." },
+        { "zh": "现在会用汉语打电话了。", "py": "Xiànzài huì yòng Hànyǔ dǎ diànhuà le.", "en": "Now I can make phone calls in Chinese.", "id": "Sekarang aku bisa menelepon pakai bahasa Mandarin." }
+      ],
+      "vocab": [
+        { "zh": "以前", "py": "yǐqián", "en": "before, previously", "id": "dulu, sebelumnya" },
+        { "zh": "还", "py": "hái", "en": "still", "id": "masih" },
+        { "zh": "用", "py": "yòng", "en": "to use", "id": "memakai" },
+        { "zh": "汉语", "py": "Hànyǔ", "en": "Chinese language", "id": "bahasa Mandarin" },
+        { "zh": "打电话", "py": "dǎ diànhuà", "en": "to make a phone call", "id": "menelepon" },
+        { "zh": "分钟", "py": "fēnzhōng", "en": "minute", "id": "menit" },
+        { "zh": "玩", "py": "wán", "en": "to play", "id": "bermain" },
+        { "zh": "学习", "py": "xuéxí", "en": "to study", "id": "belajar" },
+        { "zh": "零", "py": "líng", "en": "zero", "id": "nol" },
+        { "zh": "年", "py": "nián", "en": "year", "id": "tahun" },
+        { "zh": "小时", "py": "xiǎoshí", "en": "hour", "id": "jam (durasi)" },
+        { "zh": "中午", "py": "zhōngwǔ", "en": "noon", "id": "siang" },
+        { "zh": "下午", "py": "xiàwǔ", "en": "afternoon", "id": "sore" },
+        { "zh": "运动", "py": "yùndòng", "en": "to exercise, sports", "id": "olahraga" }
+      ],
+      "listeningScripts": ["妈妈，几点了？三点零五了。", "我可以去那儿玩十分钟吗？", "我喜欢学习汉语。", "早上，我和爸爸运动两个小时。", "中午，我睡一个小时。", "下午，我看一个小时电视。", "晚上，我看半个小时书。"],
+      "bookAnswers": []
+    },
+    {
+      "number": 12,
+      "titleZh": "复习",
+      "titleEn": "Review",
+      "titleId": "Ulangan",
+      "isReview": true,
+      "keySentences": [
+        { "zh": "这只小黄猫是我的好朋友，它的名字叫小黄。", "py": "Zhè zhī xiǎo huáng māo shì wǒ de hǎo péngyou, tā de míngzi jiào Xiǎohuáng.", "en": "This little yellow cat is my good friend; its name is Xiaohuang.", "id": "Kucing kuning kecil ini teman baikku, namanya Xiaohuang." },
+        { "zh": "它不喜欢吃鱼，喜欢喝奶。", "py": "Tā bù xǐhuan chī yú, xǐhuan hē nǎi.", "en": "It doesn't like eating fish; it likes drinking milk.", "id": "Dia tidak suka makan ikan, suka minum susu." }
+      ],
+      "vocab": [
+        { "zh": "白天", "py": "báitiān", "en": "daytime", "id": "siang hari" },
+        { "zh": "鞋", "py": "xié", "en": "shoe", "id": "sepatu" }
+      ],
+      "listeningScripts": ["小黄白天睡觉，晚上不睡觉。", "小黄现在一个月了，比我的鞋大了。"],
+      "bookAnswers": []
+    }
+  ]
+}

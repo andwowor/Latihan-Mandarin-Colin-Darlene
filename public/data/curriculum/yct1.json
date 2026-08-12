@@ -1,0 +1,295 @@
+{
+  "id": "yct1",
+  "track": "YCT",
+  "level": 1,
+  "code": "YCT 1",
+  "titleZh": "YCT标准教程 1",
+  "titleEn": "YCT Standard Course 1",
+  "titleId": "YCT Standar Kursus 1",
+  "vocabTarget": 80,
+  "recommendedFor": ["darlene", "colin"],
+  "source": {
+    "book": "YCT_1_book.pdf",
+    "workbook": "YCT 1_work_book.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 1",
+    "answerKeyPage": "Test Answers (hal. 62)",
+    "listeningScriptPage": "Test Listening Scripts (hal. 61)"
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "你好！",
+      "titleEn": "Hello!",
+      "titleId": "Halo!",
+      "keySentences": [
+        { "zh": "你好！", "py": "Nǐ hǎo!", "en": "Hello!", "id": "Halo!" },
+        { "zh": "再见！", "py": "Zàijiàn!", "en": "Goodbye!", "id": "Sampai jumpa!" }
+      ],
+      "vocab": [
+        { "zh": "一", "py": "yī", "en": "one", "id": "satu" },
+        { "zh": "二", "py": "èr", "en": "two", "id": "dua" },
+        { "zh": "三", "py": "sān", "en": "three", "id": "tiga" },
+        { "zh": "四", "py": "sì", "en": "four", "id": "empat" },
+        { "zh": "五", "py": "wǔ", "en": "five", "id": "lima" },
+        { "zh": "六", "py": "liù", "en": "six", "id": "enam" },
+        { "zh": "七", "py": "qī", "en": "seven", "id": "tujuh" },
+        { "zh": "八", "py": "bā", "en": "eight", "id": "delapan" },
+        { "zh": "九", "py": "jiǔ", "en": "nine", "id": "sembilan" },
+        { "zh": "十", "py": "shí", "en": "ten", "id": "sepuluh" },
+        { "zh": "你", "py": "nǐ", "en": "you", "id": "kamu" },
+        { "zh": "好", "py": "hǎo", "en": "good", "id": "baik" },
+        { "zh": "老师", "py": "lǎoshī", "en": "teacher", "id": "guru" },
+        { "zh": "再见", "py": "zàijiàn", "en": "goodbye", "id": "sampai jumpa" }
+      ],
+      "listeningScripts": ["六", "你好。", "老师再见。"],
+      "bookAnswers": ["B", "A", "C", "×", "×", "√"]
+    },
+    {
+      "number": 2,
+      "titleZh": "你叫什么？",
+      "titleEn": "What's your name?",
+      "titleId": "Siapa namamu?",
+      "keySentences": [
+        { "zh": "你叫什么？", "py": "Nǐ jiào shénme?", "en": "What's your name?", "id": "Siapa namamu?" },
+        { "zh": "你认识她吗？", "py": "Nǐ rènshi tā ma?", "en": "Do you know her?", "id": "Apa kamu kenal dia?" }
+      ],
+      "vocab": [
+        { "zh": "我", "py": "wǒ", "en": "I, me", "id": "aku, saya" },
+        { "zh": "叫", "py": "jiào", "en": "to be called", "id": "bernama, dipanggil" },
+        { "zh": "什么", "py": "shénme", "en": "what", "id": "apa" },
+        { "zh": "认识", "py": "rènshi", "en": "to know", "id": "mengenal" },
+        { "zh": "很", "py": "hěn", "en": "very", "id": "sangat" },
+        { "zh": "高兴", "py": "gāoxìng", "en": "glad, happy", "id": "senang" },
+        { "zh": "她", "py": "tā", "en": "she, her", "id": "dia (perempuan)" },
+        { "zh": "吗", "py": "ma", "en": "(question particle)", "id": "(partikel tanya)" },
+        { "zh": "不", "py": "bù", "en": "no, not", "id": "tidak" }
+      ],
+      "listeningScripts": ["她不高兴。", "我不认识她。", "认识你很高兴。"],
+      "bookAnswers": ["×", "×", "√", "√", "√", "×"]
+    },
+    {
+      "number": 3,
+      "titleZh": "他是谁？",
+      "titleEn": "Who is he?",
+      "titleId": "Siapa dia?",
+      "keySentences": [
+        { "zh": "他是谁？", "py": "Tā shì shéi?", "en": "Who is he?", "id": "Siapa dia?" },
+        { "zh": "成龙是哪国人？", "py": "Chéng Lóng shì nǎ guó rén?", "en": "What is Jackie Chan's nationality?", "id": "Jackie Chan orang negara mana?" }
+      ],
+      "vocab": [
+        { "zh": "他", "py": "tā", "en": "he, him", "id": "dia (laki-laki)" },
+        { "zh": "是", "py": "shì", "en": "am, is, are", "id": "adalah" },
+        { "zh": "谁", "py": "shéi", "en": "who, whom", "id": "siapa" },
+        { "zh": "哪", "py": "nǎ", "en": "which", "id": "yang mana" },
+        { "zh": "国", "py": "guó", "en": "country", "id": "negara" },
+        { "zh": "人", "py": "rén", "en": "person", "id": "orang" },
+        { "zh": "中国人", "py": "Zhōngguó rén", "en": "Chinese people", "id": "orang Tiongkok" }
+      ],
+      "listeningScripts": ["人", "中国人", "他很高兴。"],
+      "bookAnswers": ["A", "B", "C", "√", "×", "√"]
+    },
+    {
+      "number": 4,
+      "titleZh": "我家有四口人。",
+      "titleEn": "There are four people in my family.",
+      "titleId": "Keluargaku ada empat orang.",
+      "keySentences": [
+        { "zh": "你家有几口人？", "py": "Nǐ jiā yǒu jǐ kǒu rén?", "en": "How many people are there in your family?", "id": "Keluargamu ada berapa orang?" },
+        { "zh": "你有姐姐吗？", "py": "Nǐ yǒu jiějie ma?", "en": "Do you have big sisters?", "id": "Apa kamu punya kakak perempuan?" }
+      ],
+      "vocab": [
+        { "zh": "爸爸", "py": "bàba", "en": "father", "id": "ayah" },
+        { "zh": "妈妈", "py": "māma", "en": "mother", "id": "ibu" },
+        { "zh": "家", "py": "jiā", "en": "family, home", "id": "keluarga, rumah" },
+        { "zh": "哥哥", "py": "gēge", "en": "big brother", "id": "kakak laki-laki" },
+        { "zh": "姐姐", "py": "jiějie", "en": "big sister", "id": "kakak perempuan" },
+        { "zh": "妹妹", "py": "mèimei", "en": "little sister", "id": "adik perempuan" },
+        { "zh": "有", "py": "yǒu", "en": "to have", "id": "punya, ada" },
+        { "zh": "几", "py": "jǐ", "en": "how many (within 10)", "id": "berapa" },
+        { "zh": "口", "py": "kǒu", "en": "(measure word for family members)", "id": "(kata bantu bilangan anggota keluarga)" },
+        { "zh": "和", "py": "hé", "en": "and", "id": "dan" },
+        { "zh": "没有", "py": "méiyǒu", "en": "don't have", "id": "tidak punya" },
+        { "zh": "个", "py": "ge", "en": "(general measure word)", "id": "(kata bantu bilangan umum)" }
+      ],
+      "listeningScripts": ["爸爸", "一个人", "爸爸和妈妈", "她是我姐姐。"],
+      "bookAnswers": ["√", "×", "×", "√", "C", "A", "B", "D"]
+    },
+    {
+      "number": 5,
+      "titleZh": "我6岁。",
+      "titleEn": "I'm 6 years old.",
+      "titleId": "Umurku 6 tahun.",
+      "keySentences": [
+        { "zh": "你几岁？", "py": "Nǐ jǐ suì?", "en": "How old are you?", "id": "Umurmu berapa?" },
+        { "zh": "你哥哥多大？", "py": "Nǐ gēge duōdà?", "en": "How old is your big brother?", "id": "Kakak laki-lakimu umur berapa?" }
+      ],
+      "vocab": [
+        { "zh": "岁", "py": "suì", "en": "year(s) old", "id": "tahun (umur)" },
+        { "zh": "多大", "py": "duōdà", "en": "how old", "id": "umur berapa" },
+        { "zh": "也", "py": "yě", "en": "also, too", "id": "juga" }
+      ],
+      "listeningScripts": ["五", "我的哥哥", "月月，你几岁？我六岁。"],
+      "bookAnswers": ["×", "√", "×", "D", "C", "B", "A"]
+    },
+    {
+      "number": 6,
+      "titleZh": "你的个子真高！",
+      "titleEn": "You're so tall!",
+      "titleId": "Kamu tinggi sekali!",
+      "keySentences": [
+        { "zh": "妹妹的眼睛很小。", "py": "Mèimei de yǎnjing hěn xiǎo.", "en": "Little sister's eyes are small.", "id": "Mata adik perempuan kecil." },
+        { "zh": "你的个子真高！", "py": "Nǐ de gèzi zhēn gāo!", "en": "You're so tall!", "id": "Badanmu tinggi sekali!" }
+      ],
+      "vocab": [
+        { "zh": "头发", "py": "tóufa", "en": "hair", "id": "rambut" },
+        { "zh": "鼻子", "py": "bízi", "en": "nose", "id": "hidung" },
+        { "zh": "眼睛", "py": "yǎnjing", "en": "eye", "id": "mata" },
+        { "zh": "手", "py": "shǒu", "en": "hand", "id": "tangan" },
+        { "zh": "耳朵", "py": "ěrduo", "en": "ear", "id": "telinga" },
+        { "zh": "的", "py": "de", "en": "(possessive particle)", "id": "(partikel kepemilikan)" },
+        { "zh": "小", "py": "xiǎo", "en": "small", "id": "kecil" },
+        { "zh": "大", "py": "dà", "en": "big", "id": "besar" },
+        { "zh": "长", "py": "cháng", "en": "long", "id": "panjang" },
+        { "zh": "个子", "py": "gèzi", "en": "height (for people)", "id": "tinggi badan" },
+        { "zh": "真", "py": "zhēn", "en": "really", "id": "sungguh, sangat" },
+        { "zh": "高", "py": "gāo", "en": "tall", "id": "tinggi" }
+      ],
+      "listeningScripts": ["眼睛", "头发", "手", "鼻子"],
+      "bookAnswers": ["√", "×", "√", "×", "A", "D", "C", "B"]
+    },
+    {
+      "number": 7,
+      "titleZh": "这是谁的狗？",
+      "titleEn": "Whose dog is this?",
+      "titleId": "Ini anjing siapa?",
+      "keySentences": [
+        { "zh": "这是谁的狗？", "py": "Zhè shì shéi de gǒu?", "en": "Whose dog is this?", "id": "Ini anjing siapa?" },
+        { "zh": "这儿有很多小鱼。", "py": "Zhèr yǒu hěn duō xiǎo yú.", "en": "There are lots of fish here.", "id": "Di sini ada banyak ikan kecil." }
+      ],
+      "vocab": [
+        { "zh": "猫", "py": "māo", "en": "cat", "id": "kucing" },
+        { "zh": "狗", "py": "gǒu", "en": "dog", "id": "anjing" },
+        { "zh": "鱼", "py": "yú", "en": "fish", "id": "ikan" },
+        { "zh": "鸟", "py": "niǎo", "en": "bird", "id": "burung" },
+        { "zh": "这", "py": "zhè", "en": "this", "id": "ini" },
+        { "zh": "那", "py": "nà", "en": "that", "id": "itu" },
+        { "zh": "看", "py": "kàn", "en": "to look", "id": "melihat" },
+        { "zh": "这儿", "py": "zhèr", "en": "here", "id": "di sini" },
+        { "zh": "多", "py": "duō", "en": "many, much", "id": "banyak" },
+        { "zh": "那儿", "py": "nàr", "en": "there", "id": "di sana" }
+      ],
+      "listeningScripts": ["鸟", "长耳朵", "这儿有很多小鸟。", "看那儿，在那儿。"],
+      "bookAnswers": ["×", "×", "√", "√", "D", "C", "B", "A"]
+    },
+    {
+      "number": 8,
+      "titleZh": "我去商店。",
+      "titleEn": "I'm going to the store.",
+      "titleId": "Aku pergi ke toko.",
+      "keySentences": [
+        { "zh": "你姐姐在家吗？", "py": "Nǐ jiějie zài jiā ma?", "en": "Is your big sister at home?", "id": "Kakak perempuanmu ada di rumah?" },
+        { "zh": "我去商店。", "py": "Wǒ qù shāngdiàn.", "en": "I'm going to the store.", "id": "Aku pergi ke toko." }
+      ],
+      "vocab": [
+        { "zh": "学校", "py": "xuéxiào", "en": "school", "id": "sekolah" },
+        { "zh": "商店", "py": "shāngdiàn", "en": "store", "id": "toko" },
+        { "zh": "在", "py": "zài", "en": "in, at", "id": "di" },
+        { "zh": "谢谢", "py": "xièxie", "en": "to thank, thanks", "id": "terima kasih" },
+        { "zh": "去", "py": "qù", "en": "to go", "id": "pergi" },
+        { "zh": "你们", "py": "nǐmen", "en": "you (plural)", "id": "kalian" },
+        { "zh": "我们", "py": "wǒmen", "en": "we", "id": "kami, kita" },
+        { "zh": "哪儿", "py": "nǎr", "en": "where", "id": "di mana" }
+      ],
+      "listeningScripts": ["我去商店。", "我在学校。", "你的耳朵在这儿。", "我去学校，再见。"],
+      "bookAnswers": ["×", "√", "×", "√", "D", "C", "A", "B"]
+    },
+    {
+      "number": 9,
+      "titleZh": "今天星期几？",
+      "titleEn": "What day is it today?",
+      "titleId": "Hari ini hari apa?",
+      "keySentences": [
+        { "zh": "你的生日是几月几号？", "py": "Nǐ de shēngrì shì jǐ yuè jǐ hào?", "en": "When is your birthday?", "id": "Ulang tahunmu tanggal berapa?" },
+        { "zh": "今天星期几？", "py": "Jīntiān xīngqī jǐ?", "en": "What day is it today?", "id": "Hari ini hari apa?" }
+      ],
+      "vocab": [
+        { "zh": "星期一", "py": "Xīngqīyī", "en": "Monday", "id": "Senin" },
+        { "zh": "星期二", "py": "Xīngqī'èr", "en": "Tuesday", "id": "Selasa" },
+        { "zh": "星期三", "py": "Xīngqīsān", "en": "Wednesday", "id": "Rabu" },
+        { "zh": "星期四", "py": "Xīngqīsì", "en": "Thursday", "id": "Kamis" },
+        { "zh": "星期五", "py": "Xīngqīwǔ", "en": "Friday", "id": "Jumat" },
+        { "zh": "星期六", "py": "Xīngqīliù", "en": "Saturday", "id": "Sabtu" },
+        { "zh": "星期天", "py": "Xīngqītiān", "en": "Sunday", "id": "Minggu" },
+        { "zh": "生日", "py": "shēngrì", "en": "birthday", "id": "ulang tahun" },
+        { "zh": "月", "py": "yuè", "en": "month", "id": "bulan" },
+        { "zh": "号", "py": "hào", "en": "date", "id": "tanggal" },
+        { "zh": "今天", "py": "jīntiān", "en": "today", "id": "hari ini" },
+        { "zh": "星期", "py": "xīngqī", "en": "week", "id": "minggu" },
+        { "zh": "明天", "py": "míngtiān", "en": "tomorrow", "id": "besok" },
+        { "zh": "喜欢", "py": "xǐhuan", "en": "to like", "id": "suka" }
+      ],
+      "listeningScripts": ["今天星期几？今天星期一。", "你不去学校吗？今天星期六。", "再见。再见，明天见。"],
+      "bookAnswers": ["B", "B", "C", "C", "B", "D", "A"]
+    },
+    {
+      "number": 10,
+      "titleZh": "现在几点？",
+      "titleEn": "What time is it?",
+      "titleId": "Sekarang jam berapa?",
+      "keySentences": [
+        { "zh": "现在几点？", "py": "Xiànzài jǐ diǎn?", "en": "What time is it?", "id": "Sekarang jam berapa?" },
+        { "zh": "明天5点见。", "py": "Míngtiān wǔ diǎn jiàn.", "en": "Let's meet at 5 o'clock tomorrow.", "id": "Besok bertemu jam 5." }
+      ],
+      "vocab": [
+        { "zh": "现在", "py": "xiànzài", "en": "now", "id": "sekarang" },
+        { "zh": "点", "py": "diǎn", "en": "o'clock", "id": "jam" },
+        { "zh": "分", "py": "fēn", "en": "minute", "id": "menit" },
+        { "zh": "见", "py": "jiàn", "en": "to meet", "id": "bertemu" },
+        { "zh": "早上", "py": "zǎoshang", "en": "morning", "id": "pagi" },
+        { "zh": "太早了", "py": "tài zǎo le", "en": "It's too early!", "id": "Terlalu pagi!" }
+      ],
+      "listeningScripts": ["四点", "七点", "十四号"],
+      "bookAnswers": ["C", "B", "A", "D", "A", "C", "B"]
+    },
+    {
+      "number": 11,
+      "titleZh": "你吃什么？",
+      "titleEn": "What would you like to eat?",
+      "titleId": "Kamu mau makan apa?",
+      "keySentences": [
+        { "zh": "你吃什么？", "py": "Nǐ chī shénme?", "en": "What would you like to eat?", "id": "Kamu makan apa?" },
+        { "zh": "我爱吃蛋糕。", "py": "Wǒ ài chī dàngāo.", "en": "I like to eat cakes.", "id": "Aku suka makan kue." }
+      ],
+      "vocab": [
+        { "zh": "米饭", "py": "mǐfàn", "en": "rice", "id": "nasi" },
+        { "zh": "面条", "py": "miàntiáo", "en": "noodle", "id": "mi" },
+        { "zh": "苹果", "py": "píngguǒ", "en": "apple", "id": "apel" },
+        { "zh": "牛奶", "py": "niúnǎi", "en": "milk", "id": "susu" },
+        { "zh": "水", "py": "shuǐ", "en": "water", "id": "air" },
+        { "zh": "吃", "py": "chī", "en": "to eat", "id": "makan" },
+        { "zh": "喝", "py": "hē", "en": "to drink", "id": "minum" },
+        { "zh": "爱", "py": "ài", "en": "to love", "id": "cinta, suka" },
+        { "zh": "蛋糕", "py": "dàngāo", "en": "cake", "id": "kue" }
+      ],
+      "listeningScripts": ["他爱吃米饭。", "牛奶在这儿，你喝吗？", "她不爱吃这个。", "这是谁的苹果？"],
+      "bookAnswers": ["√", "×", "×", "√", "B", "D", "C", "A"]
+    },
+    {
+      "number": 12,
+      "titleZh": "复习",
+      "titleEn": "Review",
+      "titleId": "Ulangan",
+      "isReview": true,
+      "keySentences": [
+        { "zh": "我家有一个小乌龟，叫小小。", "py": "Wǒ jiā yǒu yí ge xiǎo wūguī, jiào Xiǎoxiao.", "en": "My family has a little tortoise called Xiaoxiao.", "id": "Di rumahku ada kura-kura kecil, namanya Xiaoxiao." },
+        { "zh": "我很喜欢小小，小小也很喜欢我。", "py": "Wǒ hěn xǐhuan Xiǎoxiao, Xiǎoxiao yě hěn xǐhuan wǒ.", "en": "I like Xiaoxiao a lot, and Xiaoxiao likes me a lot too.", "id": "Aku sangat suka Xiaoxiao, Xiaoxiao juga sangat suka aku." }
+      ],
+      "vocab": [
+        { "zh": "乌龟", "py": "wūguī", "en": "tortoise", "id": "kura-kura" },
+        { "zh": "睡觉", "py": "shuìjiào", "en": "to sleep", "id": "tidur" }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    }
+  ]
+}
