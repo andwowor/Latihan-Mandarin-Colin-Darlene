@@ -289,24 +289,89 @@ Yang tersisa: **mengaktifkan GitHub Pages**. Langkah ini diblokir untuk saya
 (sistem tidak mengizinkan saya menerbitkan situs atas nama akun Bapak/Ibu),
 jadi harus Bapak/Ibu sendiri yang menekannya. Pilih salah satu cara:
 
-### Cara A — lewat browser
+### Cara A — lewat browser (langkah demi langkah)
 
-1. Buka: **https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/settings/pages**
-   (pastikan sudah login GitHub sebagai `andwowor`)
-2. Cari bagian **Build and deployment → Source**.
+**Langkah 0 — Pastikan sudah login GitHub**
 
-   ⚠️ **Ini penyebab tersering gagalnya.** Kotak Source biasanya sudah terisi
-   **"GitHub Actions"**. Kalau dibiarkan begitu, pilihan branch tidak akan
-   muncul dan tidak ada yang tersimpan. **Ubah dulu menjadi
-   "Deploy from a branch".**
+Buka dulu https://github.com dan pastikan sudah masuk sebagai **andwowor**
+(foto profil di pojok kanan atas). Ini penting: halaman *Settings* hanya bisa
+dilihat pemilik repo. **Kalau belum login, halaman setelan akan tampil 404** —
+dan 404 itu mudah dikira "repo-nya tidak ada", padahal hanya belum login.
 
-3. Setelah diubah, muncul baris **Branch** di bawahnya. Pilih:
-   - branch: **`main`** (bukan "None")
-   - folder: **`/ (root)`**
-4. Klik tombol **Save** di sebelah kanannya.
-5. Halaman akan menampilkan kotak biru berisi *"Your site is live at …"* atau
-   *"Your site is being built"*. Kalau kotak itu **tidak** muncul, berarti
-   penyimpanannya belum jadi — ulangi dari langkah 2.
+**Langkah 1 — Buka halaman setelan Pages**
+
+Salin alamat ini ke bilah alamat browser:
+
+```
+https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/settings/pages
+```
+
+Yang seharusnya terlihat: judul besar **"GitHub Pages"**, dan di bawahnya
+sub-judul **"Build and deployment"**.
+
+> Kalau yang muncul malah halaman repo biasa: klik tab **⚙ Settings** di baris
+> menu atas repo (paling kanan), lalu pada daftar menu kiri cari kelompok
+> **"Code and automation"** → klik **"Pages"**.
+
+**Langkah 2 — Ubah kotak "Source"** ⚠️ *bagian yang paling sering terlewat*
+
+Di bawah "Build and deployment" ada label **Source** dengan sebuah kotak pilihan.
+
+- Kalau isinya **"GitHub Actions"** → **klik kotaknya, lalu pilih
+  "Deploy from a branch"**.
+- Kalau isinya sudah "Deploy from a branch" → lanjut ke langkah 3.
+
+Selama kotak ini masih "GitHub Actions", **baris Branch tidak akan muncul dan
+tidak ada tombol Save** — inilah sebabnya klik sebelumnya terasa sudah
+dilakukan padahal tidak tersimpan.
+
+**Langkah 3 — Pilih branch dan folder**
+
+Setelah langkah 2, muncul baris baru berlabel **Branch** berisi dua kotak
+pilihan kecil dan satu tombol **Save**.
+
+- Kotak kiri: klik, pilih **`main`**. (Awalnya sering tertulis **"None"**.)
+- Kotak kanan: pilih **`/ (root)`**. (Jangan `/docs`.)
+
+**Langkah 4 — Klik Save**
+
+Tombol **Save** ada di kanan kedua kotak tadi. Klik sekali.
+
+**Langkah 5 — Pastikan benar-benar tersimpan**
+
+Halaman akan memuat ulang sendiri, lalu di bagian atas muncul kotak berwarna
+berisi salah satu dari:
+
+- *"Your GitHub Pages site is currently being built from the main branch."* atau
+- *"Your site is live at https://andwowor.github.io/Latihan-Mandarin-Colin-Darlene/"*
+
+**Kalau kotak itu tidak muncul, berarti belum tersimpan** — ulangi dari
+langkah 2.
+
+**Langkah 6 — Tunggu proses build**
+
+Pembangunan pertama biasanya **1–3 menit**. Untuk memantaunya, buka tab
+**Actions**:
+
+```
+https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/actions
+```
+
+Akan ada baris pekerjaan bernama *"pages build and deployment"*:
+🟡 lingkaran kuning = sedang berjalan · ✅ centang hijau = selesai ·
+❌ silang merah = gagal (beri tahu saya).
+
+**Langkah 7 — Buka situsnya**
+
+Setelah centang hijau, buka:
+
+```
+https://andwowor.github.io/Latihan-Mandarin-Colin-Darlene/
+```
+
+Akan tampil sekejap halaman 🐼 *"Membuka Mandarin Fun…"*, lalu otomatis
+berpindah ke aplikasinya. Kalau masih 404, tekan **Cmd + Shift + R**
+(muat ulang paksa) — browser kadang menyimpan 404 yang lama.
 
 ### Cara B — lewat Terminal (satu perintah)
 
