@@ -92,10 +92,10 @@
       "track": "HSK",
       "level": 2,
       "file": "hsk2.json",
-      "status": "pending-import",
+      "status": "ready",
       "color": "#7c6cf0",
       "emoji": "📗",
-      "titleId": "Belum diimpor",
+      "titleId": "Percakapan HSK",
       "unlockAtXp": 3000
     },
     {
@@ -104,10 +104,10 @@
       "track": "HSK",
       "level": 3,
       "file": "hsk3.json",
-      "status": "pending-import",
+      "status": "ready",
       "color": "#f2971f",
       "emoji": "📘",
-      "titleId": "Belum diimpor",
+      "titleId": "HSK menengah",
       "unlockAtXp": 5000
     }
   ]

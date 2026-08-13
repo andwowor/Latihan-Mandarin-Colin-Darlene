@@ -1,7 +1,8 @@
-# Cara Menambah Materi Baru (sisa: HSK 2 dan HSK 3)
+# Cara Menambah Materi Baru
 
-Dokumen ini menjelaskan cara memasukkan level berikutnya ke dalam aplikasi.
-Tidak ada perubahan kode yang diperlukan — cukup menambah satu berkas JSON.
+Seluruh buku yang ada di komputer (YCT 1–6, HSK 1–3) sudah diimpor. Dokumen ini
+menjelaskan cara memasukkan buku baru bila nanti ditambahkan — mis. HSK 4.
+Tidak ada perubahan kode yang diperlukan, cukup menambah satu berkas JSON.
 
 ## Kenapa tidak otomatis?
 
@@ -166,21 +167,20 @@ npm start                                  # lalu buka http://localhost:4173/pub
 
 ## Catatan khusus
 
-### Lokasi halaman HSK yang sudah ditemukan
-
-Hasil penelusuran, supaya impor berikutnya tinggal ambil halamannya:
+### Halaman yang dipakai saat mengimpor HSK (arsip)
 
 | Buku | Halaman PDF | Isi |
 |---|---|---|
-| `hsk1 textbook.pdf` | 9, 11, 13 | 目录 Contents (pelajaran 1-5, 6-10, 11-15) |
-| `hsk1 textbook.pdf` | 133-139 | 词语总表 Vocabulary — **ada kolom 课号 Lesson** |
-| `HSK标准教程2.pdf` | selisih PDF = cetak + 23 | mis. PDF 140 = cetak 117 |
+| `hsk1 textbook.pdf` | 9, 11, 13 | 目录 Contents |
+| `hsk1 textbook.pdf` | 133-139 | 词语总表 Vocabulary |
+| `HSK标准教程2.pdf` | 18, 20, 22 | 目录 Contents |
+| `HSK标准教程2.pdf` | 144-150 | 词语总表 Vocabulary |
 | `HSK-3-standard-course-pdf.pdf` | 9, 11, 13, 15 | 目录 Contents (20 pelajaran) |
-| `HSK-3-standard-course-pdf.pdf` | selisih PDF = cetak + 16 | mis. PDF 185 = cetak 169 |
+| `HSK-3-standard-course-pdf.pdf` | 194-206 | 词语总表 Vocabulary |
 
-**Kabar baik:** daftar kosakata buku HSK memuat kolom **课号 Lesson** secara
-langsung, jadi tidak perlu dipetakan lewat nomor halaman seperti buku YCT.
-Impornya lebih sederhana.
+**Buku HSK jauh lebih mudah diimpor daripada YCT**: daftar kosakatanya memuat
+kolom **课号 Lesson** secara langsung, jadi tidak perlu dipetakan lewat nomor
+halaman. Daftar isi HSK 3 bahkan sudah merinci kosakata per pelajaran.
 
 ### Buku HSK berbeda susunannya
 

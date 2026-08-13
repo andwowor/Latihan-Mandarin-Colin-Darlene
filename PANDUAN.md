@@ -206,13 +206,18 @@ Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
 
 ---
 
-## 6. Menambah materi HSK 2 dan HSK 3
+## 6. Menambah materi baru
 
-Saat ini YCT 1–6 dan **HSK 1** sudah lengkap. Tinggal HSK 2 dan HSK 3.
+Seluruh buku YCT 1–6 dan HSK 1–3 sudah diimpor — **128 pelajaran, 1.340 kata**.
 
-Berkasnya sudah ada di komputer, dan lokasi halaman yang dibutuhkan sudah
-saya catat di `docs/importing-content.md`. Kalau Bapak/Ibu ingin dilanjutkan,
-cukup minta: *"impor HSK 2 dan HSK 3"*.
+Kalau nanti Bapak/Ibu menambah buku baru (mis. HSK 4), letakkan PDF-nya di
+folder `MANDARIN/`, lalu minta saya mengimpornya. Prosedur teknisnya ada di
+`docs/importing-content.md`.
+
+### Kunci jawaban & naskah simakan buku HSK
+
+Buku latihan HSK (练习册 / Workbook) memuat kunci jawaban dan naskah simakan
+yang belum saya salin. Kalau ingin ditambahkan, cukup minta.
 
 ---
 
@@ -258,9 +263,11 @@ Setelah materi baru masuk, tautan privat perlu dibangun ulang:
 | YCT 5 | 15 | 169 | — | — |
 | YCT 6 | 15 | 195 | — | — |
 | HSK 1 | 15 | 148 | — | — |
-| **Total** | **93** | **866** | **230** | |
+| HSK 2 | 15 | 163 | — | — |
+| HSK 3 | 20 | 311 | — | — |
+| **Total** | **128** | **1.340** | **230** | |
 
-HSK 2 dan HSK 3: belum diimpor.
+Seluruh buku YCT dan HSK yang ada di komputer sudah masuk.
 
 Semuanya bisa dilatih dalam empat keterampilan: membaca, mendengar,
 berbicara, dan menulis.

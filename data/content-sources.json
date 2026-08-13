@@ -173,7 +173,11 @@
           "scanned": true
         }
       ],
-      "status": "pending-import"
+      "status": "imported",
+      "lessons": 15,
+      "answerKey": "Ada di HSK2练习册.pdf — belum disalin",
+      "listeningScripts": "Belum disalin",
+      "notes": "163 kata dari 词语总表 (hal. 121-127), termasuk 2 nama diri dan 14 kata 超纲词. Judul pelajaran dari 目录 hal. 13-14."
     },
     {
       "code": "HSK 3",
@@ -190,7 +194,11 @@
           "scanned": true
         }
       ],
-      "status": "pending-import"
+      "status": "imported",
+      "lessons": 20,
+      "answerKey": "Ada di HSK-3-Workbook.pdf — belum disalin",
+      "listeningScripts": "Belum disalin",
+      "notes": "311 kata dari 词语总表 (hal. 178-189), termasuk 13 kata 超纲词. Judul pelajaran dari 目录 (daftar isinya bahkan memuat rincian kosakata per pelajaran)."
     }
   ]
 }

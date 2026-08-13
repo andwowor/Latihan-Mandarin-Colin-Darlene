@@ -99,14 +99,17 @@ Kurikulum diambil dari buku YCT/HSK milik keluarga di
 | YCT 5 | ✅ siap | 15 | 169 | — | — |
 | YCT 6 | ✅ siap | 15 | 195 | — | — |
 | HSK 1 | ✅ siap | 15 | 148 | — | — |
-| **Total** | | **93** | **866** | **230** | |
-| HSK 2–3 | ⏳ belum diimpor | — | — | — | — |
+| HSK 2 | ✅ siap | 15 | 163 | — | — |
+| HSK 3 | ✅ siap | 20 | 311 | — | — |
+| **Total** | | **128** | **1.340** | **230** | |
+
+Seluruh materi yang tersedia di komputer sudah diimpor.
 
 Tanda `—` pada kunci jawaban berarti halaman *Test Answers* buku tidak ikut
 terpindai; penilaian aplikasi tetap otomatis karena soalnya dibangkitkan
 sendiri (lihat ADR-0004).
 
-Menambah level: **`docs/importing-content.md`**.
+Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 
 ### Tiga hal yang perlu diketahui tentang materi sumber
 

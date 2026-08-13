@@ -27,10 +27,11 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 | YCT 5 | siap | 15 | 169 |
 | YCT 6 | siap | 15 | 195 |
 | HSK 1 | siap | 15 | 148 |
-| HSK 2–3 | belum diimpor | — | — |
+| HSK 2 | siap | 15 | 163 |
+| HSK 3 | siap | 20 | 311 |
 
-Sudah masuk: **93 pelajaran, 866 kata, 230 kalimat simakan**
-(seluruh seri YCT 1–6 dan HSK 1).
+Sudah masuk: **128 pelajaran, 1.340 kata, 230 kalimat simakan** —
+seluruh materi yang tersedia di komputer (YCT 1–6 dan HSK 1–3).
 
 Cara menambah level lain: `docs/importing-content.md`.
 
