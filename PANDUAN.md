@@ -1,0 +1,241 @@
+# 📘 Panduan Mandarin Fun — untuk Orang Tua
+
+Semua yang perlu Bapak/Ibu lakukan, langkah demi langkah.
+
+---
+
+## 1. Membuka dashboard (paling mudah)
+
+**Tautan privat:**
+👉 https://claude.ai/code/artifact/8aa9238e-76b1-4c85-ac7c-e34d4c22c75d
+
+Langkah:
+
+1. Buka tautan di atas lewat Chrome atau Safari (di HP, tablet, atau laptop).
+2. Login akun Claude Bapak/Ibu bila diminta — halaman ini **privat**, hanya bisa
+   dibuka oleh Bapak/Ibu.
+3. Muncul halaman "Siapa yang mau belajar hari ini?" dengan dua tombol.
+4. Ketuk 🦁 **Colin** atau 🦄 **Darlene**. Selesai — langsung bisa dipakai.
+
+**Penting:** progres tersimpan di **perangkat dan browser yang dipakai**.
+Kalau Colin belajar di iPad lalu lanjut di HP Bapak/Ibu, skornya tidak ikut
+pindah. Untuk memindahkannya, lihat bagian 4 (Cadangan).
+
+### Membagikan tautan ke anggota keluarga lain
+
+1. Buka halaman artifact di atas.
+2. Klik menu **Share** di pojok halaman.
+3. Pilih siapa yang boleh mengakses, lalu salin tautannya.
+
+---
+
+## 2. Memasang seperti aplikasi di HP / tablet / laptop
+
+Versi tautan di atas berjalan di browser. Kalau ingin ikonnya nangkring di
+layar utama **dan bisa dipakai tanpa internet**, jalankan versi lengkapnya
+dari komputer. Ini caranya.
+
+### 2a. Menjalankan server di komputer (sekali saja tiap mau dipakai)
+
+1. Buka aplikasi **Terminal** di Mac (tekan `Cmd + Spasi`, ketik `Terminal`, Enter).
+2. Salin-tempel perintah ini, lalu tekan Enter:
+
+   ```bash
+   cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene"
+   npm start
+   ```
+
+3. Akan muncul tulisan `Serving HTTP on :: port 4173`. **Biarkan jendela
+   Terminal ini terbuka** selama anak-anak belajar.
+4. Di komputer yang sama, buka Chrome dan ketik:
+   `http://localhost:4173/public/`
+
+Untuk menghentikan server: kembali ke Terminal, tekan `Ctrl + C`.
+
+### 2b. Membuka dari HP / tablet (satu WiFi dengan komputer)
+
+1. Di Terminal, jalankan perintah ini untuk mengetahui alamat IP komputer:
+
+   ```bash
+   ipconfig getifaddr en0
+   ```
+
+   Akan muncul angka seperti `192.168.1.7`.
+
+2. Pastikan HP/tablet tersambung ke **WiFi yang sama** dengan komputer.
+3. Di HP, buka Chrome/Safari dan ketik (ganti angkanya sesuai hasil langkah 1):
+
+   ```
+   http://192.168.1.7:4173/public/
+   ```
+
+### 2c. Memasang ke layar utama
+
+**iPhone / iPad (Safari):**
+1. Buka alamat di atas lewat **Safari** (bukan Chrome).
+2. Ketuk tombol **Bagikan** (kotak dengan panah ke atas) di bawah layar.
+3. Gulir ke bawah, pilih **Add to Home Screen** / **Tambah ke Layar Utama**.
+4. Ketuk **Add**. Ikon 🐼 muncul di layar utama.
+
+**Android (Chrome):**
+1. Buka alamat di atas lewat Chrome.
+2. Ketuk menu **⋮** di kanan atas.
+3. Pilih **Add to Home screen** / **Tambahkan ke layar utama**.
+4. Ketuk **Install**.
+
+**Laptop (Chrome / Edge):**
+1. Buka `http://localhost:4173/public/`.
+2. Klik ikon **instal** (monitor dengan panah) di ujung kanan bilah alamat.
+3. Klik **Install**.
+
+**Mac (Safari):**
+1. Buka alamatnya di Safari.
+2. Menu **File → Add to Dock**.
+
+> Catatan: sesudah terpasang, aplikasi tetap perlu server di langkah 2a
+> menyala saat pertama kali dibuka. Setelah itu bisa dipakai offline.
+
+---
+
+## 3. Cara memakainya sehari-hari
+
+1. Anak memilih namanya sendiri — tidak ada password.
+2. Di beranda ada **🎯 Misi Harian** berisi tiga tantangan hari itu:
+   - Selesaikan sejumlah pelajaran
+   - Kumpulkan sejumlah XP
+   - Selesaikan pelajaran **tanpa satu pun kesalahan**
+
+   Menuntaskan ketiganya memberi bonus +50 XP. Misi berganti tiap hari, dan
+   target Darlene lebih ringan daripada Colin.
+3. Tekan **▶︎ Lanjut Belajar** untuk langsung ke pelajaran berikutnya, atau
+   **🗺️ Peta Pelajaran** untuk memilih sendiri.
+4. Setiap pelajaran bisa dilatih dalam 4 mode: 📖 Membaca, 🎧 Mendengar,
+   ✍️ Menulis, atau 🎲 Campur.
+5. Satu ronde = 10 soal dan 5 nyawa ❤️. Salah 5 kali, ronde berhenti dan
+   bisa diulang.
+
+**Melihat perbandingan Colin vs Darlene:** ketuk tab **📊 Progres** di bawah,
+lalu pilih periode (Harian, Mingguan, Bulanan, 3 Bulan, 6 Bulan, Tahunan).
+
+**Suara latihan menyimak tidak keluar?**
+- Pastikan HP tidak dalam mode senyap.
+- Android: buka *Setelan → Sistem → Bahasa & masukan → Keluaran teks-ke-ucapan*,
+  lalu unduh paket suara **Bahasa Mandarin (中文)**.
+- Ketuk tombol 🐢 untuk mendengar versi lebih pelan.
+
+---
+
+## 4. Menyimpan & memindahkan progres (Cadangan)
+
+Lakukan ini sebulan sekali, atau sebelum ganti HP.
+
+**Menyimpan cadangan:**
+1. Ketuk ikon **⚙️** di pojok kanan atas.
+2. Pilih **💾 Simpan Cadangan (JSON)**.
+3. Berkas `mandarin-fun-2026-08-13.json` tersimpan di folder Download.
+   Simpan berkas ini di tempat aman (Google Drive / iCloud).
+
+**Memulihkan di perangkat lain:**
+1. Buka aplikasi di perangkat baru.
+2. Ketuk **⚙️ → 📂 Muat Cadangan**.
+3. Pilih berkas JSON tadi. Semua XP, lencana, dan riwayat kembali.
+
+**Menghapus semua progres (mulai dari nol):**
+⚙️ → **🗑️ Hapus Semua Progres**. Tindakan ini **tidak bisa dibatalkan**.
+
+---
+
+## 5. Menyetel tingkat kesulitan
+
+Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
+
+1. Buka Terminal, jalankan:
+
+   ```bash
+   open -e "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene/src/config/appConfig.js"
+   ```
+
+2. Cari bagian `profiles:` lalu ubah angkanya:
+
+   | Yang diubah | Artinya |
+   |---|---|
+   | `dailyGoalXp: 60` | Target XP harian Colin (juga menentukan besar misi harian) |
+   | `dailyGoalXp: 40` | Target XP harian Darlene |
+   | `startLevel: 'yct1'` | Level yang dibuka pertama kali |
+   | `openLevels: ['yct1','yct2']` | Level yang selalu terbuka untuk anak itu |
+
+3. Untuk mengubah jumlah soal atau nyawa, cari bagian `session:`:
+
+   | Yang diubah | Artinya |
+   |---|---|
+   | `questionsPerRound: 10` | Jumlah soal per ronde |
+   | `hearts: 5` | Jumlah nyawa |
+
+4. Simpan (`Cmd + S`), lalu muat ulang halaman di browser.
+5. Kalau ingin tautan online ikut berubah, jalankan langkah di bagian 7.
+
+---
+
+## 6. Menambah materi HSK 1, HSK 2, HSK 3
+
+Saat ini YCT 1–6 sudah lengkap. HSK belum.
+
+### HSK 1 — folder sumbernya masih kosong
+
+1. Buka Finder ke:
+   `/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1`
+2. Folder itu **kosong**. Letakkan berkas `HSK标准教程1.pdf` di sana.
+3. Beri tahu saya, nanti saya impor.
+
+### HSK 2 dan HSK 3 — PDF sudah ada, tinggal diimpor
+
+Berkasnya sudah lengkap di komputer. Prosedur teknis lengkapnya ada di
+`docs/importing-content.md`. Kalau Bapak/Ibu ingin saya yang kerjakan,
+cukup minta: *"impor HSK 2 dan HSK 3"*.
+
+---
+
+## 7. Memperbarui tautan online setelah materi bertambah
+
+Setelah materi baru masuk, tautan privat perlu dibangun ulang:
+
+1. Buka Terminal, jalankan:
+
+   ```bash
+   cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene"
+   npx esbuild --version >/dev/null 2>&1 || npm install esbuild
+   node tools/build-standalone.mjs ./node_modules/.bin/esbuild
+   ```
+
+2. Akan muncul: `✅ dist/mandarin-fun.html — ... KB, ... level, ... pelajaran`
+3. Minta saya mempublikasikan ulang berkas itu — tautannya **tetap sama**,
+   isinya yang diperbarui.
+
+---
+
+## 8. Kalau ada masalah
+
+| Gejala | Yang harus dilakukan |
+|---|---|
+| Halaman putih / "Aplikasi gagal dimuat" | Pastikan alamatnya diawali `http://`, bukan `file://`. Server di langkah 2a harus menyala. |
+| "Materi belum tersedia" saat pelajaran diketuk | Level itu belum diimpor (HSK). Normal. |
+| Level bergembok 🔒 | Terbuka otomatis setelah XP cukup. Bisa dibuka paksa lewat `openLevels` di bagian 5. |
+| Suara tidak keluar | Lihat bagian 3. |
+| Skor anak tercampur | Tidak mungkin tercampur — datanya terpisah. Pastikan menekan nama yang benar di halaman awal. |
+| Progres hilang setelah bersihkan data browser | Pulihkan dari cadangan (bagian 4). Karena itu rutinlah mencadangkan. |
+
+---
+
+## Ringkasan isi materi
+
+| Level | Pelajaran | Kata | Kalimat simakan | Kunci jawaban buku |
+|---|---|---|---|---|
+| YCT 1 | 12 | 106 | 38 | ✅ |
+| YCT 2 | 12 | 91 | 49 | — (tidak ikut terpindai) |
+| YCT 3 | 12 | 79 | 72 | — (tidak ikut terpindai) |
+| YCT 4 | 12 | 78 | 71 | ✅ |
+| YCT 5 | 15 | 169 | — | — |
+| YCT 6 | 15 | 195 | — | — |
+| **Total** | **78** | **718** | **230** | |
+
+HSK 1 (folder kosong), HSK 2, HSK 3: belum diimpor.

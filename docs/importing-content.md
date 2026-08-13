@@ -20,6 +20,33 @@ pdftotext -f 1 -l 5 "YCT 4/YCT4_standart_course.pdf" -
 brew install poppler   # menyediakan pdfinfo, pdfseparate, pdfunite, pdftoppm
 ```
 
+## Cara tercepat: baca 词语表, bukan halaman pelajaran
+
+Ini metode yang terbukti dipakai untuk YCT 4, 5, dan 6 — **5 halaman
+menggantikan 15 halaman**.
+
+Di bagian belakang tiap buku ada `词语表 Vocabulary`: daftar seluruh kosakata
+buku, terurut pinyin, lengkap dengan **nomor halaman** tempat kata itu muncul:
+
+```
+帮助   to help; help    bāngzhù   3
+北方   north            běifāng   107
+```
+
+Nomor halaman itu persis sama dengan nomor halaman pembuka pelajaran di daftar
+isi. Jadi `3 → Pelajaran 1`, `107 → Pelajaran 14`, dan seterusnya. Cukup baca
+daftar isi (1 halaman) + 词语表 (4–5 halaman), lalu petakan.
+
+Contoh pemetaan yang dipakai untuk YCT 5:
+
+| Halaman di 词语表 | Pelajaran |
+|---|---|
+| 3, 11, 19, 27, 35, 43, 51 | 1–7 |
+| 59, 67, 75, 83, 91, 99, 107 | 8–14 |
+
+Verifikasi hasilnya dengan membandingkan jumlah kata terhadap angka yang
+disebut di Preface buku (mis. "covering 78 words"). YCT 4 cocok persis 78.
+
 ## Langkah 2 — Temukan halaman yang penting
 
 Setiap buku *YCT Standard Course* punya pola yang sama:

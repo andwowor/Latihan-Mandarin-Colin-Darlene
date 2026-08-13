@@ -18,14 +18,18 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 
 ## Status konten
 
-| Level | Status | Pelajaran |
-|---|---|---|
-| YCT 1 | siap | 12 (kosakata, kalimat kunci, naskah simakan, kunci jawaban buku) |
-| YCT 2 | siap | 12 (kosakata, kalimat kunci) |
-| YCT 3 | siap | 12 (kosakata, kalimat kunci) |
-| YCT 4–6 | belum diimpor | — |
-| HSK 1 | folder sumber kosong | — |
-| HSK 2–3 | belum diimpor | — |
+| Level | Status | Pelajaran | Kata |
+|---|---|---|---|
+| YCT 1 | siap | 12 | 106 (+ naskah simakan & kunci jawaban buku) |
+| YCT 2 | siap | 12 | 91 |
+| YCT 3 | siap | 12 | 79 (+ 72 kalimat simakan asli) |
+| YCT 4 | siap | 12 | 78 (+ naskah simakan & kunci jawaban buku) |
+| YCT 5 | siap | 15 | 169 |
+| YCT 6 | siap | 15 | 195 |
+| HSK 1 | folder sumber kosong | — | — |
+| HSK 2–3 | belum diimpor | — | — |
+
+Seluruh seri YCT 1–6 sudah masuk: **78 pelajaran, 718 kata, 230 kalimat simakan**.
 
 Cara menambah level lain: `docs/importing-content.md`.
 

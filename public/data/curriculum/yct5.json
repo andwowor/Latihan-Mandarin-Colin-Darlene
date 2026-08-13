@@ -1,0 +1,1298 @@
+{
+  "id": "yct5",
+  "track": "YCT",
+  "level": 5,
+  "code": "YCT 5",
+  "titleZh": "YCT标准教程 5",
+  "titleEn": "YCT Standard Course 5",
+  "titleId": "YCT Standar Kursus 5",
+  "vocabTarget": 600,
+  "recommendedFor": [],
+  "source": {
+    "book": "YCT5标准教程.pdf",
+    "workbook": "YCT5活动手册.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 5",
+    "answerKeyPage": "Test Answers (hal. 131) — TIDAK ADA di scan (berhenti di hal. 130)",
+    "listeningScriptPage": "Listening Scripts (hal. 127-130) — belum disalin",
+    "note": "Kosakata dari 词语表 (hal. 118-122); nomor halaman dipetakan ke pelajaran lewat daftar isi. Kalimat kunci diambil dari judul pelajaran."
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "你对中国功夫感兴趣吗？",
+      "titleEn": "Are you interested in Chinese kung fu?",
+      "titleId": "Apa kamu tertarik pada kungfu Tiongkok?",
+      "keySentences": [
+        {
+          "zh": "你对中国功夫感兴趣吗？",
+          "py": "Nǐ duì Zhōngguó gōngfu gǎn xìngqù ma?",
+          "en": "Are you interested in Chinese kung fu?",
+          "id": "Apa kamu tertarik pada kungfu Tiongkok?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "阿宝",
+          "py": "Ābǎo",
+          "en": "Po (Kung Fu Panda's name)",
+          "id": "Po (nama Kung Fu Panda)"
+        },
+        {
+          "zh": "帮助",
+          "py": "bāngzhù",
+          "en": "to help; help",
+          "id": "membantu; bantuan"
+        },
+        {
+          "zh": "别人",
+          "py": "biérén",
+          "en": "other people",
+          "id": "orang lain"
+        },
+        {
+          "zh": "当然",
+          "py": "dāngrán",
+          "en": "of course",
+          "id": "tentu saja"
+        },
+        {
+          "zh": "对……感兴趣",
+          "py": "duì… gǎn xìngqù",
+          "en": "be interested in",
+          "id": "tertarik pada"
+        },
+        {
+          "zh": "飞",
+          "py": "fēi",
+          "en": "fly",
+          "id": "terbang"
+        },
+        {
+          "zh": "非常",
+          "py": "fēicháng",
+          "en": "very much",
+          "id": "sangat"
+        },
+        {
+          "zh": "功夫",
+          "py": "gōngfu",
+          "en": "kung fu",
+          "id": "kungfu"
+        },
+        {
+          "zh": "（和……）一样",
+          "py": "(hé…) yíyàng",
+          "en": "the same as",
+          "id": "sama dengan"
+        },
+        {
+          "zh": "厉害",
+          "py": "lìhai",
+          "en": "awesome, fierce",
+          "id": "hebat"
+        },
+        {
+          "zh": "特别",
+          "py": "tèbié",
+          "en": "especially; special",
+          "id": "khusus; terutama"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 2,
+      "titleZh": "兔子更可爱。",
+      "titleEn": "Rabbits are even cuter.",
+      "titleId": "Kelinci lebih lucu.",
+      "keySentences": [
+        {
+          "zh": "兔子更可爱。",
+          "py": "Tùzi gèng kě'ài.",
+          "en": "Rabbits are even cuter.",
+          "id": "Kelinci lebih lucu."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "矮",
+          "py": "ǎi",
+          "en": "short (in height)",
+          "id": "pendek"
+        },
+        {
+          "zh": "虫子",
+          "py": "chóngzi",
+          "en": "bug, insect",
+          "id": "serangga"
+        },
+        {
+          "zh": "大象",
+          "py": "dàxiàng",
+          "en": "elephant",
+          "id": "gajah"
+        },
+        {
+          "zh": "短",
+          "py": "duǎn",
+          "en": "short (in length)",
+          "id": "pendek (panjang)"
+        },
+        {
+          "zh": "告诉",
+          "py": "gàosu",
+          "en": "tell",
+          "id": "memberi tahu"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "en": "more",
+          "id": "lebih"
+        },
+        {
+          "zh": "蝴蝶",
+          "py": "húdié",
+          "en": "butterfly",
+          "id": "kupu-kupu"
+        },
+        {
+          "zh": "将来",
+          "py": "jiānglái",
+          "en": "future",
+          "id": "masa depan"
+        },
+        {
+          "zh": "胖",
+          "py": "pàng",
+          "en": "fat",
+          "id": "gemuk"
+        },
+        {
+          "zh": "讨厌",
+          "py": "tǎoyàn",
+          "en": "hate, dislike; annoying",
+          "id": "benci; menyebalkan"
+        },
+        {
+          "zh": "兔子",
+          "py": "tùzi",
+          "en": "rabbit, bunny",
+          "id": "kelinci"
+        },
+        {
+          "zh": "尾巴",
+          "py": "wěiba",
+          "en": "tail",
+          "id": "ekor"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 3,
+      "titleZh": "电梯坏了。",
+      "titleEn": "There is something wrong with the elevator.",
+      "titleId": "Liftnya rusak.",
+      "keySentences": [
+        {
+          "zh": "电梯坏了。",
+          "py": "Diàntī huài le.",
+          "en": "There is something wrong with the elevator.",
+          "id": "Liftnya rusak."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "啊",
+          "py": "a",
+          "en": "ah (interjection)",
+          "id": "ah (kata seru)"
+        },
+        {
+          "zh": "层",
+          "py": "céng",
+          "en": "floor, storey",
+          "id": "lantai"
+        },
+        {
+          "zh": "窗户",
+          "py": "chuānghu",
+          "en": "window",
+          "id": "jendela"
+        },
+        {
+          "zh": "等",
+          "py": "děng",
+          "en": "wait",
+          "id": "menunggu"
+        },
+        {
+          "zh": "电梯",
+          "py": "diàntī",
+          "en": "elevator",
+          "id": "lift"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "en": "put",
+          "id": "meletakkan"
+        },
+        {
+          "zh": "还是",
+          "py": "háishi",
+          "en": "or (in questions)",
+          "id": "atau"
+        },
+        {
+          "zh": "空调",
+          "py": "kōngtiáo",
+          "en": "air-conditioner",
+          "id": "AC"
+        },
+        {
+          "zh": "楼",
+          "py": "lóu",
+          "en": "building",
+          "id": "gedung"
+        },
+        {
+          "zh": "沙发",
+          "py": "shāfā",
+          "en": "sofa",
+          "id": "sofa"
+        },
+        {
+          "zh": "洗手间",
+          "py": "xǐshǒujiān",
+          "en": "bathroom",
+          "id": "kamar kecil"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "en": "live",
+          "id": "tinggal"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 4,
+      "titleZh": "每个人都有自己的习惯。",
+      "titleEn": "Everyone has their own habits.",
+      "titleId": "Setiap orang punya kebiasaannya sendiri.",
+      "keySentences": [
+        {
+          "zh": "每个人都有自己的习惯。",
+          "py": "Měi ge rén dōu yǒu zìjǐ de xíguàn.",
+          "en": "Everyone has their own habits.",
+          "id": "Setiap orang punya kebiasaannya sendiri."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "带",
+          "py": "dài",
+          "en": "take, bring",
+          "id": "membawa"
+        },
+        {
+          "zh": "公园",
+          "py": "gōngyuán",
+          "en": "park",
+          "id": "taman"
+        },
+        {
+          "zh": "咖啡",
+          "py": "kāfēi",
+          "en": "coffee",
+          "id": "kopi"
+        },
+        {
+          "zh": "邻居",
+          "py": "línjū",
+          "en": "neighbor",
+          "id": "tetangga"
+        },
+        {
+          "zh": "爬山",
+          "py": "páshān",
+          "en": "climb a mountain",
+          "id": "mendaki gunung"
+        },
+        {
+          "zh": "奇怪",
+          "py": "qíguài",
+          "en": "strange, weird",
+          "id": "aneh"
+        },
+        {
+          "zh": "散步",
+          "py": "sànbù",
+          "en": "take a walk",
+          "id": "jalan-jalan"
+        },
+        {
+          "zh": "弹钢琴",
+          "py": "tán gāngqín",
+          "en": "play the piano",
+          "id": "bermain piano"
+        },
+        {
+          "zh": "习惯",
+          "py": "xíguàn",
+          "en": "habit; get used to",
+          "id": "kebiasaan; terbiasa"
+        },
+        {
+          "zh": "一会儿",
+          "py": "yíhuìr",
+          "en": "a little while",
+          "id": "sebentar"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐqián",
+          "en": "before",
+          "id": "dulu"
+        },
+        {
+          "zh": "周末",
+          "py": "zhōumò",
+          "en": "weekend",
+          "id": "akhir pekan"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 5,
+      "titleZh": "他们多么年轻啊！",
+      "titleEn": "They're so young!",
+      "titleId": "Mereka muda sekali!",
+      "keySentences": [
+        {
+          "zh": "他们多么年轻啊！",
+          "py": "Tāmen duōme niánqīng a!",
+          "en": "They're so young!",
+          "id": "Mereka muda sekali!"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "阿姨",
+          "py": "āyí",
+          "en": "aunt",
+          "id": "tante"
+        },
+        {
+          "zh": "多么",
+          "py": "duōme",
+          "en": "so, how",
+          "id": "betapa"
+        },
+        {
+          "zh": "儿子",
+          "py": "érzi",
+          "en": "son",
+          "id": "anak laki-laki"
+        },
+        {
+          "zh": "孩子",
+          "py": "háizi",
+          "en": "child",
+          "id": "anak"
+        },
+        {
+          "zh": "年轻",
+          "py": "niánqīng",
+          "en": "young",
+          "id": "muda"
+        },
+        {
+          "zh": "女儿",
+          "py": "nǚ'ér",
+          "en": "daughter",
+          "id": "anak perempuan"
+        },
+        {
+          "zh": "叔叔",
+          "py": "shūshu",
+          "en": "uncle",
+          "id": "paman"
+        },
+        {
+          "zh": "帅",
+          "py": "shuài",
+          "en": "handsome",
+          "id": "tampan"
+        },
+        {
+          "zh": "孙子",
+          "py": "sūnzi",
+          "en": "grandson",
+          "id": "cucu laki-laki"
+        },
+        {
+          "zh": "张",
+          "py": "zhāng",
+          "en": "(measure word for flat things)",
+          "id": "(kata bantu bilangan benda pipih)"
+        },
+        {
+          "zh": "照片",
+          "py": "zhàopiàn",
+          "en": "photo",
+          "id": "foto"
+        },
+        {
+          "zh": "照相",
+          "py": "zhàoxiàng",
+          "en": "take a photo",
+          "id": "memotret"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 6,
+      "titleZh": "站着的还是坐着的？",
+      "titleEn": "The one standing or the one sitting?",
+      "titleId": "Yang berdiri atau yang duduk?",
+      "keySentences": [
+        {
+          "zh": "站着的还是坐着的？",
+          "py": "Zhàn zhe de háishi zuò zhe de?",
+          "en": "The one standing or the one sitting?",
+          "id": "Yang berdiri atau yang duduk?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "错",
+          "py": "cuò",
+          "en": "wrong",
+          "id": "salah"
+        },
+        {
+          "zh": "大家",
+          "py": "dàjiā",
+          "en": "everyone",
+          "id": "semuanya"
+        },
+        {
+          "zh": "戴",
+          "py": "dài",
+          "en": "wear (accessories)",
+          "id": "memakai (aksesori)"
+        },
+        {
+          "zh": "号码",
+          "py": "hàomǎ",
+          "en": "number",
+          "id": "nomor"
+        },
+        {
+          "zh": "（看）见",
+          "py": "(kàn)jiàn",
+          "en": "see",
+          "id": "melihat"
+        },
+        {
+          "zh": "联系",
+          "py": "liánxì",
+          "en": "contact; connection",
+          "id": "menghubungi"
+        },
+        {
+          "zh": "项圈",
+          "py": "xiàngquān",
+          "en": "necklet",
+          "id": "kalung"
+        },
+        {
+          "zh": "眼镜",
+          "py": "yǎnjìng",
+          "en": "glasses",
+          "id": "kacamata"
+        },
+        {
+          "zh": "站",
+          "py": "zhàn",
+          "en": "stand",
+          "id": "berdiri"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "en": "(action in progress)",
+          "id": "(partikel sedang berlangsung)"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 7,
+      "titleZh": "我经常去体育馆锻炼身体。",
+      "titleEn": "I often go to the gym to work out.",
+      "titleId": "Aku sering ke gedung olahraga untuk berolahraga.",
+      "keySentences": [
+        {
+          "zh": "我经常去体育馆锻炼身体。",
+          "py": "Wǒ jīngcháng qù tǐyùguǎn duànliàn shēntǐ.",
+          "en": "I often go to the gym to work out.",
+          "id": "Aku sering ke gedung olahraga untuk berolahraga."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "不但……而且……",
+          "py": "búdàn… érqiě…",
+          "en": "not only… but also…",
+          "id": "tidak hanya… tetapi juga…"
+        },
+        {
+          "zh": "锻炼",
+          "py": "duànliàn",
+          "en": "work out, exercise",
+          "id": "berolahraga"
+        },
+        {
+          "zh": "健康",
+          "py": "jiànkāng",
+          "en": "healthy; health",
+          "id": "sehat; kesehatan"
+        },
+        {
+          "zh": "经常",
+          "py": "jīngcháng",
+          "en": "often",
+          "id": "sering"
+        },
+        {
+          "zh": "流汗",
+          "py": "liúhàn",
+          "en": "sweat",
+          "id": "berkeringat"
+        },
+        {
+          "zh": "排球",
+          "py": "páiqiú",
+          "en": "volleyball",
+          "id": "bola voli"
+        },
+        {
+          "zh": "乒乓球",
+          "py": "pīngpāngqiú",
+          "en": "table tennis",
+          "id": "tenis meja"
+        },
+        {
+          "zh": "体育馆",
+          "py": "tǐyùguǎn",
+          "en": "gym",
+          "id": "gedung olahraga"
+        },
+        {
+          "zh": "网球",
+          "py": "wǎngqiú",
+          "en": "tennis",
+          "id": "tenis"
+        },
+        {
+          "zh": "心情",
+          "py": "xīnqíng",
+          "en": "mood",
+          "id": "suasana hati"
+        },
+        {
+          "zh": "选（择）",
+          "py": "xuǎn(zé)",
+          "en": "choose",
+          "id": "memilih"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 8,
+      "titleZh": "北京一共有四个季节。",
+      "titleEn": "Beijing has four seasons altogether.",
+      "titleId": "Beijing punya empat musim.",
+      "keySentences": [
+        {
+          "zh": "北京一共有四个季节。",
+          "py": "Běijīng yígòng yǒu sì ge jìjié.",
+          "en": "Beijing has four seasons altogether.",
+          "id": "Beijing punya empat musim."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "变化",
+          "py": "biànhuà",
+          "en": "change",
+          "id": "perubahan"
+        },
+        {
+          "zh": "春（天）",
+          "py": "chūn(tiān)",
+          "en": "spring",
+          "id": "musim semi"
+        },
+        {
+          "zh": "到处",
+          "py": "dàochù",
+          "en": "everywhere",
+          "id": "di mana-mana"
+        },
+        {
+          "zh": "冬（天）",
+          "py": "dōng(tiān)",
+          "en": "winter",
+          "id": "musim dingin"
+        },
+        {
+          "zh": "堆雪人",
+          "py": "duī xuěrén",
+          "en": "make a snowman",
+          "id": "membuat boneka salju"
+        },
+        {
+          "zh": "刮风",
+          "py": "guāfēng",
+          "en": "(of the wind) blow",
+          "id": "berangin"
+        },
+        {
+          "zh": "季节",
+          "py": "jìjié",
+          "en": "season",
+          "id": "musim"
+        },
+        {
+          "zh": "凉快",
+          "py": "liángkuai",
+          "en": "cool (weather)",
+          "id": "sejuk"
+        },
+        {
+          "zh": "暖和",
+          "py": "nuǎnhuo",
+          "en": "warm",
+          "id": "hangat"
+        },
+        {
+          "zh": "晴",
+          "py": "qíng",
+          "en": "sunny",
+          "id": "cerah"
+        },
+        {
+          "zh": "秋（天）",
+          "py": "qiū(tiān)",
+          "en": "fall, autumn",
+          "id": "musim gugur"
+        },
+        {
+          "zh": "夏（天）",
+          "py": "xià(tiān)",
+          "en": "summer",
+          "id": "musim panas"
+        },
+        {
+          "zh": "一共",
+          "py": "yígòng",
+          "en": "altogether",
+          "id": "total"
+        },
+        {
+          "zh": "阴",
+          "py": "yīn",
+          "en": "overcast",
+          "id": "mendung"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 9,
+      "titleZh": "冰激凌既好吃又便宜。",
+      "titleEn": "The ice cream is delicious and cheap.",
+      "titleId": "Es krimnya enak sekaligus murah.",
+      "keySentences": [
+        {
+          "zh": "冰激凌既好吃又便宜。",
+          "py": "Bīngjīlíng jì hǎochī yòu piányi.",
+          "en": "The ice cream is delicious and cheap.",
+          "id": "Es krimnya enak sekaligus murah."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "办法",
+          "py": "bànfǎ",
+          "en": "way of doing something",
+          "id": "cara"
+        },
+        {
+          "zh": "冰激凌",
+          "py": "bīngjīlíng",
+          "en": "ice cream",
+          "id": "es krim"
+        },
+        {
+          "zh": "饼干",
+          "py": "bǐnggān",
+          "en": "cookie",
+          "id": "biskuit"
+        },
+        {
+          "zh": "尝",
+          "py": "cháng",
+          "en": "taste",
+          "id": "mencicipi"
+        },
+        {
+          "zh": "超市",
+          "py": "chāoshì",
+          "en": "supermarket",
+          "id": "supermarket"
+        },
+        {
+          "zh": "记得",
+          "py": "jìde",
+          "en": "remember",
+          "id": "ingat"
+        },
+        {
+          "zh": "既……又……",
+          "py": "jì… yòu…",
+          "en": "both… and…",
+          "id": "selain… juga…"
+        },
+        {
+          "zh": "便宜",
+          "py": "piányi",
+          "en": "cheap",
+          "id": "murah"
+        },
+        {
+          "zh": "巧克力",
+          "py": "qiǎokèlì",
+          "en": "chocolate",
+          "id": "cokelat"
+        },
+        {
+          "zh": "手表",
+          "py": "shǒubiǎo",
+          "en": "watch",
+          "id": "jam tangan"
+        },
+        {
+          "zh": "玩具",
+          "py": "wánjù",
+          "en": "toy",
+          "id": "mainan"
+        },
+        {
+          "zh": "已经",
+          "py": "yǐjīng",
+          "en": "already",
+          "id": "sudah"
+        },
+        {
+          "zh": "饮料",
+          "py": "yǐnliào",
+          "en": "beverage",
+          "id": "minuman"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 10,
+      "titleZh": "你的汉语会越来越好。",
+      "titleEn": "Your Chinese will get better and better.",
+      "titleId": "Bahasa Mandarinmu akan semakin bagus.",
+      "keySentences": [
+        {
+          "zh": "你的汉语会越来越好。",
+          "py": "Nǐ de Hànyǔ huì yuè lái yuè hǎo.",
+          "en": "Your Chinese will get better and better.",
+          "id": "Bahasa Mandarinmu akan semakin bagus."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "成绩",
+          "py": "chéngjì",
+          "en": "grade, score",
+          "id": "nilai"
+        },
+        {
+          "zh": "复习",
+          "py": "fùxí",
+          "en": "review",
+          "id": "mengulang pelajaran"
+        },
+        {
+          "zh": "考试",
+          "py": "kǎoshì",
+          "en": "take a test; test",
+          "id": "ujian"
+        },
+        {
+          "zh": "练习",
+          "py": "liànxí",
+          "en": "exercise; to practice",
+          "id": "latihan; berlatih"
+        },
+        {
+          "zh": "聊天儿",
+          "py": "liáotiānr",
+          "en": "chat",
+          "id": "mengobrol"
+        },
+        {
+          "zh": "努力",
+          "py": "nǔlì",
+          "en": "(do something) hard",
+          "id": "dengan giat"
+        },
+        {
+          "zh": "认真",
+          "py": "rènzhēn",
+          "en": "take something seriously",
+          "id": "sungguh-sungguh"
+        },
+        {
+          "zh": "相信",
+          "py": "xiāngxìn",
+          "en": "believe",
+          "id": "percaya"
+        },
+        {
+          "zh": "一定",
+          "py": "yídìng",
+          "en": "definitely",
+          "id": "pasti"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "en": "more and more",
+          "id": "semakin"
+        },
+        {
+          "zh": "只要……就……",
+          "py": "zhǐyào… jiù…",
+          "en": "as long as",
+          "id": "asalkan"
+        },
+        {
+          "zh": "准备",
+          "py": "zhǔnbèi",
+          "en": "prepare; preparation",
+          "id": "bersiap; persiapan"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 11,
+      "titleZh": "来一盘羊肉饺子。",
+      "titleEn": "I'd like a plate of lamb dumplings.",
+      "titleId": "Pesan satu piring pangsit daging kambing.",
+      "keySentences": [
+        {
+          "zh": "来一盘羊肉饺子。",
+          "py": "Lái yì pán yángròu jiǎozi.",
+          "en": "I'd like a plate of lamb dumplings.",
+          "id": "Pesan satu piring pangsit daging kambing."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "叉子",
+          "py": "chāzi",
+          "en": "fork",
+          "id": "garpu"
+        },
+        {
+          "zh": "服务员",
+          "py": "fúwùyuán",
+          "en": "waiter, waitress",
+          "id": "pelayan"
+        },
+        {
+          "zh": "烤鸭",
+          "py": "kǎoyā",
+          "en": "roast duck",
+          "id": "bebek panggang"
+        },
+        {
+          "zh": "筷子",
+          "py": "kuàizi",
+          "en": "chopsticks",
+          "id": "sumpit"
+        },
+        {
+          "zh": "离开",
+          "py": "líkāi",
+          "en": "leave",
+          "id": "meninggalkan"
+        },
+        {
+          "zh": "盘（子）",
+          "py": "pán(zi)",
+          "en": "plate",
+          "id": "piring"
+        },
+        {
+          "zh": "其他",
+          "py": "qítā",
+          "en": "other",
+          "id": "lainnya"
+        },
+        {
+          "zh": "双",
+          "py": "shuāng",
+          "en": "pair (measure word)",
+          "id": "pasang"
+        },
+        {
+          "zh": "汤",
+          "py": "tāng",
+          "en": "soup",
+          "id": "sup"
+        },
+        {
+          "zh": "碗",
+          "py": "wǎn",
+          "en": "bowl",
+          "id": "mangkuk"
+        },
+        {
+          "zh": "羊肉",
+          "py": "yángròu",
+          "en": "lamb",
+          "id": "daging kambing"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "en": "use",
+          "id": "memakai"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 12,
+      "titleZh": "坐飞机或者坐火车都可以。",
+      "titleEn": "You can either take the plane or the train.",
+      "titleId": "Naik pesawat atau kereta sama-sama boleh.",
+      "keySentences": [
+        {
+          "zh": "坐飞机或者坐火车都可以。",
+          "py": "Zuò fēijī huòzhě zuò huǒchē dōu kěyǐ.",
+          "en": "You can either take the plane or the train.",
+          "id": "Naik pesawat atau kereta sama-sama boleh."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "安全",
+          "py": "ānquán",
+          "en": "safe",
+          "id": "aman"
+        },
+        {
+          "zh": "出差",
+          "py": "chūchāi",
+          "en": "go on a business trip",
+          "id": "dinas luar kota"
+        },
+        {
+          "zh": "担心",
+          "py": "dānxīn",
+          "en": "worry",
+          "id": "khawatir"
+        },
+        {
+          "zh": "地铁",
+          "py": "dìtiě",
+          "en": "subway",
+          "id": "kereta bawah tanah"
+        },
+        {
+          "zh": "方便",
+          "py": "fāngbiàn",
+          "en": "convenient",
+          "id": "praktis"
+        },
+        {
+          "zh": "工作",
+          "py": "gōngzuò",
+          "en": "to work; work",
+          "id": "bekerja; pekerjaan"
+        },
+        {
+          "zh": "火车",
+          "py": "huǒchē",
+          "en": "train",
+          "id": "kereta api"
+        },
+        {
+          "zh": "或者",
+          "py": "huòzhě",
+          "en": "or (in statements)",
+          "id": "atau"
+        },
+        {
+          "zh": "可能",
+          "py": "kěnéng",
+          "en": "probably",
+          "id": "mungkin"
+        },
+        {
+          "zh": "如果……那么……",
+          "py": "rúguǒ… nàme…",
+          "en": "if… then…",
+          "id": "kalau… maka…"
+        },
+        {
+          "zh": "上海",
+          "py": "Shànghǎi",
+          "en": "Shanghai",
+          "id": "Shanghai"
+        },
+        {
+          "zh": "准时",
+          "py": "zhǔnshí",
+          "en": "punctual",
+          "id": "tepat waktu"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 13,
+      "titleZh": "我先帮你补牙。",
+      "titleEn": "I'll do the filling for you first.",
+      "titleId": "Aku tambal dulu gigimu.",
+      "keySentences": [
+        {
+          "zh": "我先帮你补牙。",
+          "py": "Wǒ xiān bāng nǐ bǔyá.",
+          "en": "I'll do the filling for you first.",
+          "id": "Aku tambal dulu gigimu."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "补牙",
+          "py": "bǔyá",
+          "en": "have a dental filling",
+          "id": "menambal gigi"
+        },
+        {
+          "zh": "打针",
+          "py": "dǎzhēn",
+          "en": "have/give an injection",
+          "id": "disuntik"
+        },
+        {
+          "zh": "肚子",
+          "py": "dùzi",
+          "en": "stomach, belly",
+          "id": "perut"
+        },
+        {
+          "zh": "发烧",
+          "py": "fāshāo",
+          "en": "have a fever",
+          "id": "demam"
+        },
+        {
+          "zh": "护士",
+          "py": "hùshi",
+          "en": "nurse",
+          "id": "perawat"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "en": "teach",
+          "id": "mengajar"
+        },
+        {
+          "zh": "开药",
+          "py": "kāiyào",
+          "en": "prescribe medicine",
+          "id": "meresepkan obat"
+        },
+        {
+          "zh": "马上",
+          "py": "mǎshàng",
+          "en": "immediately",
+          "id": "segera"
+        },
+        {
+          "zh": "刷牙",
+          "py": "shuāyá",
+          "en": "brush the teeth",
+          "id": "menyikat gigi"
+        },
+        {
+          "zh": "躺",
+          "py": "tǎng",
+          "en": "lie down",
+          "id": "berbaring"
+        },
+        {
+          "zh": "突然",
+          "py": "tūrán",
+          "en": "suddenly; sudden",
+          "id": "tiba-tiba"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "en": "first",
+          "id": "lebih dulu"
+        },
+        {
+          "zh": "一直",
+          "py": "yìzhí",
+          "en": "all the time, always",
+          "id": "terus-menerus"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 14,
+      "titleZh": "我打算去中国旅游。",
+      "titleEn": "I'm planning to go travelling in China.",
+      "titleId": "Aku berencana berwisata ke Tiongkok.",
+      "keySentences": [
+        {
+          "zh": "我打算去中国旅游。",
+          "py": "Wǒ dǎsuàn qù Zhōngguó lǚyóu.",
+          "en": "I'm planning to go travelling in China.",
+          "id": "Aku berencana berwisata ke Tiongkok."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "北方",
+          "py": "běifāng",
+          "en": "north",
+          "id": "utara"
+        },
+        {
+          "zh": "长城",
+          "py": "Chángchéng",
+          "en": "the Great Wall",
+          "id": "Tembok Besar"
+        },
+        {
+          "zh": "除了",
+          "py": "chúle",
+          "en": "except for, besides",
+          "id": "selain"
+        },
+        {
+          "zh": "打算",
+          "py": "dǎsuàn",
+          "en": "to plan; plan",
+          "id": "berencana; rencana"
+        },
+        {
+          "zh": "地图",
+          "py": "dìtú",
+          "en": "map",
+          "id": "peta"
+        },
+        {
+          "zh": "寒假",
+          "py": "hánjià",
+          "en": "winter holiday",
+          "id": "libur musim dingin"
+        },
+        {
+          "zh": "介绍",
+          "py": "jièshào",
+          "en": "introduce",
+          "id": "memperkenalkan"
+        },
+        {
+          "zh": "旅游",
+          "py": "lǚyóu",
+          "en": "travel",
+          "id": "berwisata"
+        },
+        {
+          "zh": "南方",
+          "py": "nánfāng",
+          "en": "south",
+          "id": "selatan"
+        },
+        {
+          "zh": "然后",
+          "py": "ránhòu",
+          "en": "then, after that",
+          "id": "lalu"
+        },
+        {
+          "zh": "暑假",
+          "py": "shǔjià",
+          "en": "summer holiday",
+          "id": "libur musim panas"
+        },
+        {
+          "zh": "小笼包",
+          "py": "Xiǎolóngbāo",
+          "en": "Xiaolongbao",
+          "id": "bakpao kukus kecil"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒumíng",
+          "en": "famous",
+          "id": "terkenal"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 15,
+      "titleZh": "复习",
+      "titleEn": "Review",
+      "titleId": "Ulangan",
+      "isReview": true,
+      "keySentences": [],
+      "vocab": [],
+      "listeningScripts": [],
+      "bookAnswers": []
+    }
+  ]
+}

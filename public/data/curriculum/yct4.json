@@ -1,0 +1,879 @@
+{
+  "id": "yct4",
+  "track": "YCT",
+  "level": 4,
+  "code": "YCT 4",
+  "titleZh": "YCT标准教程 4",
+  "titleEn": "YCT Standard Course 4",
+  "titleId": "YCT Standar Kursus 4",
+  "vocabTarget": 300,
+  "recommendedFor": [],
+  "source": {
+    "book": "YCT4_standart_course.pdf",
+    "workbook": "YCT4_activity book.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/YCT 4",
+    "answerKeyPage": "Test Answers (hal. 68) — sudah disalin",
+    "listeningScriptPage": "Test Listening Scripts (hal. 66-67) — sudah disalin",
+    "note": "Kosakata diambil dari 词语表 (hal. 60-61); nomor halaman di daftar itu dipetakan ke pelajaran lewat daftar isi. Kalimat kunci diambil dari judul pelajaran."
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "我们有一百零八个学生。",
+      "titleEn": "We have 108 students.",
+      "titleId": "Kami punya 108 murid.",
+      "keySentences": [
+        {
+          "zh": "我们有一百零八个学生。",
+          "py": "Wǒmen yǒu yì bǎi líng bā ge xuésheng.",
+          "en": "We have 108 students.",
+          "id": "Kami punya 108 murid."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "百",
+          "py": "bǎi",
+          "en": "hundred",
+          "id": "seratus"
+        },
+        {
+          "zh": "电脑",
+          "py": "diànnǎo",
+          "en": "computer",
+          "id": "komputer"
+        },
+        {
+          "zh": "零",
+          "py": "líng",
+          "en": "zero",
+          "id": "nol"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "en": "thousand",
+          "id": "seribu"
+        },
+        {
+          "zh": "上网",
+          "py": "shàngwǎng",
+          "en": "surf the Internet",
+          "id": "berinternet"
+        },
+        {
+          "zh": "少",
+          "py": "shǎo",
+          "en": "less, few",
+          "id": "sedikit, kurang"
+        },
+        {
+          "zh": "手机",
+          "py": "shǒujī",
+          "en": "mobile phone",
+          "id": "ponsel"
+        }
+      ],
+      "listeningScripts": [
+        "我的电脑坏了，不能上网了。",
+        "十个一百是一千。",
+        "二零零八年五月。",
+        "怎么少了一本书？"
+      ],
+      "bookAnswers": [
+        "√",
+        "×",
+        "×",
+        "√",
+        "B",
+        "D",
+        "A",
+        "C"
+      ]
+    },
+    {
+      "number": 2,
+      "titleZh": "你学汉语多长时间了？",
+      "titleEn": "How long have you been learning Chinese?",
+      "titleId": "Sudah berapa lama kamu belajar bahasa Mandarin?",
+      "keySentences": [
+        {
+          "zh": "你学汉语多长时间了？",
+          "py": "Nǐ xué Hànyǔ duō cháng shíjiān le?",
+          "en": "How long have you been learning Chinese?",
+          "id": "Sudah berapa lama kamu belajar bahasa Mandarin?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "半",
+          "py": "bàn",
+          "en": "half",
+          "id": "setengah"
+        },
+        {
+          "zh": "懂",
+          "py": "dǒng",
+          "en": "understand",
+          "id": "mengerti"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "en": "read",
+          "id": "membaca"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "en": "difficult",
+          "id": "sulit"
+        },
+        {
+          "zh": "时间",
+          "py": "shíjiān",
+          "en": "time",
+          "id": "waktu"
+        },
+        {
+          "zh": "题",
+          "py": "tí",
+          "en": "question, problem",
+          "id": "soal"
+        },
+        {
+          "zh": "小时",
+          "py": "xiǎoshí",
+          "en": "hour",
+          "id": "jam (durasi)"
+        }
+      ],
+      "listeningScripts": [
+        "这个字怎么读？你知道吗？",
+        "知道，这是“绿色”的“绿”。",
+        "真热，还有西瓜吗？",
+        "还有一半。",
+        "老师，这个题我不会。",
+        "跳舞难不难？",
+        "不难，我很快就能学会。"
+      ],
+      "bookAnswers": [
+        "√",
+        "×",
+        "√",
+        "√",
+        "B",
+        "D",
+        "A",
+        "C"
+      ]
+    },
+    {
+      "number": 3,
+      "titleZh": "早上八点半就开门。",
+      "titleEn": "It opens as early as 8:30 in the morning.",
+      "titleId": "Jam setengah sembilan pagi sudah buka.",
+      "keySentences": [
+        {
+          "zh": "早上八点半就开门。",
+          "py": "Zǎoshang bā diǎn bàn jiù kāimén.",
+          "en": "It opens as early as 8:30 in the morning.",
+          "id": "Jam setengah sembilan pagi sudah buka."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "杯子",
+          "py": "bēizi",
+          "en": "cup, glass, mug",
+          "id": "gelas"
+        },
+        {
+          "zh": "关",
+          "py": "guān",
+          "en": "close",
+          "id": "menutup"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "en": "as early as, just",
+          "id": "sudah, langsung"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "en": "open",
+          "id": "membuka"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "en": "to sell",
+          "id": "menjual"
+        },
+        {
+          "zh": "门",
+          "py": "mén",
+          "en": "door",
+          "id": "pintu"
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "en": "over, finished",
+          "id": "selesai"
+        },
+        {
+          "zh": "中午",
+          "py": "zhōngwǔ",
+          "en": "noon",
+          "id": "siang"
+        }
+      ],
+      "listeningScripts": [
+        "商店中午关门吗？",
+        "不关门。",
+        "中午我们一起跑步，好吗？",
+        "对不起，我没穿运动鞋。",
+        "家里没有水果了，你去买一些吧。",
+        "好的，我看完电视就去。",
+        "这儿有水果店吗？我想买些苹果。",
+        "旁边那家商店就有。"
+      ],
+      "bookAnswers": [
+        "√",
+        "×",
+        "√",
+        "√",
+        "C",
+        "B",
+        "C",
+        "B"
+      ]
+    },
+    {
+      "number": 4,
+      "titleZh": "我感冒了。",
+      "titleEn": "I have a cold.",
+      "titleId": "Aku masuk angin.",
+      "keySentences": [
+        {
+          "zh": "我感冒了。",
+          "py": "Wǒ gǎnmào le.",
+          "en": "I have a cold.",
+          "id": "Aku masuk angin."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "感冒",
+          "py": "gǎnmào",
+          "en": "have a cold",
+          "id": "masuk angin, flu"
+        },
+        {
+          "zh": "身体",
+          "py": "shēntǐ",
+          "en": "body, health",
+          "id": "badan, kesehatan"
+        },
+        {
+          "zh": "生病",
+          "py": "shēngbìng",
+          "en": "sick",
+          "id": "sakit"
+        },
+        {
+          "zh": "舒服",
+          "py": "shūfu",
+          "en": "comfortable",
+          "id": "nyaman, enak badan"
+        },
+        {
+          "zh": "疼",
+          "py": "téng",
+          "en": "hurt, ache",
+          "id": "sakit, nyeri"
+        },
+        {
+          "zh": "休息",
+          "py": "xiūxi",
+          "en": "have a rest",
+          "id": "istirahat"
+        },
+        {
+          "zh": "药",
+          "py": "yào",
+          "en": "medicine",
+          "id": "obat"
+        },
+        {
+          "zh": "一点儿",
+          "py": "yìdiǎnr",
+          "en": "a little, a bit",
+          "id": "sedikit"
+        }
+      ],
+      "listeningScripts": [
+        "学校外面有动物医院，你去那儿看看吧。",
+        "对不起，我昨天生病了，没有来。",
+        "感冒了，吃一点儿药吧。",
+        "我的脚不疼了，下星期就可以去跑步。"
+      ],
+      "bookAnswers": [
+        "√",
+        "√",
+        "√",
+        "×",
+        "D",
+        "A",
+        "C",
+        "B"
+      ]
+    },
+    {
+      "number": 5,
+      "titleZh": "把门关上。",
+      "titleEn": "Close the door.",
+      "titleId": "Tutup pintunya.",
+      "keySentences": [
+        {
+          "zh": "把门关上。",
+          "py": "Bǎ mén guān shàng.",
+          "en": "Close the door.",
+          "id": "Tutup pintunya."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "菜",
+          "py": "cài",
+          "en": "(a dish of) cooked food",
+          "id": "masakan, lauk"
+        },
+        {
+          "zh": "果汁",
+          "py": "guǒzhī",
+          "en": "juice",
+          "id": "jus"
+        },
+        {
+          "zh": "进",
+          "py": "jìn",
+          "en": "come in, go in",
+          "id": "masuk"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "en": "it",
+          "id": "dia (benda/hewan)"
+        },
+        {
+          "zh": "洗澡",
+          "py": "xǐzǎo",
+          "en": "take a shower or bath",
+          "id": "mandi"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "en": "fish",
+          "id": "ikan"
+        }
+      ],
+      "listeningScripts": [
+        "妈妈，我的鱼呢？",
+        "小猫把鱼吃了。",
+        "我可以进来吗？",
+        "请进，快把门关上。",
+        "水、牛奶、果汁，你最喜欢喝哪个？",
+        "我最喜欢喝果汁。",
+        "爸爸，我们的小猫呢？",
+        "小猫在那儿看鱼游泳呢。"
+      ],
+      "bookAnswers": [
+        "B",
+        "A",
+        "C",
+        "B",
+        "C",
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 6,
+      "titleZh": "你去过我们的新教室吗？",
+      "titleEn": "Have you been to our new classroom?",
+      "titleId": "Sudah pernah ke ruang kelas baru kami?",
+      "keySentences": [
+        {
+          "zh": "你去过我们的新教室吗？",
+          "py": "Nǐ qù guo wǒmen de xīn jiàoshì ma?",
+          "en": "Have you been to our new classroom?",
+          "id": "Sudah pernah ke ruang kelas baru kami?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "过",
+          "py": "guo",
+          "en": "(past experience particle)",
+          "id": "(partikel pernah)"
+        },
+        {
+          "zh": "后",
+          "py": "hòu",
+          "en": "behind",
+          "id": "belakang"
+        },
+        {
+          "zh": "教室",
+          "py": "jiàoshì",
+          "en": "classroom",
+          "id": "ruang kelas"
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "en": "front",
+          "id": "depan"
+        },
+        {
+          "zh": "右",
+          "py": "yòu",
+          "en": "right (side)",
+          "id": "kanan"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "en": "go, walk",
+          "id": "pergi, jalan"
+        },
+        {
+          "zh": "左",
+          "py": "zuǒ",
+          "en": "left (side)",
+          "id": "kiri"
+        }
+      ],
+      "listeningScripts": [
+        "小猫在后边，我看过了。",
+        "走，我们去左边看小鱼。",
+        "教室里还有五个学生。",
+        "坐在最前边的那个是我的学生。"
+      ],
+      "bookAnswers": [
+        "×",
+        "√",
+        "×",
+        "√",
+        "C",
+        "A",
+        "C",
+        "C"
+      ]
+    },
+    {
+      "number": 7,
+      "titleZh": "你们每天怎么去学校？",
+      "titleEn": "How do you go to school every day?",
+      "titleId": "Setiap hari kalian ke sekolah naik apa?",
+      "keySentences": [
+        {
+          "zh": "你们每天怎么去学校？",
+          "py": "Nǐmen měi tiān zěnme qù xuéxiào?",
+          "en": "How do you go to school every day?",
+          "id": "Setiap hari kalian ke sekolah naik apa?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "车站",
+          "py": "chēzhàn",
+          "en": "bus stop",
+          "id": "halte, stasiun"
+        },
+        {
+          "zh": "动物园",
+          "py": "dòngwùyuán",
+          "en": "zoo",
+          "id": "kebun binatang"
+        },
+        {
+          "zh": "对",
+          "py": "duì",
+          "en": "right, correct",
+          "id": "benar"
+        },
+        {
+          "zh": "公共汽车",
+          "py": "gōnggòng qìchē",
+          "en": "bus",
+          "id": "bus"
+        },
+        {
+          "zh": "近",
+          "py": "jìn",
+          "en": "near",
+          "id": "dekat"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "en": "drive",
+          "id": "mengemudi"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "en": "road",
+          "id": "jalan"
+        },
+        {
+          "zh": "旁边",
+          "py": "pángbiān",
+          "en": "beside",
+          "id": "di samping"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "en": "(measure word)",
+          "id": "(kata bantu bilangan)"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "en": "far",
+          "id": "jauh"
+        }
+      ],
+      "listeningScripts": [
+        "走这条路，对吗？",
+        "不对，你的车不能开进去。",
+        "我开车送你到车站吧。",
+        "时间还早，我坐公共汽车就可以。",
+        "学校到车站远吗？",
+        "很近，走五分钟就能到。",
+        "那个商店远不远？我想去看看。",
+        "不远，就在学校旁边。"
+      ],
+      "bookAnswers": [
+        "C",
+        "B",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 8,
+      "titleZh": "要下雨了。",
+      "titleEn": "It's going to rain.",
+      "titleId": "Sebentar lagi hujan.",
+      "keySentences": [
+        {
+          "zh": "要下雨了。",
+          "py": "Yào xià yǔ le.",
+          "en": "It's going to rain.",
+          "id": "Sebentar lagi hujan."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "迟到",
+          "py": "chídào",
+          "en": "late",
+          "id": "terlambat"
+        },
+        {
+          "zh": "坏",
+          "py": "huài",
+          "en": "bad, broken",
+          "id": "rusak"
+        },
+        {
+          "zh": "蓝",
+          "py": "lán",
+          "en": "blue",
+          "id": "biru"
+        },
+        {
+          "zh": "慢",
+          "py": "màn",
+          "en": "slow",
+          "id": "pelan"
+        },
+        {
+          "zh": "拿",
+          "py": "ná",
+          "en": "take",
+          "id": "mengambil"
+        },
+        {
+          "zh": "雨伞",
+          "py": "yǔsǎn",
+          "en": "umbrella",
+          "id": "payung"
+        }
+      ],
+      "listeningScripts": [
+        "请把这四个椅子拿进去。",
+        "坏的也拿吗？",
+        "红色和黑色的雨伞，你喜欢哪一个？",
+        "这两个颜色我都不喜欢，我喜欢蓝色的。",
+        "我的铅笔坏了，你还有铅笔吗？",
+        "有，在书包里，你自己拿吧。",
+        "你做的面条真好吃。",
+        "慢点儿吃，还有很多。"
+      ],
+      "bookAnswers": [
+        "C",
+        "D",
+        "A",
+        "B",
+        "B",
+        "C",
+        "A",
+        "B"
+      ]
+    },
+    {
+      "number": 9,
+      "titleZh": "你是什么时候去的？",
+      "titleEn": "When did you go there?",
+      "titleId": "Kapan kamu pergi ke sana?",
+      "keySentences": [
+        {
+          "zh": "你是什么时候去的？",
+          "py": "Nǐ shì shénme shíhou qù de?",
+          "en": "When did you go there?",
+          "id": "Kapan kamu pergi ke sana?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "次",
+          "py": "cì",
+          "en": "time (occurrence)",
+          "id": "kali"
+        },
+        {
+          "zh": "飞机",
+          "py": "fēijī",
+          "en": "plane",
+          "id": "pesawat"
+        },
+        {
+          "zh": "累",
+          "py": "lèi",
+          "en": "tired",
+          "id": "lelah"
+        },
+        {
+          "zh": "去年",
+          "py": "qùnián",
+          "en": "last year",
+          "id": "tahun lalu"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "en": "time, moment",
+          "id": "waktu, saat"
+        }
+      ],
+      "listeningScripts": [
+        "坐飞机到北京要十个小时。",
+        "我今天有一点儿累，不去跑步了。",
+        "我的个子比去年高了很多。",
+        "我第一次做饺子，好吃吗？"
+      ],
+      "bookAnswers": [
+        "C",
+        "A",
+        "B",
+        "B",
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    },
+    {
+      "number": 10,
+      "titleZh": "爸爸为什么不休息？",
+      "titleEn": "Why doesn't Dad have a rest?",
+      "titleId": "Kenapa Ayah tidak istirahat?",
+      "keySentences": [
+        {
+          "zh": "爸爸为什么不休息？",
+          "py": "Bàba wèi shénme bù xiūxi?",
+          "en": "Why doesn't Dad have a rest?",
+          "id": "Kenapa Ayah tidak istirahat?"
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "电影",
+          "py": "diànyǐng",
+          "en": "film, movie",
+          "id": "film"
+        },
+        {
+          "zh": "忙",
+          "py": "máng",
+          "en": "busy",
+          "id": "sibuk"
+        },
+        {
+          "zh": "事情",
+          "py": "shìqing",
+          "en": "thing, matter",
+          "id": "urusan, hal"
+        },
+        {
+          "zh": "为什么",
+          "py": "wèi shénme",
+          "en": "why",
+          "id": "kenapa"
+        },
+        {
+          "zh": "意思",
+          "py": "yìsi",
+          "en": "meaning",
+          "id": "arti, maksud"
+        },
+        {
+          "zh": "因为……所以……",
+          "py": "yīnwèi… suǒyǐ…",
+          "en": "because… so…",
+          "id": "karena… maka…"
+        }
+      ],
+      "listeningScripts": [
+        "昨天我和同学去看电影了。",
+        "电影有意思吗？",
+        "和去年比，你瘦多了。",
+        "因为今年比去年忙。",
+        "我会自己穿衣服。",
+        "很好，自己的事情自己做。",
+        "天气这么热，我们去游泳吧。",
+        "不去了，我和妈妈去看电影。"
+      ],
+      "bookAnswers": [
+        "B",
+        "C",
+        "A",
+        "C",
+        "B",
+        "C",
+        "A",
+        "D"
+      ]
+    },
+    {
+      "number": 11,
+      "titleZh": "它长得很快。",
+      "titleEn": "It grows really fast.",
+      "titleId": "Dia tumbuh cepat sekali.",
+      "keySentences": [
+        {
+          "zh": "它长得很快。",
+          "py": "Tā zhǎng de hěn kuài.",
+          "en": "It grows really fast.",
+          "id": "Dia tumbuh cepat sekali."
+        }
+      ],
+      "vocab": [
+        {
+          "zh": "白",
+          "py": "bái",
+          "en": "white",
+          "id": "putih"
+        },
+        {
+          "zh": "出生",
+          "py": "chūshēng",
+          "en": "birth",
+          "id": "lahir"
+        },
+        {
+          "zh": "黑",
+          "py": "hēi",
+          "en": "black",
+          "id": "hitam"
+        },
+        {
+          "zh": "件",
+          "py": "jiàn",
+          "en": "(measure word for clothes)",
+          "id": "(kata bantu bilangan pakaian)"
+        },
+        {
+          "zh": "可爱",
+          "py": "kě'ài",
+          "en": "cute, lovely",
+          "id": "lucu, imut"
+        },
+        {
+          "zh": "裤子",
+          "py": "kùzi",
+          "en": "trousers",
+          "id": "celana"
+        },
+        {
+          "zh": "裙子",
+          "py": "qúnzi",
+          "en": "dress, skirt",
+          "id": "rok"
+        },
+        {
+          "zh": "长",
+          "py": "zhǎng",
+          "en": "grow",
+          "id": "tumbuh"
+        }
+      ],
+      "listeningScripts": [
+        "这条红色的裙子怎么样？",
+        "很漂亮，比黑色的好看。",
+        "妈妈，这条裤子是什么时候买的？",
+        "是你出生那年买的。",
+        "这件衣服太小了，是他的吗？",
+        "是的，他长得太快了！",
+        "你好，这件运动服有黑色的吗？",
+        "对不起，这是最后一件了。"
+      ],
+      "bookAnswers": [
+        "D",
+        "C",
+        "B",
+        "A",
+        "B",
+        "B",
+        "B",
+        "B"
+      ]
+    },
+    {
+      "number": 12,
+      "titleZh": "复习",
+      "titleEn": "Review",
+      "titleId": "Ulangan",
+      "isReview": true,
+      "keySentences": [],
+      "vocab": [],
+      "listeningScripts": [],
+      "bookAnswers": []
+    }
+  ]
+}

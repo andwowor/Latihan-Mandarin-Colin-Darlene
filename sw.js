@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v2';
+const VERSION = 'mandarin-fun-v3';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -60,7 +60,10 @@ const ASSETS = [
   'public/data/curriculum/index.json',
   'public/data/curriculum/yct1.json',
   'public/data/curriculum/yct2.json',
-  'public/data/curriculum/yct3.json'
+  'public/data/curriculum/yct3.json',
+  'public/data/curriculum/yct4.json',
+  'public/data/curriculum/yct5.json',
+  'public/data/curriculum/yct6.json'
 ].map(base);
 
 self.addEventListener('install', (event) => {

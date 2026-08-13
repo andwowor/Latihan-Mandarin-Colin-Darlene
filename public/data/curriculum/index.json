@@ -44,10 +44,10 @@
       "track": "YCT",
       "level": 4,
       "file": "yct4.json",
-      "status": "pending-import",
+      "status": "ready",
       "color": "#e2564f",
       "emoji": "🏔️",
-      "titleId": "Belum diimpor",
+      "titleId": "Cerita & waktu",
       "unlockAtXp": 3000
     },
     {
@@ -56,10 +56,10 @@
       "track": "YCT",
       "level": 5,
       "file": "yct5.json",
-      "status": "pending-import",
+      "status": "ready",
       "color": "#c1439c",
       "emoji": "🚀",
-      "titleId": "Belum diimpor",
+      "titleId": "Percakapan panjang",
       "unlockAtXp": 5000
     },
     {
@@ -68,10 +68,10 @@
       "track": "YCT",
       "level": 6,
       "file": "yct6.json",
-      "status": "pending-import",
+      "status": "ready",
       "color": "#5b7cf5",
       "emoji": "👑",
-      "titleId": "Belum diimpor",
+      "titleId": "Mahir",
       "unlockAtXp": 8000
     },
     {

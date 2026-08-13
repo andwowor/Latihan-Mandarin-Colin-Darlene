@@ -4,7 +4,17 @@ Dashboard belajar bahasa Mandarin bergaya permainan untuk Colin (7 th, kelas 2 S
 dan Darlene (5 th, Kindergarten K2). Dibuat sebagai PWA supaya bisa dipasang di
 Android, iPhone, iPad, tablet, dan laptop lewat Chrome maupun Safari.
 
-## Menjalankan
+> **Panduan lengkap untuk orang tua ada di [PANDUAN.md](PANDUAN.md)** —
+> cara membuka, memasang di HP, mencadangkan progres, dan menyetel kesulitan.
+
+## Tautan online (privat)
+
+👉 https://claude.ai/code/artifact/8aa9238e-76b1-4c85-ac7c-e34d4c22c75d
+
+Halaman privat berisi seluruh aplikasi dalam satu berkas. Cukup dibuka lewat
+browser mana pun. Dibangun dari `dist/mandarin-fun.html`.
+
+## Menjalankan versi lengkap (PWA + offline)
 
 ```bash
 cd "Latihan-Mandarin-Colin-Darlene"
@@ -17,6 +27,17 @@ Lalu buka **http://localhost:4173/public/**
 
 Untuk membukanya dari HP di rumah, cari alamat IP komputer
 (`ipconfig getifaddr en0`) lalu buka `http://<ip>:4173/public/` di HP.
+
+## Membangun versi satu berkas
+
+```bash
+npm install esbuild
+node tools/build-standalone.mjs ./node_modules/.bin/esbuild
+```
+
+Menghasilkan `dist/mandarin-fun.html` (±250 KB): seluruh gaya, kode, dan
+kurikulum menyatu dalam satu berkas ASCII murni — aman dibuka dari server mana
+pun tanpa bergantung pada header charset.
 
 ## Memasang ke layar utama
 
@@ -67,14 +88,21 @@ kotak Leitner), dan kemajuannya terlihat di tab 📚 Kamus.
 Kurikulum diambil dari buku YCT/HSK milik keluarga di
 `/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/`.
 
-| Level | Status | Isi |
-|---|---|---|
-| YCT 1 | ✅ siap | 12 pelajaran · ±80 kata · naskah simakan · kunci jawaban buku |
-| YCT 2 | ✅ siap | 12 pelajaran · ±90 kata |
-| YCT 3 | ✅ siap | 12 pelajaran · ±80 kata |
-| YCT 4–6 | ⏳ belum diimpor | — |
-| HSK 1 | 📭 folder sumber kosong | — |
-| HSK 2–3 | ⏳ belum diimpor | — |
+| Level | Status | Pelajaran | Kata | Kalimat simakan | Kunci jawaban buku |
+|---|---|---|---|---|---|
+| YCT 1 | ✅ siap | 12 | 106 | 38 | ✅ |
+| YCT 2 | ✅ siap | 12 | 91 | 49 | — |
+| YCT 3 | ✅ siap | 12 | 79 | 72 | — |
+| YCT 4 | ✅ siap | 12 | 78 | 71 | ✅ |
+| YCT 5 | ✅ siap | 15 | 169 | — | — |
+| YCT 6 | ✅ siap | 15 | 195 | — | — |
+| **Total YCT** | | **78** | **718** | **230** | |
+| HSK 1 | 📭 folder sumber kosong | — | — | — | — |
+| HSK 2–3 | ⏳ belum diimpor | — | — | — | — |
+
+Tanda `—` pada kunci jawaban berarti halaman *Test Answers* buku tidak ikut
+terpindai; penilaian aplikasi tetap otomatis karena soalnya dibangkitkan
+sendiri (lihat ADR-0004).
 
 Menambah level: **`docs/importing-content.md`**.
 
