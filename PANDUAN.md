@@ -274,44 +274,46 @@ berbicara, dan menulis.
 
 ---
 
-## 9. Membuat link publik (bisa dibuka tanpa login Claude)
+---
 
-Tautan artifact di bagian 1 mengharuskan login akun Claude. Supaya Colin dan
-Darlene bisa membukanya sendiri, aplikasinya perlu dipasang di **GitHub Pages**.
+## 9. Mengaktifkan link publik — tinggal SATU langkah
 
-Semua berkas sudah saya siapkan dan sudah di-commit. Yang tersisa hanya
-**tiga perintah** yang harus Bapak/Ibu jalankan sendiri — saya tidak diizinkan
-menerbitkan repositori publik atas nama Bapak/Ibu.
+Yang sudah selesai (semuanya sudah saya kerjakan):
 
-### Langkah
+- ✅ Repositori `Latihan-Mandarin-Colin-Darlene` sudah ada di GitHub
+- ✅ Seluruh kode dan materi sudah diunggah ke sana
+- ✅ Repositori sudah diubah menjadi **publik**
+- ✅ `robots.txt` + `noindex` sudah dipasang agar tidak muncul di Google
 
-1. Buka **Terminal**, lalu salin-tempel perintah ini satu per satu:
+Yang tersisa: **mengaktifkan GitHub Pages**. Langkah ini diblokir untuk saya
+(sistem tidak mengizinkan saya menerbitkan situs atas nama akun Bapak/Ibu),
+jadi harus Bapak/Ibu sendiri yang menekannya. Pilih salah satu cara:
 
-   ```bash
-   cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene"
-   ```
+### Cara A — lewat browser (paling mudah, 4 klik)
 
-2. Buat repositori publik dan unggah semua berkasnya:
+1. Buka: **https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/settings/pages**
+2. Pada bagian **Build and deployment → Source**, pilih **Deploy from a branch**
+3. Di bawahnya, pada **Branch**, pilih **`main`** dan folder **`/ (root)`**
+4. Klik **Save**
 
-   ```bash
-   gh repo create Latihan-Mandarin-Colin-Darlene --public --source=. --push
-   ```
+### Cara B — lewat Terminal (satu perintah)
 
-   > Kalau muncul pesan bahwa repo sudah ada, cukup jalankan:
-   > `git push -u origin main`
+```bash
+gh api -X POST repos/andwowor/Latihan-Mandarin-Colin-Darlene/pages \
+  -f "source[branch]=main" -f "source[path]=/"
+```
 
-3. Aktifkan GitHub Pages:
+### Setelah itu
 
-   ```bash
-   gh api -X POST repos/andwowor/Latihan-Mandarin-Colin-Darlene/pages \
-     -f "source[branch]=main" -f "source[path]=/"
-   ```
+Tunggu **1–3 menit** (GitHub perlu membangun situsnya sekali), lalu buka:
 
-4. Tunggu 1–2 menit, lalu buka:
+**https://andwowor.github.io/Latihan-Mandarin-Colin-Darlene/**
 
-   **https://andwowor.github.io/Latihan-Mandarin-Colin-Darlene/**
+Kalau masih muncul halaman 404, tunggu satu menit lagi lalu muat ulang —
+pembangunan pertama memang agak lama.
 
-   Tautan itu bisa dibuka siapa pun, di perangkat apa pun, **tanpa login**.
+Untuk memantau prosesnya:
+https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/actions
 
 ### Kalau nanti materinya diperbarui
 
@@ -320,23 +322,25 @@ cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Dar
 git push
 ```
 
-Situsnya ikut ter-update sendiri dalam satu menit.
+Situsnya ikut ter-update sendiri dalam satu menit. Tidak perlu mengulangi
+langkah di atas.
 
 ### Yang perlu Bapak/Ibu ketahui
 
-- **Repositorinya harus publik.** GitHub Pages untuk repo privat hanya ada di
-  paket berbayar. Artinya isi aplikasi — termasuk kutipan kosakata dan kalimat
-  dari buku YCT/HSK yang berhak cipta — bisa dilihat siapa pun yang tahu
-  alamatnya.
-- Saya sudah menambahkan `robots.txt` dan `<meta name="robots" content="noindex">`
-  supaya situsnya **tidak muncul di Google**. Jadi praktis hanya orang yang
-  Bapak/Ibu beri tautannya yang akan menemukannya.
-- Kalau ingin benar-benar tertutup, alternatifnya: tetap pakai cara di bagian 2
-  (jalankan dari komputer lewat WiFi rumah), atau berlangganan GitHub Pro
-  (sekitar $4/bulan) agar Pages bisa dipakai pada repo privat.
+- Repositorinya **publik** karena GitHub Pages pada paket gratis memang
+  mensyaratkan itu (sudah saya pastikan: paket akun Bapak/Ibu tidak mendukung
+  Pages untuk repo privat). Artinya kutipan kosakata dan kalimat dari buku
+  YCT/HSK bisa dilihat siapa pun yang tahu alamatnya.
+- `robots.txt` dan `<meta name="robots" content="noindex">` membuatnya **tidak
+  muncul di hasil pencarian Google**, jadi praktis hanya orang yang Bapak/Ibu
+  beri tautannya yang akan menemukannya.
+- Kalau suatu saat ingin ditutup kembali: buka
+  https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/settings
+  lalu gulir ke bawah ke **Danger Zone → Change repository visibility → Private**.
+  Situsnya otomatis mati.
 
-### Bonus: setelah pakai GitHub Pages
+### Bonus setelah Pages aktif
 
-Karena alamatnya HTTPS, aplikasinya jadi **PWA penuh**: bisa dipasang ke layar
-utama HP/tablet (lihat bagian 2c) **dan jalan offline** — tidak perlu komputer
-menyala lagi.
+Karena alamatnya HTTPS, aplikasinya menjadi **PWA penuh**: bisa dipasang ke
+layar utama HP/tablet (lihat bagian 2c) **dan jalan offline** — komputer tidak
+perlu menyala lagi.
