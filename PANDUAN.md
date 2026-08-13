@@ -289,12 +289,24 @@ Yang tersisa: **mengaktifkan GitHub Pages**. Langkah ini diblokir untuk saya
 (sistem tidak mengizinkan saya menerbitkan situs atas nama akun Bapak/Ibu),
 jadi harus Bapak/Ibu sendiri yang menekannya. Pilih salah satu cara:
 
-### Cara A — lewat browser (paling mudah, 4 klik)
+### Cara A — lewat browser
 
 1. Buka: **https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene/settings/pages**
-2. Pada bagian **Build and deployment → Source**, pilih **Deploy from a branch**
-3. Di bawahnya, pada **Branch**, pilih **`main`** dan folder **`/ (root)`**
-4. Klik **Save**
+   (pastikan sudah login GitHub sebagai `andwowor`)
+2. Cari bagian **Build and deployment → Source**.
+
+   ⚠️ **Ini penyebab tersering gagalnya.** Kotak Source biasanya sudah terisi
+   **"GitHub Actions"**. Kalau dibiarkan begitu, pilihan branch tidak akan
+   muncul dan tidak ada yang tersimpan. **Ubah dulu menjadi
+   "Deploy from a branch".**
+
+3. Setelah diubah, muncul baris **Branch** di bawahnya. Pilih:
+   - branch: **`main`** (bukan "None")
+   - folder: **`/ (root)`**
+4. Klik tombol **Save** di sebelah kanannya.
+5. Halaman akan menampilkan kotak biru berisi *"Your site is live at …"* atau
+   *"Your site is being built"*. Kalau kotak itu **tidak** muncul, berarti
+   penyimpanannya belum jadi — ulangi dari langkah 2.
 
 ### Cara B — lewat Terminal (satu perintah)
 
