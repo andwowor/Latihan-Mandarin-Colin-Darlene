@@ -109,13 +109,42 @@ Untuk menghentikan server: kembali ke Terminal, tekan `Ctrl + C`.
    target Darlene lebih ringan daripada Colin.
 3. Tekan **▶︎ Lanjut Belajar** untuk langsung ke pelajaran berikutnya, atau
    **🗺️ Peta Pelajaran** untuk memilih sendiri.
-4. Setiap pelajaran bisa dilatih dalam 4 mode: 📖 Membaca, 🎧 Mendengar,
-   ✍️ Menulis, atau 🎲 Campur.
+4. Setiap pelajaran bisa dilatih dalam 5 mode: 📖 Membaca, 🎧 Mendengar,
+   🎤 Berbicara, ✍️ Menulis, atau 🎲 Campur.
 5. Satu ronde = 10 soal dan 5 nyawa ❤️. Salah 5 kali, ronde berhenti dan
    bisa diulang.
 
 **Melihat perbandingan Colin vs Darlene:** ketuk tab **📊 Progres** di bawah,
 lalu pilih periode (Harian, Mingguan, Bulanan, 3 Bulan, 6 Bulan, Tahunan).
+
+### 🎤 Latihan berbicara — yang perlu diketahui
+
+Anak menekan tombol mikrofon, mengucapkan kata/kalimatnya, lalu aplikasi
+menilai seberapa mirip ucapannya.
+
+**Langkah pertama kali dipakai:**
+
+1. Ketuk 🎤 **Berbicara** pada sebuah pelajaran.
+2. Browser akan bertanya *"Izinkan akses mikrofon?"* → pilih **Izinkan**.
+   (Kalau tidak sengaja tertolak: buka ikon gembok 🔒 di bilah alamat →
+   *Setelan situs* → **Mikrofon** → **Izinkan**, lalu muat ulang.)
+3. Ketuk 🔊 **Dengar contoh** dulu supaya anak tahu bunyinya.
+4. Ketuk mikrofon, tunggu tulisan *"Mendengarkan…"*, baru bicara.
+5. Hasilnya muncul: apa yang terdengar, berapa persen mirip, dan bintangnya.
+
+**Yang perlu diperhatikan:**
+
+- **Butuh internet.** Pengenalan suara dikerjakan di server Google (Chrome)
+  atau Apple (Safari), jadi suara anak dikirim ke sana selama beberapa detik.
+  Aplikasi ini sendiri tidak merekam maupun menyimpan apa pun.
+- Mikrofon hanya menyala saat tombolnya ditekan, mati sendiri setelah
+  7 detik, dan langsung mati saat pindah layar.
+- **Penilaiannya sengaja longgar** (lulus di kemiripan 60%). Anak 5 tahun
+  tidak akan sempurna, dan pengenal suara pun sering salah dengar satu
+  karakter. Lebih baik anak terus berani bersuara.
+- Kalau perangkatnya tidak mendukung (mis. Firefox), aplikasi otomatis
+  berganti ke mode **"dengarkan lalu tirukan"**: anak menirukan dengan
+  lantang, lalu Bapak/Ibu yang menekan "Sudah bisa" atau "Belum".
 
 **Suara latihan menyimak tidak keluar?**
 - Pastikan HP tidak dalam mode senyap.
@@ -161,6 +190,7 @@ Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
    |---|---|
    | `dailyGoalXp: 60` | Target XP harian Colin (juga menentukan besar misi harian) |
    | `dailyGoalXp: 40` | Target XP harian Darlene |
+   | `acceptScore: 0.6` (bagian `speech:`) | Ketatnya penilaian bicara — naikkan bila terlalu mudah |
    | `startLevel: 'yct1'` | Level yang dibuka pertama kali |
    | `openLevels: ['yct1','yct2']` | Level yang selalu terbuka untuk anak itu |
 
@@ -176,21 +206,12 @@ Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
 
 ---
 
-## 6. Menambah materi HSK 1, HSK 2, HSK 3
+## 6. Menambah materi HSK 2 dan HSK 3
 
-Saat ini YCT 1–6 sudah lengkap. HSK belum.
+Saat ini YCT 1–6 dan **HSK 1** sudah lengkap. Tinggal HSK 2 dan HSK 3.
 
-### HSK 1 — folder sumbernya masih kosong
-
-1. Buka Finder ke:
-   `/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1`
-2. Folder itu **kosong**. Letakkan berkas `HSK标准教程1.pdf` di sana.
-3. Beri tahu saya, nanti saya impor.
-
-### HSK 2 dan HSK 3 — PDF sudah ada, tinggal diimpor
-
-Berkasnya sudah lengkap di komputer. Prosedur teknis lengkapnya ada di
-`docs/importing-content.md`. Kalau Bapak/Ibu ingin saya yang kerjakan,
+Berkasnya sudah ada di komputer, dan lokasi halaman yang dibutuhkan sudah
+saya catat di `docs/importing-content.md`. Kalau Bapak/Ibu ingin dilanjutkan,
 cukup minta: *"impor HSK 2 dan HSK 3"*.
 
 ---
@@ -236,6 +257,10 @@ Setelah materi baru masuk, tautan privat perlu dibangun ulang:
 | YCT 4 | 12 | 78 | 71 | ✅ |
 | YCT 5 | 15 | 169 | — | — |
 | YCT 6 | 15 | 195 | — | — |
-| **Total** | **78** | **718** | **230** | |
+| HSK 1 | 15 | 148 | — | — |
+| **Total** | **93** | **866** | **230** | |
 
-HSK 1 (folder kosong), HSK 2, HSK 3: belum diimpor.
+HSK 2 dan HSK 3: belum diimpor.
+
+Semuanya bisa dilatih dalam empat keterampilan: membaca, mendengar,
+berbicara, dan menulis.

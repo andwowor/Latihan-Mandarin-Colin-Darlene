@@ -53,15 +53,17 @@ pun tanpa bergantung pada header charset.
 **Masuk tanpa password** — cukup ketuk 🦁 Colin atau 🦄 Darlene. Progres keduanya
 tersimpan terpisah.
 
-**Tiga keterampilan**
+**Empat keterampilan**
 
 - 📖 **Membaca** — 汉字→arti, arti→汉字, pinyin→汉字, 汉字→pinyin, arti kalimat
 - 🎧 **Mendengar** — dengar lalu pilih tulisan/arti/kalimat, ada tombol 🐢 pelan
+- 🎤 **Berbicara** — ucapkan lewat mikrofon, suaranya dinilai otomatis; ada juga
+  mode "dengarkan lalu tirukan" tanpa melihat tulisan
 - ✍️ **Menulis** — tebalkan huruf di kanvas, susun huruf jadi kata, susun kata
   jadi kalimat
 
 **Permainan** — XP, multiplier combo (sampai ×3), level, 5 nyawa per ronde,
-bintang 0–3 per pelajaran, peta pelajaran berkelok, 16 lencana, dan streak harian.
+bintang 0–3 per pelajaran, peta pelajaran berkelok, 18 lencana, dan streak harian.
 
 **🎯 Misi harian** — tiga misi yang berganti setiap hari:
 
@@ -96,8 +98,8 @@ Kurikulum diambil dari buku YCT/HSK milik keluarga di
 | YCT 4 | ✅ siap | 12 | 78 | 71 | ✅ |
 | YCT 5 | ✅ siap | 15 | 169 | — | — |
 | YCT 6 | ✅ siap | 15 | 195 | — | — |
-| **Total YCT** | | **78** | **718** | **230** | |
-| HSK 1 | 📭 folder sumber kosong | — | — | — | — |
+| HSK 1 | ✅ siap | 15 | 148 | — | — |
+| **Total** | | **93** | **866** | **230** | |
 | HSK 2–3 | ⏳ belum diimpor | — | — | — | — |
 
 Tanda `—` pada kunci jawaban berarti halaman *Test Answers* buku tidak ikut
@@ -115,13 +117,16 @@ Menambah level: **`docs/importing-content.md`**.
    dari halaman *Test Listening Scripts* buku. Cara memasang MP3 asli:
    `public/assets/audio/README.md`.
 3. **Kunci jawaban ada di dalam buku** (halaman *Test Answers*) dan sudah
-   disalin untuk YCT 1. Namun soal di aplikasi dibangkitkan sendiri dari
-   kosakata, sehingga penilaiannya otomatis dan latihannya tak terbatas.
+   disalin untuk YCT 1 dan YCT 4. Namun soal di aplikasi dibangkitkan sendiri
+   dari kosakata, sehingga penilaiannya otomatis dan latihannya tak terbatas.
+4. **Latihan berbicara butuh internet** dan mikrofon: penilaian memakai
+   pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
+   aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
 
 ## Pengujian
 
 ```bash
-npm test        # 30 pengujian lapisan domain
+npm test        # 47 pengujian lapisan domain
 ```
 
 ## Struktur proyek
@@ -130,10 +135,10 @@ npm test        # 30 pengujian lapisan domain
 sw.js                     service worker (scope "/" — lihat deployment.md)
 public/                   cangkang aplikasi: index.html, app.js, style.css, ikon
 public/data/curriculum/   kurikulum JSON per level
-src/domain/               logika murni: skor, level, streak, misi, SRS, soal
+src/domain/               logika murni: skor, level, streak, misi, SRS, pelafalan, soal
 src/application/          layanan: profil, kurikulum, misi, latihan, statistik
-src/ports/                kontrak: konten, penyimpanan, suara
-src/adapters/             UI (inbound) + JSON/localStorage/TTS (outbound)
+src/ports/                kontrak: konten, penyimpanan, suara, pengenal suara
+src/adapters/             UI (inbound) + JSON/localStorage/TTS/mikrofon (outbound)
 tests/                    pengujian domain
 docs/architecture/        dokumen arsitektur dan ADR
 data/content-sources.json hasil survei berkas sumber

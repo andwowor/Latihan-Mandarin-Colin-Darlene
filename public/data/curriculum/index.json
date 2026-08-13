@@ -80,10 +80,10 @@
       "track": "HSK",
       "level": 1,
       "file": "hsk1.json",
-      "status": "missing-source",
+      "status": "ready",
       "color": "#37c8ab",
       "emoji": "📕",
-      "titleId": "Folder HSK 1 kosong",
+      "titleId": "Dasar HSK",
       "unlockAtXp": 1200
     },
     {

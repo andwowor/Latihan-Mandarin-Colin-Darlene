@@ -96,6 +96,7 @@ function skillsCard(report) {
   const meta = {
     reading: { emoji: '📖', label: 'Membaca', color: 'var(--blue)' },
     listening: { emoji: '🎧', label: 'Mendengar', color: 'var(--amber)' },
+    speaking: { emoji: '🎤', label: 'Berbicara', color: 'var(--pink)' },
     writing: { emoji: '✍️', label: 'Menulis', color: 'var(--green)' }
   };
   return `

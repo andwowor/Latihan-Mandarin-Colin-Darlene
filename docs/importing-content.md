@@ -1,4 +1,4 @@
-# Cara Menambah Materi Baru (YCT 4–6, HSK 1–3)
+# Cara Menambah Materi Baru (sisa: HSK 2 dan HSK 3)
 
 Dokumen ini menjelaskan cara memasukkan level berikutnya ke dalam aplikasi.
 Tidak ada perubahan kode yang diperlukan — cukup menambah satu berkas JSON.
@@ -166,11 +166,21 @@ npm start                                  # lalu buka http://localhost:4173/pub
 
 ## Catatan khusus
 
-### HSK 1 — folder kosong
+### Lokasi halaman HSK yang sudah ditemukan
 
-`/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1` tidak berisi berkas
-apa pun. Letakkan `HSK标准教程1.pdf` di sana lebih dulu, lalu ikuti langkah di
-atas dan ubah `status` dari `"missing-source"` menjadi `"ready"`.
+Hasil penelusuran, supaya impor berikutnya tinggal ambil halamannya:
+
+| Buku | Halaman PDF | Isi |
+|---|---|---|
+| `hsk1 textbook.pdf` | 9, 11, 13 | 目录 Contents (pelajaran 1-5, 6-10, 11-15) |
+| `hsk1 textbook.pdf` | 133-139 | 词语总表 Vocabulary — **ada kolom 课号 Lesson** |
+| `HSK标准教程2.pdf` | selisih PDF = cetak + 23 | mis. PDF 140 = cetak 117 |
+| `HSK-3-standard-course-pdf.pdf` | 9, 11, 13, 15 | 目录 Contents (20 pelajaran) |
+| `HSK-3-standard-course-pdf.pdf` | selisih PDF = cetak + 16 | mis. PDF 185 = cetak 169 |
+
+**Kabar baik:** daftar kosakata buku HSK memuat kolom **课号 Lesson** secara
+langsung, jadi tidak perlu dipetakan lewat nomor halaman seperti buku YCT.
+Impornya lebih sederhana.
 
 ### Buku HSK berbeda susunannya
 

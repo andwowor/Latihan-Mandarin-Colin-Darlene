@@ -6,8 +6,10 @@
 // `answer` adalah nilai yang harus cocok dengan pilihan yang ditekan anak.
 
 import { shuffle, sampleMany, uid } from '../shared/utils.js';
+import { gradeSpeech } from './pronunciation.js';
 
 const MAX_OPTIONS = 4;
+const DEFAULT_ACCEPT_SCORE = 0.6;
 
 /** Kunci unik sebuah kata, dipakai oleh SRS. */
 export function wordKey(levelId, word) {
@@ -192,6 +194,59 @@ function listeningSentence(script, scriptPool, rng) {
   };
 }
 
+// --------------------------------------------------------------- SPEAKING
+
+function speakingWord(word) {
+  return {
+    id: uid('q'),
+    skill: 'speaking',
+    type: 'sayWord',
+    instructionId: 'Ucapkan kata ini',
+    prompt: word.zh,
+    promptSub: `${word.py} — ${word.id}`,
+    speak: word.zh,
+    target: word.zh,
+    options: [],
+    explain: `${word.zh} (${word.py}) = ${word.id}`,
+    word
+  };
+}
+
+function speakingSentence(sentence) {
+  return {
+    id: uid('q'),
+    skill: 'speaking',
+    type: 'saySentence',
+    instructionId: 'Bacakan kalimat ini dengan suara nyaring',
+    prompt: sentence.zh,
+    promptSub: sentence.py,
+    speak: sentence.zh,
+    target: sentence.zh,
+    options: [],
+    explain: `${sentence.zh} = ${sentence.id}`,
+    word: null
+  };
+}
+
+/** Dengarkan lebih dulu, baru tirukan — tulisannya disembunyikan. */
+function speakingRepeat(word) {
+  return {
+    id: uid('q'),
+    skill: 'speaking',
+    type: 'repeatAfter',
+    instructionId: 'Dengarkan, lalu tirukan',
+    prompt: null,
+    promptSub: null,
+    speak: word.zh,
+    autoPlay: true,
+    hideTarget: true,
+    target: word.zh,
+    options: [],
+    explain: `${word.zh} (${word.py}) = ${word.id}`,
+    word
+  };
+}
+
 // ---------------------------------------------------------------- WRITING
 
 function writingTrace(word) {
@@ -332,7 +387,7 @@ export function buildRound({ lesson, pool, levelId, skill, orderedWords = [], co
 }
 
 function pickSkill(index, rng) {
-  const order = ['reading', 'listening', 'writing'];
+  const order = ['reading', 'listening', 'speaking', 'writing'];
   return order[index % order.length];
 }
 
@@ -358,6 +413,17 @@ function buildOne(skill, ctx) {
     return builder(word, pool, levelId, rng);
   }
 
+  if (skill === 'speaking') {
+    const roll = rng();
+    if (sentences.length && roll < 0.3) {
+      return speakingSentence(sentences[Math.floor(rng() * sentences.length)]);
+    }
+    if (!word) return null;
+    // Menirukan tanpa melihat tulisan lebih sulit, jadi porsinya lebih kecil.
+    if (roll < 0.55) return speakingRepeat(word);
+    return speakingWord(word);
+  }
+
   if (skill === 'writing') {
     const roll = rng();
     if (sentences.length && roll < 0.3) {
@@ -373,11 +439,25 @@ function buildOne(skill, ctx) {
 }
 
 /** Evaluasi jawaban. Satu pintu masuk untuk semua tipe soal. */
-export function grade(question, response) {
+export function grade(question, response, opts = {}) {
   if (question.type === 'trace') {
     // Nilai tracing datang dari canvas: 0..1 kemiripan.
     return { correct: (response?.coverage ?? 0) >= 0.6, detail: response };
   }
+
+  if (question.skill === 'speaking') {
+    // Perangkat tanpa pengenal suara: anak/orang tua yang menilai sendiri.
+    if (response?.selfAssessed) {
+      return { correct: !!response.ok, detail: response, selfAssessed: true };
+    }
+    const result = gradeSpeech(
+      question.target,
+      response?.transcripts ?? response,
+      opts.acceptScore ?? DEFAULT_ACCEPT_SCORE
+    );
+    return { correct: result.correct, detail: result };
+  }
+
   const given = typeof response === 'string' ? response : response?.value;
   return { correct: given === question.answer, detail: given };
 }

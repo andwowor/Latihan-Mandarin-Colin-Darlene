@@ -64,6 +64,7 @@ fs.writeFileSync(
   `import { InlineContentAdapter } from './inlineContentAdapter.js';
 import { LocalStorageAdapter } from '${path.join(root, 'src/adapters/outbound/localStorageAdapter.js')}';
 import { WebSpeechAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechAdapter.js')}';
+import { WebSpeechRecognitionAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechRecognitionAdapter.js')}';
 import { ProfileService } from '${path.join(root, 'src/application/profileService.js')}';
 import { CurriculumService } from '${path.join(root, 'src/application/curriculumService.js')}';
 import { MissionService } from '${path.join(root, 'src/application/missionService.js')}';
@@ -76,6 +77,7 @@ async function bootstrap() {
   const content = new InlineContentAdapter();
   const storage = new LocalStorageAdapter();
   const speech = new WebSpeechAdapter();
+  const recognition = new WebSpeechRecognitionAdapter();
 
   const profiles = new ProfileService(storage);
   const curriculum = new CurriculumService(content, profiles);
@@ -83,11 +85,11 @@ async function bootstrap() {
   const practice = new PracticeService(content, profiles, missions);
   const stats = new StatsService(profiles);
 
-  const ui = new UiController({ root, profiles, curriculum, practice, stats, missions, speech });
+  const ui = new UiController({ root, profiles, curriculum, practice, stats, missions, speech, recognition });
   await ui.start();
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) speech.cancel();
+    if (document.hidden) { speech.cancel(); recognition.stop(); }
   });
 }
 

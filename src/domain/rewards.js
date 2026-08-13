@@ -73,11 +73,28 @@ export const BADGES = [
     test: (s) => (s.correctBySkill.listening || 0) >= 100
   },
   {
+    id: 'speaker',
+    emoji: '🎤',
+    titleId: 'Suara Merdu',
+    descId: '100 soal berbicara benar',
+    test: (s) => (s.correctBySkill.speaking || 0) >= 100
+  },
+  {
     id: 'writer',
     emoji: '✍️',
     titleId: 'Tangan Emas',
     descId: '100 soal menulis benar',
     test: (s) => (s.correctBySkill.writing || 0) >= 100
+  },
+  {
+    id: 'all-four-skills',
+    emoji: '🌈',
+    titleId: 'Empat Jempol',
+    descId: 'Kuasai keempat keterampilan: baca, dengar, bicara, tulis',
+    test: (s) =>
+      ['reading', 'listening', 'speaking', 'writing'].every(
+        (k) => (s.correctBySkill[k] || 0) >= 50
+      )
   },
   {
     id: 'level-5',

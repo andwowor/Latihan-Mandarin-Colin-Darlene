@@ -66,12 +66,18 @@ export const appConfig = {
     lang: 'zh-CN',
     rate: 0.75,          // pelan, untuk anak-anak
     rateSlow: 0.5,
-    pitch: 1.05
+    pitch: 1.05,
+
+    // Latihan berbicara
+    maxAlternatives: 5,       // berapa tebakan diminta dari pengenal suara
+    listenTimeoutMs: 7000,    // berhenti mendengar setelah sekian lama
+    acceptScore: 0.6          // ambang lulus; longgar, karena penuturnya anak-anak
   },
 
   skills: [
     { id: 'reading',   labelId: 'Membaca',     emoji: '📖', color: '#2f7ef2' },
     { id: 'listening', labelId: 'Mendengar',   emoji: '🎧', color: '#f2971f' },
+    { id: 'speaking',  labelId: 'Berbicara',   emoji: '🎤', color: '#e0489b' },
     { id: 'writing',   labelId: 'Menulis',     emoji: '✍️', color: '#37c8ab' }
   ]
 };

@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v3';
+const VERSION = 'mandarin-fun-v5';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -25,11 +25,13 @@ const ASSETS = [
   'src/domain/missions.js',
   'src/domain/progress.js',
   'src/domain/exerciseFactory.js',
+  'src/domain/pronunciation.js',
 
   // Ports
   'src/ports/contentPort.js',
   'src/ports/storagePort.js',
   'src/ports/speechPort.js',
+  'src/ports/recognitionPort.js',
 
   // Application
   'src/application/profileService.js',
@@ -42,6 +44,7 @@ const ASSETS = [
   'src/adapters/outbound/staticContentAdapter.js',
   'src/adapters/outbound/localStorageAdapter.js',
   'src/adapters/outbound/webSpeechAdapter.js',
+  'src/adapters/outbound/webSpeechRecognitionAdapter.js',
   'src/adapters/inbound/dom.js',
   'src/adapters/inbound/traceCanvas.js',
   'src/adapters/inbound/uiController.js',
@@ -63,7 +66,8 @@ const ASSETS = [
   'public/data/curriculum/yct3.json',
   'public/data/curriculum/yct4.json',
   'public/data/curriculum/yct5.json',
-  'public/data/curriculum/yct6.json'
+  'public/data/curriculum/yct6.json',
+  'public/data/curriculum/hsk1.json'
 ].map(base);
 
 self.addEventListener('install', (event) => {

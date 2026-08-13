@@ -7,7 +7,8 @@
     "Kunci jawaban ADA di dalam buku itu sendiri, pada halaman 'Test Answers' di bagian belakang.",
     "Naskah simakan ADA pada halaman 'Test Listening Scripts' di bagian belakang.",
     "Isi kurikulum diekstraksi dengan membaca halaman pindaian secara visual, lalu ditulis ke public/data/curriculum/*.json.",
-    "Strategi impor yang terbukti hemat: baca 词语表 (daftar kosakata) di bagian belakang buku — 5 halaman memuat seluruh kosakata beserta nomor halamannya, yang dipetakan ke pelajaran lewat daftar isi. Jauh lebih murah daripada membaca 15 halaman pembuka pelajaran."
+    "Strategi impor yang terbukti hemat: baca 词语表 (daftar kosakata) di bagian belakang buku — 5 halaman memuat seluruh kosakata beserta nomor halamannya, yang dipetakan ke pelajaran lewat daftar isi. Jauh lebih murah daripada membaca 15 halaman pembuka pelajaran.",
+    "Buku HSK punya keunggulan: 词语总表 memuat kolom 课号 (nomor pelajaran) secara langsung, sehingga kosakata tidak perlu dipetakan lewat nomor halaman."
   ],
   "sources": [
     {
@@ -139,9 +140,23 @@
     {
       "code": "HSK 1",
       "sourcePath": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1",
-      "files": [],
-      "status": "missing-source",
-      "notes": "FOLDER KOSONG — tidak ada berkas apa pun di dalamnya."
+      "files": [
+        {
+          "name": "hsk1 textbook.pdf",
+          "pages": 142,
+          "scanned": true
+        },
+        {
+          "name": "HSK 1 Workbook.pdf",
+          "pages": 139,
+          "scanned": true
+        }
+      ],
+      "status": "imported",
+      "notes": "Materi diletakkan pengguna pada 13 Agustus 2026. 148 dari 150 kata diambil dari 词语总表 (hal. 120-126). Tabel HSK memuat kolom 课号 Lesson, jadi pemetaan ke pelajaran langsung dari buku — lebih andal daripada lewat nomor halaman seperti YCT.",
+      "lessons": 15,
+      "answerKey": "Ada di HSK 1 Workbook.pdf — belum disalin",
+      "listeningScripts": "Belum disalin"
     },
     {
       "code": "HSK 2",

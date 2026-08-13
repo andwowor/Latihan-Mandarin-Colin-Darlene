@@ -1,0 +1,1074 @@
+{
+  "id": "hsk1",
+  "track": "HSK",
+  "level": 1,
+  "code": "HSK 1",
+  "titleZh": "HSK标准教程 1",
+  "titleEn": "HSK Standard Course 1",
+  "titleId": "HSK Standar Kursus 1",
+  "vocabTarget": 150,
+  "recommendedFor": [],
+  "source": {
+    "book": "hsk1 textbook.pdf",
+    "workbook": "HSK 1 Workbook.pdf",
+    "path": "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/HSK 1",
+    "answerKeyPage": "Kunci jawaban ada di buku latihan (HSK 1 Workbook.pdf) — belum disalin",
+    "listeningScriptPage": "Belum disalin",
+    "note": "Kosakata dari 词语总表 (hal. 120-126). Tabel itu memuat kolom 课号 Lesson, jadi pemetaan ke pelajaran langsung dari buku — tidak perlu ditebak. Termasuk 8 kata 超纲词 (bertanda * di buku)."
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "titleZh": "你好",
+      "titleEn": "Hello",
+      "titleId": "Halo",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "对不起",
+          "py": "duìbuqǐ",
+          "en": "to be sorry",
+          "id": "maaf"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "en": "good, fine",
+          "id": "baik"
+        },
+        {
+          "zh": "没关系",
+          "py": "méi guānxi",
+          "en": "that's OK",
+          "id": "tidak apa-apa"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "en": "you",
+          "id": "kamu"
+        },
+        {
+          "zh": "您",
+          "py": "nín",
+          "en": "(polite) you",
+          "id": "Anda"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 2,
+      "titleZh": "谢谢你",
+      "titleEn": "Thank you",
+      "titleId": "Terima kasih",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "不客气",
+          "py": "bú kèqi",
+          "en": "you're welcome",
+          "id": "sama-sama"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "en": "no, not",
+          "id": "tidak"
+        },
+        {
+          "zh": "谢谢",
+          "py": "xièxie",
+          "en": "to thank",
+          "id": "terima kasih"
+        },
+        {
+          "zh": "再见",
+          "py": "zàijiàn",
+          "en": "to see you around",
+          "id": "sampai jumpa"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 3,
+      "titleZh": "你叫什么名字",
+      "titleEn": "What's your name",
+      "titleId": "Siapa namamu",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "en": "to call, to be called",
+          "id": "bernama"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "en": "teacher",
+          "id": "guru"
+        },
+        {
+          "zh": "吗",
+          "py": "ma",
+          "en": "(question particle)",
+          "id": "(partikel tanya)"
+        },
+        {
+          "zh": "名字",
+          "py": "míngzi",
+          "en": "name",
+          "id": "nama"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "en": "human, person",
+          "id": "orang"
+        },
+        {
+          "zh": "什么",
+          "py": "shénme",
+          "en": "what",
+          "id": "apa"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "en": "to be",
+          "id": "adalah"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "en": "I, me",
+          "id": "aku"
+        },
+        {
+          "zh": "学生",
+          "py": "xuésheng",
+          "en": "student",
+          "id": "murid"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 4,
+      "titleZh": "她是我的汉语老师",
+      "titleEn": "She is my Chinese teacher",
+      "titleId": "Dia guru bahasa Mandarinku",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "的",
+          "py": "de",
+          "en": "(possessive particle)",
+          "id": "(partikel kepemilikan)"
+        },
+        {
+          "zh": "汉语",
+          "py": "Hànyǔ",
+          "en": "Chinese (language)",
+          "id": "bahasa Mandarin"
+        },
+        {
+          "zh": "哪",
+          "py": "nǎ",
+          "en": "which",
+          "id": "yang mana"
+        },
+        {
+          "zh": "呢",
+          "py": "ne",
+          "en": "(question particle)",
+          "id": "(partikel tanya)"
+        },
+        {
+          "zh": "朋友",
+          "py": "péngyou",
+          "en": "friend",
+          "id": "teman"
+        },
+        {
+          "zh": "谁",
+          "py": "shéi",
+          "en": "who, whom",
+          "id": "siapa"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "en": "he, him",
+          "id": "dia (laki-laki)"
+        },
+        {
+          "zh": "她",
+          "py": "tā",
+          "en": "she, her",
+          "id": "dia (perempuan)"
+        },
+        {
+          "zh": "同学",
+          "py": "tóngxué",
+          "en": "classmate",
+          "id": "teman sekelas"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 5,
+      "titleZh": "她女儿今年二十岁",
+      "titleEn": "Her daughter is 20 years old this year",
+      "titleId": "Anak perempuannya tahun ini 20 tahun",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "八",
+          "py": "bā",
+          "en": "eight",
+          "id": "delapan"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "en": "big; (of age) old",
+          "id": "besar; umur"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "en": "how; many",
+          "id": "berapa; banyak"
+        },
+        {
+          "zh": "二",
+          "py": "èr",
+          "en": "two",
+          "id": "dua"
+        },
+        {
+          "zh": "几",
+          "py": "jǐ",
+          "en": "how many",
+          "id": "berapa"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "en": "family, home",
+          "id": "keluarga, rumah"
+        },
+        {
+          "zh": "九",
+          "py": "jiǔ",
+          "en": "nine",
+          "id": "sembilan"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "en": "(change/completion particle)",
+          "id": "(partikel perubahan)"
+        },
+        {
+          "zh": "六",
+          "py": "liù",
+          "en": "six",
+          "id": "enam"
+        },
+        {
+          "zh": "女儿",
+          "py": "nǚ'ér",
+          "en": "daughter",
+          "id": "anak perempuan"
+        },
+        {
+          "zh": "七",
+          "py": "qī",
+          "en": "seven",
+          "id": "tujuh"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "en": "three",
+          "id": "tiga"
+        },
+        {
+          "zh": "十",
+          "py": "shí",
+          "en": "ten",
+          "id": "sepuluh"
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "en": "four",
+          "id": "empat"
+        },
+        {
+          "zh": "岁",
+          "py": "suì",
+          "en": "year (of age)",
+          "id": "tahun (umur)"
+        },
+        {
+          "zh": "五",
+          "py": "wǔ",
+          "en": "five",
+          "id": "lima"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "en": "one",
+          "id": "satu"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "en": "to have, there be",
+          "id": "punya, ada"
+        },
+        {
+          "zh": "口",
+          "py": "kǒu",
+          "en": "(measure word for family members)",
+          "id": "(kata bantu bilangan anggota keluarga)"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 6,
+      "titleZh": "我会说汉语",
+      "titleEn": "I can speak Chinese",
+      "titleId": "Aku bisa berbahasa Mandarin",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "菜",
+          "py": "cài",
+          "en": "dish, cuisine",
+          "id": "masakan"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "en": "to read",
+          "id": "membaca"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "en": "very, quite",
+          "id": "sangat"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "en": "can, to be able to",
+          "id": "bisa"
+        },
+        {
+          "zh": "妈妈",
+          "py": "māma",
+          "en": "mother",
+          "id": "ibu"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "en": "to speak, to say",
+          "id": "berbicara"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "en": "to write",
+          "id": "menulis"
+        },
+        {
+          "zh": "怎么",
+          "py": "zěnme",
+          "en": "how",
+          "id": "bagaimana"
+        },
+        {
+          "zh": "好吃",
+          "py": "hǎochī",
+          "en": "delicious, tasty",
+          "id": "enak"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 7,
+      "titleZh": "今天几号",
+      "titleEn": "What's the date today",
+      "titleId": "Hari ini tanggal berapa",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "号",
+          "py": "hào",
+          "en": "(date) number",
+          "id": "tanggal"
+        },
+        {
+          "zh": "今天",
+          "py": "jīntiān",
+          "en": "today",
+          "id": "hari ini"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "en": "to look at, to watch",
+          "id": "melihat"
+        },
+        {
+          "zh": "明天",
+          "py": "míngtiān",
+          "en": "tomorrow",
+          "id": "besok"
+        },
+        {
+          "zh": "请",
+          "py": "qǐng",
+          "en": "please",
+          "id": "silakan"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "en": "to go",
+          "id": "pergi"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "en": "book",
+          "id": "buku"
+        },
+        {
+          "zh": "星期",
+          "py": "xīngqī",
+          "en": "week",
+          "id": "minggu"
+        },
+        {
+          "zh": "学校",
+          "py": "xuéxiào",
+          "en": "school",
+          "id": "sekolah"
+        },
+        {
+          "zh": "月",
+          "py": "yuè",
+          "en": "month",
+          "id": "bulan"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "en": "to ask, to inquire",
+          "id": "bertanya"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 8,
+      "titleZh": "我想喝茶",
+      "titleEn": "I'd like some tea",
+      "titleId": "Aku ingin minum teh",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "杯子",
+          "py": "bēizi",
+          "en": "cup, glass",
+          "id": "gelas"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "en": "tea",
+          "id": "teh"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "en": "to eat",
+          "id": "makan"
+        },
+        {
+          "zh": "多少",
+          "py": "duōshao",
+          "en": "how many, how much",
+          "id": "berapa"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "en": "(a general measure word)",
+          "id": "(kata bantu bilangan umum)"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "en": "to drink",
+          "id": "minum"
+        },
+        {
+          "zh": "块",
+          "py": "kuài",
+          "en": "(unit of money)",
+          "id": "(satuan uang)"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "en": "to buy",
+          "id": "membeli"
+        },
+        {
+          "zh": "米饭",
+          "py": "mǐfàn",
+          "en": "cooked rice",
+          "id": "nasi"
+        },
+        {
+          "zh": "那",
+          "py": "nà",
+          "en": "that",
+          "id": "itu"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "en": "money",
+          "id": "uang"
+        },
+        {
+          "zh": "商店",
+          "py": "shāngdiàn",
+          "en": "shop, store",
+          "id": "toko"
+        },
+        {
+          "zh": "下午",
+          "py": "xiàwǔ",
+          "en": "afternoon",
+          "id": "sore"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "en": "to want, would like",
+          "id": "ingin"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 9,
+      "titleZh": "你儿子在哪儿工作",
+      "titleEn": "Where does your son work",
+      "titleId": "Anak laki-lakimu bekerja di mana",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "爸爸",
+          "py": "bàba",
+          "en": "father",
+          "id": "ayah"
+        },
+        {
+          "zh": "儿子",
+          "py": "érzi",
+          "en": "son",
+          "id": "anak laki-laki"
+        },
+        {
+          "zh": "工作",
+          "py": "gōngzuò",
+          "en": "to work; job",
+          "id": "bekerja; pekerjaan"
+        },
+        {
+          "zh": "狗",
+          "py": "gǒu",
+          "en": "dog",
+          "id": "anjing"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "en": "cat",
+          "id": "kucing"
+        },
+        {
+          "zh": "哪儿",
+          "py": "nǎr",
+          "en": "where",
+          "id": "di mana"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "en": "under, below",
+          "id": "bawah"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "en": "small, little",
+          "id": "kecil"
+        },
+        {
+          "zh": "医生",
+          "py": "yīshēng",
+          "en": "doctor",
+          "id": "dokter"
+        },
+        {
+          "zh": "医院",
+          "py": "yīyuàn",
+          "en": "hospital",
+          "id": "rumah sakit"
+        },
+        {
+          "zh": "椅子",
+          "py": "yǐzi",
+          "en": "chair",
+          "id": "kursi"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "en": "to be in/on/at",
+          "id": "di, berada"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 10,
+      "titleZh": "我能坐这儿吗",
+      "titleEn": "Can I sit here",
+      "titleId": "Bolehkah aku duduk di sini",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "本",
+          "py": "běn",
+          "en": "(measure word for books)",
+          "id": "(kata bantu bilangan buku)"
+        },
+        {
+          "zh": "电脑",
+          "py": "diànnǎo",
+          "en": "computer",
+          "id": "komputer"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "en": "and",
+          "id": "dan"
+        },
+        {
+          "zh": "后面",
+          "py": "hòumiàn",
+          "en": "back, behind",
+          "id": "belakang"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "en": "inner, inside",
+          "id": "di dalam"
+        },
+        {
+          "zh": "没有",
+          "py": "méiyǒu",
+          "en": "there is not",
+          "id": "tidak ada"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "en": "can, may",
+          "id": "bisa, boleh"
+        },
+        {
+          "zh": "前面",
+          "py": "qiánmiàn",
+          "en": "front",
+          "id": "depan"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "en": "up, above",
+          "id": "atas"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 11,
+      "titleZh": "现在几点",
+      "titleEn": "What's the time now",
+      "titleId": "Sekarang jam berapa",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "点",
+          "py": "diǎn",
+          "en": "o'clock",
+          "id": "jam"
+        },
+        {
+          "zh": "电影",
+          "py": "diànyǐng",
+          "en": "film, movie",
+          "id": "film"
+        },
+        {
+          "zh": "回",
+          "py": "huí",
+          "en": "to come/go back",
+          "id": "kembali"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "en": "time, moment",
+          "id": "waktu"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒmen",
+          "en": "we, us",
+          "id": "kami"
+        },
+        {
+          "zh": "现在",
+          "py": "xiànzài",
+          "en": "now",
+          "id": "sekarang"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 12,
+      "titleZh": "明天天气怎么样",
+      "titleEn": "What will the weather be like tomorrow",
+      "titleId": "Besok cuacanya bagaimana",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "爱",
+          "py": "ài",
+          "en": "to like, to love",
+          "id": "suka, cinta"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "en": "to come",
+          "id": "datang"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "en": "cold",
+          "id": "dingin"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "en": "hot",
+          "id": "panas"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "en": "water",
+          "id": "air"
+        },
+        {
+          "zh": "水果",
+          "py": "shuǐguǒ",
+          "en": "fruit",
+          "id": "buah"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "en": "too, excessively",
+          "id": "terlalu"
+        },
+        {
+          "zh": "天气",
+          "py": "tiānqì",
+          "en": "weather",
+          "id": "cuaca"
+        },
+        {
+          "zh": "下雨",
+          "py": "xià yǔ",
+          "en": "to rain",
+          "id": "hujan"
+        },
+        {
+          "zh": "小姐",
+          "py": "xiǎojiě",
+          "en": "miss, young lady",
+          "id": "Nona"
+        },
+        {
+          "zh": "些",
+          "py": "xiē",
+          "en": "some, a few",
+          "id": "beberapa"
+        },
+        {
+          "zh": "怎么样",
+          "py": "zěnmeyàng",
+          "en": "how (about)",
+          "id": "bagaimana"
+        },
+        {
+          "zh": "身体",
+          "py": "shēntǐ",
+          "en": "body",
+          "id": "badan"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 13,
+      "titleZh": "他在学做中国菜呢",
+      "titleEn": "He is learning to cook Chinese food",
+      "titleId": "Dia sedang belajar memasak masakan Tiongkok",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "打电话",
+          "py": "dǎ diànhuà",
+          "en": "to make a phone call",
+          "id": "menelepon"
+        },
+        {
+          "zh": "电视",
+          "py": "diànshì",
+          "en": "television",
+          "id": "televisi"
+        },
+        {
+          "zh": "上午",
+          "py": "shàngwǔ",
+          "en": "morning",
+          "id": "pagi"
+        },
+        {
+          "zh": "睡觉",
+          "py": "shuì jiào",
+          "en": "to sleep",
+          "id": "tidur"
+        },
+        {
+          "zh": "喂",
+          "py": "wèi",
+          "en": "hello, hey",
+          "id": "halo"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐhuan",
+          "en": "to like, to be fond of",
+          "id": "suka"
+        },
+        {
+          "zh": "学习",
+          "py": "xuéxí",
+          "en": "to study, to learn",
+          "id": "belajar"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "en": "to, for",
+          "id": "untuk, kepada"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "en": "also, too",
+          "id": "juga"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 14,
+      "titleZh": "她买了不少衣服",
+      "titleEn": "She has bought quite a few clothes",
+      "titleId": "Dia membeli cukup banyak baju",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "东西",
+          "py": "dōngxi",
+          "en": "thing, stuff",
+          "id": "barang"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "en": "both, all",
+          "id": "semua"
+        },
+        {
+          "zh": "分钟",
+          "py": "fēnzhōng",
+          "en": "minute",
+          "id": "menit"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "en": "to drive",
+          "id": "mengemudi"
+        },
+        {
+          "zh": "看见",
+          "py": "kànjiàn",
+          "en": "to see",
+          "id": "melihat, tampak"
+        },
+        {
+          "zh": "漂亮",
+          "py": "piàoliang",
+          "en": "beautiful, pretty",
+          "id": "cantik"
+        },
+        {
+          "zh": "苹果",
+          "py": "píngguǒ",
+          "en": "apple",
+          "id": "apel"
+        },
+        {
+          "zh": "少",
+          "py": "shǎo",
+          "en": "little, few",
+          "id": "sedikit"
+        },
+        {
+          "zh": "先生",
+          "py": "xiānsheng",
+          "en": "Mr., sir",
+          "id": "Tuan"
+        },
+        {
+          "zh": "衣服",
+          "py": "yīfu",
+          "en": "clothes",
+          "id": "baju"
+        },
+        {
+          "zh": "一点儿",
+          "py": "yìdiǎnr",
+          "en": "a few, a little",
+          "id": "sedikit"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    },
+    {
+      "number": 15,
+      "titleZh": "我是坐飞机来的",
+      "titleEn": "I came here by air",
+      "titleId": "Aku datang naik pesawat",
+      "keySentences": [],
+      "vocab": [
+        {
+          "zh": "出租车",
+          "py": "chūzūchē",
+          "en": "taxi, cab",
+          "id": "taksi"
+        },
+        {
+          "zh": "饭店",
+          "py": "fàndiàn",
+          "en": "hotel, restaurant",
+          "id": "restoran, hotel"
+        },
+        {
+          "zh": "飞机",
+          "py": "fēijī",
+          "en": "airplane",
+          "id": "pesawat"
+        },
+        {
+          "zh": "高兴",
+          "py": "gāoxìng",
+          "en": "glad, happy",
+          "id": "senang"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "en": "year",
+          "id": "tahun"
+        },
+        {
+          "zh": "认识",
+          "py": "rènshi",
+          "en": "to meet, to know",
+          "id": "mengenal"
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "en": "to listen",
+          "id": "mendengar"
+        },
+        {
+          "zh": "一起",
+          "py": "yìqǐ",
+          "en": "together",
+          "id": "bersama"
+        }
+      ],
+      "listeningScripts": [],
+      "bookAnswers": []
+    }
+  ]
+}

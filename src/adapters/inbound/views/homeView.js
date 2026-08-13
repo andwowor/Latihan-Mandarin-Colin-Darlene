@@ -39,6 +39,10 @@ export function homeView({ snapshot, missions, levelMeta, nextLesson, pendingMis
           <span class="skill-btn__emoji">🎧</span>
           <span class="grow">Mendengar<br><span class="skill-btn__sub">Dengar suaranya, pilih jawabannya</span></span>
         </button>
+        <button class="skill-btn" data-quick="speaking">
+          <span class="skill-btn__emoji">🎤</span>
+          <span class="grow">Berbicara<br><span class="skill-btn__sub">Ucapkan dengan lantang, suaramu dinilai</span></span>
+        </button>
         <button class="skill-btn" data-quick="writing">
           <span class="skill-btn__emoji">✍️</span>
           <span class="grow">Menulis<br><span class="skill-btn__sub">Tebalkan huruf dan susun kalimat</span></span>

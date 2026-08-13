@@ -8,7 +8,7 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 
 ## Tujuan
 
-- Latihan **membaca, mendengar, dan menulis** yang terasa seperti permainan.
+- Latihan **membaca, mendengar, berbicara, dan menulis** yang terasa seperti permainan.
 - Progres tersimpan terpisah per anak, tanpa password (cukup pilih tombol nama).
 - **Misi harian** wajib: jumlah pelajaran diselesaikan, XP terkumpul, dan
   pelajaran sempurna tanpa kesalahan.
@@ -26,10 +26,11 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 | YCT 4 | siap | 12 | 78 (+ naskah simakan & kunci jawaban buku) |
 | YCT 5 | siap | 15 | 169 |
 | YCT 6 | siap | 15 | 195 |
-| HSK 1 | folder sumber kosong | — | — |
+| HSK 1 | siap | 15 | 148 |
 | HSK 2–3 | belum diimpor | — | — |
 
-Seluruh seri YCT 1–6 sudah masuk: **78 pelajaran, 718 kata, 230 kalimat simakan**.
+Sudah masuk: **93 pelajaran, 866 kata, 230 kalimat simakan**
+(seluruh seri YCT 1–6 dan HSK 1).
 
 Cara menambah level lain: `docs/importing-content.md`.
 
@@ -46,6 +47,8 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
 3. **Kunci jawaban ada di dalam buku** (halaman *Test Answers*), tetapi soal di
    aplikasi dibangkitkan sendiri dari kosakata sehingga latihannya tak terbatas.
    Kunci jawaban buku tetap disimpan untuk penelusuran. → ADR-0004
+4. Buku **tidak menyediakan cara menilai pelafalan**. Latihan berbicara memakai
+   pengenal suara bawaan peramban dengan penilaian yang sengaja longgar. → ADR-0007
 
 ## Peta dokumen
 

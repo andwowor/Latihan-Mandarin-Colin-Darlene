@@ -29,7 +29,12 @@ export function emptyDay(dayKey) {
     starsEarned: 0,
     bestCombo: 0,
     missionsClaimed: [],
-    bySkill: { reading: { answered: 0, correct: 0 }, listening: { answered: 0, correct: 0 }, writing: { answered: 0, correct: 0 } }
+    bySkill: {
+      reading: { answered: 0, correct: 0 },
+      listening: { answered: 0, correct: 0 },
+      speaking: { answered: 0, correct: 0 },
+      writing: { answered: 0, correct: 0 }
+    }
   };
 }
 

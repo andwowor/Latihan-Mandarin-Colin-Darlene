@@ -12,10 +12,11 @@ adapters/inbound                  adapters/outbound
   uiController.js                   staticContentAdapter.js   (fetch JSON)
   dom.js                            localStorageAdapter.js    (localStorage)
   traceCanvas.js                    webSpeechAdapter.js       (TTS / MP3)
-  views/*.js                                │
+  views/*.js                        webSpeechRecognitionAdapter.js
+        │                                                     (mikrofon)
         │                                   │
         └──────────► ports ◄────────────────┘
-              contentPort · storagePort · speechPort
+        contentPort · storagePort · speechPort · recognitionPort
                           │
                           ▼
                     application
@@ -24,7 +25,8 @@ adapters/inbound                  adapters/outbound
                           │
                           ▼
                        domain
-   scoring · streak · missions · srs · rewards · progress · exerciseFactory
+  scoring · streak · missions · srs · rewards · progress
+         pronunciation · exerciseFactory
 ```
 
 ## Tanggung jawab tiap modul domain
@@ -35,8 +37,9 @@ adapters/inbound                  adapters/outbound
 | `streak.js` | hari berturut-turut, status target harian |
 | `missions.js` | tiga misi harian (pelajaran, XP, pelajaran sempurna) yang dipilih deterministik dari tanggal + id anak |
 | `srs.js` | kotak Leitner untuk pengulangan kata |
-| `rewards.js` | katalog 16 lencana beserta syaratnya |
+| `rewards.js` | katalog 18 lencana beserta syaratnya |
 | `progress.js` | rekaman harian dan agregasi per periode |
+| `pronunciation.js` | membandingkan ucapan anak dengan target (jarak sunting per karakter) |
 | `exerciseFactory.js` | membangkitkan soal + kunci jawabannya, dan menilai jawaban |
 
 ## Application
@@ -53,4 +56,6 @@ adapters/inbound                  adapters/outbound
 
 Satu pintu masuk penilaian: `exerciseFactory.grade(question, response)`.
 Soal pilihan ganda dibandingkan langsung dengan `question.answer`; soal menulis
-(`trace`) dinilai dari kemiripan coretan pada kanvas (lihat `traceCanvas.js`).
+(`trace`) dinilai dari kemiripan coretan pada kanvas (lihat `traceCanvas.js`);
+soal berbicara dinilai dari kemiripan teks hasil pengenal suara
+(lihat `pronunciation.js` dan ADR-0007).

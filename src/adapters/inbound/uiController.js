@@ -5,6 +5,7 @@ import { mount, on, qs, toast, confetti, sheet, buzz, esc } from './dom.js';
 import { TraceCanvas } from './traceCanvas.js';
 import { toDayKey, dayKeyToDate } from '../../shared/utils.js';
 import { emptyDay, recentDayKeys } from '../../domain/progress.js';
+import { speechStars, speechFeedbackId } from '../../domain/pronunciation.js';
 
 import { loginView } from './views/loginView.js';
 import { homeView } from './views/homeView.js';
@@ -17,7 +18,7 @@ import { rewardsView } from './views/rewardsView.js';
 import { wordbookView } from './views/wordbookView.js';
 
 export class UiController {
-  constructor({ root, profiles, curriculum, practice, stats, missions, speech }) {
+  constructor({ root, profiles, curriculum, practice, stats, missions, speech, recognition }) {
     this.root = root;
     this.profiles = profiles;
     this.curriculum = curriculum;
@@ -25,6 +26,7 @@ export class UiController {
     this.stats = stats;
     this.missions = missions;
     this.speech = speech;
+    this.recognition = recognition;
 
     this.state = {
       screen: 'login',
@@ -55,6 +57,8 @@ export class UiController {
 
   async go(screen, patch = {}) {
     this.#teardownTrace();
+    this.recognition?.stop();
+    this.listening = false;
     Object.assign(this.state, patch, { screen });
     await this.render();
     this.root.scrollTop = 0;
@@ -151,11 +155,18 @@ export class UiController {
 
     mount(
       this.root,
-      quizView({ round, question, index: round.index, total: round.questions.length })
+      quizView({
+        round,
+        question,
+        index: round.index,
+        total: round.questions.length,
+        canRecognise: !!this.recognition?.isAvailable()
+      })
     );
 
     this.state.answered = false;
     this.selectedTiles = [];
+    this.listening = false;
 
     if (question.type === 'trace') this.#setupTrace(question);
     if (question.autoPlay) setTimeout(() => this.speech.speak(question.speak), 250);
@@ -356,6 +367,13 @@ export class UiController {
       this.#answer(this.selectedTiles.map((t) => t.value).join(''));
     });
 
+    // --- Latihan: berbicara
+    on(r, 'click', '[data-action="record"]', () => this.#record());
+    on(r, 'click', '[data-self-say]', (_e, el) => {
+      if (this.state.answered) return;
+      this.#answer({ selfAssessed: true, ok: el.dataset.selfSay === '1' });
+    });
+
     // --- Latihan: menulis
     on(r, 'click', '[data-action="trace-clear"]', () => this.trace?.clear());
     on(r, 'click', '[data-action="check-trace"]', () => {
@@ -385,6 +403,56 @@ export class UiController {
       .join('');
     const check = qs(this.root, '[data-action="check-build"]');
     if (check) check.disabled = this.selectedTiles.length === 0;
+  }
+
+  // -------------------------------------------------------- berbicara
+
+  /** Rekam satu ucapan lalu nilai. */
+  async #record() {
+    if (this.state.answered || this.listening) return;
+    const question = this.practice.current();
+    if (!question) return;
+
+    const btn = qs(this.root, '[data-action="record"]');
+    const hint = qs(this.root, '#mic-hint');
+    const heard = qs(this.root, '#mic-heard');
+
+    // Suara contoh harus berhenti dulu, jangan sampai ikut terekam.
+    this.speech.cancel();
+
+    this.listening = true;
+    btn?.classList.add('mic--listening');
+    if (btn) btn.disabled = true;
+    if (hint) hint.textContent = 'Mendengarkan… bicaralah sekarang';
+    if (heard) heard.textContent = '';
+    buzz(20);
+
+    const result = await this.recognition.listen({
+      onPartial: (text) => {
+        if (heard) heard.textContent = text;
+      }
+    });
+
+    this.listening = false;
+    btn?.classList.remove('mic--listening');
+    if (btn) btn.disabled = false;
+
+    if (result.error === 'not-allowed' || result.error === 'service-not-allowed') {
+      if (hint) hint.textContent = 'Izin mikrofon ditolak';
+      return toast('Izinkan akses mikrofon di pengaturan browser untuk latihan bicara.');
+    }
+    if (result.error) {
+      if (hint) hint.textContent = 'Ketuk mikrofon untuk mencoba lagi';
+      return toast('Pengenalan suara bermasalah. Coba lagi ya.');
+    }
+    if (result.transcripts.length === 0) {
+      if (hint) hint.textContent = 'Belum terdengar — ketuk lagi lalu bicara lebih keras';
+      return;
+    }
+
+    if (heard) heard.textContent = result.transcripts[0];
+    if (hint) hint.textContent = 'Selesai — begini yang terdengar:';
+    this.#answer({ transcripts: result.transcripts });
   }
 
   // ------------------------------------------------------------- latihan
@@ -427,10 +495,31 @@ export class UiController {
       }
     }
 
+    // Rincian pelafalan: apa yang terdengar, seberapa mirip, dan pujiannya.
+    let speech = null;
+    if (q.skill === 'speaking') {
+      const d = result.detail;
+      speech = d?.selfAssessed
+        ? { selfAssessed: true }
+        : {
+            heard: d?.heard || '',
+            score: d?.score || 0,
+            stars: speechStars(d?.score || 0),
+            message: speechFeedbackId(d?.score || 0)
+          };
+    }
+
     const round = this.practice.round;
     const isLast = round.index >= round.questions.length - 1 || round.hearts <= 0;
     const slot = qs(this.root, '#feedback-slot');
-    if (slot) slot.innerHTML = feedbackBlock({ correct: result.correct, explain: result.explain, isLast });
+    if (slot) {
+      slot.innerHTML = feedbackBlock({
+        correct: result.correct,
+        explain: result.explain,
+        isLast,
+        speech
+      });
+    }
 
     if (result.correct && q.speak) setTimeout(() => this.speech.speak(q.speak), 120);
   }

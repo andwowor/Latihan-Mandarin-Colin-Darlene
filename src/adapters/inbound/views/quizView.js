@@ -3,7 +3,7 @@
 
 import { esc } from '../dom.js';
 
-export function quizView({ round, question, index, total }) {
+export function quizView({ round, question, index, total, canRecognise = true }) {
   const progress = total ? index / total : 0;
   return `
   <div class="screen quiz">
@@ -20,7 +20,7 @@ export function quizView({ round, question, index, total }) {
 
     <div class="grow">
       ${promptBlock(question)}
-      ${answerBlock(question)}
+      ${answerBlock(question, canRecognise)}
     </div>
 
     <div id="feedback-slot"></div>
@@ -37,6 +37,21 @@ function promptBlock(q) {
       <div style="margin-top:14px">
         <button class="speaker speaker--slow" data-action="speak-slow" aria-label="Putar pelan">🐢</button>
       </div>
+    </div>`;
+  }
+
+  if (q.skill === 'speaking') {
+    // "Tirukan" menyembunyikan tulisannya: anak harus menangkapnya dari suara.
+    return `
+    <div class="prompt">
+      ${
+        q.hideTarget
+          ? `<button class="speaker" data-action="speak" aria-label="Putar suara">🔊</button>
+             <p class="muted small" style="margin:12px 0 0">Dengarkan baik-baik, lalu tirukan.</p>`
+          : `<div class="hanzi prompt__zh ${q.type === 'saySentence' ? 'prompt__zh--sentence' : ''}">${esc(q.prompt)}</div>
+             ${q.promptSub ? `<div class="prompt__py">${esc(q.promptSub)}</div>` : ''}
+             <button class="btn btn--ghost btn--sm" data-action="speak" style="width:auto;margin-top:12px">🔊 Dengar contoh</button>`
+      }
     </div>`;
   }
 
@@ -81,7 +96,27 @@ function promptBlock(q) {
 
 // ------------------------------------------------------------------ jawaban
 
-function answerBlock(q) {
+function answerBlock(q, canRecognise = true) {
+  if (q.skill === 'speaking') {
+    // Tanpa pengenal suara: anak menirukan, lalu menilai sendiri bersama
+    // orang tua. Tetap latihan yang berguna, hanya tanpa penilaian otomatis.
+    if (!canRecognise) {
+      return `
+      <p class="center muted small" style="margin:0 0 12px">
+        Perangkat ini belum bisa menilai suara otomatis. Ucapkan dengan lantang,
+        lalu tekan tombolnya sendiri.
+      </p>
+      <button class="btn btn--primary" data-self-say="1">✅ Sudah bisa mengucapkan</button>
+      <button class="btn btn--ghost" style="margin-top:8px" data-self-say="0">🔁 Belum, perlu latihan lagi</button>`;
+    }
+    return `
+    <div class="mic-wrap">
+      <button class="mic" data-action="record" aria-label="Tekan lalu bicara">🎤</button>
+      <p class="mic__hint" id="mic-hint">Ketuk mikrofon, lalu ucapkan</p>
+      <p class="mic__heard hanzi" id="mic-heard" aria-live="polite"></p>
+    </div>`;
+  }
+
   if (q.type === 'trace') {
     return `<button class="btn btn--primary" data-action="check-trace">Sudah Selesai</button>`;
   }
@@ -110,15 +145,37 @@ function answerBlock(q) {
 
 // ------------------------------------------------------------ umpan balik
 
-export function feedbackBlock({ correct, explain, isLast }) {
+export function feedbackBlock({ correct, explain, isLast, speech }) {
   return `
   <div class="feedback ${correct ? 'feedback--ok' : 'feedback--bad'}">
     <div class="feedback__title">
       ${correct ? '🎉 Benar!' : '💡 Belum tepat'}
+      ${speech && speech.stars ? `<span style="color:var(--amber)">${'★'.repeat(speech.stars)}</span>` : ''}
     </div>
+    ${speech ? speechDetail(speech) : ''}
     <p class="feedback__body">${esc(explain || '')}</p>
-    <button class="btn ${correct ? 'btn--primary' : 'btn--danger'}" data-action="next">
-      ${isLast ? 'Lihat Hasil' : 'Lanjut'}
-    </button>
+    <div class="row" style="gap:8px">
+      ${speech ? `<button class="btn btn--ghost" data-action="speak" style="width:auto">🔊</button>` : ''}
+      <button class="btn ${correct ? 'btn--primary' : 'btn--danger'} grow" data-action="next">
+        ${isLast ? 'Lihat Hasil' : 'Lanjut'}
+      </button>
+    </div>
   </div>`;
+}
+
+/** Rincian hasil pengenalan suara: apa yang terdengar dan seberapa mirip. */
+function speechDetail(s) {
+  if (s.selfAssessed) return '';
+  const pct = Math.round((s.score || 0) * 100);
+  return `
+  <p class="feedback__body" style="margin-bottom:6px">
+    ${esc(s.message || '')}
+    ${
+      s.heard
+        ? `<br><span class="small muted">Terdengar:</span>
+           <span class="hanzi" style="font-size:1.1rem">${esc(s.heard)}</span>
+           <span class="small muted">(${pct}% mirip)</span>`
+        : ''
+    }
+  </p>`;
 }

@@ -108,6 +108,7 @@ function skillHint(id) {
   return {
     reading: 'Pilih arti, pinyin, dan tulisan yang tepat',
     listening: 'Dengarkan lalu pilih jawabannya',
+    speaking: 'Ucapkan dengan lantang, suaramu dinilai',
     writing: 'Tebalkan huruf dan susun kalimat'
   }[id] || '';
 }
