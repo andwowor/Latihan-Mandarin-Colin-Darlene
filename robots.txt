@@ -1,0 +1,6 @@
+# Situs ini untuk pemakaian keluarga sendiri, bukan untuk publikasi umum.
+# Isinya memuat kutipan dari buku YCT/HSK yang berhak cipta.
+# Tautannya bisa dibuka siapa pun yang memilikinya, tetapi tidak boleh
+# diindeks oleh mesin pencari.
+User-agent: *
+Disallow: /
