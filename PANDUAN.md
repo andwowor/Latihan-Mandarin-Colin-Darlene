@@ -271,3 +271,72 @@ Seluruh buku YCT dan HSK yang ada di komputer sudah masuk.
 
 Semuanya bisa dilatih dalam empat keterampilan: membaca, mendengar,
 berbicara, dan menulis.
+
+---
+
+## 9. Membuat link publik (bisa dibuka tanpa login Claude)
+
+Tautan artifact di bagian 1 mengharuskan login akun Claude. Supaya Colin dan
+Darlene bisa membukanya sendiri, aplikasinya perlu dipasang di **GitHub Pages**.
+
+Semua berkas sudah saya siapkan dan sudah di-commit. Yang tersisa hanya
+**tiga perintah** yang harus Bapak/Ibu jalankan sendiri — saya tidak diizinkan
+menerbitkan repositori publik atas nama Bapak/Ibu.
+
+### Langkah
+
+1. Buka **Terminal**, lalu salin-tempel perintah ini satu per satu:
+
+   ```bash
+   cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene"
+   ```
+
+2. Buat repositori publik dan unggah semua berkasnya:
+
+   ```bash
+   gh repo create Latihan-Mandarin-Colin-Darlene --public --source=. --push
+   ```
+
+   > Kalau muncul pesan bahwa repo sudah ada, cukup jalankan:
+   > `git push -u origin main`
+
+3. Aktifkan GitHub Pages:
+
+   ```bash
+   gh api -X POST repos/andwowor/Latihan-Mandarin-Colin-Darlene/pages \
+     -f "source[branch]=main" -f "source[path]=/"
+   ```
+
+4. Tunggu 1–2 menit, lalu buka:
+
+   **https://andwowor.github.io/Latihan-Mandarin-Colin-Darlene/**
+
+   Tautan itu bisa dibuka siapa pun, di perangkat apa pun, **tanpa login**.
+
+### Kalau nanti materinya diperbarui
+
+```bash
+cd "/Users/andwowor/Documents/PELAJARAN ANAK/MANDARIN/Latihan-Mandarin-Colin-Darlene"
+git push
+```
+
+Situsnya ikut ter-update sendiri dalam satu menit.
+
+### Yang perlu Bapak/Ibu ketahui
+
+- **Repositorinya harus publik.** GitHub Pages untuk repo privat hanya ada di
+  paket berbayar. Artinya isi aplikasi — termasuk kutipan kosakata dan kalimat
+  dari buku YCT/HSK yang berhak cipta — bisa dilihat siapa pun yang tahu
+  alamatnya.
+- Saya sudah menambahkan `robots.txt` dan `<meta name="robots" content="noindex">`
+  supaya situsnya **tidak muncul di Google**. Jadi praktis hanya orang yang
+  Bapak/Ibu beri tautannya yang akan menemukannya.
+- Kalau ingin benar-benar tertutup, alternatifnya: tetap pakai cara di bagian 2
+  (jalankan dari komputer lewat WiFi rumah), atau berlangganan GitHub Pro
+  (sekitar $4/bulan) agar Pages bisa dipakai pada repo privat.
+
+### Bonus: setelah pakai GitHub Pages
+
+Karena alamatnya HTTPS, aplikasinya jadi **PWA penuh**: bisa dipasang ke layar
+utama HP/tablet (lihat bagian 2c) **dan jalan offline** — tidak perlu komputer
+menyala lagi.
