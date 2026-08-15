@@ -2,7 +2,7 @@
 
 Dependensi mengarah ke dalam: `adapters -> ports -> application -> domain`.
 Lapisan domain tidak mengimpor apa pun dari luar dirinya, sehingga bisa diuji
-tanpa browser (`npm test`, 30 pengujian).
+tanpa browser (`npm test`, 93 pengujian).
 
 ```
 public/app.js                     merakit semua bagian (composition root)
@@ -10,24 +10,30 @@ public/app.js                     merakit semua bagian (composition root)
         ▼
 adapters/inbound                  adapters/outbound
   uiController.js                   staticContentAdapter.js   (fetch JSON)
-  dom.js                            localStorageAdapter.js    (localStorage)
-  traceCanvas.js                    webSpeechAdapter.js       (TTS / MP3)
-  views/*.js                        webSpeechRecognitionAdapter.js
-        │                                                     (mikrofon)
+  dom.js                            bridgedContentAdapter.js  (tempel bekal HSK)
+  traceCanvas.js                    localStorageAdapter.js    (localStorage)
+  views/*.js                        webSpeechAdapter.js       (TTS / MP3)
+        │                           webSpeechRecognitionAdapter.js (mikrofon)
+        │                           httpSyncAdapter.js        (Worker + KV)
         │                                   │
         └──────────► ports ◄────────────────┘
-        contentPort · storagePort · speechPort · recognitionPort
+   contentPort · storagePort · speechPort · recognitionPort · syncPort
                           │
                           ▼
                     application
        profileService · curriculumService · missionService
-              practiceService · statsService
+       practiceService · studyService · statsService · syncService
                           │
                           ▼
                        domain
   scoring · streak · missions · srs · rewards · progress
-         pronunciation · exerciseFactory
+  pronunciation · exerciseFactory · studyDeck · hskBridge · mergeState
 ```
+
+`bridgedContentAdapter` adalah pembungkus, bukan sumber konten tersendiri: ia
+membungkus adapter JSON (atau adapter versi-satu-berkas) dan menempelkan bekal
+HSK ke setiap pelajaran. Dengan begitu kedua sumber konten berperilaku sama
+tanpa aturan penyisipan tercecer di dua tempat.
 
 ## Tanggung jawab tiap modul domain
 
@@ -41,6 +47,9 @@ adapters/inbound                  adapters/outbound
 | `progress.js` | rekaman harian dan agregasi per periode |
 | `pronunciation.js` | membandingkan ucapan anak dengan target (jarak sunting per karakter) |
 | `exerciseFactory.js` | membangkitkan soal + kunci jawabannya, dan menilai jawaban |
+| `studyDeck.js` | menyusun materi pelajaran menjadi tumpukan kartu sesi belajar (ADR-0008) |
+| `hskBridge.js` | memilih kata HSK yang dititipkan ke tiap pelajaran YCT (ADR-0009) |
+| `mergeState.js` | menggabungkan dua salinan progres tanpa menghilangkan apa pun (ADR-0010) |
 
 ## Application
 
@@ -50,7 +59,9 @@ adapters/inbound                  adapters/outbound
 | `curriculumService` | daftar level, kunci/buka level, peta pelajaran, kamus |
 | `missionService` | status misi hari ini dan pembayaran hadiah XP |
 | `practiceService` | siapkan ronde, nilai jawaban, tutup ronde |
+| `studyService` | jalankan sesi belajar, buka kunci soal, bayar hadiah XP-nya |
 | `statsService` | laporan per periode dan papan skor dua anak |
+| `syncService` | satu putaran ambil → gabung → kirim, beserta keadaan sambungannya |
 
 ## Catatan tentang penilaian
 

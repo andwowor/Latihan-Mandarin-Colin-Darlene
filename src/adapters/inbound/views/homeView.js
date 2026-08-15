@@ -18,8 +18,15 @@ export function homeView({ snapshot, missions, levelMeta, nextLesson, pendingMis
           ? `<p class="small muted" style="margin:0 0 12px">
                Pelajaran ${nextLesson.number} · <span class="hanzi">${esc(nextLesson.titleZh)}</span>
                <br>${esc(nextLesson.titleId)}
+               ${
+                 nextLesson.studied
+                   ? ''
+                   : `<br><span class="pill chip-study" style="margin-top:6px">📘 Materinya belum dibaca</span>`
+               }
              </p>
-             <button class="btn btn--primary" data-action="continue">▶︎ Lanjut Belajar</button>`
+             <button class="btn btn--primary" data-action="continue">
+               ${nextLesson.studied ? '▶︎ Lanjut Latihan' : '📘 Mulai Sesi Belajar'}
+             </button>`
           : `<p class="small muted" style="margin:0 0 12px">Semua pelajaran di level ini sudah kamu selesaikan. Hebat!</p>
              <button class="btn btn--brand" data-nav="map">Lihat Peta Pelajaran</button>`
       }
@@ -33,19 +40,19 @@ export function homeView({ snapshot, missions, levelMeta, nextLesson, pendingMis
       <div class="stack">
         <button class="skill-btn" data-quick="reading">
           <span class="skill-btn__emoji">📖</span>
-          <span class="grow">Membaca<br><span class="skill-btn__sub">Kenali huruf, pinyin, dan artinya</span></span>
+          <span class="grow">Membaca<span class="skill-btn__sub">Kenali huruf, pinyin, dan artinya</span></span>
         </button>
         <button class="skill-btn" data-quick="listening">
           <span class="skill-btn__emoji">🎧</span>
-          <span class="grow">Mendengar<br><span class="skill-btn__sub">Dengar suaranya, pilih jawabannya</span></span>
+          <span class="grow">Mendengar<span class="skill-btn__sub">Dengar suaranya, pilih jawabannya</span></span>
         </button>
         <button class="skill-btn" data-quick="speaking">
           <span class="skill-btn__emoji">🎤</span>
-          <span class="grow">Berbicara<br><span class="skill-btn__sub">Ucapkan dengan lantang, suaramu dinilai</span></span>
+          <span class="grow">Berbicara<span class="skill-btn__sub">Ucapkan dengan lantang, suaramu dinilai</span></span>
         </button>
         <button class="skill-btn" data-quick="writing">
           <span class="skill-btn__emoji">✍️</span>
-          <span class="grow">Menulis<br><span class="skill-btn__sub">Tebalkan huruf dan susun kalimat</span></span>
+          <span class="grow">Menulis<span class="skill-btn__sub">Tebalkan huruf dan susun kalimat</span></span>
         </button>
       </div>
     </section>

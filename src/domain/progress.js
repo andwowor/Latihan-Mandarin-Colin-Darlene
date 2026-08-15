@@ -26,6 +26,7 @@ export function emptyDay(dayKey) {
     minutes: 0,
     rounds: 0,          // pelajaran/ronde yang diselesaikan hari itu
     perfectRounds: 0,   // ronde tanpa satu pun kesalahan
+    studySessions: 0,   // sesi belajar (baca materi) yang dituntaskan
     starsEarned: 0,
     bestCombo: 0,
     missionsClaimed: [],
@@ -153,5 +154,25 @@ export function applyRound(
     };
   }
   log[dayKey] = next;
+  return log;
+}
+
+/**
+ * Catat satu sesi belajar yang tuntas.
+ *
+ * Sengaja tidak menyentuh `rounds`, `answered`, maupun `correct`: membaca
+ * materi bukan menjawab soal, jadi misi "selesaikan N pelajaran" dan angka
+ * ketepatan harus tetap murni datang dari latihan. Yang ikut bertambah hanya
+ * XP dan waktu belajar.
+ */
+export function applyStudy(dailyLog, { xp = 0, minutes = 0 } = {}, dayKey = toDayKey()) {
+  const log = { ...(dailyLog || {}) };
+  const prev = log[dayKey] || emptyDay(dayKey);
+  log[dayKey] = {
+    ...prev,
+    xp: prev.xp + xp,
+    minutes: prev.minutes + minutes,
+    studySessions: (prev.studySessions || 0) + 1
+  };
   return log;
 }

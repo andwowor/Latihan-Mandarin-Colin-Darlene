@@ -1,0 +1,5695 @@
+{
+  "schemaVersion": 1,
+  "perLesson": 4,
+  "sources": {
+    "yct1": [
+      "hsk1"
+    ],
+    "yct2": [
+      "hsk1"
+    ],
+    "yct3": [
+      "hsk1",
+      "hsk2"
+    ],
+    "yct4": [
+      "hsk2"
+    ],
+    "yct5": [
+      "hsk2",
+      "hsk3"
+    ],
+    "yct6": [
+      "hsk3"
+    ]
+  },
+  "note": "Dihasilkan oleh tools/build-bridge.mjs dari src/domain/hskBridge.js. Jangan disunting tangan — jalankan \"npm run bridge\" setelah kurikulum berubah.",
+  "levels": {
+    "yct1": {
+      "alsoIn": {
+        "一": [
+          "HSK 1"
+        ],
+        "二": [
+          "HSK 1"
+        ],
+        "三": [
+          "HSK 1"
+        ],
+        "四": [
+          "HSK 1"
+        ],
+        "五": [
+          "HSK 1"
+        ],
+        "六": [
+          "HSK 1"
+        ],
+        "七": [
+          "HSK 1"
+        ],
+        "八": [
+          "HSK 1"
+        ],
+        "九": [
+          "HSK 1"
+        ],
+        "十": [
+          "HSK 1"
+        ],
+        "你": [
+          "HSK 1"
+        ],
+        "好": [
+          "HSK 1"
+        ],
+        "老师": [
+          "HSK 1"
+        ],
+        "再见": [
+          "HSK 1"
+        ],
+        "我": [
+          "HSK 1"
+        ],
+        "叫": [
+          "HSK 1"
+        ],
+        "什么": [
+          "HSK 1"
+        ],
+        "认识": [
+          "HSK 1"
+        ],
+        "很": [
+          "HSK 1"
+        ],
+        "高兴": [
+          "HSK 1"
+        ],
+        "她": [
+          "HSK 1"
+        ],
+        "吗": [
+          "HSK 1"
+        ],
+        "不": [
+          "HSK 1"
+        ],
+        "他": [
+          "HSK 1"
+        ],
+        "是": [
+          "HSK 1"
+        ],
+        "谁": [
+          "HSK 1"
+        ],
+        "哪": [
+          "HSK 1"
+        ],
+        "人": [
+          "HSK 1"
+        ],
+        "爸爸": [
+          "HSK 1"
+        ],
+        "妈妈": [
+          "HSK 1"
+        ],
+        "家": [
+          "HSK 1"
+        ],
+        "哥哥": [
+          "HSK 2"
+        ],
+        "姐姐": [
+          "HSK 2"
+        ],
+        "妹妹": [
+          "HSK 2"
+        ],
+        "有": [
+          "HSK 1"
+        ],
+        "几": [
+          "HSK 1"
+        ],
+        "口": [
+          "HSK 1",
+          "HSK 3"
+        ],
+        "和": [
+          "HSK 1"
+        ],
+        "没有": [
+          "HSK 1"
+        ],
+        "个": [
+          "HSK 1"
+        ],
+        "岁": [
+          "HSK 1"
+        ],
+        "也": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "头发": [
+          "HSK 3"
+        ],
+        "鼻子": [
+          "HSK 3"
+        ],
+        "眼睛": [
+          "HSK 2"
+        ],
+        "耳朵": [
+          "HSK 3"
+        ],
+        "的": [
+          "HSK 1"
+        ],
+        "小": [
+          "HSK 1"
+        ],
+        "大": [
+          "HSK 1"
+        ],
+        "长": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "个子": [
+          "HSK 3"
+        ],
+        "真": [
+          "HSK 2"
+        ],
+        "高": [
+          "HSK 2"
+        ],
+        "猫": [
+          "HSK 1"
+        ],
+        "狗": [
+          "HSK 1"
+        ],
+        "鱼": [
+          "HSK 2"
+        ],
+        "鸟": [
+          "HSK 3"
+        ],
+        "那": [
+          "HSK 1"
+        ],
+        "看": [
+          "HSK 1"
+        ],
+        "多": [
+          "HSK 1"
+        ],
+        "学校": [
+          "HSK 1"
+        ],
+        "商店": [
+          "HSK 1"
+        ],
+        "在": [
+          "HSK 1"
+        ],
+        "谢谢": [
+          "HSK 1"
+        ],
+        "去": [
+          "HSK 1"
+        ],
+        "我们": [
+          "HSK 1"
+        ],
+        "哪儿": [
+          "HSK 1"
+        ],
+        "生日": [
+          "HSK 2"
+        ],
+        "月": [
+          "HSK 1"
+        ],
+        "号": [
+          "HSK 1"
+        ],
+        "今天": [
+          "HSK 1"
+        ],
+        "星期": [
+          "HSK 1"
+        ],
+        "明天": [
+          "HSK 1"
+        ],
+        "喜欢": [
+          "HSK 1"
+        ],
+        "现在": [
+          "HSK 1"
+        ],
+        "点": [
+          "HSK 1"
+        ],
+        "分": [
+          "HSK 3"
+        ],
+        "早上": [
+          "HSK 2"
+        ],
+        "米饭": [
+          "HSK 1"
+        ],
+        "面条": [
+          "HSK 2"
+        ],
+        "苹果": [
+          "HSK 1"
+        ],
+        "牛奶": [
+          "HSK 2"
+        ],
+        "水": [
+          "HSK 1"
+        ],
+        "吃": [
+          "HSK 1"
+        ],
+        "喝": [
+          "HSK 1"
+        ],
+        "爱": [
+          "HSK 1"
+        ],
+        "蛋糕": [
+          "HSK 3"
+        ],
+        "睡觉": [
+          "HSK 1"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "您",
+            "py": "nín",
+            "en": "(polite) you",
+            "id": "Anda",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 1
+          },
+          {
+            "zh": "呢",
+            "py": "ne",
+            "en": "(question particle)",
+            "id": "(partikel tanya)",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 4
+          },
+          {
+            "zh": "了",
+            "py": "le",
+            "en": "(change/completion particle)",
+            "id": "(partikel perubahan)",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 5
+          },
+          {
+            "zh": "会",
+            "py": "huì",
+            "en": "can, to be able to",
+            "id": "bisa",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          }
+        ],
+        "2": [
+          {
+            "zh": "写",
+            "py": "xiě",
+            "en": "to write",
+            "id": "menulis",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          },
+          {
+            "zh": "菜",
+            "py": "cài",
+            "en": "dish, cuisine",
+            "id": "masakan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          },
+          {
+            "zh": "说",
+            "py": "shuō",
+            "en": "to speak, to say",
+            "id": "berbicara",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          },
+          {
+            "zh": "读",
+            "py": "dú",
+            "en": "to read",
+            "id": "membaca",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          }
+        ],
+        "3": [
+          {
+            "zh": "书",
+            "py": "shū",
+            "en": "book",
+            "id": "buku",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 7
+          },
+          {
+            "zh": "请",
+            "py": "qǐng",
+            "en": "please",
+            "id": "silakan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 7
+          },
+          {
+            "zh": "问",
+            "py": "wèn",
+            "en": "to ask, to inquire",
+            "id": "bertanya",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 7
+          },
+          {
+            "zh": "买",
+            "py": "mǎi",
+            "en": "to buy",
+            "id": "membeli",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          }
+        ],
+        "4": [
+          {
+            "zh": "块",
+            "py": "kuài",
+            "en": "(unit of money)",
+            "id": "(satuan uang)",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          },
+          {
+            "zh": "想",
+            "py": "xiǎng",
+            "en": "to want, would like",
+            "id": "ingin",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          },
+          {
+            "zh": "茶",
+            "py": "chá",
+            "en": "tea",
+            "id": "teh",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          },
+          {
+            "zh": "钱",
+            "py": "qián",
+            "en": "money",
+            "id": "uang",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          }
+        ],
+        "5": [
+          {
+            "zh": "下",
+            "py": "xià",
+            "en": "under, below",
+            "id": "bawah",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 9
+          },
+          {
+            "zh": "上",
+            "py": "shàng",
+            "en": "up, above",
+            "id": "atas",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          },
+          {
+            "zh": "本",
+            "py": "běn",
+            "en": "(measure word for books)",
+            "id": "(kata bantu bilangan buku)",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          },
+          {
+            "zh": "能",
+            "py": "néng",
+            "en": "can, may",
+            "id": "bisa, boleh",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          }
+        ],
+        "6": [
+          {
+            "zh": "小姐",
+            "py": "xiǎojiě",
+            "en": "miss, young lady",
+            "id": "Nona",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "里",
+            "py": "lǐ",
+            "en": "inner, inside",
+            "id": "di dalam",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          },
+          {
+            "zh": "回",
+            "py": "huí",
+            "en": "to come/go back",
+            "id": "kembali",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 11
+          },
+          {
+            "zh": "些",
+            "py": "xiē",
+            "en": "some, a few",
+            "id": "beberapa",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          }
+        ],
+        "7": [
+          {
+            "zh": "儿子",
+            "py": "érzi",
+            "en": "son",
+            "id": "anak laki-laki",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 9
+          },
+          {
+            "zh": "看见",
+            "py": "kànjiàn",
+            "en": "to see",
+            "id": "melihat, tampak",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "冷",
+            "py": "lěng",
+            "en": "cold",
+            "id": "dingin",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "太",
+            "py": "tài",
+            "en": "too, excessively",
+            "id": "terlalu",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          }
+        ],
+        "8": [
+          {
+            "zh": "来",
+            "py": "lái",
+            "en": "to come",
+            "id": "datang",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "热",
+            "py": "rè",
+            "en": "hot",
+            "id": "panas",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "喂",
+            "py": "wèi",
+            "en": "hello, hey",
+            "id": "halo",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 13
+          },
+          {
+            "zh": "给",
+            "py": "gěi",
+            "en": "to, for",
+            "id": "untuk, kepada",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 13
+          }
+        ],
+        "9": [
+          {
+            "zh": "学生",
+            "py": "xuésheng",
+            "en": "student",
+            "id": "murid",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 3
+          },
+          {
+            "zh": "少",
+            "py": "shǎo",
+            "en": "little, few",
+            "id": "sedikit",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "开",
+            "py": "kāi",
+            "en": "to drive",
+            "id": "mengemudi",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "都",
+            "py": "dōu",
+            "en": "both, all",
+            "id": "semua",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          }
+        ],
+        "10": [
+          {
+            "zh": "多少",
+            "py": "duōshao",
+            "en": "how many, how much",
+            "id": "berapa",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          },
+          {
+            "zh": "一点儿",
+            "py": "yìdiǎnr",
+            "en": "a few, a little",
+            "id": "sedikit",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "听",
+            "py": "tīng",
+            "en": "to listen",
+            "id": "mendengar",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          },
+          {
+            "zh": "年",
+            "py": "nián",
+            "en": "year",
+            "id": "tahun",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          }
+        ],
+        "11": [
+          {
+            "zh": "好吃",
+            "py": "hǎochī",
+            "en": "delicious, tasty",
+            "id": "enak",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          },
+          {
+            "zh": "水果",
+            "py": "shuǐguǒ",
+            "en": "fruit",
+            "id": "buah",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "饭店",
+            "py": "fàndiàn",
+            "en": "hotel, restaurant",
+            "id": "restoran, hotel",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          },
+          {
+            "zh": "同学",
+            "py": "tóngxué",
+            "en": "classmate",
+            "id": "teman sekelas",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 4
+          }
+        ],
+        "12": [
+          {
+            "zh": "女儿",
+            "py": "nǚ'ér",
+            "en": "daughter",
+            "id": "anak perempuan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 5
+          },
+          {
+            "zh": "怎么",
+            "py": "zěnme",
+            "en": "how",
+            "id": "bagaimana",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 6
+          },
+          {
+            "zh": "下午",
+            "py": "xiàwǔ",
+            "en": "afternoon",
+            "id": "sore",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          },
+          {
+            "zh": "杯子",
+            "py": "bēizi",
+            "en": "cup, glass",
+            "id": "gelas",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 8
+          }
+        ]
+      }
+    },
+    "yct2": {
+      "alsoIn": {
+        "可以": [
+          "HSK 2"
+        ],
+        "请": [
+          "HSK 1"
+        ],
+        "不客气": [
+          "HSK 1"
+        ],
+        "说话": [
+          "HSK 2"
+        ],
+        "对不起": [
+          "HSK 1"
+        ],
+        "没关系": [
+          "HSK 1"
+        ],
+        "起床": [
+          "HSK 2"
+        ],
+        "睡觉": [
+          "HSK 1"
+        ],
+        "早上": [
+          "HSK 2"
+        ],
+        "晚上": [
+          "HSK 2"
+        ],
+        "到": [
+          "HSK 2"
+        ],
+        "呢": [
+          "HSK 1"
+        ],
+        "要": [
+          "HSK 2"
+        ],
+        "房间": [
+          "HSK 2"
+        ],
+        "电视": [
+          "HSK 1"
+        ],
+        "椅子": [
+          "HSK 1"
+        ],
+        "铅笔": [
+          "HSK 2"
+        ],
+        "矮": [
+          "HSK 3"
+        ],
+        "只": [
+          "HSK 3"
+        ],
+        "名字": [
+          "HSK 1"
+        ],
+        "漂亮": [
+          "HSK 1"
+        ],
+        "颜色": [
+          "HSK 2"
+        ],
+        "两": [
+          "HSK 2"
+        ],
+        "本": [
+          "HSK 1"
+        ],
+        "医生": [
+          "HSK 1"
+        ],
+        "会": [
+          "HSK 1"
+        ],
+        "真": [
+          "HSK 2"
+        ],
+        "好吃": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "钱": [
+          "HSK 1"
+        ],
+        "茶": [
+          "HSK 1"
+        ],
+        "买": [
+          "HSK 1"
+        ],
+        "多少": [
+          "HSK 1"
+        ],
+        "块": [
+          "HSK 1"
+        ],
+        "冷": [
+          "HSK 1"
+        ],
+        "热": [
+          "HSK 1"
+        ],
+        "天气": [
+          "HSK 1"
+        ],
+        "怎么样": [
+          "HSK 1"
+        ],
+        "比": [
+          "HSK 2"
+        ],
+        "觉得": [
+          "HSK 2"
+        ],
+        "弟弟": [
+          "HSK 2"
+        ],
+        "妹妹": [
+          "HSK 2"
+        ],
+        "朋友": [
+          "HSK 1"
+        ],
+        "同学": [
+          "HSK 1"
+        ],
+        "也": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "学生": [
+          "HSK 1"
+        ],
+        "香蕉": [
+          "HSK 3"
+        ],
+        "熊猫": [
+          "HSK 3"
+        ],
+        "水果": [
+          "HSK 1"
+        ],
+        "了": [
+          "HSK 1"
+        ],
+        "画": [
+          "HSK 3"
+        ],
+        "脚": [
+          "HSK 3"
+        ],
+        "医院": [
+          "HSK 1"
+        ],
+        "疼": [
+          "HSK 3"
+        ],
+        "以前": [
+          "HSK 3"
+        ],
+        "还": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "用": [
+          "HSK 3"
+        ],
+        "汉语": [
+          "HSK 1"
+        ],
+        "打电话": [
+          "HSK 1"
+        ],
+        "分钟": [
+          "HSK 1"
+        ],
+        "学习": [
+          "HSK 1"
+        ],
+        "零": [
+          "HSK 2"
+        ],
+        "年": [
+          "HSK 1"
+        ],
+        "小时": [
+          "HSK 2"
+        ],
+        "下午": [
+          "HSK 1"
+        ],
+        "运动": [
+          "HSK 2"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "上午",
+            "py": "shàngwǔ",
+            "en": "morning",
+            "id": "pagi",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 13
+          },
+          {
+            "zh": "一起",
+            "py": "yìqǐ",
+            "en": "together",
+            "id": "bersama",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          },
+          {
+            "zh": "前面",
+            "py": "qiánmiàn",
+            "en": "front",
+            "id": "depan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          },
+          {
+            "zh": "后面",
+            "py": "hòumiàn",
+            "en": "back, behind",
+            "id": "belakang",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          }
+        ],
+        "2": [
+          {
+            "zh": "下雨",
+            "py": "xià yǔ",
+            "en": "to rain",
+            "id": "hujan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "先生",
+            "py": "xiānsheng",
+            "en": "Mr., sir",
+            "id": "Tuan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "工作",
+            "py": "gōngzuò",
+            "en": "to work; job",
+            "id": "bekerja; pekerjaan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 9
+          },
+          {
+            "zh": "电脑",
+            "py": "diànnǎo",
+            "en": "computer",
+            "id": "komputer",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 10
+          }
+        ],
+        "3": [
+          {
+            "zh": "电影",
+            "py": "diànyǐng",
+            "en": "film, movie",
+            "id": "film",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 11
+          },
+          {
+            "zh": "时候",
+            "py": "shíhou",
+            "en": "time, moment",
+            "id": "waktu",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 11
+          },
+          {
+            "zh": "身体",
+            "py": "shēntǐ",
+            "en": "body",
+            "id": "badan",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 12
+          },
+          {
+            "zh": "东西",
+            "py": "dōngxi",
+            "en": "thing, stuff",
+            "id": "barang",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          }
+        ],
+        "4": [
+          {
+            "zh": "衣服",
+            "py": "yīfu",
+            "en": "clothes",
+            "id": "baju",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 14
+          },
+          {
+            "zh": "飞机",
+            "py": "fēijī",
+            "en": "airplane",
+            "id": "pesawat",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          },
+          {
+            "zh": "出租车",
+            "py": "chūzūchē",
+            "en": "taxi, cab",
+            "id": "taksi",
+            "from": "hsk1",
+            "fromCode": "HSK 1",
+            "fromLevel": 1,
+            "fromLesson": 15
+          }
+        ]
+      }
+    },
+    "yct3": {
+      "alsoIn": {
+        "年级": [
+          "HSK 3"
+        ],
+        "课": [
+          "HSK 2"
+        ],
+        "都": [
+          "HSK 1"
+        ],
+        "班": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "张": [
+          "HSK 3"
+        ],
+        "还": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "新": [
+          "HSK 2"
+        ],
+        "男": [
+          "HSK 2"
+        ],
+        "女": [
+          "HSK 2"
+        ],
+        "游泳": [
+          "HSK 2"
+        ],
+        "运动": [
+          "HSK 2"
+        ],
+        "打篮球": [
+          "HSK 2"
+        ],
+        "踢足球": [
+          "HSK 2"
+        ],
+        "太": [
+          "HSK 1"
+        ],
+        "每": [
+          "HSK 2"
+        ],
+        "一起": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "欢迎": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "太阳": [
+          "HSK 3"
+        ],
+        "月亮": [
+          "HSK 3"
+        ],
+        "跑步": [
+          "HSK 2"
+        ],
+        "爷爷": [
+          "HSK 3"
+        ],
+        "奶奶": [
+          "HSK 3"
+        ],
+        "唱歌": [
+          "HSK 2"
+        ],
+        "跳舞": [
+          "HSK 2"
+        ],
+        "让": [
+          "HSK 2"
+        ],
+        "喂": [
+          "HSK 1"
+        ],
+        "您": [
+          "HSK 1"
+        ],
+        "找": [
+          "HSK 2"
+        ],
+        "回": [
+          "HSK 1"
+        ],
+        "问题": [
+          "HSK 2"
+        ],
+        "问": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "饿": [
+          "HSK 3"
+        ],
+        "想": [
+          "HSK 1"
+        ],
+        "最": [
+          "HSK 2"
+        ],
+        "给": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "再": [
+          "HSK 2"
+        ],
+        "饱": [
+          "HSK 3"
+        ],
+        "衣服": [
+          "HSK 1"
+        ],
+        "穿": [
+          "HSK 2"
+        ],
+        "能": [
+          "HSK 1"
+        ],
+        "自己": [
+          "HSK 3"
+        ],
+        "礼物": [
+          "HSK 3"
+        ],
+        "花": [
+          "HSK 3"
+        ],
+        "蛋糕": [
+          "HSK 3"
+        ],
+        "生日": [
+          "HSK 2"
+        ],
+        "送": [
+          "HSK 2"
+        ],
+        "吧": [
+          "HSK 2"
+        ],
+        "但是": [
+          "HSK 2"
+        ],
+        "快乐": [
+          "HSK 2"
+        ],
+        "听": [
+          "HSK 1"
+        ],
+        "下雨": [
+          "HSK 1"
+        ],
+        "出": [
+          "HSK 2"
+        ],
+        "别": [
+          "HSK 2"
+        ],
+        "作业": [
+          "HSK 3"
+        ],
+        "哭": [
+          "HSK 3"
+        ],
+        "笑": [
+          "HSK 2"
+        ],
+        "东西": [
+          "HSK 1"
+        ],
+        "到": [
+          "HSK 2"
+        ],
+        "第一": [
+          "HSK 2"
+        ],
+        "胖": [
+          "HSK 3"
+        ],
+        "瘦": [
+          "HSK 3"
+        ],
+        "些": [
+          "HSK 1"
+        ],
+        "得": [
+          "HSK 2"
+        ],
+        "快": [
+          "HSK 2"
+        ],
+        "知道": [
+          "HSK 2"
+        ],
+        "水果": [
+          "HSK 1"
+        ],
+        "西瓜": [
+          "HSK 2"
+        ],
+        "鸡蛋": [
+          "HSK 2"
+        ],
+        "把": [
+          "HSK 3"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "米",
+            "py": "mǐ",
+            "en": "meter",
+            "id": "meter",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 2
+          },
+          {
+            "zh": "红",
+            "py": "hóng",
+            "en": "red",
+            "id": "merah",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "对",
+            "py": "duì",
+            "en": "to, for",
+            "id": "kepada",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          },
+          {
+            "zh": "白",
+            "py": "bái",
+            "en": "white",
+            "id": "putih",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          }
+        ],
+        "2": [
+          {
+            "zh": "贵",
+            "py": "guì",
+            "en": "expensive",
+            "id": "mahal",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          },
+          {
+            "zh": "日",
+            "py": "rì",
+            "en": "day, date",
+            "id": "hari, tanggal",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          },
+          {
+            "zh": "时间",
+            "py": "shíjiān",
+            "en": "time",
+            "id": "waktu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 2
+          },
+          {
+            "zh": "一下",
+            "py": "yíxià",
+            "en": "(a short action)",
+            "id": "sebentar",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          }
+        ],
+        "3": [
+          {
+            "zh": "上班",
+            "py": "shàng bān",
+            "en": "to go to work",
+            "id": "bekerja",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          },
+          {
+            "zh": "手机",
+            "py": "shǒujī",
+            "en": "cell phone",
+            "id": "ponsel",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 10
+          },
+          {
+            "zh": "去年",
+            "py": "qùnián",
+            "en": "last year",
+            "id": "tahun lalu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          },
+          {
+            "zh": "可能",
+            "py": "kěnéng",
+            "en": "maybe, probably",
+            "id": "mungkin",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          }
+        ],
+        "4": [
+          {
+            "zh": "题",
+            "py": "tí",
+            "en": "question, problem",
+            "id": "soal",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          },
+          {
+            "zh": "玩儿",
+            "py": "wánr",
+            "en": "to play, to have fun",
+            "id": "bermain",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 14
+          },
+          {
+            "zh": "大家",
+            "py": "dàjiā",
+            "en": "all, everybody",
+            "id": "semuanya",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          },
+          {
+            "zh": "它",
+            "py": "tā",
+            "en": "it",
+            "id": "dia (benda)",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 1
+          }
+        ],
+        "5": [
+          {
+            "zh": "忙",
+            "py": "máng",
+            "en": "busy",
+            "id": "sibuk",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 2
+          },
+          {
+            "zh": "药",
+            "py": "yào",
+            "en": "medicine, drug",
+            "id": "obat",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 2
+          },
+          {
+            "zh": "千",
+            "py": "qiān",
+            "en": "thousand",
+            "id": "seribu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "接",
+            "py": "jiē",
+            "en": "to receive, to accept",
+            "id": "menerima, menjemput",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 4
+          }
+        ],
+        "6": [
+          {
+            "zh": "帮助",
+            "py": "bāngzhù",
+            "en": "to help, to assist",
+            "id": "membantu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 10
+          },
+          {
+            "zh": "件",
+            "py": "jiàn",
+            "en": "(measure word for clothes)",
+            "id": "(kata bantu bilangan pakaian)",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          },
+          {
+            "zh": "就",
+            "py": "jiù",
+            "en": "just, then",
+            "id": "langsung",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          },
+          {
+            "zh": "外",
+            "py": "wài",
+            "en": "outer, outside",
+            "id": "luar",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          }
+        ],
+        "7": [
+          {
+            "zh": "花花",
+            "py": "Huāhua",
+            "en": "name of a cat",
+            "id": "nama seekor kucing",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 1
+          },
+          {
+            "zh": "门",
+            "py": "mén",
+            "en": "door, gate",
+            "id": "pintu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "慢",
+            "py": "màn",
+            "en": "slow",
+            "id": "lambat",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "离",
+            "py": "lí",
+            "en": "to be away from",
+            "id": "dari (jarak)",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          }
+        ],
+        "8": [
+          {
+            "zh": "雪",
+            "py": "xuě",
+            "en": "snow",
+            "id": "salju",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 12
+          },
+          {
+            "zh": "走",
+            "py": "zǒu",
+            "en": "to walk",
+            "id": "berjalan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "路",
+            "py": "lù",
+            "en": "road, way",
+            "id": "jalan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "过",
+            "py": "guò",
+            "en": "to pass/spend (time)",
+            "id": "melewati",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          }
+        ],
+        "9": [
+          {
+            "zh": "远",
+            "py": "yuǎn",
+            "en": "far, distant",
+            "id": "jauh",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "等",
+            "py": "děng",
+            "en": "to wait",
+            "id": "menunggu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          },
+          {
+            "zh": "黑",
+            "py": "hēi",
+            "en": "black",
+            "id": "hitam",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          },
+          {
+            "zh": "从",
+            "py": "cóng",
+            "en": "from",
+            "id": "dari",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          }
+        ],
+        "10": [
+          {
+            "zh": "完",
+            "py": "wán",
+            "en": "to finish, to end",
+            "id": "selesai",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          },
+          {
+            "zh": "懂",
+            "py": "dǒng",
+            "en": "to understand",
+            "id": "mengerti",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          },
+          {
+            "zh": "错",
+            "py": "cuò",
+            "en": "wrong, incorrect",
+            "id": "salah",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          },
+          {
+            "zh": "洗",
+            "py": "xǐ",
+            "en": "to wash",
+            "id": "mencuci",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 10
+          }
+        ],
+        "11": [
+          {
+            "zh": "姓",
+            "py": "xìng",
+            "en": "family name, surname",
+            "id": "marga",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          },
+          {
+            "zh": "度",
+            "py": "dù",
+            "en": "degree",
+            "id": "derajat",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 12
+          },
+          {
+            "zh": "近",
+            "py": "jìn",
+            "en": "near, close",
+            "id": "dekat",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 12
+          },
+          {
+            "zh": "进",
+            "py": "jìn",
+            "en": "to enter",
+            "id": "masuk",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 12
+          }
+        ]
+      }
+    },
+    "yct4": {
+      "alsoIn": {
+        "百": [
+          "HSK 2"
+        ],
+        "电脑": [
+          "HSK 1"
+        ],
+        "零": [
+          "HSK 2"
+        ],
+        "千": [
+          "HSK 2"
+        ],
+        "上网": [
+          "HSK 3"
+        ],
+        "少": [
+          "HSK 1"
+        ],
+        "手机": [
+          "HSK 2"
+        ],
+        "半": [
+          "HSK 3"
+        ],
+        "懂": [
+          "HSK 2"
+        ],
+        "读": [
+          "HSK 1"
+        ],
+        "难": [
+          "HSK 3"
+        ],
+        "时间": [
+          "HSK 2"
+        ],
+        "题": [
+          "HSK 2"
+        ],
+        "小时": [
+          "HSK 2"
+        ],
+        "杯子": [
+          "HSK 1"
+        ],
+        "关": [
+          "HSK 3"
+        ],
+        "就": [
+          "HSK 2"
+        ],
+        "开": [
+          "HSK 1"
+        ],
+        "门": [
+          "HSK 2"
+        ],
+        "完": [
+          "HSK 2"
+        ],
+        "感冒": [
+          "HSK 3"
+        ],
+        "身体": [
+          "HSK 1",
+          "HSK 2"
+        ],
+        "生病": [
+          "HSK 2"
+        ],
+        "舒服": [
+          "HSK 3"
+        ],
+        "疼": [
+          "HSK 3"
+        ],
+        "休息": [
+          "HSK 2"
+        ],
+        "药": [
+          "HSK 2"
+        ],
+        "一点儿": [
+          "HSK 1"
+        ],
+        "菜": [
+          "HSK 1"
+        ],
+        "进": [
+          "HSK 2"
+        ],
+        "它": [
+          "HSK 2"
+        ],
+        "洗澡": [
+          "HSK 3"
+        ],
+        "鱼": [
+          "HSK 2"
+        ],
+        "过": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "教室": [
+          "HSK 2"
+        ],
+        "走": [
+          "HSK 2"
+        ],
+        "对": [
+          "HSK 2"
+        ],
+        "公共汽车": [
+          "HSK 2"
+        ],
+        "近": [
+          "HSK 2"
+        ],
+        "路": [
+          "HSK 2"
+        ],
+        "旁边": [
+          "HSK 2"
+        ],
+        "条": [
+          "HSK 3"
+        ],
+        "远": [
+          "HSK 2"
+        ],
+        "迟到": [
+          "HSK 3"
+        ],
+        "坏": [
+          "HSK 3"
+        ],
+        "蓝": [
+          "HSK 3"
+        ],
+        "慢": [
+          "HSK 2"
+        ],
+        "拿": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "次": [
+          "HSK 2"
+        ],
+        "飞机": [
+          "HSK 1"
+        ],
+        "去年": [
+          "HSK 2"
+        ],
+        "时候": [
+          "HSK 1"
+        ],
+        "电影": [
+          "HSK 1"
+        ],
+        "忙": [
+          "HSK 2"
+        ],
+        "事情": [
+          "HSK 2"
+        ],
+        "为什么": [
+          "HSK 2"
+        ],
+        "意思": [
+          "HSK 2"
+        ],
+        "白": [
+          "HSK 2"
+        ],
+        "黑": [
+          "HSK 2"
+        ],
+        "件": [
+          "HSK 2"
+        ],
+        "可爱": [
+          "HSK 3"
+        ],
+        "裤子": [
+          "HSK 3"
+        ],
+        "裙子": [
+          "HSK 3"
+        ],
+        "长": [
+          "HSK 2",
+          "HSK 3"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "往",
+            "py": "wǎng",
+            "en": "to, towards",
+            "id": "menuju",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 13
+          },
+          {
+            "zh": "着",
+            "py": "zhe",
+            "en": "(state particle)",
+            "id": "(partikel keadaan)",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 13
+          },
+          {
+            "zh": "晴",
+            "py": "qíng",
+            "en": "sunny, clear",
+            "id": "cerah",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 14
+          },
+          {
+            "zh": "更",
+            "py": "gèng",
+            "en": "more, to a greater extent",
+            "id": "lebih",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          }
+        ],
+        "2": [
+          {
+            "zh": "票",
+            "py": "piào",
+            "en": "ticket",
+            "id": "tiket",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          },
+          {
+            "zh": "阴",
+            "py": "yīn",
+            "en": "overcast, cloudy",
+            "id": "mendung",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          },
+          {
+            "zh": "旅游",
+            "py": "lǚyóu",
+            "en": "to travel",
+            "id": "berwisata",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 1
+          },
+          {
+            "zh": "左边",
+            "py": "zuǒbian",
+            "en": "left side",
+            "id": "sebelah kiri",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          }
+        ],
+        "3": [
+          {
+            "zh": "手表",
+            "py": "shǒubiǎo",
+            "en": "watch",
+            "id": "jam tangan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "粉色",
+            "py": "fěnsè",
+            "en": "pink",
+            "id": "merah muda",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "开始",
+            "py": "kāishǐ",
+            "en": "to begin, to start",
+            "id": "mulai",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 4
+          },
+          {
+            "zh": "所以",
+            "py": "suǒyǐ",
+            "en": "so, therefore",
+            "id": "maka",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          }
+        ],
+        "4": [
+          {
+            "zh": "机场",
+            "py": "jīchǎng",
+            "en": "airport",
+            "id": "bandara",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "正在",
+            "py": "zhèngzài",
+            "en": "in the process of",
+            "id": "sedang",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 10
+          },
+          {
+            "zh": "右边",
+            "py": "yòubian",
+            "en": "right side",
+            "id": "sebelah kanan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          },
+          {
+            "zh": "孩子",
+            "py": "háizi",
+            "en": "child, kid",
+            "id": "anak",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          }
+        ],
+        "5": [
+          {
+            "zh": "妻子",
+            "py": "qīzi",
+            "en": "wife",
+            "id": "istri",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 12
+          },
+          {
+            "zh": "一直",
+            "py": "yìzhí",
+            "en": "straight, all along",
+            "id": "terus",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 13
+          },
+          {
+            "zh": "自行车",
+            "py": "zìxíngchē",
+            "en": "bike",
+            "id": "sepeda",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "杨笑笑",
+            "py": "Yáng Xiàoxiao",
+            "en": "name of a person",
+            "id": "nama orang",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 13
+          }
+        ],
+        "6": [
+          {
+            "zh": "丈夫",
+            "py": "zhàngfu",
+            "en": "husband",
+            "id": "suami",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "报纸",
+            "py": "bàozhǐ",
+            "en": "newspaper",
+            "id": "koran",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 3
+          },
+          {
+            "zh": "介绍",
+            "py": "jièshào",
+            "en": "to introduce",
+            "id": "memperkenalkan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 4
+          },
+          {
+            "zh": "已经",
+            "py": "yǐjīng",
+            "en": "already",
+            "id": "sudah",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 4
+          }
+        ],
+        "7": [
+          {
+            "zh": "公斤",
+            "py": "gōngjīn",
+            "en": "kilogram",
+            "id": "kilogram",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "经常",
+            "py": "jīngcháng",
+            "en": "often, frequently",
+            "id": "sering",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "公司",
+            "py": "gōngsī",
+            "en": "company, firm",
+            "id": "perusahaan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 7
+          },
+          {
+            "zh": "火车站",
+            "py": "huǒchēzhàn",
+            "en": "railway station",
+            "id": "stasiun kereta",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 15
+          }
+        ],
+        "8": [
+          {
+            "zh": "非常",
+            "py": "fēicháng",
+            "en": "very, extremely",
+            "id": "sangat",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 4
+          },
+          {
+            "zh": "准备",
+            "py": "zhǔnbèi",
+            "en": "to intend, to plan",
+            "id": "bersiap",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          },
+          {
+            "zh": "咖啡",
+            "py": "kāfēi",
+            "en": "coffee",
+            "id": "kopi",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          },
+          {
+            "zh": "考试",
+            "py": "kǎoshì",
+            "en": "test, exam",
+            "id": "ujian",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 5
+          }
+        ],
+        "9": [
+          {
+            "zh": "因为",
+            "py": "yīnwèi",
+            "en": "because, since",
+            "id": "karena",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "羊肉",
+            "py": "yángròu",
+            "en": "mutton",
+            "id": "daging kambing",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 6
+          },
+          {
+            "zh": "告诉",
+            "py": "gàosu",
+            "en": "to tell",
+            "id": "memberi tahu",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          },
+          {
+            "zh": "希望",
+            "py": "xīwàng",
+            "en": "to hope, to wish",
+            "id": "berharap",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 9
+          }
+        ],
+        "10": [
+          {
+            "zh": "便宜",
+            "py": "piányi",
+            "en": "cheap",
+            "id": "murah",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 11
+          },
+          {
+            "zh": "宾馆",
+            "py": "bīnguǎn",
+            "en": "hotel",
+            "id": "hotel",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 13
+          },
+          {
+            "zh": "虽然",
+            "py": "suīrán",
+            "en": "although",
+            "id": "meskipun",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 14
+          },
+          {
+            "zh": "服务员",
+            "py": "fúwùyuán",
+            "en": "waiter, waitress",
+            "id": "pelayan",
+            "from": "hsk2",
+            "fromCode": "HSK 2",
+            "fromLevel": 2,
+            "fromLesson": 8
+          }
+        ]
+      }
+    },
+    "yct5": {
+      "alsoIn": {
+        "帮助": [
+          "HSK 2"
+        ],
+        "别人": [
+          "HSK 3"
+        ],
+        "当然": [
+          "HSK 3"
+        ],
+        "非常": [
+          "HSK 2"
+        ],
+        "特别": [
+          "HSK 3"
+        ],
+        "矮": [
+          "HSK 3"
+        ],
+        "短": [
+          "HSK 3"
+        ],
+        "告诉": [
+          "HSK 2"
+        ],
+        "更": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "胖": [
+          "HSK 3"
+        ],
+        "啊": [
+          "HSK 3"
+        ],
+        "层": [
+          "HSK 3"
+        ],
+        "等": [
+          "HSK 2"
+        ],
+        "电梯": [
+          "HSK 3"
+        ],
+        "放": [
+          "HSK 3"
+        ],
+        "还是": [
+          "HSK 3"
+        ],
+        "空调": [
+          "HSK 3"
+        ],
+        "楼": [
+          "HSK 3"
+        ],
+        "洗手间": [
+          "HSK 3"
+        ],
+        "带": [
+          "HSK 3"
+        ],
+        "公园": [
+          "HSK 3"
+        ],
+        "咖啡": [
+          "HSK 2"
+        ],
+        "邻居": [
+          "HSK 3"
+        ],
+        "爬山": [
+          "HSK 3"
+        ],
+        "奇怪": [
+          "HSK 3"
+        ],
+        "习惯": [
+          "HSK 3"
+        ],
+        "一会儿": [
+          "HSK 3"
+        ],
+        "以前": [
+          "HSK 3"
+        ],
+        "周末": [
+          "HSK 3"
+        ],
+        "阿姨": [
+          "HSK 3"
+        ],
+        "多么": [
+          "HSK 3"
+        ],
+        "儿子": [
+          "HSK 1"
+        ],
+        "孩子": [
+          "HSK 2"
+        ],
+        "年轻": [
+          "HSK 3"
+        ],
+        "女儿": [
+          "HSK 1"
+        ],
+        "叔叔": [
+          "HSK 3"
+        ],
+        "张": [
+          "HSK 3"
+        ],
+        "照片": [
+          "HSK 3"
+        ],
+        "错": [
+          "HSK 2"
+        ],
+        "大家": [
+          "HSK 2"
+        ],
+        "眼镜": [
+          "HSK 3"
+        ],
+        "站": [
+          "HSK 3"
+        ],
+        "着": [
+          "HSK 2"
+        ],
+        "不但……而且……": [
+          "HSK 3"
+        ],
+        "锻炼": [
+          "HSK 3"
+        ],
+        "健康": [
+          "HSK 3"
+        ],
+        "经常": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "变化": [
+          "HSK 3"
+        ],
+        "春（天）": [
+          "HSK 3"
+        ],
+        "冬（天）": [
+          "HSK 3"
+        ],
+        "刮风": [
+          "HSK 3"
+        ],
+        "季节": [
+          "HSK 3"
+        ],
+        "晴": [
+          "HSK 2"
+        ],
+        "秋（天）": [
+          "HSK 3"
+        ],
+        "夏（天）": [
+          "HSK 3"
+        ],
+        "一共": [
+          "HSK 3"
+        ],
+        "阴": [
+          "HSK 2"
+        ],
+        "办法": [
+          "HSK 3"
+        ],
+        "超市": [
+          "HSK 3"
+        ],
+        "记得": [
+          "HSK 3"
+        ],
+        "便宜": [
+          "HSK 2"
+        ],
+        "手表": [
+          "HSK 2"
+        ],
+        "已经": [
+          "HSK 2"
+        ],
+        "饮料": [
+          "HSK 3"
+        ],
+        "成绩": [
+          "HSK 3"
+        ],
+        "复习": [
+          "HSK 3"
+        ],
+        "考试": [
+          "HSK 2"
+        ],
+        "练习": [
+          "HSK 3"
+        ],
+        "努力": [
+          "HSK 3"
+        ],
+        "认真": [
+          "HSK 3"
+        ],
+        "相信": [
+          "HSK 3"
+        ],
+        "一定": [
+          "HSK 3"
+        ],
+        "准备": [
+          "HSK 2"
+        ],
+        "服务员": [
+          "HSK 2"
+        ],
+        "筷子": [
+          "HSK 3"
+        ],
+        "离开": [
+          "HSK 3"
+        ],
+        "其他": [
+          "HSK 3"
+        ],
+        "双": [
+          "HSK 3"
+        ],
+        "碗": [
+          "HSK 3"
+        ],
+        "羊肉": [
+          "HSK 2"
+        ],
+        "用": [
+          "HSK 3"
+        ],
+        "担心": [
+          "HSK 3"
+        ],
+        "地铁": [
+          "HSK 3"
+        ],
+        "方便": [
+          "HSK 3"
+        ],
+        "工作": [
+          "HSK 1"
+        ],
+        "或者": [
+          "HSK 3"
+        ],
+        "可能": [
+          "HSK 2"
+        ],
+        "发烧": [
+          "HSK 3"
+        ],
+        "教": [
+          "HSK 3"
+        ],
+        "马上": [
+          "HSK 3"
+        ],
+        "刷牙": [
+          "HSK 3"
+        ],
+        "突然": [
+          "HSK 3"
+        ],
+        "先": [
+          "HSK 3"
+        ],
+        "一直": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "北方": [
+          "HSK 3"
+        ],
+        "除了": [
+          "HSK 3"
+        ],
+        "打算": [
+          "HSK 3"
+        ],
+        "地图": [
+          "HSK 3"
+        ],
+        "介绍": [
+          "HSK 2"
+        ],
+        "旅游": [
+          "HSK 2"
+        ],
+        "然后": [
+          "HSK 3"
+        ],
+        "有名": [
+          "HSK 3"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "伞",
+            "py": "sǎn",
+            "en": "umbrella",
+            "id": "payung",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          },
+          {
+            "zh": "绿",
+            "py": "lǜ",
+            "en": "green",
+            "id": "hijau",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 3
+          },
+          {
+            "zh": "为",
+            "py": "wèi",
+            "en": "for",
+            "id": "untuk",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 5
+          },
+          {
+            "zh": "老",
+            "py": "lǎo",
+            "en": "old",
+            "id": "tua",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 8
+          }
+        ],
+        "2": [
+          {
+            "zh": "包",
+            "py": "bāo",
+            "en": "bag, sack",
+            "id": "tas",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "西",
+            "py": "xī",
+            "en": "west",
+            "id": "barat",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "发",
+            "py": "fā",
+            "en": "to send",
+            "id": "mengirim",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "东",
+            "py": "dōng",
+            "en": "east",
+            "id": "timur",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          }
+        ],
+        "3": [
+          {
+            "zh": "试",
+            "py": "shì",
+            "en": "to try",
+            "id": "mencoba",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          },
+          {
+            "zh": "面包",
+            "py": "miànbāo",
+            "en": "bread",
+            "id": "roti",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 1
+          },
+          {
+            "zh": "太太",
+            "py": "tàitai",
+            "en": "Mrs., madam",
+            "id": "Nyonya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          },
+          {
+            "zh": "客人",
+            "py": "kèrén",
+            "en": "customer, guest",
+            "id": "tamu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          }
+        ],
+        "4": [
+          {
+            "zh": "热情",
+            "py": "rèqíng",
+            "en": "warm, enthusiastic",
+            "id": "ramah",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          },
+          {
+            "zh": "最近",
+            "py": "zuìjìn",
+            "en": "lately, recently",
+            "id": "akhir-akhir ini",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 5
+          },
+          {
+            "zh": "帮忙",
+            "py": "bāng máng",
+            "en": "to help",
+            "id": "membantu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 6
+          },
+          {
+            "zh": "明白",
+            "py": "míngbai",
+            "en": "clear, to understand",
+            "id": "paham",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 6
+          }
+        ],
+        "5": [
+          {
+            "zh": "睡着",
+            "py": "shuì zháo",
+            "en": "to fall asleep",
+            "id": "tertidur",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 6
+          },
+          {
+            "zh": "同事",
+            "py": "tóngshì",
+            "en": "colleague",
+            "id": "rekan kerja",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 7
+          },
+          {
+            "zh": "可乐",
+            "py": "kělè",
+            "en": "cola",
+            "id": "kola",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 8
+          },
+          {
+            "zh": "见面",
+            "py": "jiàn miàn",
+            "en": "to meet",
+            "id": "bertemu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 8
+          }
+        ],
+        "6": [
+          {
+            "zh": "一样",
+            "py": "yíyàng",
+            "en": "same as",
+            "id": "sama",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "中间",
+            "py": "zhōngjiān",
+            "en": "middle",
+            "id": "tengah",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "最后",
+            "py": "zuìhòu",
+            "en": "the last one",
+            "id": "terakhir",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "中介",
+            "py": "zhōngjiè",
+            "en": "intermediary, agent",
+            "id": "perantara",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 10
+          }
+        ],
+        "7": [
+          {
+            "zh": "小心",
+            "py": "xiǎoxīn",
+            "en": "careful",
+            "id": "hati-hati",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 3
+          },
+          {
+            "zh": "放心",
+            "py": "fàng xīn",
+            "en": "to rest assured",
+            "id": "tenang, lega",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "体育",
+            "py": "tǐyù",
+            "en": "P.E., sports",
+            "id": "olahraga",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 10
+          },
+          {
+            "zh": "发现",
+            "py": "fāxiàn",
+            "en": "to discover",
+            "id": "menemukan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          }
+        ],
+        "8": [
+          {
+            "zh": "司机",
+            "py": "sījī",
+            "en": "driver",
+            "id": "sopir",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "生气",
+            "py": "shēng qì",
+            "en": "angry",
+            "id": "marah",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "起飞",
+            "py": "qǐfēi",
+            "en": "to take off",
+            "id": "lepas landas",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "一边",
+            "py": "yìbiān",
+            "en": "(two actions at once)",
+            "id": "sambil",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          }
+        ],
+        "9": [
+          {
+            "zh": "又",
+            "py": "yòu",
+            "en": "and; again",
+            "id": "dan; lagi",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          },
+          {
+            "zh": "校长",
+            "py": "xiàozhǎng",
+            "en": "headmaster",
+            "id": "kepala sekolah",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          },
+          {
+            "zh": "起来",
+            "py": "qǐlái",
+            "en": "to rise, to get up",
+            "id": "bangun",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          },
+          {
+            "zh": "过去",
+            "py": "guòqù",
+            "en": "past",
+            "id": "masa lalu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          }
+        ],
+        "10": [
+          {
+            "zh": "越",
+            "py": "yuè",
+            "en": "more, to a greater degree",
+            "id": "semakin",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 5
+          },
+          {
+            "zh": "完成",
+            "py": "wán chéng",
+            "en": "to complete",
+            "id": "menyelesaikan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "节日",
+            "py": "jiérì",
+            "en": "festival",
+            "id": "hari raya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "关系",
+            "py": "guānxì",
+            "en": "relationship",
+            "id": "hubungan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 16
+          }
+        ],
+        "11": [
+          {
+            "zh": "盘子",
+            "py": "pánzi",
+            "en": "plate",
+            "id": "piring",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 14
+          },
+          {
+            "zh": "认为",
+            "py": "rènwéi",
+            "en": "to think, to believe",
+            "id": "berpendapat",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 16
+          },
+          {
+            "zh": "为了",
+            "py": "wèile",
+            "en": "for the sake of",
+            "id": "demi",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 17
+          },
+          {
+            "zh": "后来",
+            "py": "hòulái",
+            "en": "later, afterwards",
+            "id": "kemudian",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 17
+          }
+        ],
+        "12": [
+          {
+            "zh": "差",
+            "py": "chà",
+            "en": "to fall short of",
+            "id": "kurang",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 7
+          },
+          {
+            "zh": "地",
+            "py": "de",
+            "en": "(adverbial particle)",
+            "id": "(partikel keterangan)",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "地方",
+            "py": "dìfang",
+            "en": "place",
+            "id": "tempat",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 10
+          },
+          {
+            "zh": "如果",
+            "py": "rúguǒ",
+            "en": "if, in case",
+            "id": "kalau",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 16
+          }
+        ],
+        "13": [
+          {
+            "zh": "马",
+            "py": "mǎ",
+            "en": "horse",
+            "id": "kuda",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 19
+          },
+          {
+            "zh": "护照",
+            "py": "hùzhào",
+            "en": "passport",
+            "id": "paspor",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "爱好",
+            "py": "àihào",
+            "en": "hobby, interest",
+            "id": "hobi",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 17
+          },
+          {
+            "zh": "选择",
+            "py": "xuǎnzé",
+            "en": "to choose",
+            "id": "memilih",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 17
+          }
+        ],
+        "14": [
+          {
+            "zh": "城市",
+            "py": "chéngshì",
+            "en": "city",
+            "id": "kota",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 16
+          },
+          {
+            "zh": "请假",
+            "py": "qǐng jià",
+            "en": "to ask for leave",
+            "id": "minta izin",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 17
+          },
+          {
+            "zh": "动物",
+            "py": "dòngwù",
+            "en": "animal",
+            "id": "hewan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "同意",
+            "py": "tóngyì",
+            "en": "to agree",
+            "id": "setuju",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          }
+        ]
+      }
+    },
+    "yct6": {
+      "alsoIn": {
+        "聪明": [
+          "HSK 3"
+        ],
+        "节日": [
+          "HSK 3"
+        ],
+        "比赛": [
+          "HSK 3"
+        ],
+        "参加": [
+          "HSK 3"
+        ],
+        "刚才": [
+          "HSK 3"
+        ],
+        "讲": [
+          "HSK 3"
+        ],
+        "明白": [
+          "HSK 3"
+        ],
+        "骑": [
+          "HSK 3"
+        ],
+        "容易": [
+          "HSK 3"
+        ],
+        "数学": [
+          "HSK 3"
+        ],
+        "万": [
+          "HSK 3"
+        ],
+        "希望": [
+          "HSK 2"
+        ],
+        "自行车": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "安静": [
+          "HSK 3"
+        ],
+        "刻": [
+          "HSK 3"
+        ],
+        "起来": [
+          "HSK 3"
+        ],
+        "上班": [
+          "HSK 2"
+        ],
+        "声音": [
+          "HSK 3"
+        ],
+        "树": [
+          "HSK 3"
+        ],
+        "着急": [
+          "HSK 3"
+        ],
+        "打扫": [
+          "HSK 3"
+        ],
+        "干净": [
+          "HSK 3"
+        ],
+        "接": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "生活": [
+          "HSK 3"
+        ],
+        "睡着": [
+          "HSK 3"
+        ],
+        "一下": [
+          "HSK 2"
+        ],
+        "照顾": [
+          "HSK 3"
+        ],
+        "从": [
+          "HSK 2"
+        ],
+        "错": [
+          "HSK 2"
+        ],
+        "地": [
+          "HSK 3"
+        ],
+        "句子": [
+          "HSK 3"
+        ],
+        "渴": [
+          "HSK 3"
+        ],
+        "生气": [
+          "HSK 3"
+        ],
+        "节目": [
+          "HSK 3"
+        ],
+        "看见": [
+          "HSK 1"
+        ],
+        "新闻": [
+          "HSK 3"
+        ],
+        "应该": [
+          "HSK 3"
+        ],
+        "重要": [
+          "HSK 3"
+        ],
+        "词典": [
+          "HSK 3"
+        ],
+        "还": [
+          "HSK 2",
+          "HSK 3"
+        ],
+        "借": [
+          "HSK 3"
+        ],
+        "脸": [
+          "HSK 3"
+        ],
+        "为了": [
+          "HSK 3"
+        ],
+        "先生": [
+          "HSK 1"
+        ],
+        "像": [
+          "HSK 3"
+        ],
+        "被": [
+          "HSK 3"
+        ],
+        "决定": [
+          "HSK 3"
+        ],
+        "开始": [
+          "HSK 2"
+        ],
+        "难过": [
+          "HSK 3"
+        ],
+        "游戏": [
+          "HSK 3"
+        ],
+        "又": [
+          "HSK 3"
+        ],
+        "种": [
+          "HSK 3"
+        ],
+        "最近": [
+          "HSK 3"
+        ],
+        "报纸": [
+          "HSK 2"
+        ],
+        "电子邮件": [
+          "HSK 3"
+        ],
+        "附近": [
+          "HSK 3"
+        ],
+        "故事": [
+          "HSK 3"
+        ],
+        "见面": [
+          "HSK 3"
+        ],
+        "老": [
+          "HSK 3"
+        ],
+        "图书馆": [
+          "HSK 3"
+        ],
+        "国家": [
+          "HSK 3"
+        ],
+        "离": [
+          "HSK 2"
+        ],
+        "贵": [
+          "HSK 2"
+        ],
+        "害怕": [
+          "HSK 3"
+        ],
+        "花": [
+          "HSK 3"
+        ],
+        "换": [
+          "HSK 3"
+        ],
+        "旧": [
+          "HSK 3"
+        ],
+        "辆": [
+          "HSK 3"
+        ],
+        "帽子": [
+          "HSK 3"
+        ],
+        "试": [
+          "HSK 3"
+        ],
+        "为": [
+          "HSK 3"
+        ],
+        "元": [
+          "HSK 3"
+        ],
+        "必须": [
+          "HSK 3"
+        ],
+        "地方": [
+          "HSK 3"
+        ],
+        "腿": [
+          "HSK 3"
+        ],
+        "小心": [
+          "HSK 3"
+        ],
+        "中间": [
+          "HSK 3"
+        ],
+        "注意": [
+          "HSK 3"
+        ],
+        "冰箱": [
+          "HSK 3"
+        ],
+        "瘦": [
+          "HSK 3"
+        ],
+        "甜": [
+          "HSK 3"
+        ],
+        "同意": [
+          "HSK 3"
+        ],
+        "东": [
+          "HSK 3"
+        ],
+        "关于": [
+          "HSK 3"
+        ],
+        "清楚": [
+          "HSK 3"
+        ],
+        "往": [
+          "HSK 2"
+        ],
+        "西": [
+          "HSK 3"
+        ],
+        "小姐": [
+          "HSK 1"
+        ]
+      },
+      "lessons": {
+        "1": [
+          {
+            "zh": "灯",
+            "py": "dēng",
+            "en": "light, lamp",
+            "id": "lampu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 11
+          },
+          {
+            "zh": "机会",
+            "py": "jīhuì",
+            "en": "opportunity",
+            "id": "kesempatan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "特点",
+            "py": "tèdiǎn",
+            "en": "feature",
+            "id": "ciri khas",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "经过",
+            "py": "jīngguò",
+            "en": "to pass by",
+            "id": "melewati",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 19
+          }
+        ],
+        "2": [
+          {
+            "zh": "关心",
+            "py": "guānxīn",
+            "en": "to care for",
+            "id": "peduli",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          },
+          {
+            "zh": "真正",
+            "py": "zhēnzhèng",
+            "en": "really, truly",
+            "id": "sungguh",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          },
+          {
+            "zh": "办公室",
+            "py": "bàngōngshì",
+            "en": "office",
+            "id": "kantor",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          },
+          {
+            "zh": "感兴趣",
+            "py": "gǎn xìngqù",
+            "en": "to be interested in",
+            "id": "tertarik",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 7
+          }
+        ],
+        "3": [
+          {
+            "zh": "音乐",
+            "py": "yīnyuè",
+            "en": "music",
+            "id": "musik",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 6
+          },
+          {
+            "zh": "影响",
+            "py": "yǐngxiǎng",
+            "en": "influence",
+            "id": "pengaruh",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "笔记本",
+            "py": "bǐjìběn",
+            "en": "notebook, laptop",
+            "id": "buku catatan, laptop",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 11
+          },
+          {
+            "zh": "照相机",
+            "py": "zhàoxiàngjī",
+            "en": "camera",
+            "id": "kamera",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          }
+        ],
+        "4": [
+          {
+            "zh": "草",
+            "py": "cǎo",
+            "en": "grass",
+            "id": "rumput",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 5
+          },
+          {
+            "zh": "南（方）",
+            "py": "nán(fāng)",
+            "en": "south",
+            "id": "selatan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 1
+          },
+          {
+            "zh": "极（了）",
+            "py": "jí(le)",
+            "en": "extremely",
+            "id": "sekali",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "聊天（儿）",
+            "py": "liáotiān(r)",
+            "en": "to chat",
+            "id": "mengobrol",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 6
+          }
+        ],
+        "5": [
+          {
+            "zh": "忘记",
+            "py": "wàngjì",
+            "en": "to forget",
+            "id": "lupa",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 11
+          },
+          {
+            "zh": "只有……才……",
+            "py": "zhǐyǒu… cái…",
+            "en": "only… (that/can…)",
+            "id": "hanya kalau… baru…",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          },
+          {
+            "zh": "搬",
+            "py": "bān",
+            "en": "to move, to carry",
+            "id": "pindah",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 1
+          },
+          {
+            "zh": "跟",
+            "py": "gēn",
+            "en": "with",
+            "id": "dengan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 1
+          }
+        ],
+        "6": [
+          {
+            "zh": "角",
+            "py": "jiǎo",
+            "en": "jiao (money)",
+            "id": "jiao (uang)",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          },
+          {
+            "zh": "久",
+            "py": "jiǔ",
+            "en": "for a long time",
+            "id": "lama",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 7
+          },
+          {
+            "zh": "各",
+            "py": "gè",
+            "en": "each",
+            "id": "masing-masing",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "向",
+            "py": "xiàng",
+            "en": "towards",
+            "id": "menuju",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          }
+        ],
+        "7": [
+          {
+            "zh": "词语",
+            "py": "cíyǔ",
+            "en": "word, expression",
+            "id": "kata, ungkapan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 16
+          },
+          {
+            "zh": "嘴",
+            "py": "zuǐ",
+            "en": "mouth",
+            "id": "mulut",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "段",
+            "py": "duàn",
+            "en": "(measure word for sections)",
+            "id": "(kata bantu bagian)",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 18
+          },
+          {
+            "zh": "位",
+            "py": "wèi",
+            "en": "(respectful measure word)",
+            "id": "(kata bantu orang)",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 19
+          }
+        ],
+        "8": [
+          {
+            "zh": "船",
+            "py": "chuán",
+            "en": "boat, ship",
+            "id": "kapal",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 19
+          },
+          {
+            "zh": "其实",
+            "py": "qíshí",
+            "en": "actually",
+            "id": "sebenarnya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          },
+          {
+            "zh": "秘书",
+            "py": "mìshū",
+            "en": "secretary",
+            "id": "sekretaris",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          },
+          {
+            "zh": "经理",
+            "py": "jīnglǐ",
+            "en": "manager",
+            "id": "manajer",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 2
+          }
+        ],
+        "9": [
+          {
+            "zh": "新鲜",
+            "py": "xīnxiān",
+            "en": "fresh",
+            "id": "segar",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 3
+          },
+          {
+            "zh": "回答",
+            "py": "huídá",
+            "en": "to answer",
+            "id": "menjawab",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          },
+          {
+            "zh": "总是",
+            "py": "zǒngshì",
+            "en": "always",
+            "id": "selalu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 4
+          },
+          {
+            "zh": "银行",
+            "py": "yínháng",
+            "en": "bank",
+            "id": "bank",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 7
+          }
+        ],
+        "10": [
+          {
+            "zh": "几乎",
+            "py": "jīhū",
+            "en": "almost",
+            "id": "hampir",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 8
+          },
+          {
+            "zh": "满意",
+            "py": "mǎnyì",
+            "en": "to be satisfied",
+            "id": "puas",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 8
+          },
+          {
+            "zh": "了解",
+            "py": "liǎojiě",
+            "en": "to know, to understand",
+            "id": "memahami",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          },
+          {
+            "zh": "比较",
+            "py": "bǐjiào",
+            "en": "fairly, rather",
+            "id": "cukup",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 9
+          }
+        ],
+        "11": [
+          {
+            "zh": "解决",
+            "py": "jiějué",
+            "en": "to solve",
+            "id": "menyelesaikan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 20
+          },
+          {
+            "zh": "主要",
+            "py": "zhǔyào",
+            "en": "main",
+            "id": "utama",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 10
+          },
+          {
+            "zh": "会议",
+            "py": "huìyì",
+            "en": "meeting, conference",
+            "id": "rapat",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 11
+          },
+          {
+            "zh": "瓶子",
+            "py": "píngzi",
+            "en": "bottle",
+            "id": "botol",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 11
+          }
+        ],
+        "12": [
+          {
+            "zh": "需要",
+            "py": "xūyào",
+            "en": "to need",
+            "id": "membutuhkan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "黑板",
+            "py": "hēibǎn",
+            "en": "blackboard",
+            "id": "papan tulis",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 12
+          },
+          {
+            "zh": "一般",
+            "py": "yìbān",
+            "en": "general, usual",
+            "id": "umumnya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          },
+          {
+            "zh": "愿意",
+            "py": "yuànyì",
+            "en": "would like to",
+            "id": "bersedia",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          }
+        ],
+        "13": [
+          {
+            "zh": "遇到",
+            "py": "yùdào",
+            "en": "to come across",
+            "id": "bertemu, mengalami",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          },
+          {
+            "zh": "菜单",
+            "py": "càidān",
+            "en": "menu",
+            "id": "daftar menu",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 14
+          },
+          {
+            "zh": "举行",
+            "py": "jǔxíng",
+            "en": "to hold (an event)",
+            "id": "menyelenggarakan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "提高",
+            "py": "tí gāo",
+            "en": "to improve",
+            "id": "meningkatkan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          }
+        ],
+        "14": [
+          {
+            "zh": "终于",
+            "py": "zhōngyú",
+            "en": "finally",
+            "id": "akhirnya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 13
+          },
+          {
+            "zh": "简单",
+            "py": "jiǎndān",
+            "en": "simple",
+            "id": "sederhana",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 14
+          },
+          {
+            "zh": "文化",
+            "py": "wénhuà",
+            "en": "culture",
+            "id": "budaya",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          },
+          {
+            "zh": "水平",
+            "py": "shuǐpíng",
+            "en": "level, standard",
+            "id": "tingkat kemampuan",
+            "from": "hsk3",
+            "fromCode": "HSK 3",
+            "fromLevel": 3,
+            "fromLesson": 15
+          }
+        ]
+      }
+    },
+    "hsk1": {
+      "alsoIn": {
+        "对不起": [
+          "YCT 2"
+        ],
+        "好": [
+          "YCT 1"
+        ],
+        "没关系": [
+          "YCT 2"
+        ],
+        "你": [
+          "YCT 1"
+        ],
+        "您": [
+          "YCT 3"
+        ],
+        "不客气": [
+          "YCT 2"
+        ],
+        "不": [
+          "YCT 1"
+        ],
+        "谢谢": [
+          "YCT 1"
+        ],
+        "再见": [
+          "YCT 1"
+        ],
+        "叫": [
+          "YCT 1"
+        ],
+        "老师": [
+          "YCT 1"
+        ],
+        "吗": [
+          "YCT 1"
+        ],
+        "名字": [
+          "YCT 2"
+        ],
+        "人": [
+          "YCT 1"
+        ],
+        "什么": [
+          "YCT 1"
+        ],
+        "是": [
+          "YCT 1"
+        ],
+        "我": [
+          "YCT 1"
+        ],
+        "学生": [
+          "YCT 2"
+        ],
+        "的": [
+          "YCT 1"
+        ],
+        "汉语": [
+          "YCT 2"
+        ],
+        "哪": [
+          "YCT 1"
+        ],
+        "呢": [
+          "YCT 2"
+        ],
+        "朋友": [
+          "YCT 2"
+        ],
+        "谁": [
+          "YCT 1"
+        ],
+        "他": [
+          "YCT 1"
+        ],
+        "她": [
+          "YCT 1"
+        ],
+        "同学": [
+          "YCT 2"
+        ],
+        "八": [
+          "YCT 1"
+        ],
+        "大": [
+          "YCT 1"
+        ],
+        "多": [
+          "YCT 1"
+        ],
+        "二": [
+          "YCT 1"
+        ],
+        "几": [
+          "YCT 1"
+        ],
+        "家": [
+          "YCT 1"
+        ],
+        "九": [
+          "YCT 1"
+        ],
+        "了": [
+          "YCT 2"
+        ],
+        "六": [
+          "YCT 1"
+        ],
+        "女儿": [
+          "YCT 5"
+        ],
+        "七": [
+          "YCT 1"
+        ],
+        "三": [
+          "YCT 1"
+        ],
+        "十": [
+          "YCT 1"
+        ],
+        "四": [
+          "YCT 1"
+        ],
+        "岁": [
+          "YCT 1"
+        ],
+        "五": [
+          "YCT 1"
+        ],
+        "一": [
+          "YCT 1"
+        ],
+        "有": [
+          "YCT 1"
+        ],
+        "口": [
+          "YCT 1"
+        ],
+        "菜": [
+          "YCT 4"
+        ],
+        "读": [
+          "YCT 4"
+        ],
+        "很": [
+          "YCT 1"
+        ],
+        "会": [
+          "YCT 2"
+        ],
+        "妈妈": [
+          "YCT 1"
+        ],
+        "好吃": [
+          "YCT 2"
+        ],
+        "号": [
+          "YCT 1"
+        ],
+        "今天": [
+          "YCT 1"
+        ],
+        "看": [
+          "YCT 1"
+        ],
+        "明天": [
+          "YCT 1"
+        ],
+        "请": [
+          "YCT 2"
+        ],
+        "去": [
+          "YCT 1"
+        ],
+        "星期": [
+          "YCT 1"
+        ],
+        "学校": [
+          "YCT 1"
+        ],
+        "月": [
+          "YCT 1"
+        ],
+        "问": [
+          "YCT 3"
+        ],
+        "杯子": [
+          "YCT 4"
+        ],
+        "茶": [
+          "YCT 2"
+        ],
+        "吃": [
+          "YCT 1"
+        ],
+        "多少": [
+          "YCT 2"
+        ],
+        "个": [
+          "YCT 1"
+        ],
+        "喝": [
+          "YCT 1"
+        ],
+        "块": [
+          "YCT 2"
+        ],
+        "买": [
+          "YCT 2"
+        ],
+        "米饭": [
+          "YCT 1"
+        ],
+        "那": [
+          "YCT 1"
+        ],
+        "钱": [
+          "YCT 2"
+        ],
+        "商店": [
+          "YCT 1"
+        ],
+        "下午": [
+          "YCT 2"
+        ],
+        "想": [
+          "YCT 3"
+        ],
+        "爸爸": [
+          "YCT 1"
+        ],
+        "儿子": [
+          "YCT 5"
+        ],
+        "工作": [
+          "YCT 5"
+        ],
+        "狗": [
+          "YCT 1"
+        ],
+        "猫": [
+          "YCT 1"
+        ],
+        "哪儿": [
+          "YCT 1"
+        ],
+        "小": [
+          "YCT 1"
+        ],
+        "医生": [
+          "YCT 2"
+        ],
+        "医院": [
+          "YCT 2"
+        ],
+        "椅子": [
+          "YCT 2"
+        ],
+        "在": [
+          "YCT 1"
+        ],
+        "本": [
+          "YCT 2"
+        ],
+        "电脑": [
+          "YCT 4"
+        ],
+        "和": [
+          "YCT 1"
+        ],
+        "没有": [
+          "YCT 1"
+        ],
+        "能": [
+          "YCT 3"
+        ],
+        "点": [
+          "YCT 1"
+        ],
+        "电影": [
+          "YCT 4"
+        ],
+        "回": [
+          "YCT 3"
+        ],
+        "时候": [
+          "YCT 4"
+        ],
+        "我们": [
+          "YCT 1"
+        ],
+        "现在": [
+          "YCT 1"
+        ],
+        "爱": [
+          "YCT 1"
+        ],
+        "冷": [
+          "YCT 2"
+        ],
+        "热": [
+          "YCT 2"
+        ],
+        "水": [
+          "YCT 1"
+        ],
+        "水果": [
+          "YCT 2",
+          "YCT 3"
+        ],
+        "太": [
+          "YCT 3"
+        ],
+        "天气": [
+          "YCT 2"
+        ],
+        "下雨": [
+          "YCT 3"
+        ],
+        "小姐": [
+          "YCT 6"
+        ],
+        "些": [
+          "YCT 3"
+        ],
+        "怎么样": [
+          "YCT 2"
+        ],
+        "身体": [
+          "YCT 4"
+        ],
+        "打电话": [
+          "YCT 2"
+        ],
+        "电视": [
+          "YCT 2"
+        ],
+        "睡觉": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "喂": [
+          "YCT 3"
+        ],
+        "喜欢": [
+          "YCT 1"
+        ],
+        "学习": [
+          "YCT 2"
+        ],
+        "给": [
+          "YCT 3"
+        ],
+        "也": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "东西": [
+          "YCT 3"
+        ],
+        "都": [
+          "YCT 3"
+        ],
+        "分钟": [
+          "YCT 2"
+        ],
+        "开": [
+          "YCT 4"
+        ],
+        "看见": [
+          "YCT 6"
+        ],
+        "漂亮": [
+          "YCT 2"
+        ],
+        "苹果": [
+          "YCT 1"
+        ],
+        "少": [
+          "YCT 4"
+        ],
+        "先生": [
+          "YCT 6"
+        ],
+        "衣服": [
+          "YCT 3"
+        ],
+        "一点儿": [
+          "YCT 4"
+        ],
+        "飞机": [
+          "YCT 4"
+        ],
+        "高兴": [
+          "YCT 1"
+        ],
+        "年": [
+          "YCT 2"
+        ],
+        "认识": [
+          "YCT 1"
+        ],
+        "听": [
+          "YCT 3"
+        ],
+        "一起": [
+          "YCT 3"
+        ]
+      },
+      "lessons": {}
+    },
+    "hsk2": {
+      "alsoIn": {
+        "觉得": [
+          "YCT 2"
+        ],
+        "旅游": [
+          "YCT 5"
+        ],
+        "它": [
+          "YCT 4"
+        ],
+        "踢足球": [
+          "YCT 3"
+        ],
+        "为什么": [
+          "YCT 4"
+        ],
+        "新": [
+          "YCT 3"
+        ],
+        "眼睛": [
+          "YCT 1"
+        ],
+        "要": [
+          "YCT 2"
+        ],
+        "也": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "一起": [
+          "YCT 3"
+        ],
+        "运动": [
+          "YCT 2",
+          "YCT 3"
+        ],
+        "最": [
+          "YCT 3"
+        ],
+        "出": [
+          "YCT 3"
+        ],
+        "高": [
+          "YCT 1"
+        ],
+        "忙": [
+          "YCT 4"
+        ],
+        "每": [
+          "YCT 3"
+        ],
+        "跑步": [
+          "YCT 3"
+        ],
+        "起床": [
+          "YCT 2"
+        ],
+        "身体": [
+          "YCT 4"
+        ],
+        "生病": [
+          "YCT 4"
+        ],
+        "时间": [
+          "YCT 4"
+        ],
+        "休息": [
+          "YCT 4"
+        ],
+        "药": [
+          "YCT 4"
+        ],
+        "早上": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "知道": [
+          "YCT 3"
+        ],
+        "报纸": [
+          "YCT 6"
+        ],
+        "房间": [
+          "YCT 2"
+        ],
+        "牛奶": [
+          "YCT 1"
+        ],
+        "旁边": [
+          "YCT 4"
+        ],
+        "千": [
+          "YCT 4"
+        ],
+        "手表": [
+          "YCT 5"
+        ],
+        "送": [
+          "YCT 3"
+        ],
+        "颜色": [
+          "YCT 2"
+        ],
+        "一下": [
+          "YCT 6"
+        ],
+        "真": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "长": [
+          "YCT 1",
+          "YCT 4"
+        ],
+        "非常": [
+          "YCT 5"
+        ],
+        "给": [
+          "YCT 3"
+        ],
+        "介绍": [
+          "YCT 5"
+        ],
+        "开始": [
+          "YCT 6"
+        ],
+        "快乐": [
+          "YCT 3"
+        ],
+        "两": [
+          "YCT 2"
+        ],
+        "生日": [
+          "YCT 1",
+          "YCT 3"
+        ],
+        "晚上": [
+          "YCT 2"
+        ],
+        "问": [
+          "YCT 3"
+        ],
+        "已经": [
+          "YCT 5"
+        ],
+        "接": [
+          "YCT 6"
+        ],
+        "吧": [
+          "YCT 3"
+        ],
+        "对": [
+          "YCT 4"
+        ],
+        "还": [
+          "YCT 2",
+          "YCT 3",
+          "YCT 6"
+        ],
+        "件": [
+          "YCT 4"
+        ],
+        "就": [
+          "YCT 4"
+        ],
+        "咖啡": [
+          "YCT 5"
+        ],
+        "考试": [
+          "YCT 5"
+        ],
+        "可以": [
+          "YCT 2"
+        ],
+        "意思": [
+          "YCT 4"
+        ],
+        "鱼": [
+          "YCT 1",
+          "YCT 4"
+        ],
+        "准备": [
+          "YCT 5"
+        ],
+        "打篮球": [
+          "YCT 3"
+        ],
+        "好吃": [
+          "YCT 2"
+        ],
+        "姐姐": [
+          "YCT 1"
+        ],
+        "门": [
+          "YCT 4"
+        ],
+        "面条": [
+          "YCT 1"
+        ],
+        "羊肉": [
+          "YCT 5"
+        ],
+        "游泳": [
+          "YCT 3"
+        ],
+        "经常": [
+          "YCT 5"
+        ],
+        "自行车": [
+          "YCT 6"
+        ],
+        "到": [
+          "YCT 2",
+          "YCT 3"
+        ],
+        "公共汽车": [
+          "YCT 4"
+        ],
+        "教室": [
+          "YCT 4"
+        ],
+        "快": [
+          "YCT 3"
+        ],
+        "离": [
+          "YCT 6"
+        ],
+        "路": [
+          "YCT 4"
+        ],
+        "慢": [
+          "YCT 4"
+        ],
+        "小时": [
+          "YCT 2",
+          "YCT 4"
+        ],
+        "远": [
+          "YCT 4"
+        ],
+        "走": [
+          "YCT 4"
+        ],
+        "过": [
+          "YCT 4"
+        ],
+        "白": [
+          "YCT 4"
+        ],
+        "等": [
+          "YCT 5"
+        ],
+        "服务员": [
+          "YCT 5"
+        ],
+        "告诉": [
+          "YCT 5"
+        ],
+        "贵": [
+          "YCT 6"
+        ],
+        "黑": [
+          "YCT 4"
+        ],
+        "让": [
+          "YCT 3"
+        ],
+        "事情": [
+          "YCT 4"
+        ],
+        "再": [
+          "YCT 3"
+        ],
+        "找": [
+          "YCT 3"
+        ],
+        "从": [
+          "YCT 6"
+        ],
+        "错": [
+          "YCT 5",
+          "YCT 6"
+        ],
+        "第一": [
+          "YCT 3"
+        ],
+        "懂": [
+          "YCT 4"
+        ],
+        "上班": [
+          "YCT 6"
+        ],
+        "题": [
+          "YCT 4"
+        ],
+        "跳舞": [
+          "YCT 3"
+        ],
+        "完": [
+          "YCT 4"
+        ],
+        "问题": [
+          "YCT 3"
+        ],
+        "希望": [
+          "YCT 6"
+        ],
+        "欢迎": [
+          "YCT 3"
+        ],
+        "帮助": [
+          "YCT 5"
+        ],
+        "别": [
+          "YCT 3"
+        ],
+        "哥哥": [
+          "YCT 1"
+        ],
+        "鸡蛋": [
+          "YCT 3"
+        ],
+        "课": [
+          "YCT 3"
+        ],
+        "手机": [
+          "YCT 4"
+        ],
+        "西瓜": [
+          "YCT 3"
+        ],
+        "比": [
+          "YCT 2"
+        ],
+        "唱歌": [
+          "YCT 3"
+        ],
+        "孩子": [
+          "YCT 5"
+        ],
+        "可能": [
+          "YCT 5"
+        ],
+        "男": [
+          "YCT 3"
+        ],
+        "女": [
+          "YCT 3"
+        ],
+        "便宜": [
+          "YCT 5"
+        ],
+        "去年": [
+          "YCT 4"
+        ],
+        "说话": [
+          "YCT 2"
+        ],
+        "穿": [
+          "YCT 3"
+        ],
+        "得": [
+          "YCT 3"
+        ],
+        "弟弟": [
+          "YCT 2"
+        ],
+        "进": [
+          "YCT 4"
+        ],
+        "近": [
+          "YCT 4"
+        ],
+        "零": [
+          "YCT 2",
+          "YCT 4"
+        ],
+        "铅笔": [
+          "YCT 2"
+        ],
+        "往": [
+          "YCT 6"
+        ],
+        "笑": [
+          "YCT 3"
+        ],
+        "着": [
+          "YCT 5"
+        ],
+        "班": [
+          "YCT 3"
+        ],
+        "拿": [
+          "YCT 4"
+        ],
+        "一直": [
+          "YCT 5"
+        ],
+        "百": [
+          "YCT 4"
+        ],
+        "次": [
+          "YCT 4"
+        ],
+        "但是": [
+          "YCT 3"
+        ],
+        "晴": [
+          "YCT 5"
+        ],
+        "大家": [
+          "YCT 5"
+        ],
+        "妹妹": [
+          "YCT 1",
+          "YCT 2"
+        ],
+        "阴": [
+          "YCT 5"
+        ],
+        "更": [
+          "YCT 5"
+        ]
+      },
+      "lessons": {}
+    },
+    "hsk3": {
+      "alsoIn": {
+        "啊": [
+          "YCT 5"
+        ],
+        "北方": [
+          "YCT 5"
+        ],
+        "打算": [
+          "YCT 5"
+        ],
+        "带": [
+          "YCT 5"
+        ],
+        "地图": [
+          "YCT 5"
+        ],
+        "复习": [
+          "YCT 5"
+        ],
+        "一直": [
+          "YCT 5"
+        ],
+        "游戏": [
+          "YCT 6"
+        ],
+        "着急": [
+          "YCT 6"
+        ],
+        "周末": [
+          "YCT 5"
+        ],
+        "作业": [
+          "YCT 3"
+        ],
+        "把": [
+          "YCT 3"
+        ],
+        "脚": [
+          "YCT 2"
+        ],
+        "辆": [
+          "YCT 6"
+        ],
+        "楼": [
+          "YCT 5"
+        ],
+        "拿": [
+          "YCT 4"
+        ],
+        "难": [
+          "YCT 4"
+        ],
+        "胖": [
+          "YCT 3",
+          "YCT 5"
+        ],
+        "容易": [
+          "YCT 6"
+        ],
+        "瘦": [
+          "YCT 3",
+          "YCT 6"
+        ],
+        "树": [
+          "YCT 6"
+        ],
+        "疼": [
+          "YCT 2",
+          "YCT 4"
+        ],
+        "腿": [
+          "YCT 6"
+        ],
+        "放": [
+          "YCT 5"
+        ],
+        "还是": [
+          "YCT 5"
+        ],
+        "花": [
+          "YCT 3",
+          "YCT 6"
+        ],
+        "或者": [
+          "YCT 5"
+        ],
+        "记得": [
+          "YCT 5"
+        ],
+        "裤子": [
+          "YCT 4"
+        ],
+        "爬山": [
+          "YCT 5"
+        ],
+        "舒服": [
+          "YCT 4"
+        ],
+        "甜": [
+          "YCT 6"
+        ],
+        "条": [
+          "YCT 4"
+        ],
+        "小心": [
+          "YCT 6"
+        ],
+        "饮料": [
+          "YCT 5"
+        ],
+        "元": [
+          "YCT 6"
+        ],
+        "只": [
+          "YCT 2"
+        ],
+        "比赛": [
+          "YCT 6"
+        ],
+        "超市": [
+          "YCT 5"
+        ],
+        "聪明": [
+          "YCT 6"
+        ],
+        "蛋糕": [
+          "YCT 1",
+          "YCT 3"
+        ],
+        "饿": [
+          "YCT 3"
+        ],
+        "分": [
+          "YCT 1"
+        ],
+        "年级": [
+          "YCT 3"
+        ],
+        "年轻": [
+          "YCT 5"
+        ],
+        "努力": [
+          "YCT 5"
+        ],
+        "认真": [
+          "YCT 5"
+        ],
+        "又": [
+          "YCT 6"
+        ],
+        "站": [
+          "YCT 5"
+        ],
+        "照片": [
+          "YCT 5"
+        ],
+        "春（天）": [
+          "YCT 5"
+        ],
+        "当然": [
+          "YCT 5"
+        ],
+        "发烧": [
+          "YCT 5"
+        ],
+        "感冒": [
+          "YCT 4"
+        ],
+        "季节": [
+          "YCT 5"
+        ],
+        "裙子": [
+          "YCT 4"
+        ],
+        "为": [
+          "YCT 6"
+        ],
+        "夏（天）": [
+          "YCT 5"
+        ],
+        "用": [
+          "YCT 2",
+          "YCT 5"
+        ],
+        "照顾": [
+          "YCT 6"
+        ],
+        "最近": [
+          "YCT 6"
+        ],
+        "锻炼": [
+          "YCT 5"
+        ],
+        "刚才": [
+          "YCT 6"
+        ],
+        "更": [
+          "YCT 5"
+        ],
+        "公园": [
+          "YCT 5"
+        ],
+        "讲": [
+          "YCT 6"
+        ],
+        "离开": [
+          "YCT 5"
+        ],
+        "明白": [
+          "YCT 6"
+        ],
+        "清楚": [
+          "YCT 6"
+        ],
+        "特别": [
+          "YCT 5"
+        ],
+        "突然": [
+          "YCT 5"
+        ],
+        "睡着": [
+          "YCT 6"
+        ],
+        "眼镜": [
+          "YCT 5"
+        ],
+        "半": [
+          "YCT 4"
+        ],
+        "迟到": [
+          "YCT 4"
+        ],
+        "欢迎": [
+          "YCT 3"
+        ],
+        "接": [
+          "YCT 6"
+        ],
+        "刻": [
+          "YCT 6"
+        ],
+        "以前": [
+          "YCT 2",
+          "YCT 5"
+        ],
+        "安静": [
+          "YCT 6"
+        ],
+        "变化": [
+          "YCT 5"
+        ],
+        "层": [
+          "YCT 5"
+        ],
+        "电梯": [
+          "YCT 5"
+        ],
+        "害怕": [
+          "YCT 6"
+        ],
+        "见面": [
+          "YCT 6"
+        ],
+        "健康": [
+          "YCT 5"
+        ],
+        "老": [
+          "YCT 6"
+        ],
+        "马上": [
+          "YCT 5"
+        ],
+        "洗手间": [
+          "YCT 5"
+        ],
+        "熊猫": [
+          "YCT 2"
+        ],
+        "一会儿": [
+          "YCT 5"
+        ],
+        "重要": [
+          "YCT 6"
+        ],
+        "班": [
+          "YCT 3"
+        ],
+        "参加": [
+          "YCT 6"
+        ],
+        "担心": [
+          "YCT 5"
+        ],
+        "先": [
+          "YCT 5"
+        ],
+        "一定": [
+          "YCT 5"
+        ],
+        "中间": [
+          "YCT 6"
+        ],
+        "矮": [
+          "YCT 2",
+          "YCT 5"
+        ],
+        "地方": [
+          "YCT 6"
+        ],
+        "方便": [
+          "YCT 5"
+        ],
+        "附近": [
+          "YCT 6"
+        ],
+        "个子": [
+          "YCT 1"
+        ],
+        "换": [
+          "YCT 6"
+        ],
+        "旧": [
+          "YCT 6"
+        ],
+        "骑": [
+          "YCT 6"
+        ],
+        "数学": [
+          "YCT 6"
+        ],
+        "自行车": [
+          "YCT 6"
+        ],
+        "词典": [
+          "YCT 6"
+        ],
+        "地铁": [
+          "YCT 5"
+        ],
+        "电子邮件": [
+          "YCT 6"
+        ],
+        "关": [
+          "YCT 4"
+        ],
+        "还": [
+          "YCT 2",
+          "YCT 3",
+          "YCT 6"
+        ],
+        "借": [
+          "YCT 6"
+        ],
+        "空调": [
+          "YCT 5"
+        ],
+        "口": [
+          "YCT 1"
+        ],
+        "筷子": [
+          "YCT 5"
+        ],
+        "双": [
+          "YCT 5"
+        ],
+        "图书馆": [
+          "YCT 6"
+        ],
+        "习惯": [
+          "YCT 5"
+        ],
+        "画": [
+          "YCT 2"
+        ],
+        "教": [
+          "YCT 5"
+        ],
+        "生气": [
+          "YCT 6"
+        ],
+        "太阳": [
+          "YCT 3"
+        ],
+        "西": [
+          "YCT 6"
+        ],
+        "自己": [
+          "YCT 3"
+        ],
+        "坏": [
+          "YCT 4"
+        ],
+        "经常": [
+          "YCT 5"
+        ],
+        "礼物": [
+          "YCT 3"
+        ],
+        "奶奶": [
+          "YCT 3"
+        ],
+        "起来": [
+          "YCT 6"
+        ],
+        "爷爷": [
+          "YCT 3"
+        ],
+        "应该": [
+          "YCT 6"
+        ],
+        "生活": [
+          "YCT 6"
+        ],
+        "阿姨": [
+          "YCT 5"
+        ],
+        "冰箱": [
+          "YCT 6"
+        ],
+        "打扫": [
+          "YCT 6"
+        ],
+        "干净": [
+          "YCT 6"
+        ],
+        "故事": [
+          "YCT 6"
+        ],
+        "刮风": [
+          "YCT 5"
+        ],
+        "节目": [
+          "YCT 6"
+        ],
+        "然后": [
+          "YCT 5"
+        ],
+        "声音": [
+          "YCT 6"
+        ],
+        "叔叔": [
+          "YCT 5"
+        ],
+        "洗澡": [
+          "YCT 4"
+        ],
+        "香蕉": [
+          "YCT 2"
+        ],
+        "像": [
+          "YCT 6"
+        ],
+        "月亮": [
+          "YCT 3"
+        ],
+        "除了": [
+          "YCT 5"
+        ],
+        "节日": [
+          "YCT 6"
+        ],
+        "句子": [
+          "YCT 6"
+        ],
+        "练习": [
+          "YCT 5"
+        ],
+        "其他": [
+          "YCT 5"
+        ],
+        "上网": [
+          "YCT 4"
+        ],
+        "新闻": [
+          "YCT 6"
+        ],
+        "注意": [
+          "YCT 6"
+        ],
+        "鼻子": [
+          "YCT 1"
+        ],
+        "别人": [
+          "YCT 5"
+        ],
+        "可爱": [
+          "YCT 4"
+        ],
+        "帽子": [
+          "YCT 6"
+        ],
+        "刷牙": [
+          "YCT 5"
+        ],
+        "头发": [
+          "YCT 1"
+        ],
+        "长": [
+          "YCT 1",
+          "YCT 4"
+        ],
+        "办法": [
+          "YCT 5"
+        ],
+        "饱": [
+          "YCT 3"
+        ],
+        "必须": [
+          "YCT 6"
+        ],
+        "冬（天）": [
+          "YCT 5"
+        ],
+        "决定": [
+          "YCT 6"
+        ],
+        "渴": [
+          "YCT 6"
+        ],
+        "邻居": [
+          "YCT 5"
+        ],
+        "为了": [
+          "YCT 6"
+        ],
+        "一共": [
+          "YCT 5"
+        ],
+        "不但……而且……": [
+          "YCT 5"
+        ],
+        "地": [
+          "YCT 6"
+        ],
+        "关于": [
+          "YCT 6"
+        ],
+        "国家": [
+          "YCT 6"
+        ],
+        "奇怪": [
+          "YCT 5"
+        ],
+        "同意": [
+          "YCT 6"
+        ],
+        "万": [
+          "YCT 6"
+        ],
+        "相信": [
+          "YCT 5"
+        ],
+        "有名": [
+          "YCT 5"
+        ],
+        "种": [
+          "YCT 6"
+        ],
+        "短": [
+          "YCT 5"
+        ],
+        "耳朵": [
+          "YCT 1"
+        ],
+        "过": [
+          "YCT 4"
+        ],
+        "哭": [
+          "YCT 3"
+        ],
+        "蓝": [
+          "YCT 4"
+        ],
+        "脸": [
+          "YCT 6"
+        ],
+        "鸟": [
+          "YCT 1"
+        ],
+        "秋（天）": [
+          "YCT 5"
+        ],
+        "张": [
+          "YCT 3",
+          "YCT 5"
+        ],
+        "被": [
+          "YCT 6"
+        ],
+        "成绩": [
+          "YCT 5"
+        ],
+        "东": [
+          "YCT 6"
+        ],
+        "多么": [
+          "YCT 5"
+        ],
+        "难过": [
+          "YCT 6"
+        ],
+        "试": [
+          "YCT 6"
+        ],
+        "碗": [
+          "YCT 5"
+        ]
+      },
+      "lessons": {}
+    }
+  },
+  "stats": {
+    "assigned": 259,
+    "leftover": {
+      "yct1": 31,
+      "yct3": 51,
+      "yct5": 123,
+      "yct6": 16
+    }
+  }
+}

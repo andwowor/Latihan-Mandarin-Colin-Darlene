@@ -358,16 +358,35 @@ const LISTENING_BUILDERS = [listeningToZh, listeningToMeaning];
  * @param {string} args.skill       'reading' | 'listening' | 'writing' | 'mixed'
  * @param {string[]} args.orderedWords urutan kata dari SRS (kunci wordKey)
  * @param {number} args.count       jumlah soal
+ * @param {object[]} [args.bridgeWords] kata bekal HSK yang sudah dipelajari di
+ *                                  sesi belajar; ditaruh di ekor antrean supaya
+ *                                  hanya sesekali muncul dan tidak pernah
+ *                                  mendesak materi YCT-nya sendiri
  */
-export function buildRound({ lesson, pool, levelId, skill, orderedWords = [], count = 10, rng = Math.random }) {
+export function buildRound({
+  lesson,
+  pool,
+  levelId,
+  skill,
+  orderedWords = [],
+  count = 10,
+  bridgeWords = [],
+  rng = Math.random
+}) {
   const lessonWords = lesson.vocab || [];
   if (lessonWords.length === 0 && (lesson.keySentences || []).length === 0) return [];
 
   // Urutkan kata pelajaran mengikuti prioritas SRS bila tersedia.
   const priority = new Map(orderedWords.map((k, i) => [k, i]));
-  const words = lessonWords
-    .slice()
-    .sort((a, b) => (priority.get(wordKey(levelId, a)) ?? 999) - (priority.get(wordKey(levelId, b)) ?? 999));
+  const byPriority = (a, b) =>
+    (priority.get(wordKey(levelId, a)) ?? 999) - (priority.get(wordKey(levelId, b)) ?? 999);
+
+  // Kata bekal ikut diurutkan SRS di antara sesamanya, tetapi tetap berada di
+  // belakang seluruh kata pelajaran.
+  const words = [
+    ...lessonWords.slice().sort(byPriority),
+    ...bridgeWords.slice().sort(byPriority)
+  ];
 
   const sentences = lesson.keySentences || [];
   const scripts = lesson.listeningScripts || [];

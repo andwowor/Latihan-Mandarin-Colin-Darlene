@@ -4,6 +4,7 @@
 import { appConfig } from '../config/appConfig.js';
 import { toDayKey } from '../shared/utils.js';
 import { buildRound, grade, wordKey } from '../domain/exerciseFactory.js';
+import { bridgeShareFor } from '../domain/studyDeck.js';
 import { xpForAnswer, roundXp, starsForRound, levelFromXp } from '../domain/scoring.js';
 import { newCard, reviewCard, prioritise } from '../domain/srs.js';
 import { applyRound } from '../domain/progress.js';
@@ -25,7 +26,16 @@ export class PracticeService {
 
     const pool = (level.lessons || []).flatMap((l) => l.vocab || []);
     const profile = this.profiles.data(profileId);
-    const keys = (lesson.vocab || []).map((w) => wordKey(levelId, w));
+
+    // Kata bekal HSK hanya diuji sebanyak yang sudah diperkenalkan di sesi
+    // belajar anak ini, dan tidak lebih dari jatah satu ronde.
+    const cfg = this.profiles.profileConfig(profileId);
+    const bridgeWords = bridgeShareFor(
+      bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0),
+      appConfig.bridge.maxPerRound
+    );
+
+    const keys = [...(lesson.vocab || []), ...bridgeWords].map((w) => wordKey(levelId, w));
     const ordered = prioritise(keys, profile.cards);
 
     const questions = buildRound({
@@ -34,6 +44,7 @@ export class PracticeService {
       levelId,
       skill,
       orderedWords: ordered,
+      bridgeWords,
       count: appConfig.session.questionsPerRound
     });
 

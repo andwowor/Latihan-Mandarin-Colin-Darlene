@@ -1,0 +1,14 @@
+name = "mandarin-fun-sync"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Isi ALLOWED_ORIGINS dengan alamat dashboard supaya hanya halaman itu yang
+# boleh memanggil. Boleh lebih dari satu, dipisah koma.
+[vars]
+ALLOWED_ORIGINS = "https://andwowor.github.io"
+
+# id di bawah ini WAJIB diganti dengan milik Anda sendiri.
+# Dapatkan dengan menjalankan:  npx wrangler kv namespace create PROGRESS
+[[kv_namespaces]]
+binding = "PROGRESS"
+id = "GANTI_DENGAN_ID_KV_ANDA"

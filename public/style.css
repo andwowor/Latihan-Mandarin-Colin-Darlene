@@ -56,6 +56,24 @@ body {
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+
+  /* Jari anak sering menempel sepersekian detik terlalu lama di layar. Tanpa
+     ini, sentuhan begitu berubah jadi seleksi teks: kata atau kalimatnya
+     ter-blok biru dan menu "Salin/Cari" menutupi soal. Seluruh antarmuka
+     dijadikan tidak bisa diseleksi — yang memang perlu disalin diberi
+     kelas .selectable. */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Kolom isian tetap harus bisa diseleksi, kalau tidak papan ketik jadi susah. */
+.selectable, input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
 }
 
 /* Karakter Han perlu font khusus supaya tampil rapi di semua perangkat. */
@@ -298,6 +316,13 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 .node--done .node__disc { background: var(--green); box-shadow: 0 5px 0 var(--green-dark); }
 .node__stars { font-size: .78rem; letter-spacing: 1px; }
 .node__label { font-size: .72rem; color: var(--ink-soft); text-align: center; line-height: 1.2; }
+/* Tanda buku kecil di pojok: materinya belum pernah dibaca. */
+.node__disc { position: relative; }
+.node__flag {
+  position: absolute; top: -4px; right: -6px;
+  font-size: .9rem;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
+}
 
 /* --------------------------------------------------------------- sheet */
 
@@ -332,7 +357,69 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 }
 .skill-btn:active { transform: translateY(3px); box-shadow: none; }
 .skill-btn__emoji { font-size: 1.8rem; }
-.skill-btn__sub { font-weight: 600; font-size: .8rem; color: var(--ink-soft); }
+/* Keterangan selalu turun ke baris sendiri, kalau tidak judul dan penjelasan
+   menyambung jadi satu kalimat panjang yang sulit dipindai. */
+.skill-btn__sub { display: block; font-weight: 600; font-size: .8rem; color: var(--ink-soft); }
+
+.skill-btn[disabled] { opacity: .5; box-shadow: none; cursor: not-allowed; }
+/* Sesi belajar adalah pintu masuk pelajaran, jadi tombolnya paling menonjol. */
+.skill-btn--study { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 10%, var(--card)); }
+
+/* -------------------------------------------------------- sesi belajar */
+
+.study { flex: 1; display: flex; flex-direction: column; }
+/* Kartu ditaruh di tengah layar: mata anak tidak perlu berpindah jauh dari
+   huruf besar ke tombol Lanjut di bawah. */
+.study > .grow { display: flex; flex-direction: column; justify-content: center; }
+.study__step { font-weight: 800; font-size: .82rem; color: var(--ink-soft); margin: 0 0 10px; }
+.study__card { margin-bottom: 12px; }
+.study__meaning { font-size: 1.3rem; font-weight: 800; margin-top: 10px; }
+
+.study__cover {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 10px;
+  padding: 12px 0;
+}
+.study__emoji { font-size: 3.4rem; line-height: 1; }
+.study__title { font-size: 2.1rem; font-weight: 900; margin: 0; line-height: 1.2; }
+.study__subtitle { margin: 0; color: var(--ink-soft); font-weight: 700; }
+
+/* Kartu bekal HSK dibedakan jelas supaya anak tahu ini "bonus", bukan
+   materi YCT yang akan diujikan berat. */
+.study__card--bridge { border-color: var(--brand); border-style: dashed; }
+.study__ribbon {
+  display: inline-block;
+  background: color-mix(in srgb, var(--brand) 16%, var(--card));
+  color: var(--brand);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: .74rem; font-weight: 800;
+  margin-bottom: 12px;
+}
+.study__badge {
+  background: color-mix(in srgb, var(--amber) 18%, var(--card));
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: .8rem; font-weight: 700;
+  margin: 0;
+}
+.study__example { text-align: left; margin-bottom: 0; }
+
+.tag {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: .68rem; font-weight: 800;
+  vertical-align: middle;
+}
+.tag--bridge { background: color-mix(in srgb, var(--brand) 16%, var(--card)); color: var(--brand); }
+.tag--also   { background: color-mix(in srgb, var(--amber) 22%, var(--card)); color: #9a6400; }
+@media (prefers-color-scheme: dark) { .tag--also { color: var(--amber); } }
+
+.chip-study { background: #efe9ff; color: #5b45d6; }
+@media (prefers-color-scheme: dark) { .chip-study { background: #3a2f6b; color: #cdbcff; } }
 
 /* ------------------------------------------------------------- latihan */
 
@@ -568,6 +655,24 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   background: var(--red); color: #fff;
   border-radius: 999px; font-size: .58rem; padding: 1px 5px;
 }
+
+/* -------------------------------------------------- isian (menu orang tua) */
+
+.field { display: block; margin-bottom: 12px; }
+.field__label { display: block; font-size: .8rem; font-weight: 800; margin-bottom: 5px; }
+.field__input {
+  width: 100%;
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 48px;
+}
+.field__input:focus { outline: 3px solid var(--brand); outline-offset: 1px; }
+.field__input::placeholder { color: var(--ink-soft); opacity: .7; }
 
 /* ------------------------------------------------------------- lain-lain */
 

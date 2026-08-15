@@ -106,6 +106,29 @@ export class ProfileService {
     this.state = this.storage.read();
   }
 
+  /** Seluruh isi penyimpanan — dipakai sinkronisasi, jangan diubah langsung. */
+  rawState() {
+    return this.state;
+  }
+
+  /** Ganti seluruh isi penyimpanan dengan hasil penggabungan dari server. */
+  replaceState(next) {
+    this.storage.write(next);
+    this.state = this.storage.read();
+    return this.state;
+  }
+
+  /** Setelan perangkat (sambungan sinkronisasi). Tidak ikut disinkronkan. */
+  settings() {
+    return this.storage.readSettings() || {};
+  }
+
+  saveSettings(patch) {
+    const next = { ...this.settings(), ...patch };
+    this.storage.writeSettings(next);
+    return next;
+  }
+
   exportJson() {
     return JSON.stringify(this.state, null, 2);
   }
