@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v6';
+const VERSION = 'mandarin-fun-v7';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -26,22 +26,30 @@ const ASSETS = [
   'src/domain/progress.js',
   'src/domain/exerciseFactory.js',
   'src/domain/pronunciation.js',
+  'src/domain/studyDeck.js',
+  'src/domain/hskBridge.js',
+  'src/domain/mergeState.js',
 
   // Ports
   'src/ports/contentPort.js',
   'src/ports/storagePort.js',
   'src/ports/speechPort.js',
   'src/ports/recognitionPort.js',
+  'src/ports/syncPort.js',
 
   // Application
   'src/application/profileService.js',
   'src/application/curriculumService.js',
   'src/application/missionService.js',
   'src/application/practiceService.js',
+  'src/application/studyService.js',
   'src/application/statsService.js',
+  'src/application/syncService.js',
 
   // Adapters
   'src/adapters/outbound/staticContentAdapter.js',
+  'src/adapters/outbound/bridgedContentAdapter.js',
+  'src/adapters/outbound/httpSyncAdapter.js',
   'src/adapters/outbound/localStorageAdapter.js',
   'src/adapters/outbound/webSpeechAdapter.js',
   'src/adapters/outbound/webSpeechRecognitionAdapter.js',
@@ -52,6 +60,7 @@ const ASSETS = [
   'src/adapters/inbound/views/loginView.js',
   'src/adapters/inbound/views/homeView.js',
   'src/adapters/inbound/views/mapView.js',
+  'src/adapters/inbound/views/studyView.js',
   'src/adapters/inbound/views/quizView.js',
   'src/adapters/inbound/views/resultView.js',
   'src/adapters/inbound/views/missionsView.js',
@@ -61,6 +70,7 @@ const ASSETS = [
 
   // Kurikulum
   'public/data/curriculum/index.json',
+  'public/data/curriculum/bridge.json',
   'public/data/curriculum/yct1.json',
   'public/data/curriculum/yct2.json',
   'public/data/curriculum/yct3.json',

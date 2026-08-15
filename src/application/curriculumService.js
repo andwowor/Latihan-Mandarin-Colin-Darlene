@@ -2,6 +2,7 @@
 // sudah dituntaskan, dan berapa bintang yang sudah dikumpulkan.
 
 import { appConfig, SKILL_IDS } from '../config/appConfig.js';
+import { bridgeShareFor } from '../domain/studyDeck.js';
 
 export class CurriculumService {
   constructor(content, profiles) {
@@ -36,7 +37,9 @@ export class CurriculumService {
   async lessonMap(profileId, levelId) {
     const level = await this.content.loadLevel(levelId);
     const p = this.profiles.data(profileId);
+    const cfg = this.profiles.profileConfig(profileId);
     const stars = p?.lessonStars || {};
+    const studied = p?.studied || {};
 
     const lessons = (level.lessons || []).map((lesson) => {
       const perSkill = {};
@@ -46,6 +49,8 @@ export class CurriculumService {
         perSkill[skill] = s;
         earned += s;
       }
+      const bridge = bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0);
+      const studyRecord = studied[`${levelId}:${lesson.number}`] || null;
       return {
         number: lesson.number,
         titleZh: lesson.titleZh,
@@ -55,10 +60,15 @@ export class CurriculumService {
         vocabCount: (lesson.vocab || []).length,
         sentenceCount: (lesson.keySentences || []).length,
         listeningCount: (lesson.listeningScripts || []).length,
+        bridgeCount: bridge.length,
         hasBookAnswers: (lesson.bookAnswers || []).length > 0,
         stars: perSkill,
         starsEarned: earned,
         starsMax: SKILL_IDS.length * 3,
+        studied: !!studyRecord,
+        studyCount: studyRecord?.count || 0,
+        // Soal dikunci sampai materinya dibaca — inilah gunanya sesi belajar.
+        practiceLocked: appConfig.study.requireBeforeQuiz && !studyRecord,
         started: earned > 0,
         completed: earned >= SKILL_IDS.length // minimal 1 bintang di tiap keterampilan
       };
@@ -83,14 +93,23 @@ export class CurriculumService {
   async wordbook(profileId, levelId) {
     const level = await this.content.loadLevel(levelId);
     const p = this.profiles.data(profileId);
+    const cfg = this.profiles.profileConfig(profileId);
     const cards = p?.cards || {};
-    return (level.lessons || []).flatMap((lesson) =>
-      (lesson.vocab || []).map((w) => ({
-        ...w,
-        lesson: lesson.number,
-        card: cards[`${levelId}:${w.zh}`] || null
-      }))
-    );
+    const alsoIn = level.alsoIn || {};
+    const decorate = (w, lessonNumber, bridge) => ({
+      ...w,
+      lesson: lessonNumber,
+      bridge,
+      alsoIn: bridge ? [] : alsoIn[w.zh] || [],
+      card: cards[`${levelId}:${w.zh}`] || null
+    });
+
+    return (level.lessons || []).flatMap((lesson) => [
+      ...(lesson.vocab || []).map((w) => decorate(w, lesson.number, false)),
+      ...bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0).map((w) =>
+        decorate(w, lesson.number, true)
+      )
+    ]);
   }
 
   skills() {

@@ -24,12 +24,14 @@
  * @property {Word[]} vocab
  * @property {string[]} listeningScripts  kalimat asli dari "Test Listening Scripts"
  * @property {string[]} bookAnswers       kunci jawaban resmi dari buku (untuk penelusuran)
+ * @property {Word[]} [bridgeVocab]       titipan kata HSK (lihat domain/hskBridge.js)
  *
  * @typedef {object} Level
  * @property {string} id
  * @property {string} code
  * @property {number} level
  * @property {Lesson[]} lessons
+ * @property {object} [alsoIn]            { [zh]: ['HSK 1'] } — kata yang juga ada di jalur lain
  */
 
 export class ContentPort {
@@ -41,5 +43,16 @@ export class ContentPort {
   /** @param {string} levelId @returns {Promise<Level>} */
   async loadLevel(levelId) {
     throw new Error('not implemented');
+  }
+
+  /**
+   * Rencana jembatan HSK, bila sumber kontennya punya.
+   * Mengembalikan `null` berarti aplikasi berjalan tanpa kata bekal —
+   * bukan kesalahan, hanya kehilangan satu fitur.
+   *
+   * @returns {Promise<object|null>}
+   */
+  async loadBridge() {
+    return null;
   }
 }

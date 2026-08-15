@@ -15,4 +15,20 @@ export class StoragePort {
   clear() {
     throw new Error('not implemented');
   }
+
+  /**
+   * Setelan perangkat ini (mis. sambungan sinkronisasi).
+   *
+   * Disimpan terpisah dari progres dan TIDAK pernah ikut dikirim ke server:
+   * alamat server, kode keluarga, dan PIN adalah milik perangkat, bukan bagian
+   * dari catatan belajar anak.
+   */
+  readSettings() {
+    return {};
+  }
+
+  /** @param {object} settings */
+  writeSettings(settings) {
+    return false;
+  }
 }

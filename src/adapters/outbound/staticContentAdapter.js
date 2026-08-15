@@ -9,6 +9,19 @@ export class StaticContentAdapter extends ContentPort {
     this.base = base;
     this.levelCache = new Map();
     this.indexCache = null;
+    this.bridgeCache = undefined;
+  }
+
+  /** Rencana jembatan HSK, hasil `npm run bridge`. Boleh tidak ada. */
+  async loadBridge() {
+    if (this.bridgeCache !== undefined) return this.bridgeCache;
+    try {
+      const res = await fetch(`${this.base}/bridge.json`);
+      this.bridgeCache = res.ok ? await res.json() : null;
+    } catch {
+      this.bridgeCache = null;
+    }
+    return this.bridgeCache;
   }
 
   async listLevels() {

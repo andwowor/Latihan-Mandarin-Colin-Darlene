@@ -10,6 +10,7 @@ import { speechStars, speechFeedbackId } from '../../domain/pronunciation.js';
 import { loginView } from './views/loginView.js';
 import { homeView } from './views/homeView.js';
 import { mapView, skillSheet } from './views/mapView.js';
+import { studyView } from './views/studyView.js';
 import { quizView, feedbackBlock } from './views/quizView.js';
 import { resultView } from './views/resultView.js';
 import { missionsView } from './views/missionsView.js';
@@ -18,15 +19,17 @@ import { rewardsView } from './views/rewardsView.js';
 import { wordbookView } from './views/wordbookView.js';
 
 export class UiController {
-  constructor({ root, profiles, curriculum, practice, stats, missions, speech, recognition }) {
+  constructor({ root, profiles, curriculum, practice, study, stats, missions, speech, recognition, sync }) {
     this.root = root;
     this.profiles = profiles;
     this.curriculum = curriculum;
     this.practice = practice;
+    this.study = study;
     this.stats = stats;
     this.missions = missions;
     this.speech = speech;
     this.recognition = recognition;
+    this.sync = sync;
 
     this.state = {
       screen: 'login',
@@ -51,6 +54,27 @@ export class UiController {
       this.state.levelId = await this.curriculum.defaultLevelId(active);
     }
     await this.render();
+    // Tarik progres dari perangkat lain di latar belakang; layar sudah
+    // tampil lebih dulu supaya anak tidak menunggu jaringan.
+    this.#syncSoon('pembukaan');
+  }
+
+  /**
+   * Sinkronkan tanpa menghalangi apa pun. Kegagalan cukup dicatat: anak tetap
+   * berlatih, dan percobaan berikutnya menyusul sendiri.
+   */
+  #syncSoon(reason = '') {
+    if (!this.sync?.isConnected()) return;
+    this.sync
+      .sync()
+      .then(async (result) => {
+        // Layar hanya digambar ulang bila memang ada data baru yang masuk,
+        // dan tidak pernah di tengah latihan atau sesi belajar.
+        if (result?.changed && ['home', 'map', 'progress', 'missions', 'rewards'].includes(this.state.screen)) {
+          await this.render();
+        }
+      })
+      .catch((err) => console.warn(`Sinkronisasi (${reason}) gagal:`, err));
   }
 
   // ------------------------------------------------------------- navigasi
@@ -59,6 +83,9 @@ export class UiController {
     this.#teardownTrace();
     this.recognition?.stop();
     this.listening = false;
+    // Meninggalkan layar belajar berarti sesinya batal: catatan "sudah
+    // belajar" hanya diberikan bila materinya dibaca sampai kartu terakhir.
+    if (screen !== 'study') this.study?.abandon();
     Object.assign(this.state, patch, { screen });
     await this.render();
     this.root.scrollTop = 0;
@@ -74,6 +101,7 @@ export class UiController {
         case 'login':    return mount(this.root, loginView(this.profiles.allSnapshots()));
         case 'home':     return await this.#renderHome();
         case 'map':      return await this.#renderMap();
+        case 'study':    return this.#renderStudy();
         case 'quiz':     return this.#renderQuiz();
         case 'result':   return mount(this.root, resultView(s.lastSummary));
         case 'missions': return this.#renderMissions();
@@ -100,6 +128,12 @@ export class UiController {
 
   #pid() {
     return this.profiles.activeId();
+  }
+
+  /** Teks yang harus dibunyikan di layar yang sedang tampil. */
+  #speakTarget() {
+    if (this.state.screen === 'study') return this.study.current()?.speak || null;
+    return this.practice.current()?.speak || null;
   }
 
   #pendingMissions() {
@@ -146,6 +180,26 @@ export class UiController {
         pendingMissions: this.#pendingMissions()
       })
     );
+  }
+
+  #renderStudy() {
+    const session = this.study.session;
+    const card = this.study.current();
+    if (!session || !card) return this.go('map');
+
+    mount(
+      this.root,
+      studyView({
+        session,
+        card,
+        index: session.index,
+        total: session.cards.length
+      })
+    );
+
+    // Kartu kata dan kalimat langsung dibunyikan: mendengar sambil melihat
+    // tulisannya adalah inti sesi belajar ini.
+    if (card.speak) setTimeout(() => this.speech.speak(card.speak), 200);
   }
 
   #renderQuiz() {
@@ -301,6 +355,10 @@ export class UiController {
 
       const panel = sheet(skillSheet(lesson, this.curriculum.skills()));
       panel.el.addEventListener('click', async (e) => {
+        if (e.target.closest('[data-start-study]')) {
+          panel.close();
+          return await this.#startStudy(number);
+        }
         const btn = e.target.closest('[data-start-skill]');
         if (!btn) return;
         panel.close();
@@ -310,33 +368,63 @@ export class UiController {
 
     // --- Lanjut belajar / latihan cepat dari beranda
     on(r, 'click', '[data-action="continue"]', async () => {
-      const pid = this.#pid();
-      const { lessons } = await this.curriculum.lessonMap(pid, this.state.levelId);
-      const playable = lessons.filter((l) => l.vocabCount > 0 || l.sentenceCount > 0);
-      const next = playable.find((l) => !l.completed) || playable[0];
+      const next = await this.#pickLesson((l) => !l.completed);
       if (!next) return toast('Materi belum tersedia.');
       this.state.lessonNumber = next.number;
+      // Pelajaran yang materinya belum dibaca selalu dimulai dari sesi belajar.
+      if (!next.studied) return await this.#startStudy(next.number);
       await this.#startRound('mixed');
     });
 
     on(r, 'click', '[data-quick]', async (_e, el) => {
-      const pid = this.#pid();
-      const { lessons } = await this.curriculum.lessonMap(pid, this.state.levelId);
-      const playable = lessons.filter((l) => l.vocabCount > 0 || l.sentenceCount > 0);
-      const target = playable.find((l) => !l.completed) || playable[0];
+      const target = await this.#pickLesson((l) => !l.completed);
       if (!target) return toast('Materi belum tersedia.');
       this.state.lessonNumber = target.number;
       await this.#startRound(el.dataset.quick);
     });
 
-    // --- Latihan: audio
+    // --- Sesi belajar
+    on(r, 'click', '[data-action="study-next"]', async () => {
+      if (this.study.atEnd()) return;
+      this.study.next();
+      this.#renderStudy();
+      this.root.scrollTop = 0;
+      window.scrollTo(0, 0);
+    });
+
+    on(r, 'click', '[data-action="study-prev"]', () => {
+      if (this.study.atStart()) return;
+      this.study.prev();
+      this.#renderStudy();
+      this.root.scrollTop = 0;
+      window.scrollTo(0, 0);
+    });
+
+    on(r, 'click', '[data-action="study-restart"]', () => {
+      this.study.jumpTo(0);
+      this.#renderStudy();
+    });
+
+    on(r, 'click', '[data-action="study-quit"]', () => this.#confirmQuitStudy());
+
+    on(r, 'click', '[data-action="study-to-quiz"]', async () => {
+      this.#finishStudy();
+      await this.#startRound('mixed');
+    });
+
+    on(r, 'click', '[data-action="study-done"]', async () => {
+      this.#finishStudy();
+      await this.go('map');
+    });
+
+    // --- Audio (dipakai layar latihan maupun sesi belajar)
     on(r, 'click', '[data-action="speak"]', () => {
-      const q = this.practice.current();
-      if (q?.speak) this.speech.speak(q.speak);
+      const text = this.#speakTarget();
+      if (text) this.speech.speak(text);
     });
     on(r, 'click', '[data-action="speak-slow"]', () => {
-      const q = this.practice.current();
-      if (q?.speak) this.speech.speak(q.speak, { slow: true });
+      const text = this.#speakTarget();
+      if (text) this.speech.speak(text, { slow: true });
     });
     on(r, 'click', '[data-speak]', (_e, el) => this.speech.speak(el.dataset.speak));
 
@@ -387,6 +475,9 @@ export class UiController {
     on(r, 'click', '[data-action="quit"]', () => this.#confirmQuit());
     on(r, 'click', '[data-action="again"]', async () => {
       await this.#startRound(this.state.skill);
+    });
+    on(r, 'click', '[data-action="study-again"]', async () => {
+      await this.#startStudy(this.state.lessonNumber);
     });
 
     // --- Progres
@@ -455,10 +546,77 @@ export class UiController {
     this.#answer({ transcripts: result.transcripts });
   }
 
+  // -------------------------------------------------------- sesi belajar
+
+  /** Pelajaran pertama di level aktif yang cocok dengan `match`. */
+  async #pickLesson(match) {
+    const { lessons } = await this.curriculum.lessonMap(this.#pid(), this.state.levelId);
+    const playable = lessons.filter((l) => l.vocabCount > 0 || l.sentenceCount > 0);
+    return playable.find(match) || playable[0] || null;
+  }
+
+  async #startStudy(lessonNumber) {
+    const pid = this.#pid();
+    this.state.lessonNumber = lessonNumber;
+    try {
+      const session = await this.study.start({
+        profileId: pid,
+        levelId: this.state.levelId,
+        lessonNumber
+      });
+      if (!session.cards.length) return toast('Materi pelajaran ini belum tersedia.');
+      await this.go('study');
+    } catch (err) {
+      console.error(err);
+      toast(err.message || 'Gagal membuka sesi belajar.');
+    }
+  }
+
+  /** Tutup sesi belajar dan tampilkan hadiahnya. */
+  #finishStudy() {
+    const summary = this.study.finish();
+    if (!summary) return null;
+    if (summary.firstTime) confetti(30);
+    toast(
+      summary.firstTime
+        ? `📘 Materi selesai dibaca — soal terbuka! +${summary.xp} XP`
+        : `📖 Materi disegarkan. +${summary.xp} XP`
+    );
+    this.#syncSoon('selesai belajar');
+    return summary;
+  }
+
+  #confirmQuitStudy() {
+    const panel = sheet(`
+      <h2 style="margin:0 0 8px">Berhenti membaca materi?</h2>
+      <p class="small muted" style="margin:0 0 16px">
+        Materi harus dibaca sampai kartu terakhir supaya soal latihannya terbuka.
+      </p>
+      <button class="btn btn--danger" data-quit-yes>Ya, berhenti dulu</button>
+      <button class="btn btn--ghost" style="margin-top:8px" data-quit-no>Lanjut membaca</button>
+    `);
+    panel.el.addEventListener('click', async (e) => {
+      if (e.target.closest('[data-quit-yes]')) {
+        panel.close();
+        this.speech.cancel();
+        await this.go('map');
+      }
+      if (e.target.closest('[data-quit-no]')) panel.close();
+    });
+  }
+
   // ------------------------------------------------------------- latihan
 
   async #startRound(skill) {
     const pid = this.#pid();
+    const lessonNumber = this.state.lessonNumber;
+
+    // Pintu masuk soal hanya satu: materinya harus sudah dibaca.
+    if (!this.study.canPractice(pid, this.state.levelId, lessonNumber)) {
+      toast('Baca materinya dulu ya — soalnya terbuka setelah itu.');
+      return await this.#startStudy(lessonNumber);
+    }
+
     this.state.skill = skill;
     try {
       const round = await this.practice.start({
@@ -542,6 +700,7 @@ export class UiController {
 
     if (summary.stars >= 2 || summary.newBadges?.length || summary.missionReward?.xp > 0) confetti();
     await this.go('result', { lastSummary: summary });
+    this.#syncSoon('selesai latihan');
   }
 
   #confirmQuit() {
@@ -565,16 +724,29 @@ export class UiController {
   // -------------------------------------------------------- menu orang tua
 
   #openParentSheet() {
+    const sync = this.sync?.status();
     const panel = sheet(`
       <h2 style="margin:0 0 4px">⚙️ Menu Orang Tua</h2>
-      <p class="small muted" style="margin:0 0 16px">Cadangkan atau atur ulang data belajar.</p>
-      <button class="btn btn--ghost" data-export>💾 Simpan Cadangan (JSON)</button>
+      <p class="small muted" style="margin:0 0 16px">Cadangkan, sinkronkan, atau atur ulang data belajar.</p>
+      ${
+        sync
+          ? `<button class="btn btn--ghost" data-sync-open>
+               ☁️ Sinkronisasi Online ${sync.connected ? '— aktif ✅' : '— belum aktif'}
+             </button>`
+          : ''
+      }
+      <button class="btn btn--ghost" style="margin-top:8px" data-export>💾 Simpan Cadangan (JSON)</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-import>📂 Muat Cadangan</button>
       <button class="btn btn--danger" style="margin-top:8px" data-reset>🗑️ Hapus Semua Progres</button>
       <input type="file" accept="application/json" id="import-file" hidden />
     `);
 
     panel.el.addEventListener('click', async (e) => {
+      if (e.target.closest('[data-sync-open]')) {
+        panel.close();
+        return this.#openSyncSheet();
+      }
+
       if (e.target.closest('[data-export]')) {
         const blob = new Blob([this.profiles.exportJson()], { type: 'application/json' });
         const a = document.createElement('a');
@@ -598,6 +770,112 @@ export class UiController {
       }
     });
 
+    this.#bindImportFile(panel);
+  }
+
+  // --------------------------------------------------- sinkronisasi online
+
+  #openSyncSheet() {
+    const s = this.sync?.status() || { connected: false };
+    const panel = sheet(`
+      <h2 style="margin:0 0 4px">☁️ Sinkronisasi Online</h2>
+      <p class="small muted" style="margin:0 0 14px">
+        Isi ketiganya sama persis di setiap perangkat, supaya progres Colin dan
+        Darlene menyambung di HP, tablet, maupun laptop.
+      </p>
+
+      <div id="sync-status" class="card" style="margin-bottom:14px">${syncStatusHtml(s)}</div>
+
+      <label class="field">
+        <span class="field__label">Alamat server</span>
+        <input class="field__input" id="sync-url" type="url" inputmode="url"
+               autocomplete="off" autocapitalize="off" spellcheck="false"
+               placeholder="https://mandarin-fun-sync.xxx.workers.dev"
+               value="${esc(s.url || '')}" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Kode keluarga</span>
+        <input class="field__input" id="sync-code" type="text"
+               autocomplete="off" autocapitalize="off" spellcheck="false"
+               placeholder="keluarga-wor" value="${esc(s.code || '')}" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">PIN (4-12 angka)</span>
+        <input class="field__input" id="sync-pin" type="password" inputmode="numeric"
+               autocomplete="off" placeholder="••••••" />
+      </label>
+
+      <p class="small muted" style="margin:0 0 14px">
+        Belum punya alamat server? Panduan memasangnya ada di
+        <code>server/README.md</code> — sekali siapkan, ±10 menit.
+      </p>
+
+      <button class="btn btn--primary" data-sync-connect>
+        ${s.connected ? '🔄 Perbarui Sambungan' : '🔗 Sambungkan'}
+      </button>
+      ${
+        s.connected
+          ? `<button class="btn btn--ghost" style="margin-top:8px" data-sync-now>⬇️⬆️ Sinkronkan Sekarang</button>
+             <button class="btn btn--danger" style="margin-top:8px" data-sync-off>🔌 Putuskan Perangkat Ini</button>`
+          : ''
+      }
+    `);
+
+    const box = panel.el.querySelector('#sync-status');
+    const refresh = () => {
+      box.innerHTML = syncStatusHtml(this.sync.status());
+    };
+
+    panel.el.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+
+      if (btn.hasAttribute('data-sync-connect')) {
+        const url = panel.el.querySelector('#sync-url').value.trim();
+        const code = panel.el.querySelector('#sync-code').value.trim().toLowerCase();
+        const pin = panel.el.querySelector('#sync-pin').value.trim();
+
+        btn.disabled = true;
+        box.innerHTML = '<p class="small" style="margin:0">⏳ Menyambung…</p>';
+        try {
+          await this.sync.connect({ url, code, pin });
+          panel.close();
+          toast('☁️ Tersambung. Progres akan tersinkron otomatis.');
+          await this.render();
+        } catch (err) {
+          btn.disabled = false;
+          box.innerHTML = `<p class="small" style="margin:0;color:var(--red)">⚠️ ${esc(err.message)}</p>`;
+        }
+        return;
+      }
+
+      if (btn.hasAttribute('data-sync-now')) {
+        btn.disabled = true;
+        box.innerHTML = '<p class="small" style="margin:0">⏳ Menyinkronkan…</p>';
+        const result = await this.sync.sync({ force: true });
+        btn.disabled = false;
+        refresh();
+        if (result.ok) {
+          toast(result.changed ? '☁️ Progres diperbarui.' : '☁️ Sudah paling baru.');
+          if (result.changed) await this.render();
+        } else {
+          toast(result.error || 'Sinkronisasi gagal.');
+        }
+        return;
+      }
+
+      if (btn.hasAttribute('data-sync-off')) {
+        if (!confirm('Putuskan perangkat ini dari sinkronisasi? Progres di perangkat ini tetap tersimpan.')) return;
+        this.sync.disconnect();
+        panel.close();
+        toast('Perangkat ini tidak lagi tersinkron.');
+      }
+    });
+  }
+
+  #bindImportFile(panel) {
     panel.el.querySelector('#import-file').addEventListener('change', async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
@@ -611,6 +889,33 @@ export class UiController {
       }
     });
   }
+}
+
+/** Ringkasan keadaan sinkronisasi, untuk kotak di panel setelan. */
+function syncStatusHtml(s) {
+  if (!s.connected) {
+    return `<p class="small" style="margin:0">
+      ⚪ Belum tersambung. Progres perangkat ini hanya tersimpan di perangkat ini saja.
+    </p>`;
+  }
+  const when = s.lastSyncAt ? relativeTime(s.lastSyncAt) : 'belum pernah';
+  return `
+    <p class="small" style="margin:0 0 4px">✅ Tersambung sebagai <b>${esc(s.code)}</b></p>
+    <p class="small muted" style="margin:0">Sinkron terakhir: ${esc(when)}</p>
+    ${s.lastError ? `<p class="small" style="margin:6px 0 0;color:var(--red)">⚠️ ${esc(s.lastError)}</p>` : ''}`;
+}
+
+/** "3 menit lalu", "kemarin" — cukup untuk memberi rasa, tanpa jam persis. */
+function relativeTime(iso) {
+  const then = new Date(iso).getTime();
+  if (!Number.isFinite(then)) return 'belum pernah';
+  const minutes = Math.round((Date.now() - then) / 60000);
+  if (minutes < 1) return 'baru saja';
+  if (minutes < 60) return `${minutes} menit lalu`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours} jam lalu`;
+  const days = Math.round(hours / 24);
+  return days === 1 ? 'kemarin' : `${days} hari lalu`;
 }
 
 const DAYS_ID = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];

@@ -1,0 +1,275 @@
+// Uji sinkronisasi: aturan penggabungan progres dan alur satu putaran sinkron.
+//
+// Yang paling dijaga di sini adalah "tidak ada latihan yang hilang" — kalau
+// aturannya salah, progres anak bisa terhapus tanpa jejak.
+
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+
+import { mergeStates, mergeProfile, pickCard, sameState, stable } from '../src/domain/mergeState.js';
+import { SyncService, validateConfig } from '../src/application/syncService.js';
+
+const day = (over = {}) => ({
+  day: '2026-01-01',
+  xp: 0,
+  answered: 0,
+  correct: 0,
+  minutes: 0,
+  rounds: 0,
+  perfectRounds: 0,
+  studySessions: 0,
+  starsEarned: 0,
+  bestCombo: 0,
+  missionsClaimed: [],
+  bySkill: {},
+  ...over
+});
+
+const profile = (over = {}) => ({
+  id: 'colin',
+  xp: 0,
+  badges: [],
+  stats: { roundsCompleted: 0, perfectRounds: 0, correctBySkill: {} },
+  lessonStars: {},
+  studied: {},
+  cards: {},
+  dailyLog: {},
+  lastSeen: null,
+  ...over
+});
+
+const state = (colin = profile()) => ({ version: 2, activeProfile: null, profiles: { colin } });
+
+// --------------------------------------------------------- sifat penggabungan
+
+test('penggabungan tidak pernah mengurangi progres', () => {
+  const hp = profile({ xp: 300, lessonStars: { 'yct1:1:reading': 3 }, badges: ['first-round'] });
+  const tablet = profile({ xp: 120, lessonStars: { 'yct1:2:writing': 2 }, badges: ['streak-3'] });
+  const out = mergeProfile(hp, tablet);
+
+  assert.equal(out.xp, 300, 'XP tertinggi yang dipakai');
+  assert.deepEqual(out.lessonStars, { 'yct1:1:reading': 3, 'yct1:2:writing': 2 });
+  assert.deepEqual(out.badges, ['first-round', 'streak-3'], 'lencana digabung, bukan ditimpa');
+});
+
+test('urutan penggabungan tidak mengubah hasil', () => {
+  const a = profile({
+    xp: 90,
+    cards: { 'yct1:你': { key: 'yct1:你', box: 3, seen: 6, correct: 5, dueOn: '2026-01-05' } },
+    dailyLog: { '2026-01-01': day({ xp: 60, rounds: 2, answered: 20, correct: 18 }) }
+  });
+  const b = profile({
+    xp: 140,
+    cards: { 'yct1:你': { key: 'yct1:你', box: 2, seen: 9, correct: 6, dueOn: '2026-01-03' } },
+    dailyLog: { '2026-01-01': day({ xp: 40, rounds: 3, answered: 12, correct: 12 }) }
+  });
+
+  assert.equal(stable(mergeProfile(a, b)), stable(mergeProfile(b, a)));
+});
+
+test('menggabungkan dengan dirinya sendiri tidak mengubah apa pun', () => {
+  const p = profile({
+    xp: 250,
+    badges: ['first-round'],
+    studied: { 'yct1:1': { firstAt: '2026-01-01T00:00:00.000Z', lastAt: '2026-01-02T00:00:00.000Z', count: 2 } },
+    dailyLog: { '2026-01-01': day({ xp: 60, rounds: 2 }) }
+  });
+  assert.equal(stable(mergeProfile(p, p)), stable(p));
+});
+
+test('kartu hafalan yang paling sering dilatih yang menang', () => {
+  const sering = { seen: 12, box: 2, correct: 8, dueOn: '2026-01-02' };
+  const jarang = { seen: 3, box: 5, correct: 3, dueOn: '2026-02-01' };
+  assert.equal(pickCard(sering, jarang), sering);
+  assert.equal(pickCard(jarang, sering), sering, 'hasilnya sama dari arah mana pun');
+  assert.equal(pickCard(null, jarang), jarang);
+});
+
+test('catatan harian digabung per bidang, misi yang sudah diambil disatukan', () => {
+  const a = state(profile({ dailyLog: { '2026-01-01': day({ xp: 60, rounds: 3, missionsClaimed: ['xp-earned'] }) } }));
+  const b = state(profile({ dailyLog: { '2026-01-01': day({ xp: 40, rounds: 5, missionsClaimed: ['lessons-completed'] }) } }));
+  const out = mergeStates(a, b).profiles.colin.dailyLog['2026-01-01'];
+
+  assert.equal(out.xp, 60);
+  assert.equal(out.rounds, 5);
+  assert.deepEqual(out.missionsClaimed, ['lessons-completed', 'xp-earned']);
+});
+
+test('catatan sesi belajar mempertahankan tanggal pertama dan terakhir', () => {
+  const a = state(profile({ studied: { 'yct1:1': { firstAt: '2026-01-01T00:00:00.000Z', lastAt: '2026-01-01T00:00:00.000Z', count: 1 } } }));
+  const b = state(profile({ studied: { 'yct1:1': { firstAt: '2026-01-03T00:00:00.000Z', lastAt: '2026-01-05T00:00:00.000Z', count: 3 } } }));
+  const out = mergeStates(a, b).profiles.colin.studied['yct1:1'];
+
+  assert.equal(out.firstAt, '2026-01-01T00:00:00.000Z');
+  assert.equal(out.lastAt, '2026-01-05T00:00:00.000Z');
+  assert.equal(out.count, 3);
+});
+
+test('anak yang hanya ada di satu perangkat tetap terbawa', () => {
+  const a = { version: 2, activeProfile: 'colin', profiles: { colin: profile({ xp: 10 }) } };
+  const b = { version: 2, activeProfile: null, profiles: { darlene: profile({ id: 'darlene', xp: 70 }) } };
+  const out = mergeStates(a, b);
+
+  assert.equal(out.profiles.colin.xp, 10);
+  assert.equal(out.profiles.darlene.xp, 70);
+});
+
+test('siapa yang sedang masuk adalah urusan perangkat, tidak ikut disamakan', () => {
+  const lokal = { version: 2, activeProfile: 'darlene', profiles: {} };
+  const server = { version: 2, activeProfile: 'colin', profiles: {} };
+  assert.equal(mergeStates(lokal, server).activeProfile, 'darlene');
+});
+
+test('server yang masih kosong tidak menghapus apa pun', () => {
+  const lokal = state(profile({ xp: 500 }));
+  assert.equal(mergeStates(lokal, null), lokal);
+});
+
+test('sameState mengabaikan urutan kunci', () => {
+  assert.ok(sameState({ a: 1, b: 2 }, { b: 2, a: 1 }));
+  assert.ok(!sameState({ a: 1 }, { a: 2 }));
+});
+
+// ------------------------------------------------------------ aturan isian
+
+test('alamat, kode, dan PIN divalidasi sebelum dikirim', () => {
+  assert.deepEqual(validateConfig({ url: 'https://x.workers.dev', code: 'keluarga-wor', pin: '1234' }), []);
+  assert.equal(validateConfig({ url: 'http://x.dev', code: 'keluarga', pin: '1234' }).length, 1, 'http polos ditolak');
+  assert.equal(validateConfig({ url: 'https://x.dev', code: 'AB', pin: '1234' }).length, 1, 'kode terlalu pendek');
+  assert.equal(validateConfig({ url: 'https://x.dev', code: 'keluarga', pin: 'abcd' }).length, 1, 'PIN harus angka');
+});
+
+// ------------------------------------------------------------- satu putaran
+
+/** Profil tiruan dengan penyimpanan di memori. */
+function fakeProfiles(initial) {
+  let current = initial;
+  let settings = { sync: { url: 'https://x.workers.dev', code: 'keluarga', pin: '1234' } };
+  return {
+    rawState: () => current,
+    replaceState: (next) => (current = next),
+    settings: () => settings,
+    saveSettings: (patch) => (settings = { ...settings, ...patch }),
+    get current() {
+      return current;
+    }
+  };
+}
+
+/** Server tiruan: menyimpan satu salinan beserta rev-nya. */
+function fakeRemote(initialState = null) {
+  const server = { rev: initialState ? 'r1' : null, state: initialState, updatedAt: null };
+  const log = { pulls: 0, pushes: 0 };
+  return {
+    server,
+    log,
+    async pull() {
+      log.pulls++;
+      return { ...server };
+    },
+    async push(_config, rev, state) {
+      log.pushes++;
+      if (rev !== server.rev) {
+        return { rev: server.rev, conflict: { rev: server.rev, state: server.state, updatedAt: null } };
+      }
+      server.rev = `r${log.pushes + 1}`;
+      server.state = state;
+      server.updatedAt = new Date().toISOString();
+      return { rev: server.rev, updatedAt: server.updatedAt };
+    }
+  };
+}
+
+test('putaran sinkron menarik progres perangkat lain dan mengirim gabungannya', async () => {
+  const profiles = fakeProfiles(state(profile({ xp: 100, lessonStars: { 'yct1:1:reading': 3 } })));
+  const remote = fakeRemote(state(profile({ xp: 40, lessonStars: { 'yct1:2:writing': 2 } })));
+  const sync = new SyncService(profiles, remote);
+
+  const result = await sync.sync();
+
+  assert.equal(result.ok, true);
+  assert.equal(result.changed, true);
+  assert.equal(profiles.current.profiles.colin.xp, 100);
+  assert.deepEqual(profiles.current.profiles.colin.lessonStars, {
+    'yct1:1:reading': 3,
+    'yct1:2:writing': 2
+  });
+  assert.equal(remote.server.state.profiles.colin.lessonStars['yct1:1:reading'], 3);
+});
+
+test('tidak ada yang berubah: server tidak ditulis ulang', async () => {
+  const sama = state(profile({ xp: 100 }));
+  const profiles = fakeProfiles(sama);
+  const remote = fakeRemote(JSON.parse(JSON.stringify(sama)));
+  const sync = new SyncService(profiles, remote);
+
+  const result = await sync.sync();
+
+  assert.equal(result.ok, true);
+  assert.equal(result.changed, false);
+  assert.equal(remote.log.pushes, 0, 'tidak perlu mengirim apa-apa');
+});
+
+test('perangkat lain yang menyimpan lebih dulu memicu penggabungan ulang', async () => {
+  const profiles = fakeProfiles(state(profile({ xp: 100 })));
+  const remote = fakeRemote(state(profile({ xp: 40 })));
+  const sync = new SyncService(profiles, remote);
+
+  // Sekali saja rev-nya digeser di belakang layar, seolah perangkat lain
+  // menyimpan tepat di antara pull dan push.
+  const pushAsli = remote.push.bind(remote);
+  let sekali = false;
+  remote.push = async (config, rev, next) => {
+    if (!sekali) {
+      sekali = true;
+      remote.server.rev = 'r-lain';
+      remote.server.state = state(profile({ xp: 250 }));
+    }
+    return pushAsli(config, rev, next);
+  };
+
+  const result = await sync.sync();
+
+  assert.equal(result.ok, true);
+  assert.equal(profiles.current.profiles.colin.xp, 250, 'progres perangkat lain ikut terbawa');
+  assert.equal(remote.server.state.profiles.colin.xp, 250);
+});
+
+test('server bermasalah dicatat, progres di perangkat tetap utuh', async () => {
+  const awal = state(profile({ xp: 100 }));
+  const profiles = fakeProfiles(awal);
+  const sync = new SyncService(profiles, {
+    async pull() {
+      throw new Error('Tidak ada sambungan ke server sinkronisasi.');
+    },
+    async push() {
+      throw new Error('tidak dipanggil');
+    }
+  });
+
+  const result = await sync.sync();
+
+  assert.equal(result.ok, false);
+  assert.match(result.error, /sambungan/);
+  assert.equal(profiles.current, awal, 'data lokal tidak boleh tersentuh');
+  assert.match(profiles.settings().sync.lastError, /sambungan/);
+});
+
+test('belum tersambung: sinkronisasi diam saja, bukan gagal berisik', async () => {
+  const profiles = fakeProfiles(state());
+  profiles.saveSettings({ sync: null });
+  const sync = new SyncService(profiles, fakeRemote());
+
+  const result = await sync.sync();
+  assert.deepEqual(result, { ok: false, skipped: 'not-connected' });
+  assert.equal(sync.isConnected(), false);
+});
+
+test('panggilan bertubi-tubi tidak menumpuk jadi banyak putaran', async () => {
+  const profiles = fakeProfiles(state(profile({ xp: 10 })));
+  const remote = fakeRemote();
+  const sync = new SyncService(profiles, remote);
+
+  await Promise.all([sync.sync(), sync.sync(), sync.sync()]);
+  assert.ok(remote.log.pulls <= 2, `putaran seharusnya digabung, malah ${remote.log.pulls}`);
+});

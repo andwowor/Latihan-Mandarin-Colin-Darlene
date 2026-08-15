@@ -27,12 +27,21 @@ fs.mkdirSync(tmp, { recursive: true });
 // --- 1. Kumpulkan kurikulum menjadi satu objek -----------------------------
 
 const index = JSON.parse(fs.readFileSync(path.join(curriculumDir, 'index.json'), 'utf8'));
-const bundle = { index, levels: {} };
+const bundle = { index, levels: {}, bridge: null };
 for (const meta of index.levels) {
   const file = path.join(curriculumDir, meta.file);
   if (meta.status === 'ready' && fs.existsSync(file)) {
     bundle.levels[meta.id] = JSON.parse(fs.readFileSync(file, 'utf8'));
   }
+}
+
+// Rencana bekal HSK ikut menyatu, supaya versi satu-berkas punya sesi belajar
+// yang persis sama dengan versi PWA.
+const bridgeFile = path.join(curriculumDir, 'bridge.json');
+if (fs.existsSync(bridgeFile)) {
+  bundle.bridge = JSON.parse(fs.readFileSync(bridgeFile, 'utf8'));
+} else {
+  console.warn('⚠️  bridge.json belum ada — jalankan "npm run bridge" agar bekal HSK ikut masuk.');
 }
 
 // --- 2. Adapter konten versi dalam-berkas ---------------------------------
@@ -54,6 +63,9 @@ export class InlineContentAdapter extends ContentPort {
     if (!data) return { ...meta, lessons: [], unavailable: true };
     return { ...meta, ...data };
   }
+  async loadBridge() {
+    return CURRICULUM.bridge;
+  }
 }\n`
 );
 
@@ -62,19 +74,23 @@ export class InlineContentAdapter extends ContentPort {
 fs.writeFileSync(
   path.join(tmp, 'entry.js'),
   `import { InlineContentAdapter } from './inlineContentAdapter.js';
+import { BridgedContentAdapter } from '${path.join(root, 'src/adapters/outbound/bridgedContentAdapter.js')}';
 import { LocalStorageAdapter } from '${path.join(root, 'src/adapters/outbound/localStorageAdapter.js')}';
 import { WebSpeechAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechAdapter.js')}';
 import { WebSpeechRecognitionAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechRecognitionAdapter.js')}';
+import { HttpSyncAdapter } from '${path.join(root, 'src/adapters/outbound/httpSyncAdapter.js')}';
 import { ProfileService } from '${path.join(root, 'src/application/profileService.js')}';
 import { CurriculumService } from '${path.join(root, 'src/application/curriculumService.js')}';
 import { MissionService } from '${path.join(root, 'src/application/missionService.js')}';
 import { PracticeService } from '${path.join(root, 'src/application/practiceService.js')}';
+import { StudyService } from '${path.join(root, 'src/application/studyService.js')}';
 import { StatsService } from '${path.join(root, 'src/application/statsService.js')}';
+import { SyncService } from '${path.join(root, 'src/application/syncService.js')}';
 import { UiController } from '${path.join(root, 'src/adapters/inbound/uiController.js')}';
 
 async function bootstrap() {
   const root = document.getElementById('app');
-  const content = new InlineContentAdapter();
+  const content = new BridgedContentAdapter(new InlineContentAdapter());
   const storage = new LocalStorageAdapter();
   const speech = new WebSpeechAdapter();
   const recognition = new WebSpeechRecognitionAdapter();
@@ -83,14 +99,17 @@ async function bootstrap() {
   const curriculum = new CurriculumService(content, profiles);
   const missions = new MissionService(profiles);
   const practice = new PracticeService(content, profiles, missions);
+  const study = new StudyService(content, profiles);
   const stats = new StatsService(profiles);
+  const sync = new SyncService(profiles, new HttpSyncAdapter());
 
-  const ui = new UiController({ root, profiles, curriculum, practice, stats, missions, speech, recognition });
+  const ui = new UiController({ root, profiles, curriculum, practice, study, stats, missions, speech, recognition, sync });
   await ui.start();
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { speech.cancel(); recognition.stop(); }
+    if (document.hidden) { speech.cancel(); recognition.stop(); sync.sync(); }
   });
+  window.addEventListener('online', () => sync.sync());
 }
 
 bootstrap().catch((err) => {

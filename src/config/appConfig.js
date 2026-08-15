@@ -13,6 +13,9 @@ export const appConfig = {
   //                     menunggu ambang XP. Colin (7 th) boleh langsung
   //                     melompat ke YCT 2 kalau YCT 1 terasa terlalu mudah.
   // `dailyGoalXp`     : target XP harian; juga jadi dasar besar misi harian.
+  // `bridgePerLesson` : berapa kata bekal HSK yang ikut ditampilkan di sesi
+  //                     belajar. Darlene (5 th) mendapat porsi lebih sedikit
+  //                     supaya satu sesi tidak terlalu panjang.
   profiles: [
     {
       id: 'colin',
@@ -24,7 +27,8 @@ export const appConfig = {
       colorSoft: '#dbe9ff',
       startLevel: 'yct1',
       openLevels: ['yct1', 'yct2'],
-      dailyGoalXp: 60
+      dailyGoalXp: 60,
+      bridgePerLesson: 4
     },
     {
       id: 'darlene',
@@ -36,7 +40,8 @@ export const appConfig = {
       colorSoft: '#ffdcee',
       startLevel: 'yct1',
       openLevels: ['yct1'],
-      dailyGoalXp: 40
+      dailyGoalXp: 40,
+      bridgePerLesson: 2
     }
   ],
 
@@ -48,6 +53,26 @@ export const appConfig = {
     xpFirstClearBonus: 30,
     comboStep: 3,        // tiap 3 jawaban benar beruntun, multiplier naik
     comboMaxMultiplier: 3
+  },
+
+  // Sesi belajar: kartu materi yang wajib dilihat sebelum soal keluar.
+  // `requireBeforeQuiz` boleh dimatikan bila anak sudah terbiasa dan ingin
+  // langsung berlatih.
+  study: {
+    requireBeforeQuiz: true,
+    xpFirstTime: 20,     // hadiah sekali saja, saat pertama menuntaskan materi
+    xpRepeat: 5          // mengulang materi tetap dihargai, tapi kecil
+  },
+
+  // Bekal HSK yang dititipkan ke tiap pelajaran YCT.
+  // `perLesson` adalah jatah yang DISIAPKAN per pelajaran; berapa yang benar-
+  // benar ditampilkan mengikuti `bridgePerLesson` masing-masing anak. Angka 4
+  // dipilih karena pas menghabiskan seluruh kosakata HSK 1 di penghujung
+  // YCT 2 dan HSK 2 di penghujung YCT 4.
+  bridge: {
+    perLesson: 4,
+    // Berapa banyak kata bekal yang boleh ikut diuji dalam satu ronde latihan.
+    maxPerRound: 2
   },
 
   // Kurva level: XP kumulatif yang dibutuhkan untuk naik ke level berikutnya.

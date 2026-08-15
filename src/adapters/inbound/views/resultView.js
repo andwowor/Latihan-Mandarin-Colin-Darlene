@@ -36,6 +36,7 @@ export function resultView(summary) {
 
     <div class="stack" style="margin-top:12px">
       <button class="btn btn--primary" data-action="again">🔁 Latihan Lagi</button>
+      <button class="btn btn--ghost" data-action="study-again">📘 Baca Ulang Materi</button>
       <button class="btn btn--ghost" data-nav="map">🗺️ Pilih Pelajaran Lain</button>
       <button class="btn btn--ghost" data-nav="home">🏠 Beranda</button>
     </div>

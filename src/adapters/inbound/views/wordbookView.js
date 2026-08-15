@@ -6,6 +6,7 @@ import { navBar, topBar, emptyState } from './shared.js';
 export function wordbookView({ snapshot, levels, activeLevel, words, pendingMissions }) {
   const mastered = words.filter((w) => (w.card?.box || 0) >= 4).length;
   const started = words.filter((w) => w.card).length;
+  const bridged = words.filter((w) => w.bridge).length;
 
   return `
   <div class="screen screen--pad-nav">
@@ -29,6 +30,17 @@ export function wordbookView({ snapshot, levels, activeLevel, words, pendingMiss
       </div>
     </section>
 
+    ${
+      bridged
+        ? `<section class="card" style="border-color:var(--brand)">
+             <p class="small" style="margin:0">
+               🌉 ${bridged} kata di daftar ini adalah <b>bekal HSK</b> — belum keluar di
+               ${esc(activeLevel.code)}, tapi sengaja dititipkan supaya nanti tidak kaget.
+             </p>
+           </section>`
+        : ''
+    }
+
     <section class="card">
       <h2 class="card__title">📚 Daftar Kata — ${esc(activeLevel.code)}</h2>
       ${
@@ -43,12 +55,17 @@ export function wordbookView({ snapshot, levels, activeLevel, words, pendingMiss
 
 function row(w) {
   const box = w.card?.box || 0;
+  const tag = w.bridge
+    ? `<span class="tag tag--bridge">🌉 ${esc(w.fromCode)}</span>`
+    : w.alsoIn?.length
+      ? `<span class="tag tag--also">🏅 ${esc(w.alsoIn.join(' & '))}</span>`
+      : '';
   return `
   <div class="word-row">
     <div class="word-row__zh hanzi">${esc(w.zh)}</div>
     <div class="word-row__body">
       <div class="word-row__py">${esc(w.py)}</div>
-      <div style="font-weight:700;font-size:.92rem">${esc(w.id)}</div>
+      <div style="font-weight:700;font-size:.92rem">${esc(w.id)} ${tag}</div>
       <div class="small muted">${esc(w.en)} · Pelajaran ${w.lesson}</div>
     </div>
     <div style="text-align:right">

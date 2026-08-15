@@ -8,8 +8,13 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 
 ## Tujuan
 
+- **Sesi belajar** memperkenalkan kata dan kalimatnya lebih dulu; soal baru
+  terbuka setelah materinya dibaca.
 - Latihan **membaca, mendengar, berbicara, dan menulis** yang terasa seperti permainan.
-- Progres tersimpan terpisah per anak, tanpa password (cukup pilih tombol nama).
+- **Bekal HSK** dititipkan sedikit demi sedikit ke tiap pelajaran YCT, supaya
+  perpindahan ke jalur HSK nanti tidak terasa melompat.
+- Progres tersimpan terpisah per anak, tanpa password (cukup pilih tombol nama),
+  dan **bisa disinkronkan** antar-perangkat secara opsional.
 - **Misi harian** wajib: jumlah pelajaran diselesaikan, XP terkumpul, dan
   pelajaran sempurna tanpa kesalahan.
 - Papan skor harian, mingguan, bulanan, 3 bulan, 6 bulan, dan tahunan yang
@@ -33,6 +38,11 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 Sudah masuk: **128 pelajaran, 1.340 kata, 230 kalimat simakan** —
 seluruh materi yang tersedia di komputer (YCT 1–6 dan HSK 1–3).
 
+Di atas itu, **259 kata HSK dititipkan** ke pelajaran-pelajaran YCT sebagai
+bekal, dan **476 kata YCT ditandai** karena ternyata juga ada di daftar HSK
+(ADR-0009). Rencananya dibekukan di `public/data/curriculum/bridge.json` dan
+dibangun ulang dengan `npm run bridge`.
+
 Cara menambah level lain: `docs/importing-content.md`.
 
 ## Temuan penting atas materi sumber
@@ -50,6 +60,11 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
    Kunci jawaban buku tetap disimpan untuk penelusuran. → ADR-0004
 4. Buku **tidak menyediakan cara menilai pelafalan**. Latihan berbicara memakai
    pengenal suara bawaan peramban dengan penilaian yang sengaja longgar. → ADR-0007
+5. Buku memperkenalkan kata lewat **halaman materi**, bukan langsung lewat soal.
+   Aplikasi versi awal melewatkan tahap itu, sehingga soal pertama sebuah
+   pelajaran menguji kata yang belum pernah dilihat anak. → ADR-0008
+6. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
+   saja. Irisan itu dipakai untuk menyiapkan anak jauh sebelum masuk HSK. → ADR-0009
 
 ## Peta dokumen
 

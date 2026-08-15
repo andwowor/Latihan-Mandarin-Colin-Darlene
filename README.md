@@ -32,10 +32,10 @@ Untuk membukanya dari HP di rumah, cari alamat IP komputer
 
 ```bash
 npm install esbuild
-node tools/build-standalone.mjs ./node_modules/.bin/esbuild
+npm run build
 ```
 
-Menghasilkan `dist/mandarin-fun.html` (±250 KB): seluruh gaya, kode, dan
+Menghasilkan `dist/mandarin-fun.html` (±440 KB): seluruh gaya, kode, dan
 kurikulum menyatu dalam satu berkas ASCII murni — aman dibuka dari server mana
 pun tanpa bergantung pada header charset.
 
@@ -52,6 +52,25 @@ pun tanpa bergantung pada header charset.
 
 **Masuk tanpa password** — cukup ketuk 🦁 Colin atau 🦄 Darlene. Progres keduanya
 tersimpan terpisah.
+
+**📘 Sesi belajar dulu, baru soal** — setiap pelajaran dibuka dengan kartu
+materi satu-per-layar: 汉字 besar, pinyin, arti, contoh kalimat, dan suaranya
+langsung diputar. Tidak ada nilai dan tidak ada jawaban salah di sini. Soal
+latihan baru terbuka setelah materinya dibaca sampai habis, supaya anak tidak
+lagi dihadapkan pada kata yang belum pernah dilihatnya (lihat ADR-0008).
+
+**🌉 Bekal HSK di dalam pelajaran YCT** — tiap pelajaran YCT menitipkan
+beberapa kata HSK yang belum pernah muncul, dipilih dari yang paling mudah
+lebih dulu. Kata YCT yang ternyata juga ada di daftar HSK diberi tanda
+🏅 *"Kata ini juga ada di HSK 1 — bekalmu sudah siap!"*. Hasilnya: seluruh
+kosakata HSK 1 sudah dikenalkan sebelum YCT 2 selesai, dan HSK 2 sebelum
+YCT 4 selesai (lihat ADR-0009).
+
+**☁️ Progres tersinkron antar-perangkat** — opsional. Sekali memasang
+penyimpan progres sendiri (`server/README.md`), Colin dan Darlene bisa
+berlatih dari HP, tablet, atau laptop mana pun dan progresnya tetap menyambung.
+Tanpa itu pun aplikasi berjalan penuh, hanya progresnya tinggal di satu
+perangkat (lihat ADR-0010).
 
 **Empat keterampilan**
 
@@ -81,7 +100,8 @@ keterampilan.
 **Pengulangan cerdas** — kata yang sering salah muncul lebih sering (sistem
 kotak Leitner), dan kemajuannya terlihat di tab 📚 Kamus.
 
-**Menu orang tua (⚙️)** — simpan cadangan JSON, muat cadangan, hapus progres.
+**Menu orang tua (⚙️)** — sambungkan sinkronisasi online, simpan cadangan JSON,
+muat cadangan, hapus progres.
 
 **Offline** — sudah dibuka sekali, aplikasi bisa dipakai tanpa internet.
 
@@ -105,6 +125,11 @@ Kurikulum diambil dari buku YCT/HSK milik keluarga di
 
 Seluruh materi yang tersedia di komputer sudah diimpor.
 
+Di atas angka itu, **259 kata HSK dititipkan** ke pelajaran-pelajaran YCT
+sebagai bekal, dan **476 kata YCT ditandai** karena ternyata juga ada di daftar
+HSK. Rencananya tersimpan di `public/data/curriculum/bridge.json` dan dibangun
+ulang dengan `npm run bridge`.
+
 Tanda `—` pada kunci jawaban berarti halaman *Test Answers* buku tidak ikut
 terpindai; penilaian aplikasi tetap otomatis karena soalnya dibangkitkan
 sendiri (lihat ADR-0004).
@@ -126,23 +151,33 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
    pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
    aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
 
-## Pengujian
+## Perintah
 
 ```bash
-npm test        # 47 pengujian lapisan domain
+npm start       # jalankan di http://localhost:4173/public/
+npm test        # 93 pengujian lapisan domain & aplikasi
+npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
+npm run build   # bangun dist/mandarin-fun.html (versi satu berkas)
 ```
+
+`npm test` sengaja gagal bila `bridge.json` tertinggal dari kurikulumnya, jadi
+tidak mungkin lupa menjalankan `npm run bridge` tanpa ketahuan.
 
 ## Struktur proyek
 
 ```
 sw.js                     service worker (scope "/" — lihat deployment.md)
 public/                   cangkang aplikasi: index.html, app.js, style.css, ikon
-public/data/curriculum/   kurikulum JSON per level
-src/domain/               logika murni: skor, level, streak, misi, SRS, pelafalan, soal
-src/application/          layanan: profil, kurikulum, misi, latihan, statistik
-src/ports/                kontrak: konten, penyimpanan, suara, pengenal suara
-src/adapters/             UI (inbound) + JSON/localStorage/TTS/mikrofon (outbound)
-tests/                    pengujian domain
+public/data/curriculum/   kurikulum JSON per level + bridge.json (bekal HSK)
+src/domain/               logika murni: skor, level, streak, misi, SRS, pelafalan,
+                          soal, kartu belajar, jembatan HSK, penggabungan progres
+src/application/          layanan: profil, kurikulum, misi, latihan, belajar,
+                          statistik, sinkronisasi
+src/ports/                kontrak: konten, penyimpanan, suara, pengenal suara, sinkronisasi
+src/adapters/             UI (inbound) + JSON/localStorage/TTS/mikrofon/HTTP (outbound)
+server/                   OPSIONAL: penyimpan progres (Cloudflare Worker) + panduannya
+tools/                    build-bridge.mjs, build-standalone.mjs
+tests/                    pengujian domain & aplikasi
 docs/architecture/        dokumen arsitektur dan ADR
 data/content-sources.json hasil survei berkas sumber
 ```
@@ -157,3 +192,14 @@ Hampir semua "aturan main" ada di `src/config/appConfig.js`:
 target XP harian tiap anak, level awal dan level yang selalu terbuka, jumlah
 soal per ronde, jumlah nyawa, kurva level, jeda pengulangan SRS, dan kecepatan
 suara.
+
+Beberapa yang paling mungkin ingin disetel:
+
+| Setelan | Arti |
+|---|---|
+| `study.requireBeforeQuiz` | `false` membuka soal tanpa menunggu sesi belajar selesai |
+| `study.xpFirstTime` / `xpRepeat` | hadiah XP menuntaskan dan mengulang sesi belajar |
+| `profiles[].bridgePerLesson` | berapa kata bekal HSK yang dilihat anak ini (Colin 4, Darlene 2) |
+| `bridge.maxPerRound` | berapa kata bekal yang boleh ikut diuji dalam satu ronde |
+
+Mengubah `bridge.perLesson` menuntut `npm run bridge` dijalankan ulang.

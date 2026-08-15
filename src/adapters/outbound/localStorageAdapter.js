@@ -11,6 +11,7 @@ function blankProfile(id) {
     dailyLog: {},        // { 'YYYY-MM-DD': { xp, answered, correct, minutes, bySkill } }
     cards: {},           // SRS: { 'yct1:你好': { box, dueOn, seen, correct } }
     lessonStars: {},     // { 'yct1:1:reading': 3 }
+    studied: {},         // sesi belajar tuntas: { 'yct1:1': { firstAt, lastAt, count } }
     badges: [],
     stats: { roundsCompleted: 0, perfectRounds: 0, correctBySkill: {} },
     lastSeen: null
@@ -27,7 +28,9 @@ export class LocalStorageAdapter extends StoragePort {
   constructor(key = appConfig.storageKey) {
     super();
     this.key = key;
-    this.memory = null; // cadangan bila localStorage diblokir (mode privat iOS)
+    this.settingsKey = `${key}/settings`;
+    this.memory = null;         // cadangan bila localStorage diblokir (mode privat iOS)
+    this.memorySettings = null;
   }
 
   read() {
@@ -58,6 +61,27 @@ export class LocalStorageAdapter extends StoragePort {
       localStorage.removeItem(this.key);
     } catch {
       /* diabaikan */
+    }
+  }
+
+  // Setelan perangkat disimpan di kunci terpisah supaya tidak pernah ikut
+  // tersapu saat progres di-reset, dan tidak pernah ikut terkirim ke server.
+  readSettings() {
+    try {
+      const raw = localStorage.getItem(this.settingsKey);
+      return raw ? JSON.parse(raw) : this.memorySettings || {};
+    } catch {
+      return this.memorySettings || {};
+    }
+  }
+
+  writeSettings(settings) {
+    this.memorySettings = settings;
+    try {
+      localStorage.setItem(this.settingsKey, JSON.stringify(settings));
+      return true;
+    } catch {
+      return false;
     }
   }
 
