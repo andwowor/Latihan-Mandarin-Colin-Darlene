@@ -743,6 +743,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 
 .field { display: block; margin-bottom: 12px; }
 .field__label { display: block; font-size: .8rem; font-weight: 800; margin-bottom: 5px; }
+.field__label--row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.field__reveal {
+  border: none; background: transparent;
+  color: var(--brand);
+  font-size: .78rem; font-weight: 800;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
 .field__input {
   width: 100%;
   border: 2px solid var(--line);

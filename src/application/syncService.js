@@ -63,6 +63,18 @@ export class SyncService {
     };
   }
 
+  /**
+   * PIN yang tersimpan di perangkat ini.
+   *
+   * Sengaja dipisahkan dari `status()` supaya tidak ikut terbawa setiap kali
+   * keadaan sambungan dibaca — pemanggilnya harus meminta secara khusus.
+   * Gunanya menolong orang tua yang lupa PIN: perangkat yang sudah tersambung
+   * menjadi catatannya sendiri, tanpa perlu menyimpannya di tempat lain.
+   */
+  storedPin() {
+    return this.profiles.settings().sync?.pin || '';
+  }
+
   /** Simpan sambungan lalu segera sinkronkan sekali sebagai uji coba. */
   async connect({ url, code, pin }) {
     const problems = validateConfig({ url, code, pin });

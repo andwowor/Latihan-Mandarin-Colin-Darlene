@@ -281,6 +281,24 @@ Setelah itu progres tersinkron sendiri: saat aplikasi dibuka, tiap selesai
 satu ronde latihan atau sesi belajar, dan saat aplikasi ditutup. Ada juga
 tombol **Sinkronkan Sekarang** kalau ingin memaksa.
 
+**Kalau lupa kode keluarga atau PIN**
+
+Perangkat yang sudah tersambung menyimpan keduanya, jadi ia bisa menjadi
+catatannya sendiri:
+
+1. Di perangkat yang masih tersambung, ketuk **⚙️** → **☁️ Sinkronisasi Online**
+2. **Kode keluarga** sudah terlihat di kolomnya
+3. Untuk PIN-nya, ketuk **👁 Tampilkan** di sebelah kanan label PIN
+
+Catat keduanya di tempat aman — pengelola kata sandi (Apple Passwords/iCloud
+Keychain) atau catatan terkunci. **Jangan menuliskannya di dalam berkas proyek**:
+repositorinya publik, jadi apa pun yang ditulis di situ ikut terbaca siapa pun.
+
+Kalau tidak ada satu pun perangkat yang masih tersambung dan PIN-nya benar-benar
+hilang, datanya tidak bisa dibuka lagi — tetapi tidak ada yang hilang: sambungkan
+saja dengan **kode keluarga baru**, dan progres dari perangkat itu akan terunggah
+sebagai catatan baru.
+
 **Yang perlu diketahui:**
 
 - **Internet mati? Tidak masalah.** Anak tetap bisa berlatih; progresnya

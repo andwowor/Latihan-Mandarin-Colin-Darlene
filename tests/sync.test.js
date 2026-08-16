@@ -273,3 +273,14 @@ test('panggilan bertubi-tubi tidak menumpuk jadi banyak putaran', async () => {
   await Promise.all([sync.sync(), sync.sync(), sync.sync()]);
   assert.ok(remote.log.pulls <= 2, `putaran seharusnya digabung, malah ${remote.log.pulls}`);
 });
+
+test('PIN tersimpan bisa dibaca kembali, tapi tidak ikut di setiap status', () => {
+  const profiles = fakeProfiles(state());
+  const sync = new SyncService(profiles, fakeRemote());
+
+  assert.equal(sync.storedPin(), '1234', 'perangkat yang tersambung menyimpan PIN-nya');
+  assert.equal(sync.status().pin, undefined, 'PIN tidak boleh terbawa di status biasa');
+
+  sync.disconnect();
+  assert.equal(sync.storedPin(), '', 'setelah diputus, tidak ada PIN yang tersisa');
+});
