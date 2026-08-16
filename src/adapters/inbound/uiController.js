@@ -262,6 +262,7 @@ export class UiController {
         leaderboard: this.stats.leaderboard(this.state.periodId),
         report: this.stats.report(pid, this.state.periodId),
         otherReport: this.stats.report(other.id, this.state.periodId),
+        skills: this.stats.skillComparison(this.state.periodId),
         pendingMissions: this.#pendingMissions()
       })
     );

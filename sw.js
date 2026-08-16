@@ -5,13 +5,16 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v7';
+const VERSION = 'mandarin-fun-v8';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
   // Cangkang aplikasi
   'public/', 'public/index.html', 'public/style.css', 'public/app.js', 'public/manifest.json',
   'public/icons/icon-192.png', 'public/icons/icon-512.png', 'public/icons/icon-180.png',
+  // Lambang anak. Boleh belum ada — cache.add yang gagal diabaikan, dan
+  // tampilannya jatuh kembali ke emoji.
+  'public/icons/avatar-colin.png', 'public/icons/avatar-darlene.png',
 
   // Konfigurasi & utilitas
   'src/config/appConfig.js',

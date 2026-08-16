@@ -2,6 +2,28 @@
 
 import { esc, bar } from '../dom.js';
 
+/**
+ * Lambang seorang anak: gambar bila profilnya punya `avatar`, kalau tidak
+ * emoji biasa.
+ *
+ * Ukurannya dinyatakan dalam `em`, jadi satu fungsi ini melayani avatar besar
+ * di layar masuk sampai yang seukuran huruf di keterangan grafik — tanpa perlu
+ * ukuran khusus di tiap tempat.
+ *
+ * Emoji tetap ikut dirender sebagai cadangan yang tersembunyi. Bila gambarnya
+ * belum diunggah atau gagal dimuat, `onerror` menyalakan cadangan itu sehingga
+ * yang muncul emoji, bukan ikon gambar rusak.
+ */
+export function avatar(cfg) {
+  if (!cfg) return '';
+  if (!cfg.avatar) return cfg.emoji || '';
+  return `<span class="avatar-slot">
+    <img class="avatar" src="${esc(cfg.avatar)}" alt="${esc(cfg.name)}"
+         onerror="this.closest('.avatar-slot').classList.add('avatar-slot--fallback')" />
+    <span class="avatar-slot__fallback" aria-hidden="true">${cfg.emoji || ''}</span>
+  </span>`;
+}
+
 export const NAV_ITEMS = [
   { id: 'home',     emoji: '🏠', label: 'Belajar' },
   { id: 'missions', emoji: '🎯', label: 'Misi' },
@@ -31,7 +53,7 @@ export function topBar(snapshot) {
   const c = snapshot.config;
   return `
   <header class="topbar">
-    <button class="topbar__avatar" data-action="switch-profile" aria-label="Ganti profil">${c.emoji}</button>
+    <button class="topbar__avatar" data-action="switch-profile" aria-label="Ganti profil">${avatar(c)}</button>
     <div class="grow">
       <div class="topbar__name">${esc(c.name)}</div>
       <div class="topbar__chips">

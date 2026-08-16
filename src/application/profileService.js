@@ -87,15 +87,30 @@ export class ProfileService {
   /** Hitung ulang lencana; kembalikan daftar id lencana terkini. */
   refreshBadges(profileId, clearedLevels = []) {
     const d = this.data(profileId);
+    const cfg = this.profileConfig(profileId);
     const lvl = levelFromXp(d.xp);
+    const days = Object.values(d.dailyLog || {});
     const streak = computeStreak(Object.keys(d.dailyLog || {}).filter((k) => d.dailyLog[k].answered > 0));
+    const stars = Object.values(d.lessonStars || {});
+
     const summary = {
+      xp: d.xp || 0,
+      level: lvl.level,
       roundsCompleted: d.stats?.roundsCompleted || 0,
       perfectRounds: d.stats?.perfectRounds || 0,
       longestStreak: streak.longest,
       masteredWords: countMastered(d.cards),
+      seenWords: Object.keys(d.cards || {}).length,
       correctBySkill: d.stats?.correctBySkill || {},
-      level: lvl.level,
+      studiedLessons: Object.keys(d.studied || {}).length,
+      threeStarLessons: stars.filter((s) => s >= 3).length,
+      activeDays: days.filter((x) => (x.answered || 0) > 0).length,
+      // Tanpa target harian yang jelas, "hari target tercapai" tidak bermakna —
+      // jangan sampai setiap hari kosong ikut terhitung.
+      goalDays: cfg?.dailyGoalXp ? days.filter((x) => (x.xp || 0) >= cfg.dailyGoalXp).length : 0,
+      bestCombo: days.reduce((max, x) => Math.max(max, x.bestCombo || 0), 0),
+      totalAnswered: days.reduce((sum, x) => sum + (x.answered || 0), 0),
+      totalMinutes: Math.round(days.reduce((sum, x) => sum + (x.minutes || 0), 0)),
       clearedLevels
     };
     return evaluateBadges(summary);

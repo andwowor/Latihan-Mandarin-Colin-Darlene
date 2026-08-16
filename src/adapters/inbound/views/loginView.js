@@ -1,6 +1,7 @@
 // Halaman pilih profil. Tanpa password: satu ketukan pada nama = masuk.
 
 import { esc } from '../dom.js';
+import { avatar } from './shared.js';
 
 export function loginView(snapshots) {
   return `
@@ -25,7 +26,7 @@ function card(s) {
   const c = s.config;
   return `
   <button class="profile-card" data-profile="${c.id}" style="border-color:${c.color}">
-    <div class="profile-card__avatar">${c.emoji}</div>
+    <div class="profile-card__avatar">${avatar(c)}</div>
     <div class="profile-card__name" style="color:${c.color}">${esc(c.name)}</div>
     <div class="profile-card__meta">${c.age} tahun · ${esc(c.grade)}</div>
     <div class="profile-card__stats">

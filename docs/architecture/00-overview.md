@@ -18,7 +18,10 @@ Android, iPhone/iPad, tablet, dan laptop melalui Chrome atau Safari.
 - **Misi harian** wajib: jumlah pelajaran diselesaikan, XP terkumpul, dan
   pelajaran sempurna tanpa kesalahan.
 - Papan skor harian, mingguan, bulanan, 3 bulan, 6 bulan, dan tahunan yang
-  membandingkan Colin dengan Darlene.
+  membandingkan Colin dengan Darlene — termasuk ketepatan per keterampilan
+  yang disandingkan berdampingan.
+- **64 lencana** dalam tujuh kelompok bertingkat, agar selalu ada target
+  berikutnya yang terasa dekat.
 - Konten bersumber dari buku YCT 1–6 dan HSK 1–3 milik keluarga.
 
 ## Status konten

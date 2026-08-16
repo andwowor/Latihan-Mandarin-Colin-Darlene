@@ -10,7 +10,7 @@ import { newCard, reviewCard, isDue, isMastered, prioritise } from '../src/domai
 import { missionsForDay, evaluateMissions, MISSION_KINDS, ALL_MISSIONS_BONUS_XP } from '../src/domain/missions.js';
 import { applyRound, totalsForPeriod, emptyDay, recentDayKeys, compareProfiles } from '../src/domain/progress.js';
 import { buildRound, grade, segmentSentence, wordKey } from '../src/domain/exerciseFactory.js';
-import { evaluateBadges } from '../src/domain/rewards.js';
+import { evaluateBadges, BADGES, BADGE_GROUPS, groupedBadges, nextBadges } from '../src/domain/rewards.js';
 
 // ------------------------------------------------------------------ scoring
 
@@ -347,4 +347,90 @@ test('lencana diberikan sesuai pencapaian', () => {
   assert.ok(some.includes('yct1-clear'));
   assert.ok(!some.includes('streak-30'));
   assert.ok(!some.includes('words-150'));
+});
+
+// ------------------------------------------------------------------ lencana
+
+test('katalog lencana tidak punya id maupun lambang kembar', () => {
+  const ids = BADGES.map((b) => b.id);
+  const emojis = BADGES.map((b) => b.emoji);
+  assert.equal(new Set(ids).size, ids.length, 'id lencana harus unik');
+  assert.equal(new Set(emojis).size, emojis.length, 'lambang lencana harus unik agar mudah dibedakan');
+});
+
+test('setiap lencana lengkap dan masuk kelompok yang dikenal', () => {
+  const groups = new Set(BADGE_GROUPS.map((g) => g.id));
+  for (const b of BADGES) {
+    assert.ok(b.titleId && b.descId, `${b.id} kekurangan judul atau keterangan`);
+    assert.equal(typeof b.test, 'function', `${b.id} tidak punya syarat`);
+    assert.ok(groups.has(b.group), `${b.id} berada di kelompok tak dikenal: ${b.group}`);
+  }
+});
+
+test('progres kosong tidak memberi satu lencana pun', () => {
+  const kosong = {
+    xp: 0, level: 1, roundsCompleted: 0, perfectRounds: 0, longestStreak: 0,
+    masteredWords: 0, seenWords: 0, correctBySkill: {}, studiedLessons: 0,
+    threeStarLessons: 0, activeDays: 0, goalDays: 0, bestCombo: 0,
+    totalAnswered: 0, totalMinutes: 0, clearedLevels: []
+  };
+  assert.deepEqual(evaluateBadges(kosong), []);
+});
+
+test('ringkasan yang tidak lengkap tidak menjatuhkan evaluasi', () => {
+  // Cadangan data lama bisa saja tidak punya medan-medan baru.
+  assert.doesNotThrow(() => evaluateBadges({ clearedLevels: [] }));
+  assert.doesNotThrow(() => evaluateBadges({}));
+});
+
+test('lencana bertingkat: capaian besar ikut membuka tingkat di bawahnya', () => {
+  const ids = evaluateBadges({
+    xp: 6000, level: 16, roundsCompleted: 60, perfectRounds: 12, longestStreak: 15,
+    masteredWords: 260, seenWords: 320, studiedLessons: 33, threeStarLessons: 11,
+    activeDays: 55, goalDays: 12, bestCombo: 21, totalAnswered: 2100, totalMinutes: 620,
+    correctBySkill: { reading: 310, listening: 310, speaking: 210, writing: 205 },
+    clearedLevels: ['yct1', 'yct2']
+  });
+
+  for (const id of ['rounds-10', 'rounds-50', 'words-25', 'words-80', 'words-150', 'words-250',
+                    'streak-3', 'streak-7', 'streak-14', 'study-1', 'study-10', 'study-30',
+                    'level-5', 'level-10', 'level-15', 'xp-1000', 'xp-5000',
+                    'reader', 'reader-pro', 'all-four-skills', 'all-four-master',
+                    'combo-10', 'combo-20', 'yct1-clear', 'yct2-clear']) {
+    assert.ok(ids.includes(id), `${id} seharusnya sudah diraih`);
+  }
+  for (const id of ['rounds-200', 'words-400', 'streak-30', 'level-20', 'xp-20000',
+                    'yct3-clear', 'yct-all', 'three-star-40']) {
+    assert.ok(!ids.includes(id), `${id} belum boleh diraih`);
+  }
+});
+
+test('lencana "Naga YCT" hanya terbuka bila seluruh jalur YCT tamat', () => {
+  const enam = ['yct1', 'yct2', 'yct3', 'yct4', 'yct5', 'yct6'];
+  assert.ok(evaluateBadges({ clearedLevels: enam }).includes('yct-all'));
+  assert.ok(!evaluateBadges({ clearedLevels: enam.slice(0, 5) }).includes('yct-all'));
+});
+
+test('pengelompokan mencakup seluruh lencana dan menghitung yang sudah diraih', () => {
+  const groups = groupedBadges(['first-step', 'streak-3', 'streak-7']);
+  const total = groups.reduce((a, g) => a + g.total, 0);
+  const earned = groups.reduce((a, g) => a + g.earnedCount, 0);
+
+  assert.equal(total, BADGES.length, 'tidak boleh ada lencana yang tercecer di luar kelompok');
+  assert.equal(earned, 3);
+  assert.equal(groups.find((g) => g.id === 'tekun').earnedCount, 2);
+});
+
+test('incaran berikutnya hanya berisi lencana yang belum diraih', () => {
+  const semua = BADGES.map((b) => b.id);
+  const next = nextBadges(['first-step'], 3);
+  assert.equal(next.length, 3);
+  assert.ok(!next.some((b) => b.id === 'first-step'));
+  assert.deepEqual(nextBadges(semua, 3), [], 'kalau sudah lengkap, tidak ada incaran');
+});
+
+test('incaran berikutnya diambil dari kelompok berbeda-beda', () => {
+  const next = nextBadges([], 3);
+  const kelompok = next.map((b) => b.group);
+  assert.equal(new Set(kelompok).size, 3, 'tiga incaran harus dari tiga kelompok berbeda');
 });

@@ -59,6 +59,42 @@ export class StatsService {
     };
   }
 
+  /**
+   * Ketepatan tiap keterampilan, berdampingan untuk kedua anak.
+   *
+   * Urutan anaknya selalu mengikuti `appConfig.profiles`, bukan siapa yang
+   * sedang masuk — supaya warna dan posisi seorang anak tidak pernah berpindah
+   * dari satu kunjungan ke kunjungan berikutnya.
+   *
+   * `tried` dibedakan dari `accuracy: 0` dengan sengaja: "belum pernah
+   * mencoba" dan "dicoba tapi semua salah" adalah dua hal yang sangat berbeda
+   * bagi orang tua, dan keduanya sama-sama menghasilkan batang kosong.
+   */
+  skillComparison(periodId, todayKey = toDayKey()) {
+    const reports = appConfig.profiles.map((p) => this.report(p.id, periodId, todayKey));
+
+    return appConfig.skills.map((skill) => {
+      const entries = reports.map((r) => {
+        const stat = r.bySkill[skill.id] || { answered: 0, correct: 0, accuracy: 0 };
+        return {
+          profile: r.profile,
+          answered: stat.answered,
+          correct: stat.correct,
+          accuracy: stat.accuracy || 0,
+          tried: (stat.answered || 0) > 0
+        };
+      });
+
+      return {
+        id: skill.id,
+        labelId: skill.labelId,
+        emoji: skill.emoji,
+        entries,
+        anyTried: entries.some((e) => e.tried)
+      };
+    });
+  }
+
   /** Semua periode sekaligus, untuk tabel ringkas di dasbor orang tua. */
   allPeriods(profileId, todayKey = toDayKey()) {
     return PERIODS.map((p) => ({

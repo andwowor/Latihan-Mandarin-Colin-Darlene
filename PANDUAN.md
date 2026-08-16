@@ -124,6 +124,33 @@ Untuk menghentikan server: kembali ke Terminal, tekan `Ctrl + C`.
 **Melihat perbandingan Colin vs Darlene:** ketuk tab **📊 Progres** di bawah,
 lalu pilih periode (Harian, Mingguan, Bulanan, 3 Bulan, 6 Bulan, Tahunan).
 
+Di dalamnya ada **🎓 Ketepatan per Keterampilan** yang menyandingkan kedua anak
+langsung berdampingan — satu kelompok untuk tiap keterampilan, dua batang di
+dalamnya. Warna melekat pada anaknya (Colin biru, Darlene merah muda) dan
+dipakai sama persis di grafik XP maupun di sini, jadi satu warna selalu berarti
+satu orang.
+
+Dua hal yang sengaja dibedakan di situ:
+
+- Angka di sebelah batang, mis. **82% · 41/50**, memuat ketepatan **dan** berapa
+  soal yang sudah dikerjakan. Ketepatan 100% dari 3 soal jelas belum sekuat 82%
+  dari 50 soal.
+- **"belum dicoba"** (jalur kosong bergaris putus) berbeda dari **0%** (batang
+  yang benar-benar ada tapi pendek). Yang pertama berarti keterampilan itu belum
+  disentuh sama sekali pada periode tersebut.
+
+### 🏅 Lencana
+
+Ada **64 lencana** dalam tujuh kelompok: Langkah Awal, Sesi Belajar, Ketekunan,
+Kosakata, Keterampilan, Kesempurnaan, dan Perjalanan. Hampir semuanya
+bertingkat — 25 kata, 80 kata, 150 kata, dan seterusnya — supaya selalu ada
+target berikutnya yang terasa bisa dijangkau.
+
+Di bagian atas tab **🏅 Hadiah** ada **🎯 Incaran Berikutnya**: tiga lencana
+terdekat yang belum diraih, sengaja diambil dari tiga kelompok berbeda supaya
+anak punya beberapa jalan sekaligus, bukan tiga tingkat berturut dari capaian
+yang sama.
+
 ### 3a. 📘 Sesi belajar — kenalan dulu, baru soal
 
 Dulu anak langsung dihadapkan pada soal berisi kata yang belum pernah mereka
@@ -313,6 +340,7 @@ Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
    | `openLevels: ['yct1','yct2']` | Level yang selalu terbuka untuk anak itu |
 
    | `bridgePerLesson: 4` | Berapa kata bekal HSK yang dilihat anak itu tiap pelajaran (Colin 4, Darlene 2) |
+   | `avatar: 'icons/avatar-colin.png'` | Berkas gambar lambang anak. Kosongkan (hapus barisnya) untuk kembali memakai emoji |
 
 3. Untuk mengubah jumlah soal atau nyawa, cari bagian `session:`:
 
@@ -331,6 +359,37 @@ Bila terasa terlalu berat atau terlalu ringan, ubah satu berkas:
 
 5. Simpan (`Cmd + S`), lalu muat ulang halaman di browser.
 6. Agar ikut terbit di tautan online, jalankan `git push` (lihat bagian 9).
+
+---
+
+## 5a. Mengganti lambang (avatar) anak
+
+Lambang anak boleh berupa gambar sendiri, bukan hanya emoji. Berguna untuk
+hewan yang belum punya emoji resmi — kapibara, misalnya.
+
+**Syarat gambarnya:**
+
+| Hal | Ketentuan |
+|---|---|
+| Nama berkas | `avatar-colin.png` atau `avatar-darlene.png` — persis, huruf kecil semua |
+| Ukuran | Persegi, sebaiknya 512 × 512 piksel |
+| Latar | **Transparan**. Latar putih akan terlihat sebagai kotak putih pada tema gelap |
+| Berat | Di bawah 300 KB supaya cepat dimuat |
+
+**Cara memasangnya lewat browser (tanpa Terminal):**
+
+1. Buka https://github.com/andwowor/Latihan-Mandarin-Colin-Darlene
+2. Masuk ke folder **`public`** → **`icons`**
+3. Klik tombol **Add file** → **Upload files**
+4. Seret berkas PNG-nya ke halaman itu. **Pastikan namanya sudah benar sebelum
+   diunggah** — GitHub memakai nama berkas apa adanya.
+5. Gulir ke bawah, klik **Commit changes**
+
+Satu menit kemudian tautan dashboard sudah memakainya. Di HP, tutup penuh
+aplikasinya lalu buka lagi agar versi barunya terambil.
+
+**Kalau gambarnya belum ada atau salah nama**, aplikasi otomatis kembali
+menampilkan emoji — tidak akan muncul ikon gambar rusak.
 
 ---
 
