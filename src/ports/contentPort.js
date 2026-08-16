@@ -55,4 +55,14 @@ export class ContentPort {
   async loadBridge() {
     return null;
   }
+
+  /**
+   * Kamus lafal (huruf Han → daftar bunyi tanpa nada), untuk menilai ucapan.
+   * `null` berarti penilaian jatuh kembali ke perbandingan per huruf.
+   *
+   * @returns {Promise<object|null>}
+   */
+  async loadReadings() {
+    return null;
+  }
 }

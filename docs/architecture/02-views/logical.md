@@ -45,7 +45,7 @@ tanpa aturan penyisipan tercecer di dua tempat.
 | `srs.js` | kotak Leitner untuk pengulangan kata |
 | `rewards.js` | katalog 64 lencana dalam tujuh kelompok, beserta syarat dan pemilihan "incaran berikutnya" |
 | `progress.js` | rekaman harian dan agregasi per periode |
-| `pronunciation.js` | membandingkan ucapan anak dengan target (jarak sunting per karakter) |
+| `pronunciation.js` | membandingkan ucapan anak dengan target **berdasarkan bunyi**, memakai kamus lafal; homofon bernilai penuh (ADR-0011) |
 | `exerciseFactory.js` | membangkitkan soal + kunci jawabannya, dan menilai jawaban |
 | `studyDeck.js` | menyusun materi pelajaran menjadi tumpukan kartu sesi belajar (ADR-0008) |
 | `hskBridge.js` | memilih kata HSK yang dititipkan ke tiap pelajaran YCT (ADR-0009) |

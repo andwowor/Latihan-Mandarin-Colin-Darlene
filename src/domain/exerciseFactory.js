@@ -9,7 +9,7 @@ import { shuffle, sampleMany, uid } from '../shared/utils.js';
 import { gradeSpeech } from './pronunciation.js';
 
 const MAX_OPTIONS = 4;
-const DEFAULT_ACCEPT_SCORE = 0.6;
+const DEFAULT_ACCEPT_SCORE = 0.5;
 
 /** Kunci unik sebuah kata, dipakai oleh SRS. */
 export function wordKey(levelId, word) {
@@ -472,7 +472,8 @@ export function grade(question, response, opts = {}) {
     const result = gradeSpeech(
       question.target,
       response?.transcripts ?? response,
-      opts.acceptScore ?? DEFAULT_ACCEPT_SCORE
+      opts.acceptScore ?? DEFAULT_ACCEPT_SCORE,
+      opts.readings || {}
     );
     return { correct: result.correct, detail: result };
   }

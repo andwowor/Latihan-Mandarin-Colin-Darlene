@@ -8,6 +8,7 @@
     "start": "python3 -m http.server 4173",
     "test": "node --test tests/*.test.js",
     "bridge": "node tools/build-bridge.mjs",
+    "readings": "node tools/build-readings.mjs",
     "build": "node tools/build-standalone.mjs ./node_modules/.bin/esbuild"
   }
 }
