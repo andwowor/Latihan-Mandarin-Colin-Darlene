@@ -66,7 +66,10 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
 5. Buku memperkenalkan kata lewat **halaman materi**, bukan langsung lewat soal.
    Aplikasi versi awal melewatkan tahap itu, sehingga soal pertama sebuah
    pelajaran menguji kata yang belum pernah dilihat anak. → ADR-0008
-6. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
+6. **Pengenal suara mengembalikan huruf hasil tebakan, bukan bunyi.** Dalam
+   bahasa yang penuh homofon, tebakan itu sering meleset — sehingga penilaian
+   per huruf menghukum anak atas kekeliruan mesin. → ADR-0011
+7. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
    saja. Irisan itu dipakai untuk menyiapkan anak jauh sebelum masuk HSK. → ADR-0009
 
 ## Peta dokumen

@@ -45,6 +45,8 @@ tunggu seperti Duolingo — anak bisa langsung mengulang.
 | Warna anak berpindah orang saat profil diganti | Warna diambil dari `profile.color`, bukan dari posisi; dipakai sama di grafik XP dan perbandingan keterampilan |
 | Dua anak sulit dibedakan oleh pembaca buta warna | Palet diuji dengan validator (ΔE 13.9 protan, di atas ambang 8), ditambah nama + lambang di tiap baris |
 | "Belum dicoba" terbaca sebagai "semua salah" | Jalur kosong bergaris putus dan teks "belum dicoba", bukan batang 0% |
+| Pengenal suara meleset ke homofon | Penilaian membandingkan bunyi memakai kamus lafal; homofon bernilai penuh (ADR-0011) |
+| Anak salah nada tetap diluluskan | Disengaja: nada yang teramati adalah nada kamus dari huruf tebakan mesin, bukan nada anak |
 | Lambang anak berupa gambar gagal dimuat | Emoji ikut dirender sebagai cadangan tersembunyi; `onerror` menyalakannya |
 
 ## Verifikasi yang sudah dilakukan
@@ -112,3 +114,5 @@ tunggu seperti Duolingo — anak bisa langsung mengulang.
   yang terbesar, bukan dijumlahkan (lihat ADR-0010).
 - Sesi belajar belum punya pemeriksaan cepat di akhir (mis. dua kartu balik
   kata). Sengaja ditunda supaya tahap perkenalan tetap bebas tekanan.
+- Kamus lafal hanya mencakup huruf yang ada di kurikulum. Bila pengenal suara
+  menebak huruf di luar itu, penilaiannya jatuh kembali ke perbandingan huruf.

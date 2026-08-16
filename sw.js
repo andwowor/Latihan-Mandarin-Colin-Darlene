@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v8';
+const VERSION = 'mandarin-fun-v9';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -74,6 +74,7 @@ const ASSETS = [
   // Kurikulum
   'public/data/curriculum/index.json',
   'public/data/curriculum/bridge.json',
+  'public/data/curriculum/readings.json',
   'public/data/curriculum/yct1.json',
   'public/data/curriculum/yct2.json',
   'public/data/curriculum/yct3.json',

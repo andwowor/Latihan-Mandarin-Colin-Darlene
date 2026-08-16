@@ -99,9 +99,14 @@ export const appConfig = {
     pitch: 1.05,
 
     // Latihan berbicara
-    maxAlternatives: 5,       // berapa tebakan diminta dari pengenal suara
+    maxAlternatives: 8,       // berapa tebakan diminta dari pengenal suara
     listenTimeoutMs: 7000,    // berhenti mendengar setelah sekian lama
-    acceptScore: 0.6          // ambang lulus; longgar, karena penuturnya anak-anak
+    // Ambang lulus. Sengaja longgar: penuturnya anak 5 dan 7 tahun, dan
+    // pengenal suara sendiri kerap meleset ke huruf lain yang bunyinya sama.
+    // Penilaiannya membandingkan bunyi (lihat domain/pronunciation.js), jadi
+    // homofon sudah bernilai penuh — ambang ini hanya menolong huruf yang
+    // tidak ada di kamus lafal.
+    acceptScore: 0.5
   },
 
   skills: [

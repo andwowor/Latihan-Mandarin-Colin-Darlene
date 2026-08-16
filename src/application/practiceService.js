@@ -16,6 +16,7 @@ export class PracticeService {
     this.profiles = profiles;
     this.missions = missions;
     this.round = null;
+    this.readings = null;   // kamus lafal, dimuat sekali saat ronde pertama
   }
 
   /** Siapkan ronde baru. Mengembalikan objek ronde siap dimainkan. */
@@ -23,6 +24,12 @@ export class PracticeService {
     const level = await this.content.loadLevel(levelId);
     const lesson = (level.lessons || []).find((l) => l.number === lessonNumber);
     if (!lesson) throw new Error(`Pelajaran ${lessonNumber} tidak ditemukan di ${levelId}`);
+
+    // Kamus lafal dipakai menilai ucapan. Kegagalan memuatnya tidak boleh
+    // menghentikan latihan — penilaian tinggal jatuh ke perbandingan huruf.
+    if (this.readings === null && this.content.loadReadings) {
+      this.readings = (await this.content.loadReadings().catch(() => null)) || {};
+    }
 
     const pool = (level.lessons || []).flatMap((l) => l.vocab || []);
     const profile = this.profiles.data(profileId);
@@ -89,7 +96,10 @@ export class PracticeService {
     const question = this.current();
     if (!round || !question) return null;
 
-    const { correct } = grade(question, response);
+    const { correct } = grade(question, response, {
+      acceptScore: appConfig.speech.acceptScore,
+      readings: this.readings || {}
+    });
     const xpGained = correct ? xpForAnswer(round.streakCount) : 0;
 
     round.answered++;

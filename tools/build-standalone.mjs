@@ -27,7 +27,7 @@ fs.mkdirSync(tmp, { recursive: true });
 // --- 1. Kumpulkan kurikulum menjadi satu objek -----------------------------
 
 const index = JSON.parse(fs.readFileSync(path.join(curriculumDir, 'index.json'), 'utf8'));
-const bundle = { index, levels: {}, bridge: null };
+const bundle = { index, levels: {}, bridge: null, readings: null };
 for (const meta of index.levels) {
   const file = path.join(curriculumDir, meta.file);
   if (meta.status === 'ready' && fs.existsSync(file)) {
@@ -42,6 +42,15 @@ if (fs.existsSync(bridgeFile)) {
   bundle.bridge = JSON.parse(fs.readFileSync(bridgeFile, 'utf8'));
 } else {
   console.warn('⚠️  bridge.json belum ada — jalankan "npm run bridge" agar bekal HSK ikut masuk.');
+}
+
+// Kamus lafal ikut menyatu, supaya penilaian berbicara di versi satu-berkas
+// sama longgarnya dengan versi PWA (lihat ADR-0011).
+const readingsFile = path.join(curriculumDir, 'readings.json');
+if (fs.existsSync(readingsFile)) {
+  bundle.readings = JSON.parse(fs.readFileSync(readingsFile, 'utf8')).readings || null;
+} else {
+  console.warn('⚠️  readings.json belum ada — jalankan "npm run readings" agar homofon tidak dianggap salah.');
 }
 
 // --- 2. Adapter konten versi dalam-berkas ---------------------------------
@@ -65,6 +74,9 @@ export class InlineContentAdapter extends ContentPort {
   }
   async loadBridge() {
     return CURRICULUM.bridge;
+  }
+  async loadReadings() {
+    return CURRICULUM.readings;
   }
 }\n`
 );

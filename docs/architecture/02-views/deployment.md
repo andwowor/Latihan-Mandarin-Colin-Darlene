@@ -16,7 +16,8 @@ akar proyek/                 ← ini yang di-serve sebagai document root
 │   ├── icons/
 │   ├── assets/audio/        opsional: MP3 asli penerbit + manifest.json
 │   └── data/curriculum/     kurikulum JSON (di dalam public/ agar ter-cache)
-│       └── bridge.json      rencana bekal HSK, hasil `npm run bridge`
+│       ├── bridge.json      rencana bekal HSK, hasil `npm run bridge`
+│       └── readings.json    kamus lafal, hasil `npm run readings`
 ├── src/                     modul ES (domain, application, ports, adapters)
 ├── server/                  OPSIONAL: Worker penyimpan progres + panduannya
 ├── tests/                   pengujian domain (node --test)
@@ -29,11 +30,12 @@ akar proyek/                 ← ini yang di-serve sebagai document root
 Dua berkas tidak ditulis tangan dan harus dibangun ulang saat kurikulum berubah:
 
 ```bash
-npm run bridge     # public/data/curriculum/bridge.json  (wajib; dijaga npm test)
-npm run build      # dist/mandarin-fun.html              (versi satu berkas)
+npm run bridge     # public/data/curriculum/bridge.json    (wajib; dijaga npm test)
+npm run readings   # public/data/curriculum/readings.json  (wajib; dijaga npm test)
+npm run build      # dist/mandarin-fun.html                (versi satu berkas)
 ```
 
-`npm test` akan gagal bila `bridge.json` tertinggal dari kurikulumnya, sehingga
+`npm test` akan gagal bila salah satunya tertinggal dari kurikulumnya, sehingga
 tidak mungkin lupa tanpa ketahuan.
 
 ## Kenapa `sw.js` di akar, bukan di `public/`?

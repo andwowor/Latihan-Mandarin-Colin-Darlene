@@ -238,9 +238,20 @@ menilai seberapa mirip ucapannya.
   Aplikasi ini sendiri tidak merekam maupun menyimpan apa pun.
 - Mikrofon hanya menyala saat tombolnya ditekan, mati sendiri setelah
   7 detik, dan langsung mati saat pindah layar.
-- **Penilaiannya sengaja longgar** (lulus di kemiripan 60%). Anak 5 tahun
-  tidak akan sempurna, dan pengenal suara pun sering salah dengar satu
-  karakter. Lebih baik anak terus berani bersuara.
+- **Penilaiannya membandingkan bunyi, bukan tulisan.** Ini penting: pengenal
+  suara menerima suara anak lalu *menebak* huruf mana yang dimaksud, dan dalam
+  bahasa Mandarin yang penuh homofon tebakan itu sering meleset. Anak
+  mengucapkan 妈妈 dengan benar, yang tertulis 麻麻 — bunyinya sama persis.
+  Dulu itu dinilai salah total; sekarang bernilai penuh.
+- **Bunyi yang berdekatan** (zh/z, ch/c, sh/s, ng/n, r/l) hanya dihitung
+  setengah kesalahan — itu kekeliruan paling lazim pada anak kecil.
+- **Nada sengaja tidak dinilai.** Nada yang bisa diamati aplikasi adalah nada
+  kamus dari huruf yang ditebak mesin, bukan nada yang benar-benar diucapkan
+  anak. Nada tetap dilatih lewat mendengar contoh dan menirukan, bukan lewat
+  penolakan.
+- **Ambang lulusnya longgar** (kemiripan 50%). Anak 5 tahun tidak akan
+  sempurna. Lebih baik anak terus berani bersuara daripada berhenti mencoba
+  karena merasa selalu disalahkan.
 - Kalau perangkatnya tidak mendukung (mis. Firefox), aplikasi otomatis
   berganti ke mode **"dengarkan lalu tirukan"**: anak menirukan dengan
   lantang, lalu Bapak/Ibu yang menekan "Sudah bisa" atau "Belum".

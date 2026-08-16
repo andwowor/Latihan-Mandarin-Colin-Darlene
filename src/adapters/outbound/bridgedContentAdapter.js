@@ -33,6 +33,10 @@ export class BridgedContentAdapter extends ContentPort {
     return this.bridge;
   }
 
+  async loadReadings() {
+    return this.inner.loadReadings();
+  }
+
   async loadLevel(levelId) {
     if (this.cache.has(levelId)) return this.cache.get(levelId);
     const level = await this.inner.loadLevel(levelId);

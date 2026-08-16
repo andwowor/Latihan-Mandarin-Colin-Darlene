@@ -10,6 +10,7 @@ export class StaticContentAdapter extends ContentPort {
     this.levelCache = new Map();
     this.indexCache = null;
     this.bridgeCache = undefined;
+    this.readingsCache = undefined;
   }
 
   /** Rencana jembatan HSK, hasil `npm run bridge`. Boleh tidak ada. */
@@ -31,6 +32,19 @@ export class StaticContentAdapter extends ContentPort {
     const data = await res.json();
     this.indexCache = data.levels;
     return this.indexCache;
+  }
+
+  /** Kamus lafal, hasil `npm run readings`. Boleh tidak ada. */
+  async loadReadings() {
+    if (this.readingsCache !== undefined) return this.readingsCache;
+    try {
+      const res = await fetch(`${this.base}/readings.json`);
+      const data = res.ok ? await res.json() : null;
+      this.readingsCache = data?.readings || null;
+    } catch {
+      this.readingsCache = null;
+    }
+    return this.readingsCache;
   }
 
   async loadLevel(levelId) {

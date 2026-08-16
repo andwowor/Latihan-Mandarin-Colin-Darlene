@@ -77,7 +77,10 @@ perangkat (lihat ADR-0010).
 - 📖 **Membaca** — 汉字→arti, arti→汉字, pinyin→汉字, 汉字→pinyin, arti kalimat
 - 🎧 **Mendengar** — dengar lalu pilih tulisan/arti/kalimat, ada tombol 🐢 pelan
 - 🎤 **Berbicara** — ucapkan lewat mikrofon, suaranya dinilai otomatis; ada juga
-  mode "dengarkan lalu tirukan" tanpa melihat tulisan
+  mode "dengarkan lalu tirukan" tanpa melihat tulisan. Penilaiannya
+  membandingkan **bunyi**, bukan huruf: pengenal suara sering meleset ke
+  homofon (妈妈 → 麻麻), dan anak tidak boleh dihukum atas kekeliruan mesin
+  (lihat ADR-0011)
 - ✍️ **Menulis** — tebalkan huruf di kanvas, susun huruf jadi kata, susun kata
   jadi kalimat
 
@@ -157,6 +160,9 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 4. **Latihan berbicara butuh internet** dan mikrofon: penilaian memakai
    pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
    aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
+5. **Pengenal suara sering meleset ke homofon.** Karena itu penilaiannya
+   membandingkan bunyi, memakai kamus lafal yang diturunkan dari kurikulum
+   sendiri — 771 huruf Han (lihat ADR-0011).
 
 ## Perintah
 
@@ -164,11 +170,12 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 npm start       # jalankan di http://localhost:4173/public/
 npm test        # 93 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
+npm run readings # bangun ulang kamus lafal readings.json
 npm run build   # bangun dist/mandarin-fun.html (versi satu berkas)
 ```
 
-`npm test` sengaja gagal bila `bridge.json` tertinggal dari kurikulumnya, jadi
-tidak mungkin lupa menjalankan `npm run bridge` tanpa ketahuan.
+`npm test` sengaja gagal bila `bridge.json` atau `readings.json` tertinggal dari
+kurikulumnya, jadi tidak mungkin lupa membangunnya ulang tanpa ketahuan.
 
 ## Struktur proyek
 
@@ -176,6 +183,7 @@ tidak mungkin lupa menjalankan `npm run bridge` tanpa ketahuan.
 sw.js                     service worker (scope "/" — lihat deployment.md)
 public/                   cangkang aplikasi: index.html, app.js, style.css, ikon
 public/data/curriculum/   kurikulum JSON per level + bridge.json (bekal HSK)
+                          + readings.json (kamus lafal untuk menilai ucapan)
 src/domain/               logika murni: skor, level, streak, misi, SRS, pelafalan,
                           soal, kartu belajar, jembatan HSK, penggabungan progres
 src/application/          layanan: profil, kurikulum, misi, latihan, belajar,
