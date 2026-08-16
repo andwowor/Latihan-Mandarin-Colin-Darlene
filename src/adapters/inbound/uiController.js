@@ -803,14 +803,21 @@ export class UiController {
       </label>
 
       <label class="field">
-        <span class="field__label">PIN (4-12 angka)</span>
+        <span class="field__label field__label--row">
+          <span>PIN (4-12 angka)</span>
+          ${s.connected ? '<button type="button" class="field__reveal" data-pin-toggle>👁 Tampilkan</button>' : ''}
+        </span>
         <input class="field__input" id="sync-pin" type="password" inputmode="numeric"
-               autocomplete="off" placeholder="••••••" />
+               autocomplete="off" placeholder="••••••"
+               value="${esc(s.connected ? this.sync.storedPin() : '')}" />
       </label>
 
       <p class="small muted" style="margin:0 0 14px">
-        Belum punya alamat server? Panduan memasangnya ada di
-        <code>server/README.md</code> — sekali siapkan, ±10 menit.
+        ${
+          s.connected
+            ? 'Lupa PIN? Ketuk <b>👁 Tampilkan</b> di atas — perangkat yang sudah tersambung menyimpannya. Catat kode dan PIN-nya di tempat aman; keduanya diperlukan setiap kali ada perangkat baru disambungkan.'
+            : 'Belum punya alamat server? Panduan memasangnya ada di <code>server/README.md</code> — sekali siapkan, ±10 menit.'
+        }
       </p>
 
       <button class="btn btn--primary" data-sync-connect>
@@ -832,6 +839,15 @@ export class UiController {
     panel.el.addEventListener('click', async (e) => {
       const btn = e.target.closest('button');
       if (!btn) return;
+
+      // Tampilkan/sembunyikan PIN yang tersimpan di perangkat ini.
+      if (btn.hasAttribute('data-pin-toggle')) {
+        const input = panel.el.querySelector('#sync-pin');
+        const tampilkan = input.type === 'password';
+        input.type = tampilkan ? 'text' : 'password';
+        btn.textContent = tampilkan ? '🙈 Sembunyikan' : '👁 Tampilkan';
+        return;
+      }
 
       if (btn.hasAttribute('data-sync-connect')) {
         const url = panel.el.querySelector('#sync-url').value.trim();
