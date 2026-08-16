@@ -42,6 +42,10 @@ tunggu seperti Duolingo — anak bisa langsung mengulang.
 | Sinkronisasi menimpa progres perangkat lain | Penggabungan yang tidak pernah mengurangi, diuji komutatif & idempoten (ADR-0010) |
 | Server sinkronisasi mati atau internet putus | Sinkronisasi sepenuhnya opsional; `localStorage` tetap sumber kebenaran dan kegagalan hanya dicatat |
 | Sentuhan tak sengaja mem-blok teks di layar sentuh | `user-select: none` di seluruh antarmuka; hanya kolom isian yang dikecualikan |
+| Warna anak berpindah orang saat profil diganti | Warna diambil dari `profile.color`, bukan dari posisi; dipakai sama di grafik XP dan perbandingan keterampilan |
+| Dua anak sulit dibedakan oleh pembaca buta warna | Palet diuji dengan validator (ΔE 13.9 protan, di atas ambang 8), ditambah nama + lambang di tiap baris |
+| "Belum dicoba" terbaca sebagai "semua salah" | Jalur kosong bergaris putus dan teks "belum dicoba", bukan batang 0% |
+| Lambang anak berupa gambar gagal dimuat | Emoji ikut dirender sebagai cadangan tersembunyi; `onerror` menyalakannya |
 
 ## Verifikasi yang sudah dilakukan
 
@@ -61,6 +65,17 @@ tunggu seperti Duolingo — anak bisa langsung mengulang.
   kembali. Nol galat konsol.
 - **`user-select`** diperiksa langsung pada elemen teks yang dirender
   (`none`), sekaligus memastikan kolom isian menu orang tua tetap bisa diketik.
+- **Perbandingan keterampilan** diuji di Chrome headless dengan data dua anak
+  yang ditanam lebih dulu: 8 baris (4 keterampilan × 2 anak), 2 baris "belum
+  dicoba", keterangan warna hadir, tanpa gulir menyamping — di tema terang
+  maupun gelap.
+- **Palet dua anak** divalidasi dengan `validate_palette.js`: lolos keenam
+  pemeriksaan (pita terang, ambang kroma, pemisahan buta warna, ambang
+  penglihatan normal, kontras) terhadap permukaan kartu terang dan gelap.
+- **Galeri lencana** diperiksa merender 64 lencana dalam 7 kelompok beserta
+  tiga incaran berikutnya, tanpa gulir menyamping.
+- **Cadangan lambang anak** diverifikasi: tanpa berkas PNG, yang tampil emoji —
+  bukan ikon gambar rusak.
 
 ## Cacat yang ditemukan dan diperbaiki saat evaluasi
 

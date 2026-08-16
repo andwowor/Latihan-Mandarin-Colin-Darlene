@@ -16,6 +16,10 @@ export const appConfig = {
   // `bridgePerLesson` : berapa kata bekal HSK yang ikut ditampilkan di sesi
   //                     belajar. Darlene (5 th) mendapat porsi lebih sedikit
   //                     supaya satu sesi tidak terlalu panjang.
+  // `avatar`          : berkas gambar untuk lambang anak, relatif terhadap
+  //                     public/index.html. Boleh dikosongkan — bila berkasnya
+  //                     tidak ada atau gagal dimuat, tampilan otomatis jatuh
+  //                     kembali ke `emoji`.
   profiles: [
     {
       id: 'colin',
@@ -23,6 +27,7 @@ export const appConfig = {
       age: 7,
       grade: 'Kelas 2 SD',
       emoji: '🦁',
+      avatar: 'icons/avatar-colin.png',   // kapibara — belum ada emoji resminya
       color: '#2f7ef2',
       colorSoft: '#dbe9ff',
       startLevel: 'yct1',

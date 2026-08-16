@@ -43,7 +43,7 @@ tanpa aturan penyisipan tercecer di dua tempat.
 | `streak.js` | hari berturut-turut, status target harian |
 | `missions.js` | tiga misi harian (pelajaran, XP, pelajaran sempurna) yang dipilih deterministik dari tanggal + id anak |
 | `srs.js` | kotak Leitner untuk pengulangan kata |
-| `rewards.js` | katalog 18 lencana beserta syaratnya |
+| `rewards.js` | katalog 64 lencana dalam tujuh kelompok, beserta syarat dan pemilihan "incaran berikutnya" |
 | `progress.js` | rekaman harian dan agregasi per periode |
 | `pronunciation.js` | membandingkan ucapan anak dengan target (jarak sunting per karakter) |
 | `exerciseFactory.js` | membangkitkan soal + kunci jawabannya, dan menilai jawaban |
@@ -60,7 +60,7 @@ tanpa aturan penyisipan tercecer di dua tempat.
 | `missionService` | status misi hari ini dan pembayaran hadiah XP |
 | `practiceService` | siapkan ronde, nilai jawaban, tutup ronde |
 | `studyService` | jalankan sesi belajar, buka kunci soal, bayar hadiah XP-nya |
-| `statsService` | laporan per periode dan papan skor dua anak |
+| `statsService` | laporan per periode, papan skor, dan perbandingan ketepatan per keterampilan |
 | `syncService` | satu putaran ambil → gabung → kirim, beserta keadaan sambungannya |
 
 ## Catatan tentang penilaian

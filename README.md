@@ -82,7 +82,10 @@ perangkat (lihat ADR-0010).
   jadi kalimat
 
 **Permainan** — XP, multiplier combo (sampai ×3), level, 5 nyawa per ronde,
-bintang 0–3 per pelajaran, peta pelajaran berkelok, 18 lencana, dan streak harian.
+bintang 0–3 per pelajaran, peta pelajaran berkelok, **64 lencana** dalam tujuh
+kelompok, dan streak harian. Galeri lencana menampilkan tiga "incaran
+berikutnya" yang sengaja diambil dari kelompok berbeda, supaya targetnya
+beragam dan selalu ada yang terasa dekat.
 
 **🎯 Misi harian** — tiga misi yang berganti setiap hari:
 
@@ -94,8 +97,12 @@ Menuntaskan ketiganya memberi bonus +50 XP. Target Darlene lebih ringan daripada
 Colin, dan misinya tidak berubah di tengah hari.
 
 **📊 Papan skor Colin vs Darlene** — harian, mingguan, bulanan, 3 bulan,
-6 bulan, dan tahunan; lengkap dengan grafik XP dua warna dan ketepatan per
-keterampilan.
+6 bulan, dan tahunan; lengkap dengan grafik XP dua warna dan **ketepatan per
+keterampilan yang menyandingkan kedua anak**. Warna melekat pada anaknya
+(Colin biru, Darlene merah muda) dan dipakai sama di seluruh layar — paletnya
+diuji lolos keterbacaan bagi buta warna di tema terang maupun gelap.
+"Belum dicoba" dibedakan dari "0% benar", karena keduanya sama-sama
+menghasilkan batang kosong tetapi artinya jauh berbeda.
 
 **Pengulangan cerdas** — kata yang sering salah muncul lebih sering (sistem
 kotak Leitner), dan kemajuannya terlihat di tab 📚 Kamus.
@@ -174,6 +181,7 @@ src/domain/               logika murni: skor, level, streak, misi, SRS, pelafala
 src/application/          layanan: profil, kurikulum, misi, latihan, belajar,
                           statistik, sinkronisasi
 src/ports/                kontrak: konten, penyimpanan, suara, pengenal suara, sinkronisasi
+public/icons/             ikon aplikasi + lambang (avatar) anak
 src/adapters/             UI (inbound) + JSON/localStorage/TTS/mikrofon/HTTP (outbound)
 server/                   OPSIONAL: penyimpan progres (Cloudflare Worker) + panduannya
 tools/                    build-bridge.mjs, build-standalone.mjs
@@ -201,5 +209,6 @@ Beberapa yang paling mungkin ingin disetel:
 | `study.xpFirstTime` / `xpRepeat` | hadiah XP menuntaskan dan mengulang sesi belajar |
 | `profiles[].bridgePerLesson` | berapa kata bekal HSK yang dilihat anak ini (Colin 4, Darlene 2) |
 | `bridge.maxPerRound` | berapa kata bekal yang boleh ikut diuji dalam satu ronde |
+| `profiles[].avatar` | berkas gambar lambang anak (mis. `icons/avatar-colin.png`); kosongkan untuk memakai `emoji` |
 
 Mengubah `bridge.perLesson` menuntut `npm run bridge` dijalankan ulang.

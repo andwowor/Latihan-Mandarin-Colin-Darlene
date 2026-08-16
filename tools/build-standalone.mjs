@@ -137,11 +137,28 @@ execFileSync(esbuild, [
   `--outfile=${jsPath}`
 ], { stdio: 'inherit' });
 
+let bundled = fs.readFileSync(jsPath, 'utf8');
+
+// Lambang anak ikut ditanam sebagai data URI. Tanpa ini versi satu-berkas
+// akan mencari berkas gambar yang tidak ada di sebelahnya, lalu jatuh ke
+// emoji cadangan — jalan, tapi tidak sama dengan versi PWA-nya.
+const MIME = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
+let inlinedAvatars = 0;
+for (const rel of [...new Set(bundled.match(/icons\/avatar-[\w.-]+/g) || [])]) {
+  const file = path.join(root, 'public', rel);
+  if (!fs.existsSync(file)) continue;
+  const mime = MIME[path.extname(file).toLowerCase()];
+  if (!mime) continue;
+  const dataUri = `data:${mime};base64,${fs.readFileSync(file).toString('base64')}`;
+  bundled = bundled.split(rel).join(dataUri);
+  inlinedAvatars++;
+}
+
 // esbuild meng-escape literal string, tapi TIDAK literal regex — padahal
 // exerciseFactory.js memakai regex berisi tanda baca Han (mis. /[。！？]/).
 // Karena itu seluruh keluaran di-escape sendiri per unit UTF-16: hasilnya
 // valid baik di dalam string, template, maupun kelas karakter regex.
-const js = fs.readFileSync(jsPath, 'utf8').replace(/[^\x00-\x7F]/g, (unit) =>
+const js = bundled.replace(/[^\x00-\x7F]/g, (unit) =>
   '\\u' + unit.charCodeAt(0).toString(16).padStart(4, '0')
 );
 
@@ -188,4 +205,8 @@ fs.writeFileSync(outFile, html);
 fs.rmSync(tmp, { recursive: true, force: true });
 
 const kb = (fs.statSync(outFile).size / 1024).toFixed(0);
-console.log(`✅ ${path.relative(root, outFile)} — ${kb} KB, ${Object.keys(bundle.levels).length} level, ${lessons} pelajaran, ${words} kata`);
+console.log(
+  `✅ ${path.relative(root, outFile)} — ${kb} KB, ${Object.keys(bundle.levels).length} level, ` +
+  `${lessons} pelajaran, ${words} kata` +
+  (inlinedAvatars ? `, ${inlinedAvatars} lambang anak ikut ditanam` : '')
+);

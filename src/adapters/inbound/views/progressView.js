@@ -1,10 +1,10 @@
 // Laporan progres: perbandingan Colin vs Darlene per periode,
 // grafik XP, dan rincian per keterampilan.
 
-import { esc, bar } from '../dom.js';
-import { navBar, topBar } from './shared.js';
+import { esc } from '../dom.js';
+import { navBar, topBar, avatar } from './shared.js';
 
-export function progressView({ snapshot, periods, activePeriod, leaderboard, report, otherReport, pendingMissions }) {
+export function progressView({ snapshot, periods, activePeriod, leaderboard, report, otherReport, skills, pendingMissions }) {
   return `
   <div class="screen screen--pad-nav">
     ${topBar(snapshot)}
@@ -20,8 +20,8 @@ export function progressView({ snapshot, periods, activePeriod, leaderboard, rep
     </div>
 
     ${versusCard(leaderboard)}
-    ${chartCard(report, otherReport, leaderboard)}
-    ${skillsCard(report)}
+    ${chartCard(report, otherReport)}
+    ${skillsCard(skills)}
     ${statsCard(report)}
   </div>
   ${navBar('progress', pendingMissions)}`;
@@ -50,7 +50,7 @@ function versusCard(lb) {
 function side(entry) {
   return `
   <div class="versus__side ${entry.winner ? 'versus__side--win' : ''}">
-    <div class="versus__avatar">${entry.profile.emoji}</div>
+    <div class="versus__avatar">${avatar(entry.profile)}</div>
     <div style="font-weight:800">${esc(entry.profile.name)}</div>
     <div class="versus__xp" style="color:${entry.profile.color}">${entry.totals.xp}</div>
     <div class="small muted">XP · ${entry.totals.accuracy}% tepat</div>
@@ -59,28 +59,29 @@ function side(entry) {
   </div>`;
 }
 
-function chartCard(report, otherReport, lb) {
+function chartCard(report, otherReport) {
   const max = Math.max(
     1,
     ...report.series.map((d) => d.xp),
     ...otherReport.series.map((d) => d.xp)
   );
-  const [aCfg, bCfg] = lb.entries.map((e) => e.profile);
+  // Warna mengikuti anaknya, bukan posisinya. Kalau dibalik (anak yang sedang
+  // masuk selalu ungu), warna yang sama akan berpindah orang begitu profil
+  // diganti — dan keterangan warnanya jadi berbohong.
   return `
   <section class="card">
     <h2 class="card__title">📈 Grafik XP</h2>
-    <div class="row small" style="gap:14px;margin-bottom:6px">
-      <span class="row" style="gap:5px"><i style="width:11px;height:11px;border-radius:3px;background:var(--brand);display:inline-block"></i>${esc(aCfg.name)}</span>
-      <span class="row" style="gap:5px"><i style="width:11px;height:11px;border-radius:3px;background:var(--pink);display:inline-block"></i>${esc(bCfg.name)}</span>
-    </div>
+    ${legend([report.profile, otherReport.profile])}
     <div class="chart">
       ${report.series
         .map((d, i) => {
           const other = otherReport.series[i] || { xp: 0 };
           return `
-          <div class="chart__col" title="${esc(d.label)}: ${d.xp} XP">
-            <div class="chart__bar" style="height:${Math.round((d.xp / max) * 100)}%"></div>
-            <div class="chart__bar chart__bar--b" style="height:${Math.round((other.xp / max) * 100)}%"></div>
+          <div class="chart__col">
+            <div class="chart__bar" style="height:${Math.round((d.xp / max) * 100)}%;background:${report.profile.color}"
+                 title="${esc(report.profile.name)} · ${esc(d.label)}: ${d.xp} XP"></div>
+            <div class="chart__bar" style="height:${Math.round((other.xp / max) * 100)}%;background:${otherReport.profile.color}"
+                 title="${esc(otherReport.profile.name)} · ${esc(d.label)}: ${other.xp} XP"></div>
           </div>`;
         })
         .join('')}
@@ -92,33 +93,75 @@ function chartCard(report, otherReport, lb) {
   </section>`;
 }
 
-function skillsCard(report) {
-  const meta = {
-    reading: { emoji: '📖', label: 'Membaca', color: 'var(--blue)' },
-    listening: { emoji: '🎧', label: 'Mendengar', color: 'var(--amber)' },
-    speaking: { emoji: '🎤', label: 'Berbicara', color: 'var(--pink)' },
-    writing: { emoji: '✍️', label: 'Menulis', color: 'var(--green)' }
-  };
+/** Keterangan warna. Selalu ada bila ada dua anak — identitas tidak boleh
+ *  bergantung pada warna saja. */
+function legend(profiles) {
+  return `
+  <div class="legend">
+    ${profiles
+      .map(
+        (p) => `
+      <span class="legend__item">
+        <i class="legend__swatch" style="background:${p.color}"></i>${avatar(p)} ${esc(p.name)}
+      </span>`
+      )
+      .join('')}
+  </div>`;
+}
+
+function skillsCard(skills = []) {
+  if (!skills.length) return '';
+  const profiles = skills[0].entries.map((e) => e.profile);
+
   return `
   <section class="card">
     <h2 class="card__title">🎓 Ketepatan per Keterampilan</h2>
-    ${Object.entries(report.bySkill)
-      .map(([id, stat]) => {
-        const m = meta[id] || { emoji: '•', label: id, color: 'var(--brand)' };
-        return `
-        <div class="skill-row">
-          <span class="skill-row__emoji">${m.emoji}</span>
-          <span class="skill-row__bar">
-            <div class="row row--between small" style="margin-bottom:3px">
-              <span>${esc(m.label)}</span>
-              <span class="muted">${stat.correct}/${stat.answered} · ${stat.accuracy}%</span>
-            </div>
-            ${bar(stat.answered ? stat.correct / stat.answered : 0, m.color)}
-          </span>
-        </div>`;
-      })
-      .join('')}
+    ${legend(profiles)}
+    ${skills.map(skillGroup).join('')}
+    <p class="small muted" style="margin:14px 0 0">
+      Panjang batang = persentase jawaban benar. Angka di sebelahnya menunjukkan
+      berapa soal yang sudah dikerjakan — ketepatan tinggi dari sedikit soal
+      belum tentu berarti sudah kuat.
+    </p>
   </section>`;
+}
+
+function skillGroup(skill) {
+  return `
+  <div class="skillcmp">
+    <div class="skillcmp__head">
+      <span class="skillcmp__emoji" aria-hidden="true">${skill.emoji}</span>
+      <span class="skillcmp__name">${esc(skill.labelId)}</span>
+      ${skill.anyTried ? '' : '<span class="small muted">belum dicoba keduanya</span>'}
+    </div>
+    ${skill.entries.map((e) => skillRow(e, skill.labelId)).join('')}
+  </div>`;
+}
+
+function skillRow(entry, skillLabel) {
+  const p = entry.profile;
+  const label = entry.tried
+    ? `${esc(p.name)} · ${esc(skillLabel)}: ${entry.accuracy}% tepat, ${entry.correct} dari ${entry.answered} soal`
+    : `${esc(p.name)} · ${esc(skillLabel)}: belum dicoba`;
+
+  return `
+  <div class="skillcmp__row ${entry.tried ? '' : 'skillcmp__row--idle'}" title="${label}" aria-label="${label}">
+    <span class="skillcmp__who">${avatar(p)} ${esc(p.name)}</span>
+    <span class="skillcmp__track">
+      ${
+        entry.tried
+          ? `<span class="skillcmp__fill" style="width:${entry.accuracy}%;background:${p.color}"></span>`
+          : ''
+      }
+    </span>
+    <span class="skillcmp__val">
+      ${
+        entry.tried
+          ? `<b>${entry.accuracy}%</b> <span class="muted">${entry.correct}/${entry.answered}</span>`
+          : `<span class="muted">belum dicoba</span>`
+      }
+    </span>
+  </div>`;
 }
 
 function statsCard(report) {

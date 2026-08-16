@@ -76,6 +76,23 @@ body {
   -webkit-touch-callout: default;
 }
 
+/* ------------------------------------------------- lambang (avatar) anak
+   Ukurannya dinyatakan dalam `em` supaya satu aturan melayani semua tempat:
+   besar di layar masuk, sedang di bilah atas, sekecil huruf di keterangan
+   grafik. `1.15em` dipilih agar bobot visualnya setara emoji di sebelahnya. */
+.avatar-slot { display: inline-flex; align-items: center; }
+.avatar {
+  width: 1.15em;
+  height: 1.15em;
+  object-fit: contain;
+  vertical-align: -.2em;
+  flex: none;
+}
+/* Cadangan emoji: tersembunyi sampai gambarnya gagal dimuat. */
+.avatar-slot__fallback { display: none; }
+.avatar-slot--fallback .avatar { display: none; }
+.avatar-slot--fallback .avatar-slot__fallback { display: inline; }
+
 /* Karakter Han perlu font khusus supaya tampil rapi di semua perangkat. */
 .hanzi, .zh {
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'Heiti SC', sans-serif;
@@ -606,6 +623,61 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 .skill-row__emoji { font-size: 1.4rem; width: 30px; }
 .skill-row__bar { flex: 1; }
 
+/* Keterangan warna. Warna melekat pada anaknya (biru Colin, merah muda
+   Darlene) dan dipakai sama persis di grafik XP maupun di perbandingan
+   keterampilan, supaya satu warna selalu berarti satu orang. */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 12px; font-size: .8rem; font-weight: 700; }
+.legend__item { display: inline-flex; align-items: center; gap: 6px; }
+.legend__swatch { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+
+/* Perbandingan ketepatan dua anak, satu kelompok per keterampilan. */
+.skillcmp { margin-bottom: 15px; }
+.skillcmp:last-of-type { margin-bottom: 0; }
+.skillcmp__head { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+.skillcmp__emoji { font-size: 1.1rem; }
+.skillcmp__name { font-weight: 800; font-size: .92rem; }
+
+.skillcmp__row { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
+.skillcmp__row:last-child { margin-bottom: 0; }
+.skillcmp__who {
+  width: 74px; flex: none;
+  font-size: .76rem; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.skillcmp__track {
+  flex: 1; min-width: 0;
+  height: 11px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.skillcmp__fill {
+  display: block; height: 100%;
+  border-radius: 999px;
+  min-width: 4px;              /* nilai sekecil apa pun tetap terlihat */
+  transition: width .4s cubic-bezier(.2,.9,.3,1);
+}
+.skillcmp__val {
+  width: 84px; flex: none;
+  text-align: right;
+  font-size: .72rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.skillcmp__val b { font-size: .82rem; }
+
+/* Belum pernah dicoba ≠ 0% benar: jalurnya dibiarkan kosong bergaris putus
+   supaya tidak terbaca sebagai "semua salah". */
+.skillcmp__row--idle .skillcmp__track {
+  background: transparent;
+  border: 1.5px dashed var(--line);
+}
+
+@media (max-width: 22rem) {
+  .skillcmp__who { width: 62px; font-size: .72rem; }
+  .skillcmp__val { width: 74px; font-size: .68rem; }
+}
+
 /* -------------------------------------------------------------- lencana */
 
 .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
@@ -615,8 +687,19 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   background: var(--card);
 }
 .badge--locked { opacity: .38; filter: grayscale(1); }
-.badge__emoji { font-size: 2rem; }
+.badge__emoji { font-size: 2rem; line-height: 1.2; }
 .badge__name { font-size: .72rem; font-weight: 800; margin-top: 4px; }
+
+/* Incaran berikutnya: tiga lencana terdekat, ditulis lengkap dengan syaratnya
+   supaya anak tahu persis apa yang harus dikerjakan. */
+.next-badge {
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.next-badge:last-child { border-bottom: none; padding-bottom: 0; }
+.next-badge__emoji { font-size: 1.7rem; width: 34px; text-align: center; flex: none; }
+.next-badge__desc { display: block; font-size: .8rem; font-weight: 600; color: var(--ink-soft); }
 
 /* --------------------------------------------------------------- kamus */
 
