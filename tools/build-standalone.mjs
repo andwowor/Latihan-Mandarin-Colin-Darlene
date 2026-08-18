@@ -48,7 +48,7 @@ if (fs.existsSync(bridgeFile)) {
 // sama longgarnya dengan versi PWA (lihat ADR-0011).
 const readingsFile = path.join(curriculumDir, 'readings.json');
 if (fs.existsSync(readingsFile)) {
-  bundle.readings = JSON.parse(fs.readFileSync(readingsFile, 'utf8')).readings || null;
+  bundle.readings = JSON.parse(fs.readFileSync(readingsFile, 'utf8'));
 } else {
   console.warn('⚠️  readings.json belum ada — jalankan "npm run readings" agar homofon tidak dianggap salah.');
 }
@@ -58,6 +58,7 @@ if (fs.existsSync(readingsFile)) {
 fs.writeFileSync(
   path.join(tmp, 'inlineContentAdapter.js'),
   `import { ContentPort } from '${path.join(root, 'src/ports/contentPort.js')}';
+import { mergeReadingSources } from '${path.join(root, 'src/domain/pronunciation.js')}';
 export const CURRICULUM = ${JSON.stringify(bundle)};
 
 /** Membaca kurikulum dari objek yang sudah menyatu, bukan lewat jaringan. */
@@ -76,7 +77,7 @@ export class InlineContentAdapter extends ContentPort {
     return CURRICULUM.bridge;
   }
   async loadReadings() {
-    return CURRICULUM.readings;
+    return CURRICULUM.readings ? mergeReadingSources(CURRICULUM.readings) : null;
   }
 }\n`
 );

@@ -42,20 +42,33 @@ sesekali meluluskan yang kurang tepat.
 Kata target dan hasil tebakan mesin sama-sama diubah menjadi deret bunyi lebih
 dulu, baru dibandingkan dengan jarak sunting.
 
-### Kamus lafal diturunkan dari kurikulum sendiri
+### Kamus lafal berlapis dua
 
-Untuk mengubah huruf menjadi bunyi diperlukan kamus. Alih-alih membawa daftar
-dari luar, kamusnya **diturunkan dari kurikulum yang sudah ada**: 97% kosakata
-punya pinyin yang jumlah suku katanya sama persis dengan jumlah hurufnya, jadi
-keduanya bisa dipasangkan satu-satu.
-
-Hasilnya `readings.json` — **771 huruf Han**, mencakup lebih dari 97% huruf
-yang dipakai kurikulum. Kata yang pinyin-nya tidak selaras dengan hurufnya
-(16 dari 1.449) sengaja dilewati: menebak-nebak pasangan yang tidak selaras
+**Lapis pertama diturunkan dari kurikulum sendiri.** 97% kosakata punya pinyin
+yang jumlah suku katanya sama persis dengan jumlah hurufnya, jadi keduanya bisa
+dipasangkan satu-satu. Hasilnya **771 huruf Han** — satu-satunya lapis yang
+benar-benar terverifikasi terhadap materi yang dipelajari anak. Kata yang tidak
+selaras (16 dari 1.449) sengaja dilewati: menebak pasangan yang tidak selaras
 justru menanam lafal yang salah.
 
-Dibekukan lewat `npm run readings` dengan pola yang sama seperti `bridge.json`,
-dan dijaga tesnya agar tidak pernah basi.
+**Lapis kedua mencakup seluruh huruf Han.** Lapis pertama saja ternyata tidak
+cukup: kosakata pengenal suara adalah seluruh bahasa Mandarin, sedangkan kamus
+kurikulum hanya 771 huruf. Diuji pada sepuluh homofon yang lazim ditebak mesin,
+**separuhnya memakai huruf di luar kurikulum** — 你/尼, 我/窝, 爱/唉, 吗/嘛,
+高兴/高性 — sehingga tetap dinilai salah.
+
+Lapis kedua menutup celah itu: **20.856 huruf, 415 bunyi berbeda**, dibangkitkan
+dari `pinyin-pro` dan disimpan **terbalik** (bunyi → deretan huruf) karena jauh
+lebih padat — **27 KB**, dibanding 263 KB bila disimpan huruf → bunyi. Peta
+majunya dirakit kembali saat dimuat (30 ms).
+
+`pinyin-pro` dipakai **hanya saat membangun**, seperti esbuild; aplikasinya
+sendiri tetap tanpa dependensi. Bila paketnya tidak terpasang, generator
+mempertahankan lapis kedua apa adanya alih-alih menghapusnya.
+
+Keduanya dibekukan lewat `npm run readings` dengan pola yang sama seperti
+`bridge.json`. Tes menjaga lapis kurikulum agar tidak pernah basi, dan menjaga
+lapis umum agar tidak hilang diam-diam.
 
 ### Nada diabaikan
 
@@ -93,18 +106,34 @@ memperbesar peluang salah satunya kebetulan tepat.
 Sepuluh kasus nyata, sebelum dan sesudah:
 
 ```
-lulus: 3/10  →  9/10
+lulus: 3/10  →  9/10          (lapis kurikulum saja)
+```
+
+Sepuluh homofon yang hurufnya di luar kurikulum:
+
+```
+dikenali: 5/10  →  10/10      (setelah lapis umum ditambahkan)
 ```
 
 Yang tetap gagal hanya satu — 你好 diucapkan, 再见 yang terdengar. Memang
 seharusnya gagal.
 
+### Seri dimenangkan tebakan yang persis sama
+
+Sejak homofon bernilai penuh, beberapa tebakan bisa sama-sama bernilai 1,00.
+Yang ditampilkan sebagai "terdengar" pada umpan balik kini didahulukan yang
+hurufnya persis sama dengan target — supaya anak melihat tulisan yang benar,
+bukan homofonnya.
+
 ## Yang sengaja tidak dikerjakan
 
 - **Menilai nada.** Butuh analisis akustik, bukan teks. Di luar jangkauan
   aplikasi statis tanpa backend (ADR-0002).
-- **Membawa kamus hanzi→pinyin lengkap.** Berukuran megabyte untuk cakupan
-  yang hampir tidak pernah terpakai; kurikulumnya sendiri sudah menutup 97%.
+- **Menyimpan kamus lengkap dalam arah huruf → bunyi.** 263 KB, sepuluh kali
+  lipat arah terbaliknya, untuk isi yang sama persis.
+- **Menjadikan `pinyin-pro` dependensi aplikasi.** Aplikasinya harus tetap bisa
+  dibuka sebagai berkas statis tanpa proses apa pun (ADR-0002); paketnya cukup
+  dipakai saat membangun.
 - **Menurunkan ambang lebih jauh.** Dengan perbandingan bunyi, menurunkan
   ambang di bawah 0,5 mulai meluluskan ucapan yang benar-benar berbeda —
   pujian yang tidak dipercaya anak sama tidak bergunanya dengan hukuman yang
@@ -118,8 +147,11 @@ seharusnya gagal.
 - (+) Aturannya tetap fungsi murni, bisa diuji tanpa mikrofon (17 pengujian baru).
 - (−) Satu berkas bangkitan lagi yang harus dibangun ulang saat kurikulum
   berubah (dijaga `npm test`).
-- (−) Huruf di luar kurikulum tetap tidak dikenali bunyinya; untuk itu
-  penilaian jatuh ke perbandingan huruf seperti dulu.
+- (+) Huruf di luar kurikulum kini ikut dikenali — celah yang tersisa setelah
+  lapis pertama sudah tertutup.
+- (−) Berkas kamus bertambah 27 KB, dan versi satu-berkas naik menjadi 707 KB
+  (huruf Han di-escape menjadi 6 bita di sana).
+- (−) Membangkitkan lapis umum menuntut `npm install pinyin-pro` sekali.
 - (−) Karena nada diabaikan, anak yang mengucapkan nada keliru tetap bisa
   lulus. Disengaja pada tahap umur ini — nada dilatih lewat mendengar dan
   menirukan, bukan lewat penolakan.

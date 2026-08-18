@@ -242,7 +242,9 @@ menilai seberapa mirip ucapannya.
   suara menerima suara anak lalu *menebak* huruf mana yang dimaksud, dan dalam
   bahasa Mandarin yang penuh homofon tebakan itu sering meleset. Anak
   mengucapkan 妈妈 dengan benar, yang tertulis 麻麻 — bunyinya sama persis.
-  Dulu itu dinilai salah total; sekarang bernilai penuh.
+  Dulu itu dinilai salah total; sekarang bernilai penuh. Kamus lafalnya
+  mencakup **seluruh huruf Han** (20.856 huruf), jadi tebakan mesin yang aneh
+  sekalipun tetap dikenali kalau bunyinya memang sama.
 - **Bunyi yang berdekatan** (zh/z, ch/c, sh/s, ng/n, r/l) hanya dihitung
   setengah kesalahan — itu kekeliruan paling lazim pada anak kecil.
 - **Nada sengaja tidak dinilai.** Nada yang bisa diamati aplikasi adalah nada

@@ -2,6 +2,7 @@
 
 import { ContentPort } from '../../ports/contentPort.js';
 import { appConfig } from '../../config/appConfig.js';
+import { mergeReadingSources } from '../../domain/pronunciation.js';
 
 export class StaticContentAdapter extends ContentPort {
   constructor(base = appConfig.contentBase) {
@@ -40,7 +41,7 @@ export class StaticContentAdapter extends ContentPort {
     try {
       const res = await fetch(`${this.base}/readings.json`);
       const data = res.ok ? await res.json() : null;
-      this.readingsCache = data?.readings || null;
+      this.readingsCache = data ? mergeReadingSources(data) : null;
     } catch {
       this.readingsCache = null;
     }
