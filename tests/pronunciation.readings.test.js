@@ -11,15 +11,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
-  gradeSpeech, similarity, stripTone, splitPinyin, nearSound, missingChars, speechStars
+  gradeSpeech, similarity, stripTone, splitPinyin, nearSound, missingChars, speechStars,
+  mergeReadingSources
 } from '../src/domain/pronunciation.js';
 import { readVocab, buildReadings, serialise } from '../tools/build-readings.mjs';
 import { appConfig } from '../src/config/appConfig.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const { readings } = JSON.parse(
+const KAMUS = JSON.parse(
   fs.readFileSync(path.join(root, 'public/data/curriculum/readings.json'), 'utf8')
 );
+// Yang dipakai penilaian adalah peta gabungan kedua lapis, bukan salah satunya.
+const readings = mergeReadingSources(KAMUS);
 const AMBANG = appConfig.speech.acceptScore;
 
 // ------------------------------------------------------------ alat bantu
@@ -93,11 +96,31 @@ test('tanpa kamus lafal, penilaian jatuh ke perbandingan huruf tanpa galat', () 
   assert.doesNotThrow(() => gradeSpeech('你好', '你好'));
 });
 
-test('huruf di luar kamus tidak menjatuhkan nilai secara berlebihan', () => {
-  // 尼 tidak ada di kurikulum, jadi tak dikenali bunyinya — tetapi 好 cocok,
-  // sehingga nilainya masih cukup untuk lulus pada ambang yang berlaku.
-  const r = gradeSpeech('你好', '尼好', AMBANG, readings);
-  assert.ok(r.correct, `nilainya ${r.score}, seharusnya masih lulus`);
+test('homofon DI LUAR kurikulum juga dikenali — celah yang ditutup lapis umum', () => {
+  // Huruf-huruf ini tidak ada di materi anak, tetapi pengenal suara bisa saja
+  // menebaknya. Tanpa lapis lafal umum, semuanya akan dinilai salah.
+  for (const [target, terdengar] of [['你', '尼'], ['我', '窝'], ['爱', '唉'], ['吗', '嘛']]) {
+    const r = gradeSpeech(target, terdengar, AMBANG, readings);
+    assert.equal(r.score, 1, `${target} vs ${terdengar} seharusnya bernilai penuh`);
+  }
+  assert.equal(gradeSpeech('高兴', '高性', AMBANG, readings).score, 1);
+});
+
+test('huruf yang benar-benar tak dikenali jatuh ke perbandingan huruf', () => {
+  // Huruf Latin tidak pernah ada di kamus lafal mana pun.
+  const r = gradeSpeech('你好', 'Xy', AMBANG, readings);
+  assert.equal(r.score, 0);
+  assert.equal(r.correct, false);
+});
+
+test('penggabungan dua lapis: kurikulum menambah, bukan mengganti', () => {
+  const gabungan = mergeReadingSources({
+    sounds: { shi: '是事', hao: '好' },
+    readings: { 是: ['shi'], 好: ['hao', 'hau'] }
+  });
+  assert.deepEqual(gabungan['事'], ['shi'], 'dari lapis umum saja');
+  assert.deepEqual(gabungan['好'], ['hao', 'hau'], 'cara baca kurikulum ikut ditambahkan');
+  assert.deepEqual(mergeReadingSources({}), {}, 'masukan kosong tidak menggagalkan');
 });
 
 test('suara yang tidak terdengar sama sekali ditandai kosong', () => {
@@ -122,13 +145,29 @@ test('kemiripan simetris dan berada di rentang 0..1', () => {
 
 // ------------------------------------------------------- kamus lafal itu sendiri
 
-test('readings.json sama dengan hasil generator (jangan lupa "npm run readings")', () => {
-  const file = path.join(root, 'public/data/curriculum/readings.json');
-  assert.equal(
-    fs.readFileSync(file, 'utf8'),
-    serialise(buildReadings(readVocab())),
+test('lapis kurikulum di readings.json sama dengan hasil generator', () => {
+  // Hanya lapis kurikulum yang dibandingkan: lapis umum dibangkitkan dari
+  // `pinyin-pro` yang tidak selalu terpasang, dan isinya tidak bergantung
+  // pada materi anak.
+  assert.deepEqual(
+    KAMUS.readings,
+    buildReadings(readVocab()).readings,
     'readings.json tertinggal dari kurikulum — jalankan: npm run readings'
   );
+  assert.equal(typeof serialise, 'function');
+});
+
+test('lapis lafal umum lengkap dan berbentuk benar', () => {
+  const bunyi = Object.keys(KAMUS.sounds || {});
+  assert.ok(bunyi.length > 300, `hanya ${bunyi.length} bunyi berbeda — lapis umum sepertinya hilang`);
+
+  for (const [sound, chars] of Object.entries(KAMUS.sounds)) {
+    assert.match(sound, /^[a-z]+$/, `bunyi "${sound}" belum bersih`);
+    assert.ok(chars.length > 0, `bunyi "${sound}" tidak punya huruf`);
+  }
+
+  const huruf = new Set(Object.values(KAMUS.sounds).flatMap((c) => [...c]));
+  assert.ok(huruf.size > 15000, `hanya ${huruf.size} huruf terpetakan`);
 });
 
 test('kamus lafal mencakup hampir seluruh huruf yang dipakai kurikulum', () => {
@@ -142,7 +181,7 @@ test('kamus lafal mencakup hampir seluruh huruf yang dipakai kurikulum', () => {
 });
 
 test('setiap bunyi di kamus sudah tanpa nada dan hanya huruf latin', () => {
-  for (const [ch, sounds] of Object.entries(readings)) {
+  for (const [ch, sounds] of Object.entries(KAMUS.readings)) {
     assert.ok(sounds.length > 0, `${ch} tidak punya bunyi`);
     for (const s of sounds) {
       assert.match(s, /^[a-z]+$/, `bunyi "${s}" pada ${ch} belum bersih`);

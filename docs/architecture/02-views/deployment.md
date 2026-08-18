@@ -32,6 +32,7 @@ Dua berkas tidak ditulis tangan dan harus dibangun ulang saat kurikulum berubah:
 ```bash
 npm run bridge     # public/data/curriculum/bridge.json    (wajib; dijaga npm test)
 npm run readings   # public/data/curriculum/readings.json  (wajib; dijaga npm test)
+                   #   butuh `npm install pinyin-pro` untuk lapis lafal umum
 npm run build      # dist/mandarin-fun.html                (versi satu berkas)
 ```
 

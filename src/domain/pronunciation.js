@@ -70,6 +70,39 @@ export function nearSound(sound) {
 }
 
 /**
+ * Rakit satu peta lafal dari kedua lapis readings.json.
+ *
+ * `sounds` disimpan terbalik (bunyi → deretan huruf) karena jauh lebih padat
+ * di berkas — 27 KB, bukan 263 KB. Di sini arahnya dibalik kembali menjadi
+ * huruf → daftar bunyi, bentuk yang dipakai penilaian.
+ *
+ * Lapis kurikulum ditambahkan belakangan dan bersifat menambah, bukan
+ * mengganti: lafal yang benar-benar terverifikasi terhadap materi anak tidak
+ * boleh hilang, tetapi cara baca lain dari kamus umum tetap berguna karena
+ * mesin bisa menebak huruf yang sama untuk bunyi yang berbeda.
+ *
+ * @param {object} data isi readings.json — { readings, sounds }
+ * @returns {object} { [huruf]: [bunyi, ...] }
+ */
+export function mergeReadingSources(data = {}) {
+  const out = {};
+
+  for (const [sound, chars] of Object.entries(data.sounds || {})) {
+    for (const ch of String(chars)) {
+      (out[ch] ||= []).push(sound);
+    }
+  }
+
+  for (const [ch, sounds] of Object.entries(data.readings || {})) {
+    const list = (out[ch] ||= []);
+    for (const s of sounds) if (!list.includes(s)) list.push(s);
+  }
+
+  for (const ch of Object.keys(out)) out[ch].sort();
+  return out;
+}
+
+/**
  * Ubah teks Han menjadi deret bunyi memakai kamus lafal.
  * Huruf yang tidak ada di kamus dibiarkan apa adanya, sehingga perbandingannya
  * jatuh kembali ke perbandingan huruf — tidak ada yang jadi lebih buruk.
@@ -153,11 +186,20 @@ export function missingChars(target, heard, readings = {}) {
  */
 export function gradeSpeech(target, heard, threshold = 0.5, readings = {}) {
   const options = (Array.isArray(heard) ? heard : [heard]).filter(Boolean);
-  let best = { score: 0, text: '' };
+  const bersih = normalizeHan(target);
+  let best = { score: 0, text: '', exact: false };
 
   for (const option of options) {
     const score = similarity(target, option, readings);
-    if (score > best.score) best = { score, text: String(option) };
+    const exact = normalizeHan(option) === bersih;
+
+    // Nilai tertinggi yang menang. Bila seri, tebakan yang hurufnya persis
+    // sama didahulukan — sejak homofon bernilai penuh, beberapa tebakan bisa
+    // sama-sama 1,00 dan yang ditampilkan sebagai "terdengar" sebaiknya yang
+    // benar-benar ditulis anak, bukan homofonnya.
+    if (score > best.score || (score === best.score && exact && !best.exact)) {
+      best = { score, text: String(option), exact };
+    }
   }
 
   return {

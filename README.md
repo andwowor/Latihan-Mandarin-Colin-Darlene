@@ -35,7 +35,7 @@ npm install esbuild
 npm run build
 ```
 
-Menghasilkan `dist/mandarin-fun.html` (±440 KB): seluruh gaya, kode, dan
+Menghasilkan `dist/mandarin-fun.html` (±700 KB): seluruh gaya, kode, dan
 kurikulum menyatu dalam satu berkas ASCII murni — aman dibuka dari server mana
 pun tanpa bergantung pada header charset.
 
@@ -161,8 +161,9 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
    pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
    aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
 5. **Pengenal suara sering meleset ke homofon.** Karena itu penilaiannya
-   membandingkan bunyi, memakai kamus lafal yang diturunkan dari kurikulum
-   sendiri — 771 huruf Han (lihat ADR-0011).
+   membandingkan bunyi, memakai kamus lafal berlapis dua: 771 huruf dari
+   kurikulum sendiri, ditambah 20.856 huruf lafal umum agar tebakan mesin yang
+   jatuh di luar kurikulum tetap dikenali (lihat ADR-0011).
 
 ## Perintah
 
@@ -171,6 +172,7 @@ npm start       # jalankan di http://localhost:4173/public/
 npm test        # 93 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
 npm run readings # bangun ulang kamus lafal readings.json
+                 # (butuh: npm install pinyin-pro — sekali saja, seperti esbuild)
 npm run build   # bangun dist/mandarin-fun.html (versi satu berkas)
 ```
 
@@ -183,7 +185,7 @@ kurikulumnya, jadi tidak mungkin lupa membangunnya ulang tanpa ketahuan.
 sw.js                     service worker (scope "/" — lihat deployment.md)
 public/                   cangkang aplikasi: index.html, app.js, style.css, ikon
 public/data/curriculum/   kurikulum JSON per level + bridge.json (bekal HSK)
-                          + readings.json (kamus lafal untuk menilai ucapan)
+                          + readings.json (kamus lafal 2 lapis untuk menilai ucapan)
 src/domain/               logika murni: skor, level, streak, misi, SRS, pelafalan,
                           soal, kartu belajar, jembatan HSK, penggabungan progres
 src/application/          layanan: profil, kurikulum, misi, latihan, belajar,
