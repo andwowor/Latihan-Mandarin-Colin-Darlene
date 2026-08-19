@@ -48,6 +48,10 @@ export class UiController {
   }
 
   async start() {
+    // Setelan suara milik perangkat ini (pilihan suara + kecepatan), bukan
+    // milik anak — sengaja tidak ikut disinkronkan antar perangkat.
+    this.speech.applySettings?.(this.profiles.settings().speech || {});
+
     const active = this.profiles.activeId();
     if (active) {
       this.state.screen = 'home';
@@ -736,6 +740,7 @@ export class UiController {
              </button>`
           : ''
       }
+      <button class="btn btn--ghost" style="margin-top:8px" data-voice-open>🔊 Suara Pengucapan</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-export>💾 Simpan Cadangan (JSON)</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-import>📂 Muat Cadangan</button>
       <button class="btn btn--danger" style="margin-top:8px" data-reset>🗑️ Hapus Semua Progres</button>
@@ -746,6 +751,11 @@ export class UiController {
       if (e.target.closest('[data-sync-open]')) {
         panel.close();
         return this.#openSyncSheet();
+      }
+
+      if (e.target.closest('[data-voice-open]')) {
+        panel.close();
+        return this.#openVoiceSheet();
       }
 
       if (e.target.closest('[data-export]')) {
@@ -772,6 +782,128 @@ export class UiController {
     });
 
     this.#bindImportFile(panel);
+  }
+
+  // ------------------------------------------------------- suara pengucapan
+
+  /**
+   * Pemilih suara text-to-speech.
+   *
+   * Perangkat biasanya punya lebih dari satu suara Mandarin dan mutunya jauh
+   * berbeda: suara "ringkas" bawaan meratakan lengkung nada sehingga
+   * ma1/ma2/ma3/ma4 terdengar nyaris sama, sedangkan suara neural
+   * mengucapkannya tegas. Urutan daftar perangkat tidak ada hubungannya
+   * dengan mutu, jadi aplikasi mengurutkannya sendiri — dan orang tua tetap
+   * bisa memilih sendiri sambil mendengarkan (ADR-0012).
+   */
+  #openVoiceSheet() {
+    const setelan = this.profiles.settings().speech || {};
+    const daftar = this.speech.voiceOptions?.() || [];
+    const skala = Number(setelan.rateScale) > 0 ? Number(setelan.rateScale) : 1;
+
+    // Tombol coba-dengar sengaja DI LUAR <label>: kalau di dalam, satu ketukan
+    // untuk mendengar ikut memilih suaranya juga.
+    const baris = (v, i) => `
+      <div class="voice ${v.active ? 'voice--on' : ''}">
+        <label class="voice__pick">
+          <input type="radio" name="voice" value="${esc(v.id)}" ${v.active ? 'checked' : ''} />
+          <span class="voice__body">
+            <span class="voice__name">
+              ${esc(v.name)}
+              ${i === 0 ? '<span class="voice__tag">disarankan</span>' : ''}
+            </span>
+            <span class="voice__note small muted">${esc(v.note)}${v.lang ? ` · ${esc(v.lang)}` : ''}</span>
+          </span>
+        </label>
+        <button type="button" class="voice__try" data-try="${esc(v.id)}"
+                aria-label="Coba dengar ${esc(v.name)}">\u25b6</button>
+      </div>`;
+
+    const kosong = `
+      <p class="small" style="margin:0 0 14px">
+        \u26a0\ufe0f Perangkat ini belum punya suara Mandarin, jadi contoh pengucapan tidak
+        berbunyi. Pasang dulu paket suaranya:
+      </p>
+      <ul class="small muted" style="margin:0 0 14px;padding-left:18px;line-height:1.7">
+        <li><b>Android</b>: Setelan \u2192 Bahasa &amp; masukan \u2192 Keluaran teks-ke-ucapan \u2192 Pasang data suara \u2192 Chinese (China).</li>
+        <li><b>iPhone/iPad</b>: Setelan \u2192 Aksesibilitas \u2192 Konten Terucap \u2192 Suara \u2192 Chinese (China) \u2014 pilih yang <i>Premium</i>.</li>
+        <li><b>Laptop</b>: pakai Google Chrome; suara Mandarinnya diambil dari internet.</li>
+      </ul>`;
+
+    const panel = sheet(`
+      <h2 style="margin:0 0 4px">\ud83d\udd0a Suara Pengucapan</h2>
+      ${
+        daftar.length
+          ? `<p class="small muted" style="margin:0 0 14px">
+               Suara yang dipakai membacakan contoh. Yang paling atas nadanya paling
+               jelas \u2014 ketuk \u25b6 untuk mendengar <b>m\u0101 m\u00e1 m\u01ce m\u00e0</b>, empat nada
+               yang bunyinya hanya beda di nadanya saja.
+             </p>`
+          : ''
+      }
+
+      ${daftar.length ? `<div class="voice-list">${daftar.map(baris).join('')}</div>` : kosong}
+
+      <p class="field__label" style="margin:16px 0 6px">Kecepatan</p>
+      <div class="seg" role="group" aria-label="Kecepatan suara">
+        ${[
+          { v: 0.8, label: '\ud83d\udc22 Pelan' },
+          { v: 1, label: 'Biasa' },
+          { v: 1.2, label: '\ud83d\udc07 Cepat' }
+        ]
+          .map(
+            (o) =>
+              `<button type="button" class="seg__btn ${Math.abs(o.v - skala) < 0.01 ? 'seg__btn--on' : ''}"
+                       data-rate="${o.v}">${o.label}</button>`
+          )
+          .join('')}
+      </div>
+      <p class="small muted" style="margin:8px 0 0">
+        Tombol \ud83d\udc22 di layar latihan tetap membacakan <b>satu suku kata sekali ucap</b>
+        dengan jeda, supaya tiap nada terdengar utuh dan mudah ditiru.
+      </p>
+    `);
+
+    const simpan = (patch) => {
+      const next = { ...(this.profiles.settings().speech || {}), ...patch };
+      this.profiles.saveSettings({ speech: next });
+      this.speech.applySettings?.(next);
+      return next;
+    };
+
+    panel.el.addEventListener('change', (e) => {
+      const radio = e.target.closest('input[name="voice"]');
+      if (!radio) return;
+      simpan({ voiceId: radio.value });
+      for (const el of panel.el.querySelectorAll('.voice')) {
+        el.classList.toggle('voice--on', el.contains(radio));
+      }
+      this.speech.speak(CONTOH_NADA, { slow: true });
+    });
+
+    panel.el.addEventListener('click', (e) => {
+      const coba = e.target.closest('[data-try]');
+      if (coba) {
+        // Mendengarkan tidak sama dengan memilih: suara dicoba dulu, baru
+        // dipilih kalau memang lebih jelas. Karena itu setelan dikembalikan
+        // setelah contohnya selesai berbunyi.
+        const sebelumnya = this.profiles.settings().speech || {};
+        this.speech.applySettings?.({ ...sebelumnya, voiceId: coba.dataset.try });
+        this.speech.speak(CONTOH_NADA, { slow: true }).finally?.(() => {
+          this.speech.applySettings?.(this.profiles.settings().speech || {});
+        });
+        return;
+      }
+
+      const rate = e.target.closest('[data-rate]');
+      if (rate) {
+        simpan({ rateScale: Number(rate.dataset.rate) });
+        for (const b of panel.el.querySelectorAll('.seg__btn')) {
+          b.classList.toggle('seg__btn--on', b === rate);
+        }
+        this.speech.speak(CONTOH_NADA);
+      }
+    });
   }
 
   // --------------------------------------------------- sinkronisasi online
@@ -934,6 +1066,10 @@ function relativeTime(iso) {
   const days = Math.round(hours / 24);
   return days === 1 ? 'kemarin' : `${days} hari lalu`;
 }
+
+// Empat nada pada suku kata yang sama. Kalau keempatnya terdengar berbeda,
+// suaranya cukup jelas untuk ditirukan anak; kalau terdengar sama, tidak.
+const CONTOH_NADA = '\u5988\u9ebb\u9a6c\u9a82';
 
 const DAYS_ID = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 

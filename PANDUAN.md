@@ -266,6 +266,52 @@ menilai seberapa mirip ucapannya.
 
 ---
 
+### 🔊 Kalau nadanya terdengar kurang jelas
+
+Nada adalah pembeda makna dalam bahasa Mandarin: **mā** 妈 (ibu), **má** 麻
+(rami), **mǎ** 马 (kuda), **mà** 骂 (memarahi) hanya berbeda pada naik-turunnya
+suara. Kalau suara yang membacakan contohnya kurang tegas, anak mendengar
+empat kata yang sama — dan tidak bisa menirukan nada yang tidak terdengar.
+
+Hampir setiap perangkat punya **lebih dari satu** suara Mandarin, dan mutunya
+jauh berbeda. Suara "compact" bawaan hemat memori dan lengkung nadanya rata;
+suara *neural* / *premium* / suara jaringan jauh lebih tegas. Aplikasi sudah
+memilihkan yang terbaik yang ada, tetapi Bapak/Ibu bisa mendengarkan sendiri:
+
+1. Ketuk ⚙️ di pojok kanan atas → **🔊 Suara Pengucapan**.
+2. Daftar suara Mandarin di perangkat itu muncul, terurut dari yang nadanya
+   paling jelas. Yang teratas ditandai **disarankan**.
+3. Ketuk **▶** di sebelah kanan sebuah suara untuk mendengar **妈麻马骂** —
+   empat nada pada suku kata yang sama.
+   - Kalau keempatnya terdengar **berbeda** → suaranya cukup jelas.
+   - Kalau terdengar **sama saja** → coba suara lain di daftar itu.
+   Mendengarkan tidak ikut memilih, jadi silakan bandingkan dulu.
+4. Kalau sudah ketemu yang paling jelas, ketuk **lingkaran di sebelah kirinya**
+   untuk memilihnya.
+5. **Kecepatan** bisa disetel di bawahnya: 🐢 Pelan · Biasa · 🐇 Cepat.
+   Darlene mungkin cocok di 🐢, Colin di Biasa.
+
+Pilihan ini milik **perangkat itu saja** — tidak ikut tersinkron dan tidak
+ikut terhapus saat progres di-reset. Jadi setiap HP/tablet/laptop perlu
+disetel sendiri sekali.
+
+**Kalau daftarnya kosong**, perangkat itu memang belum punya suara Mandarin.
+Panel yang sama menampilkan langkah memasangnya:
+
+- **Android**: Setelan → Bahasa & masukan → Keluaran teks-ke-ucapan →
+  Pasang data suara → **Chinese (China)**.
+- **iPhone/iPad**: Setelan → Aksesibilitas → Konten Terucap → Suara →
+  **Chinese (China)** — pilih yang bertanda **Premium** (unduhannya lebih
+  besar, tetapi nadanya paling jelas).
+- **Laptop**: pakai **Google Chrome**; suara Mandarinnya diambil dari internet
+  dan termasuk yang paling jelas.
+
+**Tombol 🐢 di layar latihan** sekarang membacakan **satu suku kata sekali
+ucap** dengan jeda di antaranya, bukan sekadar memperlambat. Satu nada utuh,
+lalu diam sebentar — persis cara guru mengulang satu-satu supaya bisa ditirukan.
+
+---
+
 ## 4. Progres di banyak perangkat
 
 ### 4a. ☁️ Sinkronisasi online (disarankan)

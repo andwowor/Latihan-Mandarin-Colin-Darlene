@@ -2,7 +2,7 @@
 
 Dependensi mengarah ke dalam: `adapters -> ports -> application -> domain`.
 Lapisan domain tidak mengimpor apa pun dari luar dirinya, sehingga bisa diuji
-tanpa browser (`npm test`, 93 pengujian).
+tanpa browser (`npm test`, 142 pengujian).
 
 ```
 public/app.js                     merakit semua bagian (composition root)
@@ -46,6 +46,7 @@ tanpa aturan penyisipan tercecer di dua tempat.
 | `rewards.js` | katalog 64 lencana dalam tujuh kelompok, beserta syarat dan pemilihan "incaran berikutnya" |
 | `progress.js` | rekaman harian dan agregasi per periode |
 | `pronunciation.js` | membandingkan ucapan anak dengan target **berdasarkan bunyi**, memakai kamus lafal; homofon bernilai penuh (ADR-0011) |
+| `speechVoice.js` | menilai suara text-to-speech perangkat agar yang **nadanya paling jelas** yang dipakai, dan memecah teks per suku kata untuk mode 🐢 (ADR-0012) |
 | `exerciseFactory.js` | membangkitkan soal + kunci jawabannya, dan menilai jawaban |
 | `studyDeck.js` | menyusun materi pelajaran menjadi tumpukan kartu sesi belajar (ADR-0008) |
 | `hskBridge.js` | memilih kata HSK yang dititipkan ke tiap pelajaran YCT (ADR-0009) |

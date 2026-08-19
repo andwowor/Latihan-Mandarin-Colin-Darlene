@@ -793,6 +793,51 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   to { transform: translateY(105vh) rotate(560deg); opacity: .9; }
 }
 
+/* ----------------------------------------------- pemilih suara pengucapan */
+
+.voice-list { display: grid; gap: 8px; }
+
+.voice {
+  display: flex; align-items: center; gap: 8px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px 4px 10px;
+  background: var(--card);
+}
+.voice--on { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 8%, var(--card)); }
+
+.voice__pick { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; padding: 8px 0; cursor: pointer; }
+.voice__pick input { accent-color: var(--brand); width: 20px; height: 20px; flex: none; }
+.voice__body { display: grid; gap: 2px; min-width: 0; }
+.voice__name { font-weight: 800; font-size: .92rem; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.voice__note { display: block; line-height: 1.35; }
+
+.voice__tag {
+  background: var(--brand); color: #fff;
+  font-size: .66rem; font-weight: 800; letter-spacing: .02em;
+  padding: 2px 7px; border-radius: 999px; white-space: nowrap;
+}
+
+.voice__try {
+  flex: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid var(--line); background: transparent;
+  color: var(--ink); font-size: .9rem; line-height: 1;
+  cursor: pointer;
+}
+.voice__try:active { transform: scale(.94); }
+
+/* Tiga tombol kecepatan yang menyatu jadi satu bilah. */
+.seg { display: flex; gap: 6px; }
+.seg__btn {
+  flex: 1;
+  border: 2px solid var(--line); background: transparent; color: var(--ink);
+  border-radius: var(--radius-sm); padding: 10px 6px;
+  font-family: inherit; font-weight: 800; font-size: .85rem;
+  cursor: pointer;
+}
+.seg__btn--on { border-color: var(--brand); background: var(--brand); color: #fff; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
@@ -1155,10 +1200,18 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     },
     speech: {
       lang: "zh-CN",
-      rate: 0.75,
-      // pelan, untuk anak-anak
-      rateSlow: 0.5,
-      pitch: 1.05,
+      // Kecepatan dan nada dipilih agar LENGKUNG NADA tetap terdengar.
+      // `rate` terlalu rendah meregangkan satu suku kata sampai nadanya melar
+      // dan justru makin sulit ditiru, jadi 0,8 \u2014 cukup pelan tanpa melar.
+      // `pitch` dibiarkan netral: setiap pergeseran pitch ditumpangkan di atas
+      // lengkung nada aslinya, dan itu yang membuat nada terdengar samar.
+      rate: 0.8,
+      pitch: 1,
+      // Mode \ud83d\udc22: pelan dengan cara membacakan SATU SUKU KATA sekali ucap,
+      // dipisah jeda. Ini nada kutipan yang bersih \u2014 cara guru mengulang
+      // satu-satu supaya bisa ditirukan (lihat ADR-0012).
+      rateSlow: 0.7,
+      syllableGapMs: 340,
       // Latihan berbicara
       maxAlternatives: 8,
       // berapa tebakan diminta dari pengenal suara
@@ -1288,14 +1341,110 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     }
   };
 
+  // src/domain/speechVoice.js
+  var NEURAL = /natural|neural|online|premium|enhanced|wavenet|studio|siri|eloquent/i;
+  var COMPACT = /espeak|compact|pico|flite|robot/i;
+  var KNOWN = [
+    // Microsoft neural (Edge/Windows) \u2014 paling tegas nadanya.
+    { match: /xiaoxiao|xiaoyi|xiaochen|xiaohan|xiaomo|yunxi|yunyang|yunjian/i, bonus: 22 },
+    // Siri Mandarin (iOS/macOS versi baru).
+    { match: /li-?mu|yu-?shu|tian-?tian/i, bonus: 18 },
+    // Google Mandarin (Chrome/Android) \u2014 suara jaringan.
+    { match: /google.*(zh|chinese|mandarin|\u666e\u901a\u8bdd|\u570b\u8a9e|\u56fd\u8bed)/i, bonus: 16 },
+    // Apple Tingting/Meijia \u2014 bukan neural, tetapi nadanya masih jelas.
+    { match: /ting-?ting|\u5a77\u5a77|mei-?jia|\u7f8e\u4f73/i, bonus: 8 },
+    // Microsoft generasi lama \u2014 bisa dipakai, nadanya sudah agak datar.
+    { match: /huihui|kangkang|yaoyao|hanhan|zhiwei/i, bonus: 2 }
+  ];
+  function normalizeLang(lang) {
+    const [base, region] = String(lang ?? "").replace("_", "-").split("-");
+    return region ? `${base.toLowerCase()}-${region.toUpperCase()}` : base.toLowerCase();
+  }
+  function isMandarin(voice) {
+    const lang = normalizeLang(voice?.lang);
+    if (!lang.startsWith("zh") && !lang.startsWith("cmn")) return false;
+    return !/^(zh-HK|yue)/i.test(lang) && !/cantonese|\u5ee3\u6771|\u7ca4/i.test(voice?.name || "");
+  }
+  function localeScore(lang) {
+    const l = normalizeLang(lang);
+    if (l === "zh-CN" || l === "zh" || l.startsWith("cmn")) return 40;
+    if (l === "zh-SG") return 30;
+    if (l === "zh-TW") return 25;
+    return 15;
+  }
+  function scoreVoice(voice = {}) {
+    const teks = `${voice.name || ""} ${voice.voiceURI || ""}`;
+    let score = localeScore(voice.lang);
+    let note = "";
+    let neural = false;
+    if (COMPACT.test(teks)) {
+      score -= 30;
+      note = "suara ringkas \u2014 nada cenderung datar";
+    } else if (NEURAL.test(teks)) {
+      score += 30;
+      neural = true;
+      note = "suara neural \u2014 nada paling jelas";
+    }
+    for (const k of KNOWN) {
+      if (k.match.test(teks)) {
+        score += k.bonus;
+        break;
+      }
+    }
+    if (voice.localService === false) {
+      score += 15;
+      if (!note) {
+        neural = true;
+        note = "suara jaringan \u2014 nadanya lebih jelas, perlu internet";
+      }
+    }
+    if (voice.default) score += 1;
+    if (!note) note = "suara bawaan perangkat";
+    return { score, note, neural };
+  }
+  function voiceId(voice = {}) {
+    return String(voice.voiceURI || voice.name || "");
+  }
+  function rankVoices(voices = []) {
+    return (voices || []).filter(isMandarin).map((voice) => ({ voice, id: voiceId(voice), ...scoreVoice(voice) })).sort((a, b) => b.score - a.score || String(a.voice.name).localeCompare(String(b.voice.name)));
+  }
+  function pickVoice(voices = [], preferredId = "") {
+    const ranked = rankVoices(voices);
+    if (preferredId) {
+      const cocok = ranked.find((r) => r.id === preferredId);
+      if (cocok) return cocok.voice;
+    }
+    return ranked[0]?.voice || null;
+  }
+  function toneChunks(text) {
+    const out = [];
+    let latin = "";
+    for (const ch of String(text ?? "")) {
+      if (/\p{Script=Han}/u.test(ch)) {
+        if (latin.trim()) out.push(latin.trim());
+        latin = "";
+        out.push(ch);
+      } else if (/[\p{L}\p{N}]/u.test(ch)) {
+        latin += ch;
+      } else {
+        if (latin.trim()) out.push(latin.trim());
+        latin = "";
+      }
+    }
+    if (latin.trim()) out.push(latin.trim());
+    return out;
+  }
+
   // src/adapters/outbound/webSpeechAdapter.js
-  var _WebSpeechAdapter_instances, loadVoices_fn, playFile_fn;
+  var _WebSpeechAdapter_instances, allVoices_fn, loadVoices_fn, utter_fn, pause_fn, playFile_fn;
   var WebSpeechAdapter = class extends SpeechPort {
     constructor(cfg = appConfig.speech) {
       super();
       __privateAdd(this, _WebSpeechAdapter_instances);
       this.cfg = cfg;
       this.voice = null;
+      this.preferredId = "";
+      this.rateScale = 1;
       this.manifest = null;
       this.audioBase = "assets/audio";
       this.unlocked = false;
@@ -1314,6 +1463,36 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       }
     }
     /**
+     * Daftar suara Mandarin di perangkat ini, terurut dari yang nadanya paling
+     * jelas. Dipakai pemilih suara di menu orang tua.
+     */
+    voiceOptions() {
+      return rankVoices(__privateMethod(this, _WebSpeechAdapter_instances, allVoices_fn).call(this)).map((r) => ({
+        id: r.id,
+        name: r.voice.name || r.id,
+        lang: r.voice.lang || "",
+        note: r.note,
+        neural: r.neural,
+        active: r.id === this.currentVoiceId()
+      }));
+    }
+    /** Tanda pengenal suara yang sedang dipakai. */
+    currentVoiceId() {
+      return this.voice ? voiceId(this.voice) : "";
+    }
+    /**
+     * Terapkan setelan perangkat: pilihan suara dan penyetel kecepatan.
+     * Setelan ini milik perangkat, bukan milik anak \u2014 tidak ikut disinkronkan.
+     *
+     * @param {{voiceId?: string, rateScale?: number}} [settings]
+     */
+    applySettings({ voiceId: id = "", rateScale = 1 } = {}) {
+      this.preferredId = id || "";
+      this.rateScale = Number(rateScale) > 0 ? Number(rateScale) : 1;
+      this.voice = pickVoice(__privateMethod(this, _WebSpeechAdapter_instances, allVoices_fn).call(this), this.preferredId);
+      return this.currentVoiceId();
+    }
+    /**
      * iOS/Safari hanya mengizinkan audio setelah interaksi pengguna.
      * Panggil sekali saat anak menekan tombol profil.
      */
@@ -1327,6 +1506,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       } catch {
       }
     }
+    /**
+     * @param {string} text teks Mandarin yang dibacakan
+     * @param {{slow?: boolean}} [opts] `slow` membacakan per suku kata dengan jeda
+     */
     async speak(text, { slow = false } = {}) {
       if (!text) return;
       this.cancel();
@@ -1336,19 +1519,18 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         return;
       }
       if (typeof speechSynthesis === "undefined") return;
-      await new Promise((resolve) => {
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = this.cfg.lang;
-        u.rate = slow ? this.cfg.rateSlow : this.cfg.rate;
-        u.pitch = this.cfg.pitch;
-        if (this.voice) u.voice = this.voice;
-        u.onend = resolve;
-        u.onerror = resolve;
-        speechSynthesis.speak(u);
-        setTimeout(resolve, 6e3);
-      });
+      this.token = (this.token || 0) + 1;
+      const token = this.token;
+      const parts = slow ? toneChunks(text) : [String(text)];
+      const rate = (slow ? this.cfg.rateSlow : this.cfg.rate) * this.rateScale;
+      for (const [i, part] of parts.entries()) {
+        if (token !== this.token) return;
+        await __privateMethod(this, _WebSpeechAdapter_instances, utter_fn).call(this, part, rate);
+        if (slow && i < parts.length - 1) await __privateMethod(this, _WebSpeechAdapter_instances, pause_fn).call(this, this.cfg.syllableGapMs ?? 300);
+      }
     }
     cancel() {
+      this.token = (this.token || 0) + 1;
       try {
         speechSynthesis?.cancel();
       } catch {
@@ -1360,14 +1542,39 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     }
   };
   _WebSpeechAdapter_instances = new WeakSet();
+  allVoices_fn = function() {
+    if (typeof speechSynthesis === "undefined") return [];
+    return speechSynthesis.getVoices() || [];
+  };
   loadVoices_fn = function() {
     if (typeof speechSynthesis === "undefined") return;
     const pick2 = () => {
-      const voices = speechSynthesis.getVoices() || [];
-      this.voice = voices.find((v) => v.lang?.replace("_", "-") === "zh-CN") || voices.find((v) => /^zh/i.test(v.lang || "")) || null;
+      this.voice = pickVoice(__privateMethod(this, _WebSpeechAdapter_instances, allVoices_fn).call(this), this.preferredId);
     };
     pick2();
     speechSynthesis.addEventListener?.("voiceschanged", pick2);
+  };
+  utter_fn = function(text, rate) {
+    return new Promise((resolve) => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = this.voice?.lang || this.cfg.lang;
+      u.rate = Math.min(2, Math.max(0.1, rate));
+      u.pitch = this.cfg.pitch;
+      if (this.voice) u.voice = this.voice;
+      let selesai = false;
+      const done = () => {
+        if (selesai) return;
+        selesai = true;
+        resolve();
+      };
+      u.onend = done;
+      u.onerror = done;
+      speechSynthesis.speak(u);
+      setTimeout(done, 1500 + text.length * 700);
+    });
+  };
+  pause_fn = function(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   };
   playFile_fn = function(file, slow) {
     return new Promise((resolve) => {
@@ -5315,7 +5522,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   }
 
   // src/adapters/inbound/uiController.js
-  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openSyncSheet_fn, bindImportFile_fn;
+  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openVoiceSheet_fn, openSyncSheet_fn, bindImportFile_fn;
   var UiController = class {
     constructor({ root, profiles, curriculum, practice, study, stats, missions, speech, recognition, sync }) {
       __privateAdd(this, _UiController_instances);
@@ -5344,6 +5551,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       __privateMethod(this, _UiController_instances, bindEvents_fn).call(this);
     }
     async start() {
+      this.speech.applySettings?.(this.profiles.settings().speech || {});
       const active = this.profiles.activeId();
       if (active) {
         this.state.screen = "home";
@@ -5913,6 +6121,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       ${sync ? `<button class="btn btn--ghost" data-sync-open>
                \u2601\uFE0F Sinkronisasi Online ${sync.connected ? "\u2014 aktif \u2705" : "\u2014 belum aktif"}
              </button>` : ""}
+      <button class="btn btn--ghost" style="margin-top:8px" data-voice-open>\u{1F50A} Suara Pengucapan</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-export>\u{1F4BE} Simpan Cadangan (JSON)</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-import>\u{1F4C2} Muat Cadangan</button>
       <button class="btn btn--danger" style="margin-top:8px" data-reset>\u{1F5D1}\uFE0F Hapus Semua Progres</button>
@@ -5922,6 +6131,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       if (e.target.closest("[data-sync-open]")) {
         panel.close();
         return __privateMethod(this, _UiController_instances, openSyncSheet_fn).call(this);
+      }
+      if (e.target.closest("[data-voice-open]")) {
+        panel.close();
+        return __privateMethod(this, _UiController_instances, openVoiceSheet_fn).call(this);
       }
       if (e.target.closest("[data-export]")) {
         const blob = new Blob([this.profiles.exportJson()], { type: "application/json" });
@@ -5944,6 +6157,107 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       }
     });
     __privateMethod(this, _UiController_instances, bindImportFile_fn).call(this, panel);
+  };
+  // ------------------------------------------------------- suara pengucapan
+  /**
+   * Pemilih suara text-to-speech.
+   *
+   * Perangkat biasanya punya lebih dari satu suara Mandarin dan mutunya jauh
+   * berbeda: suara "ringkas" bawaan meratakan lengkung nada sehingga
+   * ma1/ma2/ma3/ma4 terdengar nyaris sama, sedangkan suara neural
+   * mengucapkannya tegas. Urutan daftar perangkat tidak ada hubungannya
+   * dengan mutu, jadi aplikasi mengurutkannya sendiri \u2014 dan orang tua tetap
+   * bisa memilih sendiri sambil mendengarkan (ADR-0012).
+   */
+  openVoiceSheet_fn = function() {
+    const setelan = this.profiles.settings().speech || {};
+    const daftar = this.speech.voiceOptions?.() || [];
+    const skala = Number(setelan.rateScale) > 0 ? Number(setelan.rateScale) : 1;
+    const baris = (v, i) => `
+      <div class="voice ${v.active ? "voice--on" : ""}">
+        <label class="voice__pick">
+          <input type="radio" name="voice" value="${esc(v.id)}" ${v.active ? "checked" : ""} />
+          <span class="voice__body">
+            <span class="voice__name">
+              ${esc(v.name)}
+              ${i === 0 ? '<span class="voice__tag">disarankan</span>' : ""}
+            </span>
+            <span class="voice__note small muted">${esc(v.note)}${v.lang ? ` \xB7 ${esc(v.lang)}` : ""}</span>
+          </span>
+        </label>
+        <button type="button" class="voice__try" data-try="${esc(v.id)}"
+                aria-label="Coba dengar ${esc(v.name)}">\u25B6</button>
+      </div>`;
+    const kosong = `
+      <p class="small" style="margin:0 0 14px">
+        \u26A0\uFE0F Perangkat ini belum punya suara Mandarin, jadi contoh pengucapan tidak
+        berbunyi. Pasang dulu paket suaranya:
+      </p>
+      <ul class="small muted" style="margin:0 0 14px;padding-left:18px;line-height:1.7">
+        <li><b>Android</b>: Setelan \u2192 Bahasa &amp; masukan \u2192 Keluaran teks-ke-ucapan \u2192 Pasang data suara \u2192 Chinese (China).</li>
+        <li><b>iPhone/iPad</b>: Setelan \u2192 Aksesibilitas \u2192 Konten Terucap \u2192 Suara \u2192 Chinese (China) \u2014 pilih yang <i>Premium</i>.</li>
+        <li><b>Laptop</b>: pakai Google Chrome; suara Mandarinnya diambil dari internet.</li>
+      </ul>`;
+    const panel = sheet(`
+      <h2 style="margin:0 0 4px">\u{1F50A} Suara Pengucapan</h2>
+      ${daftar.length ? `<p class="small muted" style="margin:0 0 14px">
+               Suara yang dipakai membacakan contoh. Yang paling atas nadanya paling
+               jelas \u2014 ketuk \u25B6 untuk mendengar <b>m\u0101 m\xE1 m\u01CE m\xE0</b>, empat nada
+               yang bunyinya hanya beda di nadanya saja.
+             </p>` : ""}
+
+      ${daftar.length ? `<div class="voice-list">${daftar.map(baris).join("")}</div>` : kosong}
+
+      <p class="field__label" style="margin:16px 0 6px">Kecepatan</p>
+      <div class="seg" role="group" aria-label="Kecepatan suara">
+        ${[
+      { v: 0.8, label: "\u{1F422} Pelan" },
+      { v: 1, label: "Biasa" },
+      { v: 1.2, label: "\u{1F407} Cepat" }
+    ].map(
+      (o) => `<button type="button" class="seg__btn ${Math.abs(o.v - skala) < 0.01 ? "seg__btn--on" : ""}"
+                       data-rate="${o.v}">${o.label}</button>`
+    ).join("")}
+      </div>
+      <p class="small muted" style="margin:8px 0 0">
+        Tombol \u{1F422} di layar latihan tetap membacakan <b>satu suku kata sekali ucap</b>
+        dengan jeda, supaya tiap nada terdengar utuh dan mudah ditiru.
+      </p>
+    `);
+    const simpan = (patch) => {
+      const next = { ...this.profiles.settings().speech || {}, ...patch };
+      this.profiles.saveSettings({ speech: next });
+      this.speech.applySettings?.(next);
+      return next;
+    };
+    panel.el.addEventListener("change", (e) => {
+      const radio = e.target.closest('input[name="voice"]');
+      if (!radio) return;
+      simpan({ voiceId: radio.value });
+      for (const el of panel.el.querySelectorAll(".voice")) {
+        el.classList.toggle("voice--on", el.contains(radio));
+      }
+      this.speech.speak(CONTOH_NADA, { slow: true });
+    });
+    panel.el.addEventListener("click", (e) => {
+      const coba = e.target.closest("[data-try]");
+      if (coba) {
+        const sebelumnya = this.profiles.settings().speech || {};
+        this.speech.applySettings?.({ ...sebelumnya, voiceId: coba.dataset.try });
+        this.speech.speak(CONTOH_NADA, { slow: true }).finally?.(() => {
+          this.speech.applySettings?.(this.profiles.settings().speech || {});
+        });
+        return;
+      }
+      const rate = e.target.closest("[data-rate]");
+      if (rate) {
+        simpan({ rateScale: Number(rate.dataset.rate) });
+        for (const b of panel.el.querySelectorAll(".seg__btn")) {
+          b.classList.toggle("seg__btn--on", b === rate);
+        }
+        this.speech.speak(CONTOH_NADA);
+      }
+    });
   };
   // --------------------------------------------------- sinkronisasi online
   openSyncSheet_fn = function() {
@@ -6082,6 +6396,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     const days = Math.round(hours / 24);
     return days === 1 ? "kemarin" : `${days} hari lalu`;
   }
+  var CONTOH_NADA = "\u5988\u9EBB\u9A6C\u9A82";
   var DAYS_ID = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
   function labelForDay(dayKey) {
     if (dayKey === toDayKey()) return "Hari ini";

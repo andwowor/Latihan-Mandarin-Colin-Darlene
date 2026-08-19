@@ -75,7 +75,9 @@ perangkat (lihat ADR-0010).
 **Empat keterampilan**
 
 - 📖 **Membaca** — 汉字→arti, arti→汉字, pinyin→汉字, 汉字→pinyin, arti kalimat
-- 🎧 **Mendengar** — dengar lalu pilih tulisan/arti/kalimat, ada tombol 🐢 pelan
+- 🎧 **Mendengar** — dengar lalu pilih tulisan/arti/kalimat, ada tombol 🐢 yang
+  membacakan **satu suku kata sekali ucap** dengan jeda, supaya tiap nada
+  terdengar utuh dan mudah ditiru (lihat ADR-0012)
 - 🎤 **Berbicara** — ucapkan lewat mikrofon, suaranya dinilai otomatis; ada juga
   mode "dengarkan lalu tirukan" tanpa melihat tulisan. Penilaiannya
   membandingkan **bunyi**, bukan huruf: pengenal suara sering meleset ke
@@ -160,7 +162,12 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 4. **Latihan berbicara butuh internet** dan mikrofon: penilaian memakai
    pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
    aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
-5. **Pengenal suara sering meleset ke homofon.** Karena itu penilaiannya
+5. **Mutu suara text-to-speech berbeda jauh antar perangkat.** Aplikasi menilai
+   sendiri suara Mandarin yang ada dan memakai yang paling jelas nadanya —
+   suara "compact" bawaan meratakan lengkung nada sehingga mā/má/mǎ/mà
+   terdengar nyaris sama. Orang tua bisa memilih dan mendengarkan sendiri lewat
+   ⚙️ → **🔊 Suara Pengucapan** (lihat ADR-0012).
+6. **Pengenal suara sering meleset ke homofon.** Karena itu penilaiannya
    membandingkan bunyi, memakai kamus lafal berlapis dua: 771 huruf dari
    kurikulum sendiri, ditambah 20.856 huruf lafal umum agar tebakan mesin yang
    jatuh di luar kurikulum tetap dikenali (lihat ADR-0011).
@@ -169,7 +176,7 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 
 ```bash
 npm start       # jalankan di http://localhost:4173/public/
-npm test        # 93 pengujian lapisan domain & aplikasi
+npm test        # 142 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
 npm run readings # bangun ulang kamus lafal readings.json
                  # (butuh: npm install pinyin-pro — sekali saja, seperti esbuild)
