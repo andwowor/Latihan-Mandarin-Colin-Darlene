@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v9';
+const VERSION = 'mandarin-fun-v10';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -29,6 +29,7 @@ const ASSETS = [
   'src/domain/progress.js',
   'src/domain/exerciseFactory.js',
   'src/domain/pronunciation.js',
+  'src/domain/speechVoice.js',
   'src/domain/studyDeck.js',
   'src/domain/hskBridge.js',
   'src/domain/mergeState.js',

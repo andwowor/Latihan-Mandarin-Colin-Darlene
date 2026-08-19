@@ -187,7 +187,10 @@ export function missingChars(target, heard, readings = {}) {
 export function gradeSpeech(target, heard, threshold = 0.5, readings = {}) {
   const options = (Array.isArray(heard) ? heard : [heard]).filter(Boolean);
   const bersih = normalizeHan(target);
-  let best = { score: 0, text: '', exact: false };
+  // Tebakan pertama dipakai sebagai cadangan: kalau semua bernilai 0, anak
+  // tetap harus melihat APA yang terdengar. Tanpa ini umpan baliknya berkata
+  // "suaramu belum terdengar" padahal anak jelas-jelas bersuara.
+  let best = { score: 0, text: options[0] ? String(options[0]) : '', exact: false };
 
   for (const option of options) {
     const score = similarity(target, option, readings);
@@ -219,11 +222,19 @@ export function speechStars(score) {
   return 0;
 }
 
-/** Pujian yang sesuai dengan nilai — bahasa yang dimengerti anak. */
-export function speechFeedbackId(score) {
+/**
+ * Pujian yang sesuai dengan nilai — bahasa yang dimengerti anak.
+ *
+ * `heard` ikut dilihat karena nilai 0 punya dua arti yang sangat berbeda:
+ * mikrofon tidak menangkap apa pun, atau anak bersuara tetapi yang terdengar
+ * lain sama sekali. Menyuruh anak "bicara lebih keras" padahal suaranya sudah
+ * tertangkap hanya membuatnya bingung.
+ */
+export function speechFeedbackId(score, heard = '') {
   if (score >= 0.9) return 'Sempurna! Lafalmu tepat sekali.';
   if (score >= 0.7) return 'Bagus sekali! Hampir sempurna.';
   if (score >= 0.5) return 'Sudah benar! Ayo coba lebih jelas lagi.';
   if (score > 0) return 'Hampir! Dengarkan contohnya lalu ulangi.';
+  if (heard) return 'Yang terdengar masih lain. Dengarkan contohnya lalu ulangi ya.';
   return 'Suaramu belum terdengar. Coba bicara lebih keras ya.';
 }

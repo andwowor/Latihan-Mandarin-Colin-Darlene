@@ -163,6 +163,34 @@ export function feedbackBlock({ correct, explain, isLast, speech }) {
   </div>`;
 }
 
+/**
+ * Percobaan pertama meleset, tetapi masih ada kesempatan.
+ *
+ * Sengaja TIDAK memakai gaya "salah": tidak ada yang tercatat, nyawanya utuh,
+ * dan yang diminta bukan menebak ulang melainkan mendengarkan lagi lalu
+ * menirukan. Karena itu tombol \ud83d\udd0a berdampingan sama besar dengan tombol
+ * mikrofonnya \u2014 mendengar contohnya dulu memang langkah berikutnya.
+ */
+export function retryBlock({ speech, canRecognise = true }) {
+  return `
+  <div class="feedback feedback--retry">
+    <div class="feedback__title">\ud83d\udd01 Belum pas \u2014 coba sekali lagi</div>
+    ${speech ? speechDetail(speech) : ''}
+    <p class="feedback__body">
+      Dengarkan contohnya dulu, lalu ucapkan sekali lagi. Kesempatan ini belum
+      dihitung, jadi santai saja.
+    </p>
+    <div class="row" style="gap:8px">
+      <button class="btn btn--ghost grow" data-action="speak">\ud83d\udd0a Dengar contoh</button>
+      ${
+        canRecognise
+          ? `<button class="btn btn--primary grow" data-action="retry">\ud83c\udfa4 Coba Lagi</button>`
+          : ''
+      }
+    </div>
+  </div>`;
+}
+
 /** Rincian hasil pengenalan suara: apa yang terdengar dan seberapa mirip. */
 function speechDetail(s) {
   if (s.selfAssessed) return '';

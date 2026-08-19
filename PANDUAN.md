@@ -231,6 +231,28 @@ menilai seberapa mirip ucapannya.
 4. Ketuk mikrofon, tunggu tulisan *"Mendengarkan…"*, baru bicara.
 5. Hasilnya muncul: apa yang terdengar, berapa persen mirip, dan bintangnya.
 
+**Setiap soal dapat satu kesempatan mengulang.** Kalau percobaan pertama belum
+pas, yang muncul bukan "salah" melainkan **🔁 Belum pas — coba sekali lagi**
+dengan warna amber. Contohnya langsung dibunyikan, dan ada dua tombol:
+**🔊 Dengar contoh** dan **🎤 Coba Lagi**.
+
+Selama kesempatan itu belum dipakai, **tidak ada yang tercatat sama sekali**:
+nyawa ❤️ utuh, combo 🔥 utuh, dan soalnya belum terhitung terjawab. Baru
+percobaan keduanya yang dinilai. Ini disengaja — percobaan pertama sering
+gagal bukan karena lafalnya keliru, melainkan karena mikrofonnya baru menyala
+saat anak sudah mulai bicara, suaranya terlalu pelan, atau anak baru saja
+mendengar contohnya.
+
+Dua hal yang tetap jujur:
+
+- Combo 🔥 **tidak putus** oleh percobaan kedua, tetapi juga **tidak tumbuh** —
+  combo tetap hadiah untuk yang sekali jadi.
+- Kata yang baru pas di percobaan kedua **akan muncul lagi lebih cepat**.
+  Anak melihat pujiannya, dan katanya tetap datang lagi besok.
+
+Layar hasil menyebut berapa soal yang butuh percobaan kedua, jadi Bapak/Ibu
+tetap bisa melihat ronde mana yang benar-benar lancar.
+
 **Yang perlu diperhatikan:**
 
 - **Butuh internet.** Pengenalan suara dikerjakan di server Google (Chrome)
@@ -263,6 +285,52 @@ menilai seberapa mirip ucapannya.
 - Android: buka *Setelan → Sistem → Bahasa & masukan → Keluaran teks-ke-ucapan*,
   lalu unduh paket suara **Bahasa Mandarin (中文)**.
 - Ketuk tombol 🐢 untuk mendengar versi lebih pelan.
+
+---
+
+### 🔊 Kalau nadanya terdengar kurang jelas
+
+Nada adalah pembeda makna dalam bahasa Mandarin: **mā** 妈 (ibu), **má** 麻
+(rami), **mǎ** 马 (kuda), **mà** 骂 (memarahi) hanya berbeda pada naik-turunnya
+suara. Kalau suara yang membacakan contohnya kurang tegas, anak mendengar
+empat kata yang sama — dan tidak bisa menirukan nada yang tidak terdengar.
+
+Hampir setiap perangkat punya **lebih dari satu** suara Mandarin, dan mutunya
+jauh berbeda. Suara "compact" bawaan hemat memori dan lengkung nadanya rata;
+suara *neural* / *premium* / suara jaringan jauh lebih tegas. Aplikasi sudah
+memilihkan yang terbaik yang ada, tetapi Bapak/Ibu bisa mendengarkan sendiri:
+
+1. Ketuk ⚙️ di pojok kanan atas → **🔊 Suara Pengucapan**.
+2. Daftar suara Mandarin di perangkat itu muncul, terurut dari yang nadanya
+   paling jelas. Yang teratas ditandai **disarankan**.
+3. Ketuk **▶** di sebelah kanan sebuah suara untuk mendengar **妈麻马骂** —
+   empat nada pada suku kata yang sama.
+   - Kalau keempatnya terdengar **berbeda** → suaranya cukup jelas.
+   - Kalau terdengar **sama saja** → coba suara lain di daftar itu.
+   Mendengarkan tidak ikut memilih, jadi silakan bandingkan dulu.
+4. Kalau sudah ketemu yang paling jelas, ketuk **lingkaran di sebelah kirinya**
+   untuk memilihnya.
+5. **Kecepatan** bisa disetel di bawahnya: 🐢 Pelan · Biasa · 🐇 Cepat.
+   Darlene mungkin cocok di 🐢, Colin di Biasa.
+
+Pilihan ini milik **perangkat itu saja** — tidak ikut tersinkron dan tidak
+ikut terhapus saat progres di-reset. Jadi setiap HP/tablet/laptop perlu
+disetel sendiri sekali.
+
+**Kalau daftarnya kosong**, perangkat itu memang belum punya suara Mandarin.
+Panel yang sama menampilkan langkah memasangnya:
+
+- **Android**: Setelan → Bahasa & masukan → Keluaran teks-ke-ucapan →
+  Pasang data suara → **Chinese (China)**.
+- **iPhone/iPad**: Setelan → Aksesibilitas → Konten Terucap → Suara →
+  **Chinese (China)** — pilih yang bertanda **Premium** (unduhannya lebih
+  besar, tetapi nadanya paling jelas).
+- **Laptop**: pakai **Google Chrome**; suara Mandarinnya diambil dari internet
+  dan termasuk yang paling jelas.
+
+**Tombol 🐢 di layar latihan** sekarang membacakan **satu suku kata sekali
+ucap** dengan jeda di antaranya, bukan sekadar memperlambat. Satu nada utuh,
+lalu diam sebentar — persis cara guru mengulang satu-satu supaya bisa ditirukan.
 
 ---
 

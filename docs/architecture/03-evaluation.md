@@ -46,12 +46,14 @@ tunggu seperti Duolingo — anak bisa langsung mengulang.
 | Dua anak sulit dibedakan oleh pembaca buta warna | Palet diuji dengan validator (ΔE 13.9 protan, di atas ambang 8), ditambah nama + lambang di tiap baris |
 | "Belum dicoba" terbaca sebagai "semua salah" | Jalur kosong bergaris putus dan teks "belum dicoba", bukan batang 0% |
 | Pengenal suara meleset ke homofon | Penilaian membandingkan bunyi memakai kamus lafal; homofon bernilai penuh (ADR-0011) |
+| Suara TTS perangkat nadanya datar sehingga tak bisa ditiru | Suara dinilai dan diurutkan sendiri; mode 🐢 per suku kata; pemilih suara di menu orang tua (ADR-0012) |
+| Percobaan berbicara gagal karena hal teknis, bukan lafal | Satu kesempatan mengulang per soal; percobaan pertama belum dicatat apa pun (ADR-0013) |
 | Anak salah nada tetap diluluskan | Disengaja: nada yang teramati adalah nada kamus dari huruf tebakan mesin, bukan nada anak |
 | Lambang anak berupa gambar gagal dimuat | Emoji ikut dirender sebagai cadangan tersembunyi; `onerror` menyalakannya |
 
 ## Verifikasi yang sudah dilakukan
 
-- **93 pengujian unit domain & aplikasi** (`npm test`) — skor, level, streak,
+- **155 pengujian unit domain & aplikasi** (`npm test`) — skor, level, streak,
   SRS, misi harian, agregasi periode, pembangkit soal, lencana, pelafalan,
   jembatan HSK (termasuk kesegaran `bridge.json`), sesi belajar, dan
   penggabungan progres.

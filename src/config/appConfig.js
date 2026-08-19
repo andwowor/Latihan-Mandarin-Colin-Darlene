@@ -94,11 +94,28 @@ export const appConfig = {
 
   speech: {
     lang: 'zh-CN',
-    rate: 0.75,          // pelan, untuk anak-anak
-    rateSlow: 0.5,
-    pitch: 1.05,
+
+    // Kecepatan dan nada dipilih agar LENGKUNG NADA tetap terdengar.
+    // `rate` terlalu rendah meregangkan satu suku kata sampai nadanya melar
+    // dan justru makin sulit ditiru, jadi 0,8 — cukup pelan tanpa melar.
+    // `pitch` dibiarkan netral: setiap pergeseran pitch ditumpangkan di atas
+    // lengkung nada aslinya, dan itu yang membuat nada terdengar samar.
+    rate: 0.8,
+    pitch: 1,
+
+    // Mode 🐢: pelan dengan cara membacakan SATU SUKU KATA sekali ucap,
+    // dipisah jeda. Ini nada kutipan yang bersih — cara guru mengulang
+    // satu-satu supaya bisa ditirukan (lihat ADR-0012).
+    rateSlow: 0.7,
+    syllableGapMs: 340,
 
     // Latihan berbicara
+    // Satu kesempatan mengulang tiap soal sebelum jawabannya dicatat. Bicara
+    // beda dari memilih jawaban: percobaan pertama sering gagal karena
+    // mikrofonnya belum siap, suaranya terlalu pelan, atau anak baru saja
+    // mendengar contohnya. Kesempatan kedua membuat anak mendengarkan lalu
+    // menirukan sekali lagi — dan itu justru latihan yang sebenarnya.
+    retries: 1,
     maxAlternatives: 8,       // berapa tebakan diminta dari pengenal suara
     listenTimeoutMs: 7000,    // berhenti mendengar setelah sekian lama
     // Ambang lulus. Sengaja longgar: penuturnya anak 5 dan 7 tahun, dan

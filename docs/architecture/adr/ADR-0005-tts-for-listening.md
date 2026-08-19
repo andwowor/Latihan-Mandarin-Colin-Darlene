@@ -1,6 +1,7 @@
 # ADR-0005: Text-to-Speech untuk Latihan Menyimak
 Tanggal   : 2026-08-12
 Status    : Accepted
+Sebagian digantikan: ADR-0012 (pemilihan suara dan kecepatan)
 
 ## Konteks
 
@@ -30,8 +31,11 @@ Latihan menyimak memakai **Web Speech API** (`SpeechSynthesisUtterance`) dengan
 Rincian implementasi (`src/adapters/outbound/webSpeechAdapter.js`):
 
 - Kecepatan diperlambat (`rate 0.75`) untuk anak; ada tombol 🐢 lebih lambat lagi
-  (`rate 0.5`).
+  (`rate 0.5`). — *diganti ADR-0012: `rate 0.8`, dan 🐢 kini membacakan satu
+  suku kata sekali ucap dengan jeda, bukan meregangkan suaranya.*
 - Suara dipilih otomatis: `zh-CN` lebih dulu, lalu suara `zh*` mana pun.
+  — *diganti ADR-0012: urutan daftar perangkat tidak ada hubungannya dengan
+  mutu, jadi suaranya sekarang dinilai lebih dulu.*
 - `unlock()` dipanggil saat anak menekan tombol profil, karena iOS/Safari
   melarang audio sebelum ada interaksi pengguna.
 - Adapter **lebih dulu mencari berkas audio asli** di
