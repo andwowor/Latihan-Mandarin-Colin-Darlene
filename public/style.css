@@ -573,6 +573,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 }
 .feedback--ok  { background: color-mix(in srgb, var(--green) 20%, var(--card)); }
 .feedback--bad { background: color-mix(in srgb, var(--red) 18%, var(--card)); }
+/* Kesempatan kedua: bukan "salah", jadi warnanya bukan merah. Amber =
+   "belum selesai, ayo lanjut" — bukan penolakan. */
+.feedback--retry { background: color-mix(in srgb, var(--amber) 20%, var(--card)); }
 .feedback__title { font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
 .feedback__body { font-size: .92rem; margin: 4px 0 12px; }
 

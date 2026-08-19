@@ -576,6 +576,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
 }
 .feedback--ok  { background: color-mix(in srgb, var(--green) 20%, var(--card)); }
 .feedback--bad { background: color-mix(in srgb, var(--red) 18%, var(--card)); }
+/* Kesempatan kedua: bukan "salah", jadi warnanya bukan merah. Amber =
+   "belum selesai, ayo lanjut" \002014 bukan penolakan. */
+.feedback--retry { background: color-mix(in srgb, var(--amber) 20%, var(--card)); }
 .feedback__title { font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
 .feedback__body { font-size: .92rem; margin: 4px 0 12px; }
 
@@ -979,7 +982,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   function gradeSpeech(target, heard, threshold = 0.5, readings = {}) {
     const options = (Array.isArray(heard) ? heard : [heard]).filter(Boolean);
     const bersih = normalizeHan(target);
-    let best = { score: 0, text: "", exact: false };
+    let best = { score: 0, text: options[0] ? String(options[0]) : "", exact: false };
     for (const option of options) {
       const score = similarity(target, option, readings);
       const exact = normalizeHan(option) === bersih;
@@ -1001,11 +1004,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     if (score >= 0.5) return 1;
     return 0;
   }
-  function speechFeedbackId(score) {
+  function speechFeedbackId(score, heard = "") {
     if (score >= 0.9) return "Sempurna! Lafalmu tepat sekali.";
     if (score >= 0.7) return "Bagus sekali! Hampir sempurna.";
     if (score >= 0.5) return "Sudah benar! Ayo coba lebih jelas lagi.";
     if (score > 0) return "Hampir! Dengarkan contohnya lalu ulangi.";
+    if (heard) return "Yang terdengar masih lain. Dengarkan contohnya lalu ulangi ya.";
     return "Suaramu belum terdengar. Coba bicara lebih keras ya.";
   }
 
@@ -1213,6 +1217,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       rateSlow: 0.7,
       syllableGapMs: 340,
       // Latihan berbicara
+      // Satu kesempatan mengulang tiap soal sebelum jawabannya dicatat. Bicara
+      // beda dari memilih jawaban: percobaan pertama sering gagal karena
+      // mikrofonnya belum siap, suaranya terlalu pelan, atau anak baru saja
+      // mendengar contohnya. Kesempatan kedua membuat anak mendengarkan lalu
+      // menirukan sekali lagi \u2014 dan itu justru latihan yang sebenarnya.
+      retries: 1,
       maxAlternatives: 8,
       // berapa tebakan diminta dari pengenal suara
       listenTimeoutMs: 7e3,
@@ -3604,6 +3614,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         hearts: appConfig.session.hearts,
         bySkill: {},
         mistakes: [],
+        retries: {},
+        // nomor soal -> berapa kali sudah diulang
+        retriedCount: 0,
+        // berapa soal yang butuh percobaan kedua
         startedAt: Date.now()
       };
       return this.round;
@@ -3616,26 +3630,57 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       if (!this.round) return true;
       return this.round.index >= this.round.questions.length || this.round.hearts <= 0;
     }
+    /** Berapa kali soal saat ini masih boleh diulang sebelum dicatat. */
+    retriesLeft() {
+      const round = this.round;
+      const question = this.current();
+      if (!round || !question) return 0;
+      if (question.skill !== "speaking") return 0;
+      return Math.max(0, (appConfig.speech.retries ?? 0) - (round.retries[round.index] || 0));
+    }
     /**
      * Nilai jawaban untuk soal saat ini.
-     * @returns {{correct:boolean, xpGained:number, question:object, explain:string}}
+     *
+     * Khusus berbicara, percobaan pertama yang meleset TIDAK langsung dicatat:
+     * anak mendapat satu kesempatan lagi, dan yang tercatat adalah percobaan
+     * terakhirnya. Selama masih ada kesempatan, tidak ada yang berubah \u2014 nyawa
+     * utuh, combo utuh, kartu SRS belum disentuh.
+     *
+     * @returns {{correct:boolean, retry?:boolean, retriesLeft?:number,
+     *            xpGained:number, question:object, explain:string, detail:*}}
      */
     submit(response) {
       var _a, _b;
       const round = this.round;
       const question = this.current();
       if (!round || !question) return null;
-      const { correct } = grade(question, response, {
+      const { correct, detail, selfAssessed } = grade(question, response, {
         acceptScore: appConfig.speech.acceptScore,
         readings: this.readings || {}
       });
+      if (!correct && !selfAssessed && this.retriesLeft() > 0) {
+        round.retries[round.index] = (round.retries[round.index] || 0) + 1;
+        return {
+          correct: false,
+          retry: true,
+          retriesLeft: this.retriesLeft(),
+          xpGained: 0,
+          question,
+          explain: question.explain,
+          detail
+        };
+      }
+      const diulang = (round.retries[round.index] || 0) > 0;
+      if (diulang) round.retriedCount++;
       const xpGained = correct ? xpForAnswer(round.streakCount) : 0;
       round.answered++;
       round.xp += xpGained;
       if (correct) {
         round.correct++;
-        round.streakCount++;
-        round.bestCombo = Math.max(round.bestCombo, round.streakCount);
+        if (!diulang) {
+          round.streakCount++;
+          round.bestCombo = Math.max(round.bestCombo, round.streakCount);
+        }
       } else {
         round.streakCount = 0;
         round.hearts--;
@@ -3648,11 +3693,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         const key = wordKey(round.levelId, question.word);
         this.profiles.update(round.profileId, (p) => {
           const cards = { ...p.cards || {} };
-          cards[key] = reviewCard(cards[key] || newCard(key), correct);
+          cards[key] = reviewCard(cards[key] || newCard(key), correct && !diulang);
           return { ...p, cards };
         });
       }
-      return { correct, xpGained, question, explain: question.explain };
+      return { correct, xpGained, question, explain: question.explain, detail, retriesLeft: 0 };
     }
     next() {
       if (!this.round) return null;
@@ -3728,6 +3773,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         firstClear,
         perfect,
         outOfHearts: round.hearts <= 0,
+        retried: round.retriedCount,
         mistakes: round.mistakes,
         newBadges: fresh,
         missionReward,
@@ -5091,6 +5137,21 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     </div>
   </div>`;
   }
+  function retryBlock({ speech, canRecognise = true }) {
+    return `
+  <div class="feedback feedback--retry">
+    <div class="feedback__title">\u{1F501} Belum pas \u2014 coba sekali lagi</div>
+    ${speech ? speechDetail(speech) : ""}
+    <p class="feedback__body">
+      Dengarkan contohnya dulu, lalu ucapkan sekali lagi. Kesempatan ini belum
+      dihitung, jadi santai saja.
+    </p>
+    <div class="row" style="gap:8px">
+      <button class="btn btn--ghost grow" data-action="speak">\u{1F50A} Dengar contoh</button>
+      ${canRecognise ? `<button class="btn btn--primary grow" data-action="retry">\u{1F3A4} Coba Lagi</button>` : ""}
+    </div>
+  </div>`;
+  }
   function speechDetail(s) {
     if (s.selfAssessed) return "";
     const pct = Math.round((s.score || 0) * 100);
@@ -5121,6 +5182,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       <div class="result__stat"><b>+${summary.xp}</b><span>XP</span></div>
     </div>
 
+    ${summary.retried ? `<p class="small muted" style="margin:0 0 12px">
+             \u{1F501} ${summary.retried} soal baru pas di percobaan kedua \u2014 tetap dihitung benar,
+             dan katanya akan muncul lagi lebih cepat.
+           </p>` : ""}
+
     <div class="card" style="text-align:left">
       <div class="row row--between small" style="margin-bottom:6px">
         <b>Level ${summary.level.level}</b>
@@ -5149,7 +5215,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     return "Selesai!";
   }
   function skillLabel(id) {
-    return { reading: "Membaca", listening: "Mendengar", writing: "Menulis", mixed: "Campur" }[id] || id;
+    return { reading: "Membaca", listening: "Mendengar", speaking: "Berbicara", writing: "Menulis", mixed: "Campur" }[id] || id;
   }
   function missionRewardCard(mr) {
     return `
@@ -5522,7 +5588,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   }
 
   // src/adapters/inbound/uiController.js
-  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openVoiceSheet_fn, openSyncSheet_fn, bindImportFile_fn;
+  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, offerRetry_fn, resetMic_fn, speechFeedback_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openVoiceSheet_fn, openSyncSheet_fn, bindImportFile_fn;
   var UiController = class {
     constructor({ root, profiles, curriculum, practice, study, stats, missions, speech, recognition, sync }) {
       __privateAdd(this, _UiController_instances);
@@ -5899,6 +5965,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       __privateMethod(this, _UiController_instances, answer_fn).call(this, this.selectedTiles.map((t) => t.value).join(""));
     });
     on(r, "click", '[data-action="record"]', () => __privateMethod(this, _UiController_instances, record_fn).call(this));
+    on(r, "click", '[data-action="retry"]', () => {
+      this.speech.cancel();
+      __privateMethod(this, _UiController_instances, record_fn).call(this);
+    });
     on(r, "click", "[data-self-say]", (_e, el) => {
       if (this.state.answered) return;
       __privateMethod(this, _UiController_instances, answer_fn).call(this, { selfAssessed: true, ok: el.dataset.selfSay === "1" });
@@ -6043,6 +6113,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   answer_fn = function(response, el) {
     const result = this.practice.submit(response);
     if (!result) return;
+    if (result.retry) return __privateMethod(this, _UiController_instances, offerRetry_fn).call(this, result);
     this.state.answered = true;
     buzz(result.correct ? 20 : [40, 60, 40]);
     const q = result.question;
@@ -6054,16 +6125,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         btn.disabled = true;
       }
     }
-    let speech = null;
-    if (q.skill === "speaking") {
-      const d = result.detail;
-      speech = d?.selfAssessed ? { selfAssessed: true } : {
-        heard: d?.heard || "",
-        score: d?.score || 0,
-        stars: speechStars(d?.score || 0),
-        message: speechFeedbackId(d?.score || 0)
-      };
-    }
+    const speech = __privateMethod(this, _UiController_instances, speechFeedback_fn).call(this, result);
     const round = this.practice.round;
     const isLast = round.index >= round.questions.length - 1 || round.hearts <= 0;
     const slot = qs(this.root, "#feedback-slot");
@@ -6076,6 +6138,50 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       });
     }
     if (result.correct && q.speak) setTimeout(() => this.speech.speak(q.speak), 120);
+  };
+  /**
+   * Tawarkan kesempatan kedua untuk soal berbicara.
+   *
+   * Layarnya sengaja tidak digambar ulang: tulisan, tombol contoh suara, dan
+   * mikrofonnya tetap di tempatnya supaya anak merasa masih pada soal yang
+   * sama \u2014 hanya ditambah ajakan mencoba lagi.
+   */
+  offerRetry_fn = function(result) {
+    buzz(30);
+    const slot = qs(this.root, "#feedback-slot");
+    if (slot) {
+      slot.innerHTML = retryBlock({
+        speech: __privateMethod(this, _UiController_instances, speechFeedback_fn).call(this, result),
+        canRecognise: !!this.recognition?.isAvailable()
+      });
+    }
+    __privateMethod(this, _UiController_instances, resetMic_fn).call(this, "Ketuk mikrofon, lalu ucapkan sekali lagi");
+    if (result.question.speak) setTimeout(() => this.speech.speak(result.question.speak), 200);
+  };
+  /** Kembalikan mikrofon ke keadaan siap dipakai lagi. */
+  resetMic_fn = function(hintText) {
+    const btn = qs(this.root, '[data-action="record"]');
+    const hint = qs(this.root, "#mic-hint");
+    const heard = qs(this.root, "#mic-heard");
+    if (btn) {
+      btn.disabled = false;
+      btn.classList.remove("mic--listening");
+    }
+    if (hint) hint.textContent = hintText;
+    if (heard) heard.textContent = "";
+    this.listening = false;
+  };
+  /** Rincian pelafalan untuk umpan balik: apa yang terdengar dan nilainya. */
+  speechFeedback_fn = function(result) {
+    if (result.question.skill !== "speaking") return null;
+    const d = result.detail;
+    if (d?.selfAssessed) return { selfAssessed: true };
+    return {
+      heard: d?.heard || "",
+      score: d?.score || 0,
+      stars: speechStars(d?.score || 0),
+      message: speechFeedbackId(d?.score || 0, d?.heard || "")
+    };
   };
   next_fn = async function() {
     if (this.practice.isFinished() || this.practice.round.index >= this.practice.round.questions.length - 1) {

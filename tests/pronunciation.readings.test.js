@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   gradeSpeech, similarity, stripTone, splitPinyin, nearSound, missingChars, speechStars,
-  mergeReadingSources
+  mergeReadingSources, speechFeedbackId
 } from '../src/domain/pronunciation.js';
 import { readVocab, buildReadings, serialise } from '../tools/build-readings.mjs';
 import { appConfig } from '../src/config/appConfig.js';
@@ -127,6 +127,18 @@ test('suara yang tidak terdengar sama sekali ditandai kosong', () => {
   const r = gradeSpeech('你好', [], AMBANG, readings);
   assert.equal(r.empty, true);
   assert.equal(r.correct, false);
+  assert.equal(r.heard, '');
+});
+
+test('ucapan yang meleset total tetap ditampilkan apa adanya', () => {
+  // Nilainya 0, tetapi anak jelas bersuara — umpan baliknya tidak boleh
+  // berkata "suaramu belum terdengar".
+  const r = gradeSpeech('你好', ['再见'], AMBANG, readings);
+  assert.equal(r.score, 0);
+  assert.equal(r.heard, '再见', 'anak harus melihat apa yang terdengar');
+  assert.equal(r.empty, false);
+  assert.match(speechFeedbackId(r.score, r.heard), /terdengar masih lain/);
+  assert.match(speechFeedbackId(0, ''), /belum terdengar/);
 });
 
 test('huruf yang hilang dilaporkan berdasarkan bunyi, bukan tulisan', () => {

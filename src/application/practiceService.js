@@ -72,6 +72,8 @@ export class PracticeService {
       hearts: appConfig.session.hearts,
       bySkill: {},
       mistakes: [],
+      retries: {},        // nomor soal -> berapa kali sudah diulang
+      retriedCount: 0,    // berapa soal yang butuh percobaan kedua
       startedAt: Date.now()
     };
     return this.round;
@@ -87,27 +89,65 @@ export class PracticeService {
     return this.round.index >= this.round.questions.length || this.round.hearts <= 0;
   }
 
+  /** Berapa kali soal saat ini masih boleh diulang sebelum dicatat. */
+  retriesLeft() {
+    const round = this.round;
+    const question = this.current();
+    if (!round || !question) return 0;
+    if (question.skill !== 'speaking') return 0;
+    return Math.max(0, (appConfig.speech.retries ?? 0) - (round.retries[round.index] || 0));
+  }
+
   /**
    * Nilai jawaban untuk soal saat ini.
-   * @returns {{correct:boolean, xpGained:number, question:object, explain:string}}
+   *
+   * Khusus berbicara, percobaan pertama yang meleset TIDAK langsung dicatat:
+   * anak mendapat satu kesempatan lagi, dan yang tercatat adalah percobaan
+   * terakhirnya. Selama masih ada kesempatan, tidak ada yang berubah — nyawa
+   * utuh, combo utuh, kartu SRS belum disentuh.
+   *
+   * @returns {{correct:boolean, retry?:boolean, retriesLeft?:number,
+   *            xpGained:number, question:object, explain:string, detail:*}}
    */
   submit(response) {
     const round = this.round;
     const question = this.current();
     if (!round || !question) return null;
 
-    const { correct } = grade(question, response, {
+    const { correct, detail, selfAssessed } = grade(question, response, {
       acceptScore: appConfig.speech.acceptScore,
       readings: this.readings || {}
     });
+
+    // Penilaian sendiri tidak diberi kesempatan ulang: di situ orang tua yang
+    // memutuskan, dan anak bisa mengulang ucapannya sebelum tombolnya ditekan.
+    if (!correct && !selfAssessed && this.retriesLeft() > 0) {
+      round.retries[round.index] = (round.retries[round.index] || 0) + 1;
+      return {
+        correct: false,
+        retry: true,
+        retriesLeft: this.retriesLeft(),
+        xpGained: 0,
+        question,
+        explain: question.explain,
+        detail
+      };
+    }
+
+    const diulang = (round.retries[round.index] || 0) > 0;
+    if (diulang) round.retriedCount++;
     const xpGained = correct ? xpForAnswer(round.streakCount) : 0;
 
     round.answered++;
     round.xp += xpGained;
     if (correct) {
       round.correct++;
-      round.streakCount++;
-      round.bestCombo = Math.max(round.bestCombo, round.streakCount);
+      // Jawaban yang butuh percobaan kedua tidak memutus combo, tetapi juga
+      // tidak menumbuhkannya: 🔥 tetap hadiah untuk yang sekali jadi.
+      if (!diulang) {
+        round.streakCount++;
+        round.bestCombo = Math.max(round.bestCombo, round.streakCount);
+      }
     } else {
       round.streakCount = 0;
       round.hearts--;
@@ -123,12 +163,14 @@ export class PracticeService {
       const key = wordKey(round.levelId, question.word);
       this.profiles.update(round.profileId, (p) => {
         const cards = { ...(p.cards || {}) };
-        cards[key] = reviewCard(cards[key] || newCard(key), correct);
+        // Kata yang baru benar di percobaan kedua belum dikuasai — biar
+        // kembali lebih cepat, walau rondenya sendiri dinilai benar.
+        cards[key] = reviewCard(cards[key] || newCard(key), correct && !diulang);
         return { ...p, cards };
       });
     }
 
-    return { correct, xpGained, question, explain: question.explain };
+    return { correct, xpGained, question, explain: question.explain, detail, retriesLeft: 0 };
   }
 
   next() {
@@ -216,6 +258,7 @@ export class PracticeService {
       firstClear,
       perfect,
       outOfHearts: round.hearts <= 0,
+      retried: round.retriedCount,
       mistakes: round.mistakes,
       newBadges: fresh,
       missionReward,

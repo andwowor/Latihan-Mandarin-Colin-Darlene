@@ -110,6 +110,12 @@ export const appConfig = {
     syllableGapMs: 340,
 
     // Latihan berbicara
+    // Satu kesempatan mengulang tiap soal sebelum jawabannya dicatat. Bicara
+    // beda dari memilih jawaban: percobaan pertama sering gagal karena
+    // mikrofonnya belum siap, suaranya terlalu pelan, atau anak baru saja
+    // mendengar contohnya. Kesempatan kedua membuat anak mendengarkan lalu
+    // menirukan sekali lagi — dan itu justru latihan yang sebenarnya.
+    retries: 1,
     maxAlternatives: 8,       // berapa tebakan diminta dari pengenal suara
     listenTimeoutMs: 7000,    // berhenti mendengar setelah sekian lama
     // Ambang lulus. Sengaja longgar: penuturnya anak 5 dan 7 tahun, dan

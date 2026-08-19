@@ -231,6 +231,28 @@ menilai seberapa mirip ucapannya.
 4. Ketuk mikrofon, tunggu tulisan *"Mendengarkan…"*, baru bicara.
 5. Hasilnya muncul: apa yang terdengar, berapa persen mirip, dan bintangnya.
 
+**Setiap soal dapat satu kesempatan mengulang.** Kalau percobaan pertama belum
+pas, yang muncul bukan "salah" melainkan **🔁 Belum pas — coba sekali lagi**
+dengan warna amber. Contohnya langsung dibunyikan, dan ada dua tombol:
+**🔊 Dengar contoh** dan **🎤 Coba Lagi**.
+
+Selama kesempatan itu belum dipakai, **tidak ada yang tercatat sama sekali**:
+nyawa ❤️ utuh, combo 🔥 utuh, dan soalnya belum terhitung terjawab. Baru
+percobaan keduanya yang dinilai. Ini disengaja — percobaan pertama sering
+gagal bukan karena lafalnya keliru, melainkan karena mikrofonnya baru menyala
+saat anak sudah mulai bicara, suaranya terlalu pelan, atau anak baru saja
+mendengar contohnya.
+
+Dua hal yang tetap jujur:
+
+- Combo 🔥 **tidak putus** oleh percobaan kedua, tetapi juga **tidak tumbuh** —
+  combo tetap hadiah untuk yang sekali jadi.
+- Kata yang baru pas di percobaan kedua **akan muncul lagi lebih cepat**.
+  Anak melihat pujiannya, dan katanya tetap datang lagi besok.
+
+Layar hasil menyebut berapa soal yang butuh percobaan kedua, jadi Bapak/Ibu
+tetap bisa melihat ronde mana yang benar-benar lancar.
+
 **Yang perlu diperhatikan:**
 
 - **Butuh internet.** Pengenalan suara dikerjakan di server Google (Chrome)

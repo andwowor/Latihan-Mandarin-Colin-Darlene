@@ -82,7 +82,9 @@ perangkat (lihat ADR-0010).
   mode "dengarkan lalu tirukan" tanpa melihat tulisan. Penilaiannya
   membandingkan **bunyi**, bukan huruf: pengenal suara sering meleset ke
   homofon (妈妈 → 麻麻), dan anak tidak boleh dihukum atas kekeliruan mesin
-  (lihat ADR-0011)
+  (lihat ADR-0011). Setiap soal berbicara juga memberi
+  **satu kesempatan mengulang**: percobaan pertama yang meleset belum dicatat
+  sama sekali — nyawa dan combo utuh (lihat ADR-0013)
 - ✍️ **Menulis** — tebalkan huruf di kanvas, susun huruf jadi kata, susun kata
   jadi kalimat
 
@@ -176,7 +178,7 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 
 ```bash
 npm start       # jalankan di http://localhost:4173/public/
-npm test        # 142 pengujian lapisan domain & aplikasi
+npm test        # 155 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
 npm run readings # bangun ulang kamus lafal readings.json
                  # (butuh: npm install pinyin-pro — sekali saja, seperti esbuild)

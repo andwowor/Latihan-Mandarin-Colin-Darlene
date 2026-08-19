@@ -73,7 +73,10 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
    Suara ringkas bawaan perangkat meratakan lengkung nada — padahal nada
    adalah pembeda makna dalam bahasa Mandarin, dan anak tidak bisa menirukan
    nada yang tidak terdengar. → ADR-0012
-8. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
+8. **Percobaan pertama pada soal berbicara sering gagal karena hal teknis** —
+   mikrofon telat menyala, suara terlalu pelan — bukan karena lafalnya keliru.
+   Setiap soal berbicara diberi satu kesempatan mengulang. → ADR-0013
+9. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
    saja. Irisan itu dipakai untuk menyiapkan anak jauh sebelum masuk HSK. → ADR-0009
 
 ## Peta dokumen

@@ -11,7 +11,7 @@ import { loginView } from './views/loginView.js';
 import { homeView } from './views/homeView.js';
 import { mapView, skillSheet } from './views/mapView.js';
 import { studyView } from './views/studyView.js';
-import { quizView, feedbackBlock } from './views/quizView.js';
+import { quizView, feedbackBlock, retryBlock } from './views/quizView.js';
 import { resultView } from './views/resultView.js';
 import { missionsView } from './views/missionsView.js';
 import { progressView } from './views/progressView.js';
@@ -462,6 +462,10 @@ export class UiController {
 
     // --- Latihan: berbicara
     on(r, 'click', '[data-action="record"]', () => this.#record());
+    on(r, 'click', '[data-action="retry"]', () => {
+      this.speech.cancel();
+      this.#record();
+    });
     on(r, 'click', '[data-self-say]', (_e, el) => {
       if (this.state.answered) return;
       this.#answer({ selfAssessed: true, ok: el.dataset.selfSay === '1' });
@@ -644,6 +648,9 @@ export class UiController {
     const result = this.practice.submit(response);
     if (!result) return;
 
+    // Berbicara: percobaan pertama yang meleset belum dicatat apa-apa.
+    if (result.retry) return this.#offerRetry(result);
+
     this.state.answered = true;
     buzz(result.correct ? 20 : [40, 60, 40]);
 
@@ -659,18 +666,7 @@ export class UiController {
     }
 
     // Rincian pelafalan: apa yang terdengar, seberapa mirip, dan pujiannya.
-    let speech = null;
-    if (q.skill === 'speaking') {
-      const d = result.detail;
-      speech = d?.selfAssessed
-        ? { selfAssessed: true }
-        : {
-            heard: d?.heard || '',
-            score: d?.score || 0,
-            stars: speechStars(d?.score || 0),
-            message: speechFeedbackId(d?.score || 0)
-          };
-    }
+    const speech = this.#speechFeedback(result);
 
     const round = this.practice.round;
     const isLast = round.index >= round.questions.length - 1 || round.hearts <= 0;
@@ -685,6 +681,55 @@ export class UiController {
     }
 
     if (result.correct && q.speak) setTimeout(() => this.speech.speak(q.speak), 120);
+  }
+
+  /**
+   * Tawarkan kesempatan kedua untuk soal berbicara.
+   *
+   * Layarnya sengaja tidak digambar ulang: tulisan, tombol contoh suara, dan
+   * mikrofonnya tetap di tempatnya supaya anak merasa masih pada soal yang
+   * sama \u2014 hanya ditambah ajakan mencoba lagi.
+   */
+  #offerRetry(result) {
+    buzz(30);
+    const slot = qs(this.root, '#feedback-slot');
+    if (slot) {
+      slot.innerHTML = retryBlock({
+        speech: this.#speechFeedback(result),
+        canRecognise: !!this.recognition?.isAvailable()
+      });
+    }
+    this.#resetMic('Ketuk mikrofon, lalu ucapkan sekali lagi');
+    // Contohnya dibunyikan sendiri: yang dibutuhkan anak sekarang adalah
+    // mendengar lagi, bukan menebak ulang.
+    if (result.question.speak) setTimeout(() => this.speech.speak(result.question.speak), 200);
+  }
+
+  /** Kembalikan mikrofon ke keadaan siap dipakai lagi. */
+  #resetMic(hintText) {
+    const btn = qs(this.root, '[data-action="record"]');
+    const hint = qs(this.root, '#mic-hint');
+    const heard = qs(this.root, '#mic-heard');
+    if (btn) {
+      btn.disabled = false;
+      btn.classList.remove('mic--listening');
+    }
+    if (hint) hint.textContent = hintText;
+    if (heard) heard.textContent = '';
+    this.listening = false;
+  }
+
+  /** Rincian pelafalan untuk umpan balik: apa yang terdengar dan nilainya. */
+  #speechFeedback(result) {
+    if (result.question.skill !== 'speaking') return null;
+    const d = result.detail;
+    if (d?.selfAssessed) return { selfAssessed: true };
+    return {
+      heard: d?.heard || '',
+      score: d?.score || 0,
+      stars: speechStars(d?.score || 0),
+      message: speechFeedbackId(d?.score || 0, d?.heard || '')
+    };
   }
 
   async #next() {

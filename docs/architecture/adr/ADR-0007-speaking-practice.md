@@ -1,6 +1,7 @@
 # ADR-0007: Latihan Berbicara dengan Pengenal Suara Peramban
 Tanggal   : 2026-08-13
 Status    : Accepted
+Dilengkapi: ADR-0011 (penilaian dari bunyi), ADR-0013 (kesempatan kedua)
 
 ## Konteks
 

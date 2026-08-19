@@ -21,6 +21,15 @@ export function resultView(summary) {
       <div class="result__stat"><b>+${summary.xp}</b><span>XP</span></div>
     </div>
 
+    ${
+      summary.retried
+        ? `<p class="small muted" style="margin:0 0 12px">
+             \ud83d\udd01 ${summary.retried} soal baru pas di percobaan kedua \u2014 tetap dihitung benar,
+             dan katanya akan muncul lagi lebih cepat.
+           </p>`
+        : ''
+    }
+
     <div class="card" style="text-align:left">
       <div class="row row--between small" style="margin-bottom:6px">
         <b>Level ${summary.level.level}</b>
@@ -51,7 +60,7 @@ function title(s) {
 }
 
 function skillLabel(id) {
-  return { reading: 'Membaca', listening: 'Mendengar', writing: 'Menulis', mixed: 'Campur' }[id] || id;
+  return { reading: 'Membaca', listening: 'Mendengar', speaking: 'Berbicara', writing: 'Menulis', mixed: 'Campur' }[id] || id;
 }
 
 function missionRewardCard(mr) {
