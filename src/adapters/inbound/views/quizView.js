@@ -109,11 +109,17 @@ function answerBlock(q, canRecognise = true) {
       <button class="btn btn--primary" data-self-say="1">✅ Sudah bisa mengucapkan</button>
       <button class="btn btn--ghost" style="margin-top:8px" data-self-say="0">🔁 Belum, perlu latihan lagi</button>`;
     }
+    // Tombol "Selesai" baru muncul setelah mikrofonnya menyala. Sebelum itu
+    // tidak ada yang bisa dikirim, dan tombol yang tidak bisa ditekan hanya
+    // membingungkan anak.
     return `
     <div class="mic-wrap">
       <button class="mic" data-action="record" aria-label="Tekan lalu bicara">🎤</button>
       <p class="mic__hint" id="mic-hint">Ketuk mikrofon, lalu ucapkan</p>
       <p class="mic__heard hanzi" id="mic-heard" aria-live="polite"></p>
+      <button class="btn btn--primary mic__send" id="mic-send" data-action="send-speech" hidden>
+        ✅ Selesai — Kirim Jawaban
+      </button>
     </div>`;
   }
 

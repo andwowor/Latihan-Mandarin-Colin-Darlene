@@ -229,7 +229,26 @@ menilai seberapa mirip ucapannya.
    *Setelan situs* → **Mikrofon** → **Izinkan**, lalu muat ulang.)
 3. Ketuk 🔊 **Dengar contoh** dulu supaya anak tahu bunyinya.
 4. Ketuk mikrofon, tunggu tulisan *"Mendengarkan…"*, baru bicara.
-5. Hasilnya muncul: apa yang terdengar, berapa persen mirip, dan bintangnya.
+5. Setelah selesai bicara, ketuk **✅ Selesai — Kirim Jawaban**.
+6. Hasilnya muncul: apa yang terdengar, berapa persen mirip, dan bintangnya.
+
+**Mikrofonnya menunggu sampai anak selesai — tidak ada hitungan mundur.**
+Dulu mikrofon mati sendiri setelah beberapa detik, sehingga kalimat anak
+terpotong di tengah. Sekarang anak boleh:
+
+- berhenti sejenak untuk mengingat kata berikutnya,
+- mengambil napas di tengah kalimat,
+- melirik tulisannya sekali lagi sebelum melanjutkan.
+
+Jeda seperti itu **tidak** mengakhiri apa pun. Yang mengakhiri hanya tombol
+**✅ Selesai — Kirim Jawaban** yang muncul di bawah mikrofon selagi menyala.
+Mengetuk ikon mikrofonnya untuk kedua kali juga sama artinya dengan "Selesai",
+kalau itu terasa lebih mudah bagi anak.
+
+Teks yang sudah tertangkap muncul di layar selagi anak bicara, jadi anak bisa
+melihat suaranya memang terdengar. Kalau anak lupa menekan "Selesai",
+mikrofonnya mati sendiri setelah **1 menit** — dan yang sudah terkumpul
+tetap dinilai, tidak dibuang.
 
 **Setiap soal dapat satu kesempatan mengulang.** Kalau percobaan pertama belum
 pas, yang muncul bukan "salah" melainkan **🔁 Belum pas — coba sekali lagi**
@@ -258,8 +277,9 @@ tetap bisa melihat ronde mana yang benar-benar lancar.
 - **Butuh internet.** Pengenalan suara dikerjakan di server Google (Chrome)
   atau Apple (Safari), jadi suara anak dikirim ke sana selama beberapa detik.
   Aplikasi ini sendiri tidak merekam maupun menyimpan apa pun.
-- Mikrofon hanya menyala saat tombolnya ditekan, mati sendiri setelah
-  7 detik, dan langsung mati saat pindah layar.
+- Mikrofon hanya menyala saat tombolnya ditekan, mati saat anak menekan
+  **Selesai** (atau setelah 1 menit kalau terlupa), dan langsung mati saat
+  pindah layar.
 - **Penilaiannya membandingkan bunyi, bukan tulisan.** Ini penting: pengenal
   suara menerima suara anak lalu *menebak* huruf mana yang dimaksud, dan dalam
   bahasa Mandarin yang penuh homofon tebakan itu sering meleset. Anak

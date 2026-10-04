@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v10';
+const VERSION = 'mandarin-fun-v11';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [

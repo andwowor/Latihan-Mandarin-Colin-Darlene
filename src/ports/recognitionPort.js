@@ -9,11 +9,18 @@ export class RecognitionPort {
     return false;
   }
 
+  /** @returns {boolean} apakah sedang mendengarkan sekarang */
+  isListening() {
+    return false;
+  }
+
   /**
-   * Dengarkan satu ucapan.
+   * Dengarkan satu ucapan — sampai `finish()` dipanggil, bukan sampai
+   * waktunya habis. Anak kecil berhenti di tengah kalimat untuk berpikir;
+   * yang menentukan selesai adalah anaknya, bukan penghitung waktu.
    *
-   * @param {{onPartial?: (text: string) => void, timeoutMs?: number}} [opts]
-   * @returns {Promise<{transcripts: string[], error: string|null}>}
+   * @param {{onPartial?: (text: string) => void, maxMs?: number}} [opts]
+   * @returns {Promise<{transcripts: string[], error: string|null, timedOut?: boolean}>}
    *   `transcripts` berisi tebakan terbaik lebih dulu; kosong bila tidak
    *   ada suara yang tertangkap.
    */
@@ -21,6 +28,9 @@ export class RecognitionPort {
     throw new Error('not implemented');
   }
 
-  /** Hentikan sesi dengar yang sedang berjalan. */
+  /** Selesai bicara: serahkan apa yang sudah terkumpul untuk dinilai. */
+  finish() {}
+
+  /** Batalkan sesi dengar yang sedang berjalan; hasilnya dibuang. */
   stop() {}
 }

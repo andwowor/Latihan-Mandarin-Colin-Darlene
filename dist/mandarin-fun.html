@@ -551,6 +551,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   color: var(--brand);
 }
 
+/* Tombol kirim: muncul hanya selagi mikrofonnya menyala, dan sengaja selebar
+   layar supaya jari kecil tidak meleset. */
+.mic__send { width: 100%; margin-top: 2px; }
+.mic__send[hidden] { display: none; }
+
 /* Kanvas menulis */
 .trace-wrap { position: relative; width: 260px; height: 260px; margin: 0 auto 12px; touch-action: none; }
 .trace-guide, .trace-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--radius-sm); }
@@ -1225,8 +1230,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       retries: 1,
       maxAlternatives: 8,
       // berapa tebakan diminta dari pengenal suara
-      listenTimeoutMs: 7e3,
-      // berhenti mendengar setelah sekian lama
+      // Anak yang menentukan kapan selesai, lewat tombol "Selesai" \u2014 bukan
+      // penghitung waktu. Angka ini hanya jaring pengaman supaya mikrofon tidak
+      // menyala selamanya bila alatnya ditinggal; hasil yang sudah terkumpul
+      // tetap diserahkan, tidak dibuang (lihat ADR-0014).
+      maxListenMs: 6e4,
       // Ambang lulus. Sengaja longgar: penuturnya anak 5 dan 7 tahun, dan
       // pengenal suara sendiri kerap meleset ke huruf lain yang bunyinya sama.
       // Penilaiannya membandingkan bunyi (lihat domain/pronunciation.js), jadi
@@ -1603,18 +1611,27 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     isAvailable() {
       return false;
     }
+    /** @returns {boolean} apakah sedang mendengarkan sekarang */
+    isListening() {
+      return false;
+    }
     /**
-     * Dengarkan satu ucapan.
+     * Dengarkan satu ucapan \u2014 sampai `finish()` dipanggil, bukan sampai
+     * waktunya habis. Anak kecil berhenti di tengah kalimat untuk berpikir;
+     * yang menentukan selesai adalah anaknya, bukan penghitung waktu.
      *
-     * @param {{onPartial?: (text: string) => void, timeoutMs?: number}} [opts]
-     * @returns {Promise<{transcripts: string[], error: string|null}>}
+     * @param {{onPartial?: (text: string) => void, maxMs?: number}} [opts]
+     * @returns {Promise<{transcripts: string[], error: string|null, timedOut?: boolean}>}
      *   `transcripts` berisi tebakan terbaik lebih dulu; kosong bila tidak
      *   ada suara yang tertangkap.
      */
     async listen(opts) {
       throw new Error("not implemented");
     }
-    /** Hentikan sesi dengar yang sedang berjalan. */
+    /** Selesai bicara: serahkan apa yang sudah terkumpul untuk dinilai. */
+    finish() {
+    }
+    /** Batalkan sesi dengar yang sedang berjalan; hasilnya dibuang. */
     stop() {
     }
   };
@@ -1625,10 +1642,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     constructor(cfg = appConfig.speech) {
       super();
       this.cfg = cfg;
-      this.active = null;
+      this.session = null;
     }
     isAvailable() {
       return !!SpeechRecognitionImpl;
+    }
+    /** Apakah sedang mendengarkan sekarang? */
+    isListening() {
+      return !!this.session;
     }
     /** Tanyakan izin mikrofon lebih dulu agar pesannya muncul di saat yang tepat. */
     async requestPermission() {
@@ -1641,66 +1662,116 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         return false;
       }
     }
-    async listen({ onPartial, timeoutMs = this.cfg.listenTimeoutMs } = {}) {
+    /**
+     * Dengarkan sampai `finish()` dipanggil \u2014 bukan sampai waktunya habis.
+     *
+     * @param {object} [opts]
+     * @param {(text: string) => void} [opts.onPartial] teks sementara, untuk ditampilkan
+     * @param {number} [opts.maxMs] jaring pengaman; setelah ini hasilnya diserahkan apa adanya
+     * @returns {Promise<{transcripts: string[], error: string|null, timedOut: boolean}>}
+     */
+    async listen({ onPartial, maxMs = this.cfg.maxListenMs } = {}) {
       if (!this.isAvailable()) {
         return { transcripts: [], error: "unsupported" };
       }
       this.stop();
       return new Promise((resolve) => {
-        const rec = new SpeechRecognitionImpl();
-        rec.lang = this.cfg.lang;
-        rec.interimResults = true;
-        rec.maxAlternatives = this.cfg.maxAlternatives;
-        rec.continuous = false;
-        const transcripts = [];
-        let settled = false;
+        const segments = [];
+        let partial = "";
         let error = null;
-        const finish = () => {
-          if (settled) return;
-          settled = true;
+        let selesai = false;
+        let timedOut = false;
+        let rec = null;
+        const sesi = {
+          finish: () => beres(false),
+          cancel: () => beres(false, true)
+        };
+        const beres = (karenaWaktu = false, dibatalkan = false) => {
+          if (selesai) return;
+          selesai = true;
+          timedOut = karenaWaktu;
           clearTimeout(timer);
-          this.active = null;
+          this.session = null;
+          lepas();
+          resolve(
+            dibatalkan ? { transcripts: [], error: null, timedOut: false } : { transcripts: rangkai(segments, partial), error, timedOut }
+          );
+        };
+        const lepas = () => {
+          if (!rec) return;
+          rec.onresult = rec.onerror = rec.onend = null;
           try {
-            rec.stop();
+            rec.abort();
           } catch {
           }
-          resolve({ transcripts: [...new Set(transcripts.filter(Boolean))], error });
+          rec = null;
         };
-        const timer = setTimeout(finish, timeoutMs);
-        rec.onresult = (event) => {
-          for (let i = event.resultIndex; i < event.results.length; i++) {
-            const result = event.results[i];
-            if (result.isFinal) {
-              for (let a = 0; a < result.length; a++) transcripts.push(result[a].transcript);
-            } else if (onPartial) {
-              onPartial(result[0].transcript);
+        const timer = setTimeout(() => beres(true), maxMs);
+        const mulai = () => {
+          if (selesai) return;
+          rec = new SpeechRecognitionImpl();
+          rec.lang = this.cfg.lang;
+          rec.interimResults = true;
+          rec.maxAlternatives = this.cfg.maxAlternatives;
+          rec.continuous = true;
+          rec.onresult = (event) => {
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+              const result = event.results[i];
+              if (result.isFinal) {
+                partial = "";
+                const alternatif = [];
+                for (let a = 0; a < result.length; a++) alternatif.push(result[a].transcript);
+                segments.push(alternatif);
+                onPartial?.(rangkai(segments, "")[0] || "");
+              } else {
+                partial = result[0].transcript;
+                onPartial?.(rangkai(segments, partial)[0] || "");
+              }
             }
+          };
+          rec.onerror = (e) => {
+            if (!["no-speech", "aborted"].includes(e.error)) {
+              error = e.error;
+              beres();
+            }
+          };
+          rec.onend = () => {
+            if (selesai) return;
+            rec = null;
+            setTimeout(mulai, 120);
+          };
+          try {
+            rec.start();
+          } catch {
+            rec = null;
+            setTimeout(mulai, 250);
           }
-          if (transcripts.length) finish();
         };
-        rec.onerror = (e) => {
-          error = ["no-speech", "aborted"].includes(e.error) ? null : e.error;
-          finish();
-        };
-        rec.onend = finish;
-        try {
-          this.active = rec;
-          rec.start();
-        } catch (e) {
-          error = "start-failed";
-          finish();
-        }
+        this.session = sesi;
+        mulai();
       });
     }
+    /** Anak menekan "Selesai": serahkan apa yang sudah terkumpul. */
+    finish() {
+      this.session?.finish();
+    }
+    /** Batalkan sesi dengar yang sedang berjalan; hasilnya dibuang. */
     stop() {
-      if (!this.active) return;
-      try {
-        this.active.abort();
-      } catch {
-      }
-      this.active = null;
+      this.session?.cancel();
+      this.session = null;
     }
   };
+  function rangkai(segments = [], partial = "") {
+    if (!segments.length) return partial ? [partial.trim()].filter(Boolean) : [];
+    const jumlah = Math.max(...segments.map((s) => s.length));
+    const hasil = [];
+    for (let n = 0; n < jumlah; n++) {
+      const teks = segments.map((s) => s[n] ?? s[0] ?? "").join("") + partial;
+      const bersih = teks.trim();
+      if (bersih && !hasil.includes(bersih)) hasil.push(bersih);
+    }
+    return hasil;
+  }
 
   // src/ports/syncPort.js
   var SyncPort = class {
@@ -5097,6 +5168,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       <button class="mic" data-action="record" aria-label="Tekan lalu bicara">\u{1F3A4}</button>
       <p class="mic__hint" id="mic-hint">Ketuk mikrofon, lalu ucapkan</p>
       <p class="mic__heard hanzi" id="mic-heard" aria-live="polite"></p>
+      <button class="btn btn--primary mic__send" id="mic-send" data-action="send-speech" hidden>
+        \u2705 Selesai \u2014 Kirim Jawaban
+      </button>
     </div>`;
     }
     if (q.type === "trace") {
@@ -5588,7 +5662,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   }
 
   // src/adapters/inbound/uiController.js
-  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, offerRetry_fn, resetMic_fn, speechFeedback_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openVoiceSheet_fn, openSyncSheet_fn, bindImportFile_fn;
+  var _UiController_instances, syncSoon_fn, pid_fn, speakTarget_fn, pendingMissions_fn, renderHome_fn, renderMap_fn, renderStudy_fn, renderQuiz_fn, renderMissions_fn, renderProgress_fn, renderRewards_fn, renderWordbook_fn, setupTrace_fn, teardownTrace_fn, bindEvents_fn, refreshBuilder_fn, record_fn, micListening_fn, pickLesson_fn, startStudy_fn, finishStudy_fn, confirmQuitStudy_fn, startRound_fn, answer_fn, offerRetry_fn, resetMic_fn, speechFeedback_fn, next_fn, finish_fn, confirmQuit_fn, openParentSheet_fn, openVoiceSheet_fn, openSyncSheet_fn, bindImportFile_fn;
   var UiController = class {
     constructor({ root, profiles, curriculum, practice, study, stats, missions, speech, recognition, sync }) {
       __privateAdd(this, _UiController_instances);
@@ -5964,7 +6038,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       if (this.state.answered) return;
       __privateMethod(this, _UiController_instances, answer_fn).call(this, this.selectedTiles.map((t) => t.value).join(""));
     });
-    on(r, "click", '[data-action="record"]', () => __privateMethod(this, _UiController_instances, record_fn).call(this));
+    on(r, "click", '[data-action="record"]', () => {
+      if (this.listening) return this.recognition.finish();
+      __privateMethod(this, _UiController_instances, record_fn).call(this);
+    });
+    on(r, "click", '[data-action="send-speech"]', () => this.recognition.finish());
     on(r, "click", '[data-action="retry"]', () => {
       this.speech.cancel();
       __privateMethod(this, _UiController_instances, record_fn).call(this);
@@ -6002,24 +6080,20 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     if (this.state.answered || this.listening) return;
     const question = this.practice.current();
     if (!question) return;
-    const btn = qs(this.root, '[data-action="record"]');
-    const hint = qs(this.root, "#mic-hint");
-    const heard = qs(this.root, "#mic-heard");
     this.speech.cancel();
     this.listening = true;
-    btn?.classList.add("mic--listening");
-    if (btn) btn.disabled = true;
-    if (hint) hint.textContent = "Mendengarkan\u2026 bicaralah sekarang";
-    if (heard) heard.textContent = "";
+    __privateMethod(this, _UiController_instances, micListening_fn).call(this, true);
     buzz(20);
+    const heard = qs(this.root, "#mic-heard");
     const result = await this.recognition.listen({
       onPartial: (text) => {
         if (heard) heard.textContent = text;
       }
     });
     this.listening = false;
-    btn?.classList.remove("mic--listening");
-    if (btn) btn.disabled = false;
+    __privateMethod(this, _UiController_instances, micListening_fn).call(this, false);
+    if (this.state.answered || this.practice.current() !== question) return;
+    const hint = qs(this.root, "#mic-hint");
     if (result.error === "not-allowed" || result.error === "service-not-allowed") {
       if (hint) hint.textContent = "Izin mikrofon ditolak";
       return toast("Izinkan akses mikrofon di pengaturan browser untuk latihan bicara.");
@@ -6033,8 +6107,24 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       return;
     }
     if (heard) heard.textContent = result.transcripts[0];
-    if (hint) hint.textContent = "Selesai \u2014 begini yang terdengar:";
+    if (hint) {
+      hint.textContent = result.timedOut ? "Sudah cukup panjang \u2014 ini yang sempat terdengar:" : "Selesai \u2014 begini yang terdengar:";
+    }
     __privateMethod(this, _UiController_instances, answer_fn).call(this, { transcripts: result.transcripts });
+  };
+  /** Nyalakan/matikan tampilan "sedang mendengarkan" beserta tombol kirimnya. */
+  micListening_fn = function(aktif) {
+    const btn = qs(this.root, '[data-action="record"]');
+    const hint = qs(this.root, "#mic-hint");
+    const heard = qs(this.root, "#mic-heard");
+    const send = qs(this.root, "#mic-send");
+    btn?.classList.toggle("mic--listening", aktif);
+    if (btn) btn.setAttribute("aria-label", aktif ? "Selesai bicara" : "Tekan lalu bicara");
+    if (hint) {
+      hint.textContent = aktif ? "Mendengarkan\u2026 bicara sampai selesai, baru ketuk Selesai" : "Ketuk mikrofon, lalu ucapkan";
+    }
+    if (aktif && heard) heard.textContent = "";
+    if (send) send.hidden = !aktif;
   };
   pickLesson_fn = async function(match) {
     const { lessons } = await this.curriculum.lessonMap(__privateMethod(this, _UiController_instances, pid_fn).call(this), this.state.levelId);
@@ -6160,16 +6250,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   };
   /** Kembalikan mikrofon ke keadaan siap dipakai lagi. */
   resetMic_fn = function(hintText) {
-    const btn = qs(this.root, '[data-action="record"]');
-    const hint = qs(this.root, "#mic-hint");
-    const heard = qs(this.root, "#mic-heard");
-    if (btn) {
-      btn.disabled = false;
-      btn.classList.remove("mic--listening");
-    }
-    if (hint) hint.textContent = hintText;
-    if (heard) heard.textContent = "";
     this.listening = false;
+    __privateMethod(this, _UiController_instances, micListening_fn).call(this, false);
+    const hint = qs(this.root, "#mic-hint");
+    if (hint) hint.textContent = hintText;
+    const heard = qs(this.root, "#mic-heard");
+    if (heard) heard.textContent = "";
   };
   /** Rincian pelafalan untuk umpan balik: apa yang terdengar dan nilainya. */
   speechFeedback_fn = function(result) {

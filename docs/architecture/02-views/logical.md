@@ -2,7 +2,7 @@
 
 Dependensi mengarah ke dalam: `adapters -> ports -> application -> domain`.
 Lapisan domain tidak mengimpor apa pun dari luar dirinya, sehingga bisa diuji
-tanpa browser (`npm test`, 155 pengujian).
+tanpa browser (`npm test`, 170 pengujian).
 
 ```
 public/app.js                     merakit semua bagian (composition root)

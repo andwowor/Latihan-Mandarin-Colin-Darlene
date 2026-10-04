@@ -548,6 +548,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   color: var(--brand);
 }
 
+/* Tombol kirim: muncul hanya selagi mikrofonnya menyala, dan sengaja selebar
+   layar supaya jari kecil tidak meleset. */
+.mic__send { width: 100%; margin-top: 2px; }
+.mic__send[hidden] { display: none; }
+
 /* Kanvas menulis */
 .trace-wrap { position: relative; width: 260px; height: 260px; margin: 0 auto 12px; touch-action: none; }
 .trace-guide, .trace-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: var(--radius-sm); }
