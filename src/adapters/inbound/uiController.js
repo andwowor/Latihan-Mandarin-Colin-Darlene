@@ -461,7 +461,12 @@ export class UiController {
     });
 
     // --- Latihan: berbicara
-    on(r, 'click', '[data-action="record"]', () => this.#record());
+    on(r, 'click', '[data-action="record"]', () => {
+      // Ketukan kedua saat sedang mendengarkan = selesai bicara.
+      if (this.listening) return this.recognition.finish();
+      this.#record();
+    });
+    on(r, 'click', '[data-action="send-speech"]', () => this.recognition.finish());
     on(r, 'click', '[data-action="retry"]', () => {
       this.speech.cancel();
       this.#record();
@@ -507,26 +512,27 @@ export class UiController {
 
   // -------------------------------------------------------- berbicara
 
-  /** Rekam satu ucapan lalu nilai. */
+  /**
+   * Dengarkan ucapan anak sampai dia sendiri menekan "Selesai".
+   *
+   * Dulu mikrofonnya mati sendiri setelah beberapa detik, dan kalimat anak
+   * terpotong di tengah. Sekarang tidak ada penghitung waktu yang memutus:
+   * anak bicara sampai selesai, boleh berhenti berpikir sejenak, lalu menekan
+   * tombolnya sendiri (lihat ADR-0014).
+   */
   async #record() {
     if (this.state.answered || this.listening) return;
     const question = this.practice.current();
     if (!question) return;
 
-    const btn = qs(this.root, '[data-action="record"]');
-    const hint = qs(this.root, '#mic-hint');
-    const heard = qs(this.root, '#mic-heard');
-
     // Suara contoh harus berhenti dulu, jangan sampai ikut terekam.
     this.speech.cancel();
 
     this.listening = true;
-    btn?.classList.add('mic--listening');
-    if (btn) btn.disabled = true;
-    if (hint) hint.textContent = 'Mendengarkan… bicaralah sekarang';
-    if (heard) heard.textContent = '';
+    this.#micListening(true);
     buzz(20);
 
+    const heard = qs(this.root, '#mic-heard');
     const result = await this.recognition.listen({
       onPartial: (text) => {
         if (heard) heard.textContent = text;
@@ -534,9 +540,13 @@ export class UiController {
     });
 
     this.listening = false;
-    btn?.classList.remove('mic--listening');
-    if (btn) btn.disabled = false;
+    this.#micListening(false);
 
+    // Layarnya sudah berpindah selagi mendengarkan (anak keluar, atau soalnya
+    // sudah terjawab lewat jalan lain) — jangan menilai apa pun lagi.
+    if (this.state.answered || this.practice.current() !== question) return;
+
+    const hint = qs(this.root, '#mic-hint');
     if (result.error === 'not-allowed' || result.error === 'service-not-allowed') {
       if (hint) hint.textContent = 'Izin mikrofon ditolak';
       return toast('Izinkan akses mikrofon di pengaturan browser untuk latihan bicara.');
@@ -551,8 +561,32 @@ export class UiController {
     }
 
     if (heard) heard.textContent = result.transcripts[0];
-    if (hint) hint.textContent = 'Selesai — begini yang terdengar:';
+    if (hint) {
+      hint.textContent = result.timedOut
+        ? 'Sudah cukup panjang — ini yang sempat terdengar:'
+        : 'Selesai — begini yang terdengar:';
+    }
     this.#answer({ transcripts: result.transcripts });
+  }
+
+  /** Nyalakan/matikan tampilan "sedang mendengarkan" beserta tombol kirimnya. */
+  #micListening(aktif) {
+    const btn = qs(this.root, '[data-action="record"]');
+    const hint = qs(this.root, '#mic-hint');
+    const heard = qs(this.root, '#mic-heard');
+    const send = qs(this.root, '#mic-send');
+
+    btn?.classList.toggle('mic--listening', aktif);
+    // Mikrofonnya sengaja TIDAK dimatikan saat menyala: ketukan kedua sama
+    // artinya dengan "Selesai", karena itu gerakan yang paling wajar.
+    if (btn) btn.setAttribute('aria-label', aktif ? 'Selesai bicara' : 'Tekan lalu bicara');
+    if (hint) {
+      hint.textContent = aktif
+        ? 'Mendengarkan… bicara sampai selesai, baru ketuk Selesai'
+        : 'Ketuk mikrofon, lalu ucapkan';
+    }
+    if (aktif && heard) heard.textContent = '';
+    if (send) send.hidden = !aktif;
   }
 
   // -------------------------------------------------------- sesi belajar
@@ -707,16 +741,12 @@ export class UiController {
 
   /** Kembalikan mikrofon ke keadaan siap dipakai lagi. */
   #resetMic(hintText) {
-    const btn = qs(this.root, '[data-action="record"]');
-    const hint = qs(this.root, '#mic-hint');
-    const heard = qs(this.root, '#mic-heard');
-    if (btn) {
-      btn.disabled = false;
-      btn.classList.remove('mic--listening');
-    }
-    if (hint) hint.textContent = hintText;
-    if (heard) heard.textContent = '';
     this.listening = false;
+    this.#micListening(false);
+    const hint = qs(this.root, '#mic-hint');
+    if (hint) hint.textContent = hintText;
+    const heard = qs(this.root, '#mic-heard');
+    if (heard) heard.textContent = '';
   }
 
   /** Rincian pelafalan untuk umpan balik: apa yang terdengar dan nilainya. */

@@ -117,7 +117,11 @@ export const appConfig = {
     // menirukan sekali lagi — dan itu justru latihan yang sebenarnya.
     retries: 1,
     maxAlternatives: 8,       // berapa tebakan diminta dari pengenal suara
-    listenTimeoutMs: 7000,    // berhenti mendengar setelah sekian lama
+    // Anak yang menentukan kapan selesai, lewat tombol "Selesai" — bukan
+    // penghitung waktu. Angka ini hanya jaring pengaman supaya mikrofon tidak
+    // menyala selamanya bila alatnya ditinggal; hasil yang sudah terkumpul
+    // tetap diserahkan, tidak dibuang (lihat ADR-0014).
+    maxListenMs: 60000,
     // Ambang lulus. Sengaja longgar: penuturnya anak 5 dan 7 tahun, dan
     // pengenal suara sendiri kerap meleset ke huruf lain yang bunyinya sama.
     // Penilaiannya membandingkan bunyi (lihat domain/pronunciation.js), jadi

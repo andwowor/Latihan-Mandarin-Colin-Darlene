@@ -84,7 +84,9 @@ perangkat (lihat ADR-0010).
   homofon (妈妈 → 麻麻), dan anak tidak boleh dihukum atas kekeliruan mesin
   (lihat ADR-0011). Setiap soal berbicara juga memberi
   **satu kesempatan mengulang**: percobaan pertama yang meleset belum dicatat
-  sama sekali — nyawa dan combo utuh (lihat ADR-0013)
+  sama sekali — nyawa dan combo utuh (lihat ADR-0013). Mikrofonnya **menunggu sampai anak
+  menekan "Selesai"**, bukan mati sendiri setelah beberapa detik — jeda
+  berpikir di tengah kalimat bukan tanda selesai (lihat ADR-0014)
 - ✍️ **Menulis** — tebalkan huruf di kanvas, susun huruf jadi kata, susun kata
   jadi kalimat
 
@@ -163,7 +165,9 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
    dari kosakata, sehingga penilaiannya otomatis dan latihannya tak terbatas.
 4. **Latihan berbicara butuh internet** dan mikrofon: penilaian memakai
    pengenal suara bawaan peramban (lihat ADR-0007). Bila tidak tersedia,
-   aplikasi otomatis beralih ke mode "dengarkan lalu tirukan".
+   aplikasi otomatis beralih ke mode "dengarkan lalu tirukan". Mikrofonnya
+   mendengarkan sampai anak menekan **✅ Selesai — Kirim Jawaban**; jeda di
+   tengah kalimat tidak mengakhiri apa pun (lihat ADR-0014).
 5. **Mutu suara text-to-speech berbeda jauh antar perangkat.** Aplikasi menilai
    sendiri suara Mandarin yang ada dan memakai yang paling jelas nadanya —
    suara "compact" bawaan meratakan lengkung nada sehingga mā/má/mǎ/mà
@@ -178,7 +182,7 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 
 ```bash
 npm start       # jalankan di http://localhost:4173/public/
-npm test        # 155 pengujian lapisan domain & aplikasi
+npm test        # 170 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
 npm run readings # bangun ulang kamus lafal readings.json
                  # (butuh: npm install pinyin-pro — sekali saja, seperti esbuild)

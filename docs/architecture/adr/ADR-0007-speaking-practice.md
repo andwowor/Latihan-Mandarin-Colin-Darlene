@@ -2,6 +2,7 @@
 Tanggal   : 2026-08-13
 Status    : Accepted
 Dilengkapi: ADR-0011 (penilaian dari bunyi), ADR-0013 (kesempatan kedua)
+Sebagian digantikan: ADR-0014 (sesi dengar diakhiri anak, bukan penghitung waktu)
 
 ## Konteks
 
@@ -82,7 +83,8 @@ tetap berlatih bersuara, bukan layarnya menolak jalan.
 
 ## Catatan privasi
 
-Mikrofon hanya menyala saat anak menekan tombol 🎤, berhenti otomatis setelah
-7 detik, dan dimatikan saat aplikasi berpindah layar atau disembunyikan
+Mikrofon hanya menyala saat anak menekan tombol 🎤, berhenti saat anak menekan
+"Selesai" (atau setelah 60 detik sebagai jaring pengaman — lihat ADR-0014),
+dan dimatikan saat aplikasi berpindah layar atau disembunyikan
 (`visibilitychange`). Tidak ada rekaman yang disimpan di perangkat maupun
 dikirim ke mana pun oleh aplikasi ini sendiri.

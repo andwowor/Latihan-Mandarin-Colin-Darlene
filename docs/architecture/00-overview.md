@@ -76,7 +76,10 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
 8. **Percobaan pertama pada soal berbicara sering gagal karena hal teknis** —
    mikrofon telat menyala, suara terlalu pelan — bukan karena lafalnya keliru.
    Setiap soal berbicara diberi satu kesempatan mengulang. → ADR-0013
-9. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
+9. **Jeda di tengah kalimat bukan tanda selesai.** Mesin pengenal suara
+   menganggapnya begitu, padahal anak umur 5 dan 7 tahun berhenti untuk
+   mengingat kata berikutnya. Anak yang menekan "Selesai", bukan jam. → ADR-0014
+10. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
    saja. Irisan itu dipakai untuk menyiapkan anak jauh sebelum masuk HSK. → ADR-0009
 
 ## Peta dokumen
