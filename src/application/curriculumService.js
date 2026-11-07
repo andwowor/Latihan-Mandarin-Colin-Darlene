@@ -3,6 +3,7 @@
 
 import { appConfig, SKILL_IDS } from '../config/appConfig.js';
 import { bridgeShareFor } from '../domain/studyDeck.js';
+import { isReviewLesson } from '../domain/reviewLesson.js';
 
 export class CurriculumService {
   constructor(content, profiles) {
@@ -57,6 +58,7 @@ export class CurriculumService {
         titleEn: lesson.titleEn,
         titleId: lesson.titleId,
         isReview: !!lesson.isReview,
+        reviewOf: lesson.reviewOf || [],
         vocabCount: (lesson.vocab || []).length,
         sentenceCount: (lesson.keySentences || []).length,
         listeningCount: (lesson.listeningScripts || []).length,
@@ -83,7 +85,12 @@ export class CurriculumService {
     const cleared = [];
     for (const m of metas.filter((x) => x.status === 'ready')) {
       const { lessons } = await this.lessonMap(profileId, m.id);
-      const playable = lessons.filter((l) => l.vocabCount > 0 || l.sentenceCount > 0);
+      // Bab ulangan tidak dihitung: isinya rangkuman pelajaran yang sudah ada,
+      // bukan materi baru. Ikut menghitungnya juga akan MENCABUT lencana yang
+      // sudah diraih anak sebelum bab ulangan bisa dibuka (lihat ADR-0015).
+      const playable = lessons.filter(
+        (l) => !l.isReview && (l.vocabCount > 0 || l.sentenceCount > 0)
+      );
       if (playable.length && playable.every((l) => l.completed)) cleared.push(m.id);
     }
     return cleared;
@@ -104,12 +111,16 @@ export class CurriculumService {
       card: cards[`${levelId}:${w.zh}`] || null
     });
 
-    return (level.lessons || []).flatMap((lesson) => [
-      ...(lesson.vocab || []).map((w) => decorate(w, lesson.number, false)),
-      ...bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0).map((w) =>
-        decorate(w, lesson.number, true)
-      )
-    ]);
+    // Bab ulangan dilewati: isinya kata-kata pelajaran sebelumnya, dan
+    // mendaftarnya lagi hanya menggandakan seluruh kamus.
+    return (level.lessons || [])
+      .filter((lesson) => !isReviewLesson(lesson))
+      .flatMap((lesson) => [
+        ...(lesson.vocab || []).map((w) => decorate(w, lesson.number, false)),
+        ...bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0).map((w) =>
+          decorate(w, lesson.number, true)
+        )
+      ]);
   }
 
   skills() {

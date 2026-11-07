@@ -79,7 +79,10 @@ Ketiga temuan ini membentuk beberapa keputusan arsitektur:
 9. **Jeda di tengah kalimat bukan tanda selesai.** Mesin pengenal suara
    menganggapnya begitu, padahal anak umur 5 dan 7 tahun berhenti untuk
    mengingat kata berikutnya. Anak yang menekan "Selesai", bukan jam. → ADR-0014
-10. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
+10. **Bab 复习 di tiap level tidak membawa kata baru**, jadi hasil impornya
+    kosong dan node-nya selalu terkunci di peta pelajaran. Isinya diturunkan
+    dari pelajaran-pelajaran sebelumnya. → ADR-0015
+11. **YCT dan HSK sangat beririsan** — 69 dari 148 kata HSK 1 sudah ada di YCT 1
    saja. Irisan itu dipakai untuk menyiapkan anak jauh sebelum masuk HSK. → ADR-0009
 
 ## Peta dokumen

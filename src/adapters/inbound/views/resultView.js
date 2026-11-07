@@ -12,7 +12,7 @@ export function resultView(summary) {
     <div class="result__stars" style="color:var(--amber)">${stars(summary.stars)}</div>
     <h1 class="result__title">${title(summary)}</h1>
     <p class="muted small" style="margin:0">
-      ${esc(summary.levelCode)} · Pelajaran ${summary.lessonNumber} · ${esc(skillLabel(summary.skill))}
+      ${esc(summary.levelCode)} · ${summary.isReview ? 'Ulangan' : `Pelajaran ${summary.lessonNumber}`} · ${esc(skillLabel(summary.skill))}
     </p>
 
     <div class="result__grid">

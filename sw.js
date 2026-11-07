@@ -5,7 +5,7 @@
  * berkas kurikulum tidak bisa di-cache untuk pemakaian offline.
  */
 
-const VERSION = 'mandarin-fun-v11';
+const VERSION = 'mandarin-fun-v12';
 const base = (path) => new URL(path, self.location).toString();
 
 const ASSETS = [
@@ -31,6 +31,7 @@ const ASSETS = [
   'src/domain/pronunciation.js',
   'src/domain/speechVoice.js',
   'src/domain/studyDeck.js',
+  'src/domain/reviewLesson.js',
   'src/domain/hskBridge.js',
   'src/domain/mergeState.js',
 
@@ -53,6 +54,7 @@ const ASSETS = [
   // Adapters
   'src/adapters/outbound/staticContentAdapter.js',
   'src/adapters/outbound/bridgedContentAdapter.js',
+  'src/adapters/outbound/reviewContentAdapter.js',
   'src/adapters/outbound/httpSyncAdapter.js',
   'src/adapters/outbound/localStorageAdapter.js',
   'src/adapters/outbound/webSpeechAdapter.js',

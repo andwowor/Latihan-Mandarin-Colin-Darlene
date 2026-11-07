@@ -45,27 +45,46 @@ function cardBlock(card, session) {
 
 function introCard(card, session) {
   const c = card.counts;
+  // Bab ulangan tidak memperkenalkan apa pun — kata-katanya sudah dikenal.
+  // Karena itu labelnya berbeda, dan anak diberi tahu bahwa yang dibaca ini
+  // hanya cuplikan sedangkan soalnya nanti mengambil dari seluruh level.
+  const ulangan = card.isReview;
   return `
   <div class="study__cover">
-    <div class="study__emoji">${session.replay ? '🔁' : '📘'}</div>
-    <p class="muted small" style="margin:0">${esc(card.levelCode)} · Pelajaran ${card.lessonNumber}</p>
+    <div class="study__emoji">${ulangan ? '⭐' : session.replay ? '🔁' : '📘'}</div>
+    <p class="muted small" style="margin:0">
+      ${esc(card.levelCode)} · ${ulangan ? 'Ulangan' : `Pelajaran ${card.lessonNumber}`}
+    </p>
     <h1 class="hanzi study__title">${esc(card.titleZh)}</h1>
     <p class="study__subtitle">${esc(card.titleId)}</p>
 
     <div class="result__grid" style="width:100%">
-      <div class="result__stat"><b>${c.words}</b><span>Kata baru</span></div>
+      <div class="result__stat"><b>${c.words}</b><span>${ulangan ? 'Kata diulang' : 'Kata baru'}</span></div>
       <div class="result__stat"><b>${c.sentences}</b><span>Kalimat</span></div>
       <div class="result__stat"><b>${c.bridge}</b><span>Bekal HSK</span></div>
     </div>
 
     <p class="small muted" style="margin:4px 0 0">
       ${
-        session.replay
-          ? 'Kamu sudah pernah belajar ini. Baca sekali lagi untuk menyegarkan ingatan ya.'
-          : 'Kenali dulu kata-katanya. Setelah selesai, soal latihannya terbuka.'
+        ulangan
+          ? reviewNote(card)
+          : session.replay
+            ? 'Kamu sudah pernah belajar ini. Baca sekali lagi untuk menyegarkan ingatan ya.'
+            : 'Kenali dulu kata-katanya. Setelah selesai, soal latihannya terbuka.'
       }
     </p>
   </div>`;
+}
+
+/** Penjelasan bab ulangan: dari mana isinya, dan apa yang akan diujikan. */
+function reviewNote(card) {
+  const c = card.counts;
+  const jumlah = card.reviewOf?.length || 0;
+  const dari = jumlah ? `${jumlah} pelajaran sebelumnya` : 'seluruh level ini';
+  return card.sampled
+    ? `Ini rangkuman ${esc(dari)} — tidak ada kata baru. Kartunya dicuplik dari
+       ${c.totalWords} kata, dan soalnya nanti bisa mengambil kata mana pun di level ini.`
+    : `Ini rangkuman ${esc(dari)} — tidak ada kata baru, hanya mengingat kembali.`;
 }
 
 function wordCard(card) {
@@ -131,13 +150,20 @@ function outroCard(card, session) {
   return `
   <div class="study__cover">
     <div class="study__emoji">🎉</div>
-    <h1 class="study__title" style="font-size:1.6rem">Materi selesai dibaca!</h1>
+    <h1 class="study__title" style="font-size:1.6rem">
+      ${card.isReview ? 'Rangkuman selesai dibaca!' : 'Materi selesai dibaca!'}
+    </h1>
     <p class="study__subtitle">
-      ${esc(card.levelCode)} · Pelajaran ${card.lessonNumber} — <span class="hanzi">${esc(card.titleZh)}</span>
+      ${esc(card.levelCode)} · ${card.isReview ? 'Ulangan' : `Pelajaran ${card.lessonNumber}`} — <span class="hanzi">${esc(card.titleZh)}</span>
     </p>
     <p class="small muted" style="margin:0 0 4px">
-      Kamu baru saja mengenal ${c.words} kata${c.bridge ? `, ${c.bridge} bekal HSK,` : ''} dan ${c.sentences} kalimat.
-      Sekarang soalnya sudah terbuka.
+      ${
+        card.isReview
+          ? `Kamu baru saja mengingat kembali ${c.words} kata dan ${c.sentences} kalimat.
+             Soal ulangannya mengambil dari seluruh level — ${c.totalWords} kata.`
+          : `Kamu baru saja mengenal ${c.words} kata${c.bridge ? `, ${c.bridge} bekal HSK,` : ''} dan ${c.sentences} kalimat.
+             Sekarang soalnya sudah terbuka.`
+      }
     </p>
 
     <div class="stack" style="width:100%;margin-top:12px">

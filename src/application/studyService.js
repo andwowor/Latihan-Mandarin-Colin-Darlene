@@ -7,6 +7,7 @@
 import { appConfig } from '../config/appConfig.js';
 import { toDayKey } from '../shared/utils.js';
 import { buildStudyDeck, bridgeShareFor } from '../domain/studyDeck.js';
+import { isReviewLesson } from '../domain/reviewLesson.js';
 import { applyStudy } from '../domain/progress.js';
 import { levelFromXp } from '../domain/scoring.js';
 
@@ -41,10 +42,15 @@ export class StudyService {
     if (!lesson) throw new Error(`Pelajaran ${lessonNumber} tidak ditemukan di ${levelId}`);
 
     const cfg = this.profiles.profileConfig(profileId);
+    // Bab ulangan membawa seluruh isi level, jadi kartunya dicuplik. Tanpa itu
+    // sesi belajar YCT 3 jadi seratus kartu (lihat ADR-0015).
+    const ulangan = isReviewLesson(lesson);
     const cards = buildStudyDeck(lesson, {
       bridgeWords: bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0),
       alsoIn: level.alsoIn || {},
-      levelCode: level.code
+      levelCode: level.code,
+      maxWords: ulangan ? appConfig.study.reviewWords : 0,
+      maxSentences: ulangan ? appConfig.study.reviewSentences : 0
     });
 
     this.session = {

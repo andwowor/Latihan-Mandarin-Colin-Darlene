@@ -16,7 +16,7 @@ export function homeView({ snapshot, missions, levelMeta, nextLesson, pendingMis
       ${
         nextLesson
           ? `<p class="small muted" style="margin:0 0 12px">
-               Pelajaran ${nextLesson.number} · <span class="hanzi">${esc(nextLesson.titleZh)}</span>
+               ${nextLesson.isReview ? 'Ulangan' : `Pelajaran ${nextLesson.number}`} · <span class="hanzi">${esc(nextLesson.titleZh)}</span>
                <br>${esc(nextLesson.titleId)}
                ${
                  nextLesson.studied

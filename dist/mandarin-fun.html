@@ -1088,6 +1088,84 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     }
   };
 
+  // src/domain/reviewLesson.js
+  function isReviewLesson(lesson) {
+    return !!lesson?.isReview;
+  }
+  function spread(list = [], limit = 0) {
+    const items = list || [];
+    if (!Number.isFinite(limit) || limit <= 0 || items.length <= limit) return [...items];
+    const out = [];
+    const step = items.length / limit;
+    for (let i = 0; i < limit; i++) out.push(items[Math.floor(i * step)]);
+    return out;
+  }
+  function merge(own = [], extra = [], key = (x) => x?.zh) {
+    const out = [];
+    const seen = /* @__PURE__ */ new Set();
+    for (const item of [...own, ...extra]) {
+      const k = key(item);
+      if (k == null || seen.has(k)) continue;
+      seen.add(k);
+      out.push(item);
+    }
+    return out;
+  }
+  function applyReview(level) {
+    const lessons = level?.lessons || [];
+    if (!lessons.some(isReviewLesson)) return level;
+    const vocab = [];
+    const sentences = [];
+    const scripts = [];
+    const bridge = [];
+    const sebelumnya = [];
+    const out = lessons.map((lesson) => {
+      if (!isReviewLesson(lesson)) {
+        vocab.push(...lesson.vocab || []);
+        sentences.push(...lesson.keySentences || []);
+        scripts.push(...lesson.listeningScripts || []);
+        bridge.push(...lesson.bridgeVocab || []);
+        sebelumnya.push(lesson.number);
+        return lesson;
+      }
+      return {
+        ...lesson,
+        // Nomor pelajaran yang diulang \u2014 dipakai tampilan untuk menjelaskan
+        // kepada anak bahwa ini rangkuman, bukan materi baru.
+        reviewOf: [...sebelumnya],
+        vocab: merge(lesson.vocab, vocab),
+        keySentences: merge(lesson.keySentences, sentences),
+        listeningScripts: merge(lesson.listeningScripts, scripts, (s) => s?.zh ?? s?.text ?? s),
+        bridgeVocab: merge(lesson.bridgeVocab, bridge)
+      };
+    });
+    return { ...level, lessons: out };
+  }
+
+  // src/adapters/outbound/reviewContentAdapter.js
+  var ReviewContentAdapter = class extends ContentPort {
+    constructor(inner) {
+      super();
+      this.inner = inner;
+      this.cache = /* @__PURE__ */ new Map();
+    }
+    async listLevels() {
+      return this.inner.listLevels();
+    }
+    async loadBridge() {
+      return this.inner.loadBridge();
+    }
+    async loadReadings() {
+      return this.inner.loadReadings();
+    }
+    async loadLevel(levelId) {
+      if (this.cache.has(levelId)) return this.cache.get(levelId);
+      const level = applyReview(await this.inner.loadLevel(levelId));
+      this.cache.set(levelId, level);
+      return level;
+    }
+  };
+
   // src/ports/storagePort.js
   var StoragePort = class {
     /** @returns {object} seluruh state aplikasi */
@@ -1184,8 +1262,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       requireBeforeQuiz: true,
       xpFirstTime: 20,
       // hadiah sekali saja, saat pertama menuntaskan materi
-      xpRepeat: 5
+      xpRepeat: 5,
       // mengulang materi tetap dihargai, tapi kecil
+      // Bab ulangan (\u590d\u4e60) merangkum seluruh level \u2014 di YCT 3 itu 78 kata dan
+      // 22 kalimat. Menumpuknya jadi seratus kartu bukan sesi belajar lagi,
+      // jadi yang ditampilkan hanya cuplikan yang tersebar merata sepanjang
+      // level. Soal latihannya tetap mengambil dari seluruh level (ADR-0015).
+      reviewWords: 10,
+      reviewSentences: 5
     },
     // Bekal HSK yang dititipkan ke tiap pelajaran YCT.
     // `perLesson` adalah jatah yang DISIAPKAN per pelajaran; berapa yang benar-
@@ -2764,15 +2848,21 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   function exampleFor(word, sentences) {
     return sentences.find((s) => String(s.zh || "").includes(word.zh)) || null;
   }
-  function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCode = "" } = {}) {
-    const words = lesson?.vocab || [];
-    const sentences = lesson?.keySentences || [];
-    if (words.length === 0 && sentences.length === 0) return [];
+  function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCode = "", maxWords = 0, maxSentences = 0 } = {}) {
+    const semuaKata = lesson?.vocab || [];
+    const semuaKalimat = lesson?.keySentences || [];
+    if (semuaKata.length === 0 && semuaKalimat.length === 0) return [];
+    const words = spread(semuaKata, maxWords);
+    const sentences = spread(semuaKalimat, maxSentences);
     const counts = {
       words: words.length,
       sentences: sentences.length,
-      bridge: bridgeWords.length
+      bridge: bridgeWords.length,
+      // Berapa yang sebenarnya ada, bila kartunya dicuplik.
+      totalWords: semuaKata.length,
+      totalSentences: semuaKalimat.length
     };
+    const review = isReview(lesson) ? { isReview: true, reviewOf: lesson.reviewOf || [], sampled: words.length < semuaKata.length } : { isReview: false, reviewOf: [], sampled: false };
     const cards = [
       {
         id: cardId("intro", lesson.number),
@@ -2783,6 +2873,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         titleId: lesson.titleId,
         titleEn: lesson.titleEn,
         counts,
+        ...review,
         speak: null
       }
     ];
@@ -2792,7 +2883,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         kind: "word",
         word,
         alsoIn: alsoIn[word.zh] || [],
-        example: exampleFor(word, sentences),
+        example: exampleFor(word, semuaKalimat),
         position: i + 1,
         of: words.length,
         speak: word.zh
@@ -2827,9 +2918,13 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       titleZh: lesson.titleZh,
       titleId: lesson.titleId,
       counts,
+      ...review,
       speak: null
     });
     return cards;
+  }
+  function isReview(lesson) {
+    return !!lesson?.isReview;
   }
   function bridgeShareFor(bridgeVocab = [], limit = 0) {
     if (!Number.isFinite(limit) || limit <= 0) return [];
@@ -2885,6 +2980,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
           titleEn: lesson.titleEn,
           titleId: lesson.titleId,
           isReview: !!lesson.isReview,
+          reviewOf: lesson.reviewOf || [],
           vocabCount: (lesson.vocab || []).length,
           sentenceCount: (lesson.keySentences || []).length,
           listeningCount: (lesson.listeningScripts || []).length,
@@ -2910,7 +3006,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       const cleared = [];
       for (const m of metas.filter((x) => x.status === "ready")) {
         const { lessons } = await this.lessonMap(profileId, m.id);
-        const playable = lessons.filter((l) => l.vocabCount > 0 || l.sentenceCount > 0);
+        const playable = lessons.filter(
+          (l) => !l.isReview && (l.vocabCount > 0 || l.sentenceCount > 0)
+        );
         if (playable.length && playable.every((l) => l.completed)) cleared.push(m.id);
       }
       return cleared;
@@ -2929,7 +3027,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         alsoIn: bridge ? [] : alsoIn[w.zh] || [],
         card: cards[`${levelId}:${w.zh}`] || null
       });
-      return (level.lessons || []).flatMap((lesson) => [
+      return (level.lessons || []).filter((lesson) => !isReviewLesson(lesson)).flatMap((lesson) => [
         ...(lesson.vocab || []).map((w) => decorate(w, lesson.number, false)),
         ...bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0).map(
           (w) => decorate(w, lesson.number, true)
@@ -3674,6 +3772,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         levelCode: level.code,
         lessonNumber,
         lessonTitle: lesson.titleZh,
+        isReview: !!lesson.isReview,
         skill,
         questions,
         index: 0,
@@ -3836,6 +3935,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
         levelCode: round.levelCode,
         lessonNumber: round.lessonNumber,
         lessonTitle: round.lessonTitle,
+        isReview: round.isReview,
         skill: round.skill,
         correct: round.correct,
         answered: round.answered,
@@ -3885,10 +3985,13 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
       const lesson = (level.lessons || []).find((l) => l.number === lessonNumber);
       if (!lesson) throw new Error(`Pelajaran ${lessonNumber} tidak ditemukan di ${levelId}`);
       const cfg = this.profiles.profileConfig(profileId);
+      const ulangan = isReviewLesson(lesson);
       const cards = buildStudyDeck(lesson, {
         bridgeWords: bridgeShareFor(lesson.bridgeVocab, cfg?.bridgePerLesson ?? 0),
         alsoIn: level.alsoIn || {},
-        levelCode: level.code
+        levelCode: level.code,
+        maxWords: ulangan ? appConfig.study.reviewWords : 0,
+        maxSentences: ulangan ? appConfig.study.reviewSentences : 0
       });
       this.session = {
         profileId,
@@ -4769,7 +4872,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     <section class="card" style="background:linear-gradient(135deg, ${levelMeta.color}22, transparent)">
       <h2 class="card__title">${levelMeta.emoji} ${esc(levelMeta.code)}</h2>
       ${nextLesson ? `<p class="small muted" style="margin:0 0 12px">
-               Pelajaran ${nextLesson.number} \xB7 <span class="hanzi">${esc(nextLesson.titleZh)}</span>
+               ${nextLesson.isReview ? "Ulangan" : `Pelajaran ${nextLesson.number}`} \xB7 <span class="hanzi">${esc(nextLesson.titleZh)}</span>
                <br>${esc(nextLesson.titleId)}
                ${nextLesson.studied ? "" : `<br><span class="pill chip-study" style="margin-top:6px">\u{1F4D8} Materinya belum dibaca</span>`}
              </p>
@@ -4864,7 +4967,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     <button class="${playable ? cls : "node node--locked"}"
             data-lesson="${lesson.number}"
             ${playable ? "" : "disabled"}
-            aria-label="Pelajaran ${lesson.number}: ${esc(lesson.titleId)}${playable && !lesson.studied ? " \u2014 materi belum dibaca" : ""}">
+            aria-label="${lesson.isReview ? "Ulangan" : `Pelajaran ${lesson.number}`}: ${esc(lesson.titleId)}${playable && !lesson.studied ? " \u2014 materi belum dibaca" : ""}">
       <span class="node__disc">${mark}${playable && !lesson.studied ? '<span class="node__flag" aria-hidden="true">\u{1F4D8}</span>' : ""}</span>
       <span class="node__stars" style="color:var(--amber)">${stars(Math.round(lesson.starsEarned / 3))}</span>
       <span class="node__label hanzi">${esc(lesson.titleZh)}</span>
@@ -4875,27 +4978,28 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   function skillSheet(lesson, skills) {
     const locked = lesson.practiceLocked;
     return `
-  <h2 style="margin:0 0 2px">Pelajaran ${lesson.number}</h2>
+  <h2 style="margin:0 0 2px">${lesson.isReview ? "\u2B50 Ulangan" : `Pelajaran ${lesson.number}`}</h2>
   <p class="muted small" style="margin:0 0 4px">
     <span class="hanzi" style="font-size:1.15rem">${esc(lesson.titleZh)}</span> \u2014 ${esc(lesson.titleId)}
   </p>
   <p class="small muted" style="margin:0 0 16px">
     ${lesson.vocabCount} kata \xB7 ${lesson.sentenceCount} kalimat kunci${lesson.listeningCount ? ` \xB7 ${lesson.listeningCount} kalimat simakan` : ""}${lesson.bridgeCount ? ` \xB7 ${lesson.bridgeCount} bekal HSK` : ""}
   </p>
+  ${lesson.isReview && lesson.reviewOf?.length ? `<p class="small muted" style="margin:-10px 0 16px">
+           Mengulang pelajaran 1\u2013${Math.max(...lesson.reviewOf)}. Tidak ada kata baru di sini.
+         </p>` : ""}
 
   <button class="skill-btn skill-btn--study" data-start-study>
-    <span class="skill-btn__emoji">${lesson.studied ? "\u{1F4D6}" : "\u{1F4D8}"}</span>
-    <span class="grow">${lesson.studied ? "Baca Ulang Materi" : "Sesi Belajar"}
-      <span class="skill-btn__sub">
-        ${lesson.studied ? "Segarkan ingatan sebelum berlatih lagi" : "Kenali kata & kalimatnya dulu \u2014 belum ada soal di sini"}
-      </span>
+    <span class="skill-btn__emoji">${lesson.studied ? "\u{1F4D6}" : lesson.isReview ? "\u2B50" : "\u{1F4D8}"}</span>
+    <span class="grow">${studyButtonLabel(lesson)}
+      <span class="skill-btn__sub">${studyButtonHint(lesson)}</span>
     </span>
     <span>${lesson.studied ? "\u2705" : "\u25B6\uFE0E"}</span>
   </button>
 
   ${locked ? `<p class="small muted" style="margin:2px 0 12px">
-           \u{1F512} Soal terbuka setelah sesi belajar selesai. Begitu materinya dibaca sekali,
-           keempat latihan di bawah bisa dibuka kapan saja.
+           \u{1F512} Soal terbuka setelah ${lesson.isReview ? "rangkumannya" : "sesi belajarnya"} dibaca.
+           Begitu dibaca sekali, keempat latihan di bawah bisa dibuka kapan saja.
          </p>` : '<div style="height:6px"></div>'}
 
   ${skills.map(
@@ -4913,6 +5017,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     <span class="skill-btn__emoji">${locked ? "\u{1F512}" : "\u{1F3B2}"}</span>
     <span class="grow">Campur Semua<span class="skill-btn__sub">Baca, dengar, ucap, dan tulis bergantian</span></span>
   </button>`;
+  }
+  function studyButtonLabel(lesson) {
+    if (lesson.isReview) return lesson.studied ? "Baca Rangkuman Lagi" : "Baca Rangkumannya";
+    return lesson.studied ? "Baca Ulang Materi" : "Sesi Belajar";
+  }
+  function studyButtonHint(lesson) {
+    if (lesson.isReview) return "Ingat lagi kata & kalimatnya sebelum ulangan dimulai";
+    return lesson.studied ? "Segarkan ingatan sebelum berlatih lagi" : "Kenali kata & kalimatnya dulu \u2014 belum ada soal di sini";
   }
   function skillHint(id) {
     return {
@@ -4966,23 +5078,33 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   }
   function introCard(card2, session) {
     const c = card2.counts;
+    const ulangan = card2.isReview;
     return `
   <div class="study__cover">
-    <div class="study__emoji">${session.replay ? "\u{1F501}" : "\u{1F4D8}"}</div>
-    <p class="muted small" style="margin:0">${esc(card2.levelCode)} \xB7 Pelajaran ${card2.lessonNumber}</p>
+    <div class="study__emoji">${ulangan ? "\u2B50" : session.replay ? "\u{1F501}" : "\u{1F4D8}"}</div>
+    <p class="muted small" style="margin:0">
+      ${esc(card2.levelCode)} \xB7 ${ulangan ? "Ulangan" : `Pelajaran ${card2.lessonNumber}`}
+    </p>
     <h1 class="hanzi study__title">${esc(card2.titleZh)}</h1>
     <p class="study__subtitle">${esc(card2.titleId)}</p>
 
     <div class="result__grid" style="width:100%">
-      <div class="result__stat"><b>${c.words}</b><span>Kata baru</span></div>
+      <div class="result__stat"><b>${c.words}</b><span>${ulangan ? "Kata diulang" : "Kata baru"}</span></div>
       <div class="result__stat"><b>${c.sentences}</b><span>Kalimat</span></div>
       <div class="result__stat"><b>${c.bridge}</b><span>Bekal HSK</span></div>
     </div>
 
     <p class="small muted" style="margin:4px 0 0">
-      ${session.replay ? "Kamu sudah pernah belajar ini. Baca sekali lagi untuk menyegarkan ingatan ya." : "Kenali dulu kata-katanya. Setelah selesai, soal latihannya terbuka."}
+      ${ulangan ? reviewNote(card2) : session.replay ? "Kamu sudah pernah belajar ini. Baca sekali lagi untuk menyegarkan ingatan ya." : "Kenali dulu kata-katanya. Setelah selesai, soal latihannya terbuka."}
     </p>
   </div>`;
+  }
+  function reviewNote(card2) {
+    const c = card2.counts;
+    const jumlah = card2.reviewOf?.length || 0;
+    const dari = jumlah ? `${jumlah} pelajaran sebelumnya` : "seluruh level ini";
+    return card2.sampled ? `Ini rangkuman ${esc(dari)} \u2014 tidak ada kata baru. Kartunya dicuplik dari
+       ${c.totalWords} kata, dan soalnya nanti bisa mengambil kata mana pun di level ini.` : `Ini rangkuman ${esc(dari)} \u2014 tidak ada kata baru, hanya mengingat kembali.`;
   }
   function wordCard(card2) {
     const w = card2.word;
@@ -5044,13 +5166,16 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     return `
   <div class="study__cover">
     <div class="study__emoji">\u{1F389}</div>
-    <h1 class="study__title" style="font-size:1.6rem">Materi selesai dibaca!</h1>
+    <h1 class="study__title" style="font-size:1.6rem">
+      ${card2.isReview ? "Rangkuman selesai dibaca!" : "Materi selesai dibaca!"}
+    </h1>
     <p class="study__subtitle">
-      ${esc(card2.levelCode)} \xB7 Pelajaran ${card2.lessonNumber} \u2014 <span class="hanzi">${esc(card2.titleZh)}</span>
+      ${esc(card2.levelCode)} \xB7 ${card2.isReview ? "Ulangan" : `Pelajaran ${card2.lessonNumber}`} \u2014 <span class="hanzi">${esc(card2.titleZh)}</span>
     </p>
     <p class="small muted" style="margin:0 0 4px">
-      Kamu baru saja mengenal ${c.words} kata${c.bridge ? `, ${c.bridge} bekal HSK,` : ""} dan ${c.sentences} kalimat.
-      Sekarang soalnya sudah terbuka.
+      ${card2.isReview ? `Kamu baru saja mengingat kembali ${c.words} kata dan ${c.sentences} kalimat.
+             Soal ulangannya mengambil dari seluruh level \u2014 ${c.totalWords} kata.` : `Kamu baru saja mengenal ${c.words} kata${c.bridge ? `, ${c.bridge} bekal HSK,` : ""} dan ${c.sentences} kalimat.
+             Sekarang soalnya sudah terbuka.`}
     </p>
 
     <div class="stack" style="width:100%;margin-top:12px">
@@ -5247,7 +5372,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
     <div class="result__stars" style="color:var(--amber)">${stars(summary.stars)}</div>
     <h1 class="result__title">${title(summary)}</h1>
     <p class="muted small" style="margin:0">
-      ${esc(summary.levelCode)} \xB7 Pelajaran ${summary.lessonNumber} \xB7 ${esc(skillLabel(summary.skill))}
+      ${esc(summary.levelCode)} \xB7 ${summary.isReview ? "Ulangan" : `Pelajaran ${summary.lessonNumber}`} \xB7 ${esc(skillLabel(summary.skill))}
     </p>
 
     <div class="result__grid">
@@ -6599,7 +6724,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--brand); outline
   // .build-tmp/entry.js
   async function bootstrap() {
     const root = document.getElementById("app");
-    const content = new BridgedContentAdapter(new InlineContentAdapter());
+    const content = new ReviewContentAdapter(new BridgedContentAdapter(new InlineContentAdapter()));
     const storage = new LocalStorageAdapter();
     const speech = new WebSpeechAdapter();
     const recognition = new WebSpeechRecognitionAdapter();

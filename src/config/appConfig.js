@@ -66,7 +66,14 @@ export const appConfig = {
   study: {
     requireBeforeQuiz: true,
     xpFirstTime: 20,     // hadiah sekali saja, saat pertama menuntaskan materi
-    xpRepeat: 5          // mengulang materi tetap dihargai, tapi kecil
+    xpRepeat: 5,         // mengulang materi tetap dihargai, tapi kecil
+
+    // Bab ulangan (复习) merangkum seluruh level — di YCT 3 itu 78 kata dan
+    // 22 kalimat. Menumpuknya jadi seratus kartu bukan sesi belajar lagi,
+    // jadi yang ditampilkan hanya cuplikan yang tersebar merata sepanjang
+    // level. Soal latihannya tetap mengambil dari seluruh level (ADR-0015).
+    reviewWords: 10,
+    reviewSentences: 5
   },
 
   // Bekal HSK yang dititipkan ke tiap pelajaran YCT.

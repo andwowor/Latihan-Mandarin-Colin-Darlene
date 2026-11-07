@@ -66,6 +66,12 @@ lebih dulu. Kata YCT yang ternyata juga ada di daftar HSK diberi tanda
 kosakata HSK 1 sudah dikenalkan sebelum YCT 2 selesai, dan HSK 2 sebelum
 YCT 4 selesai (lihat ADR-0009).
 
+**⭐ Bab ulangan yang benar-benar mengulang** — tiap level ditutup bab 复习
+yang di bukunya tidak membawa kata baru, sehingga hasil impornya kosong dan
+node-nya selalu terkunci. Sekarang bab itu diisi dari seluruh pelajaran
+sebelumnya: sesi belajarnya cuplikan singkat, soalnya mengambil dari seluruh
+level dan diurutkan SRS (lihat ADR-0015).
+
 **☁️ Progres tersinkron antar-perangkat** — opsional. Sekali memasang
 penyimpan progres sendiri (`server/README.md`), Colin dan Darlene bisa
 berlatih dari HP, tablet, atau laptop mana pun dan progresnya tetap menyambung.
@@ -182,7 +188,7 @@ Cara menambah/memperbarui materi: **`docs/importing-content.md`**.
 
 ```bash
 npm start       # jalankan di http://localhost:4173/public/
-npm test        # 170 pengujian lapisan domain & aplikasi
+npm test        # 186 pengujian lapisan domain & aplikasi
 npm run bridge  # bangun ulang bridge.json setelah kurikulum berubah
 npm run readings # bangun ulang kamus lafal readings.json
                  # (butuh: npm install pinyin-pro — sekali saja, seperti esbuild)
