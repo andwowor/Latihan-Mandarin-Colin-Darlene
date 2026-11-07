@@ -188,6 +188,30 @@ Yang perlu diketahui:
 Kalau suatu saat anak-anak sudah terbiasa dan penguncian terasa memperlambat,
 penguncian bisa dimatikan — lihat bagian 5.
 
+### ⭐ Ulangan di akhir tiap level
+
+Node terakhir di peta tiap level bertanda **⭐** dan berjudul **复习 — Ulangan**.
+Di bukunya, bab ini memang tidak memperkenalkan kata baru; isinya mengulang
+seluruh pelajaran sebelumnya. Karena itu hasil impornya dulu kosong, dan
+node-nya **selalu terkunci** di YCT 3 ke atas, berapa pun pelajaran yang sudah
+anak selesaikan. Itu sudah diperbaiki.
+
+Sekarang bab Ulangan diisi dari seluruh pelajaran sebelum dia:
+
+- **Panel pelajarannya** menyebutkan jumlah sebenarnya (di YCT 3: 78 kata,
+  22 kalimat) dan satu baris "Mengulang pelajaran 1–11. Tidak ada kata baru
+  di sini."
+- **Sesi belajarnya singkat** — 10 kata dan 5 kalimat saja, diambil tersebar
+  dari seluruh level supaya tiap pelajaran terwakili. Seratus kartu bukan sesi
+  belajar lagi.
+- **Soalnya mengambil dari seluruh level**, diurutkan sesuai kartu ingatan
+  (SRS), jadi kata yang paling sering salah yang paling sering muncul. Itulah
+  gunanya ulangan.
+
+Lencana **"Selesaikan semua pelajaran YCT 3"** sengaja tetap dihitung dari
+pelajaran 1–11 saja, tidak termasuk bab Ulangan — supaya lencana yang sudah
+diraih anak tidak tercabut hanya karena bab ini baru terbuka.
+
 ### 3b. 🌉 Bekal HSK di dalam pelajaran YCT
 
 Anak-anak berlatih di jalur **YCT**, tetapi ujian yang lebih umum dipakai

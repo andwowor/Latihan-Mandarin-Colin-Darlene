@@ -88,6 +88,7 @@ fs.writeFileSync(
   path.join(tmp, 'entry.js'),
   `import { InlineContentAdapter } from './inlineContentAdapter.js';
 import { BridgedContentAdapter } from '${path.join(root, 'src/adapters/outbound/bridgedContentAdapter.js')}';
+import { ReviewContentAdapter } from '${path.join(root, 'src/adapters/outbound/reviewContentAdapter.js')}';
 import { LocalStorageAdapter } from '${path.join(root, 'src/adapters/outbound/localStorageAdapter.js')}';
 import { WebSpeechAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechAdapter.js')}';
 import { WebSpeechRecognitionAdapter } from '${path.join(root, 'src/adapters/outbound/webSpeechRecognitionAdapter.js')}';
@@ -103,7 +104,7 @@ import { UiController } from '${path.join(root, 'src/adapters/inbound/uiControll
 
 async function bootstrap() {
   const root = document.getElementById('app');
-  const content = new BridgedContentAdapter(new InlineContentAdapter());
+  const content = new ReviewContentAdapter(new BridgedContentAdapter(new InlineContentAdapter()));
   const storage = new LocalStorageAdapter();
   const speech = new WebSpeechAdapter();
   const recognition = new WebSpeechRecognitionAdapter();

@@ -67,7 +67,7 @@ function node(lesson) {
     <button class="${playable ? cls : 'node node--locked'}"
             data-lesson="${lesson.number}"
             ${playable ? '' : 'disabled'}
-            aria-label="Pelajaran ${lesson.number}: ${esc(lesson.titleId)}${playable && !lesson.studied ? ' — materi belum dibaca' : ''}">
+            aria-label="${lesson.isReview ? 'Ulangan' : `Pelajaran ${lesson.number}`}: ${esc(lesson.titleId)}${playable && !lesson.studied ? ' — materi belum dibaca' : ''}">
       <span class="node__disc">${mark}${playable && !lesson.studied ? '<span class="node__flag" aria-hidden="true">📘</span>' : ''}</span>
       <span class="node__stars" style="color:var(--amber)">${stars(Math.round(lesson.starsEarned / 3))}</span>
       <span class="node__label hanzi">${esc(lesson.titleZh)}</span>
@@ -80,20 +80,25 @@ function node(lesson) {
 export function skillSheet(lesson, skills) {
   const locked = lesson.practiceLocked;
   return `
-  <h2 style="margin:0 0 2px">Pelajaran ${lesson.number}</h2>
+  <h2 style="margin:0 0 2px">${lesson.isReview ? '⭐ Ulangan' : `Pelajaran ${lesson.number}`}</h2>
   <p class="muted small" style="margin:0 0 4px">
     <span class="hanzi" style="font-size:1.15rem">${esc(lesson.titleZh)}</span> — ${esc(lesson.titleId)}
   </p>
   <p class="small muted" style="margin:0 0 16px">
     ${lesson.vocabCount} kata · ${lesson.sentenceCount} kalimat kunci${lesson.listeningCount ? ` · ${lesson.listeningCount} kalimat simakan` : ''}${lesson.bridgeCount ? ` · ${lesson.bridgeCount} bekal HSK` : ''}
   </p>
+  ${
+    lesson.isReview && lesson.reviewOf?.length
+      ? `<p class="small muted" style="margin:-10px 0 16px">
+           Mengulang pelajaran 1–${Math.max(...lesson.reviewOf)}. Tidak ada kata baru di sini.
+         </p>`
+      : ''
+  }
 
   <button class="skill-btn skill-btn--study" data-start-study>
-    <span class="skill-btn__emoji">${lesson.studied ? '📖' : '📘'}</span>
-    <span class="grow">${lesson.studied ? 'Baca Ulang Materi' : 'Sesi Belajar'}
-      <span class="skill-btn__sub">
-        ${lesson.studied ? 'Segarkan ingatan sebelum berlatih lagi' : 'Kenali kata & kalimatnya dulu — belum ada soal di sini'}
-      </span>
+    <span class="skill-btn__emoji">${lesson.studied ? '📖' : lesson.isReview ? '⭐' : '📘'}</span>
+    <span class="grow">${studyButtonLabel(lesson)}
+      <span class="skill-btn__sub">${studyButtonHint(lesson)}</span>
     </span>
     <span>${lesson.studied ? '✅' : '▶︎'}</span>
   </button>
@@ -101,8 +106,8 @@ export function skillSheet(lesson, skills) {
   ${
     locked
       ? `<p class="small muted" style="margin:2px 0 12px">
-           🔒 Soal terbuka setelah sesi belajar selesai. Begitu materinya dibaca sekali,
-           keempat latihan di bawah bisa dibuka kapan saja.
+           🔒 Soal terbuka setelah ${lesson.isReview ? 'rangkumannya' : 'sesi belajarnya'} dibaca.
+           Begitu dibaca sekali, keempat latihan di bawah bisa dibuka kapan saja.
          </p>`
       : '<div style="height:6px"></div>'
   }
@@ -124,6 +129,19 @@ export function skillSheet(lesson, skills) {
     <span class="skill-btn__emoji">${locked ? '🔒' : '🎲'}</span>
     <span class="grow">Campur Semua<span class="skill-btn__sub">Baca, dengar, ucap, dan tulis bergantian</span></span>
   </button>`;
+}
+
+/* Bab ulangan tidak memperkenalkan apa pun, jadi "kenali dulu" keliru di sana. */
+function studyButtonLabel(lesson) {
+  if (lesson.isReview) return lesson.studied ? 'Baca Rangkuman Lagi' : 'Baca Rangkumannya';
+  return lesson.studied ? 'Baca Ulang Materi' : 'Sesi Belajar';
+}
+
+function studyButtonHint(lesson) {
+  if (lesson.isReview) return 'Ingat lagi kata & kalimatnya sebelum ulangan dimulai';
+  return lesson.studied
+    ? 'Segarkan ingatan sebelum berlatih lagi'
+    : 'Kenali kata & kalimatnya dulu — belum ada soal di sini';
 }
 
 function skillHint(id) {

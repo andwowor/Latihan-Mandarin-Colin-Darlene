@@ -3,6 +3,7 @@
 
 import { StaticContentAdapter } from '../src/adapters/outbound/staticContentAdapter.js';
 import { BridgedContentAdapter } from '../src/adapters/outbound/bridgedContentAdapter.js';
+import { ReviewContentAdapter } from '../src/adapters/outbound/reviewContentAdapter.js';
 import { LocalStorageAdapter } from '../src/adapters/outbound/localStorageAdapter.js';
 import { WebSpeechAdapter } from '../src/adapters/outbound/webSpeechAdapter.js';
 import { WebSpeechRecognitionAdapter } from '../src/adapters/outbound/webSpeechRecognitionAdapter.js';
@@ -22,8 +23,10 @@ async function bootstrap() {
   const root = document.getElementById('app');
 
   // Outbound adapters
-  // Konten dibungkus supaya tiap pelajaran YCT membawa "bekal HSK"-nya.
-  const content = new BridgedContentAdapter(new StaticContentAdapter());
+  // Konten dibungkus dua kali: lapis dalam menitipkan "bekal HSK" ke tiap
+  // pelajaran, lapis luar mengisi bab ulangan dari pelajaran sebelumnya —
+  // urutannya begitu supaya bab ulangan ikut membawa bekal HSK-nya.
+  const content = new ReviewContentAdapter(new BridgedContentAdapter(new StaticContentAdapter()));
   const storage = new LocalStorageAdapter();
   const speech = new WebSpeechAdapter();
   await speech.loadManifest();       // pakai MP3 asli bila tersedia

@@ -12,6 +12,8 @@
 //   4. bekal HSK      — titipan kata HSK, ditaruh terakhir karena bonus
 //   5. penutup        — ringkasan + pintu masuk ke latihan
 
+import { spread } from './reviewLesson.js';
+
 /** Kartu diberi id stabil supaya tampilan bisa dibandingkan antar-render. */
 function cardId(kind, key) {
   return `${kind}:${key}`;
@@ -30,18 +32,34 @@ function exampleFor(word, sentences) {
  * @param {object[]} [opts.bridgeWords] kata bekal HSK yang sudah dibatasi jumlahnya
  * @param {object} [opts.alsoIn]        { [zh]: ['HSK 1'] } penanda lintas jalur
  * @param {string} [opts.levelCode]     mis. 'YCT 1', untuk teks pembuka
+ * @param {number} [opts.maxWords]      batasi jumlah kartu kata (0 = tanpa batas)
+ * @param {number} [opts.maxSentences]  batasi jumlah kartu kalimat
  * @returns {object[]} kartu siap tampil
  */
-export function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCode = '' } = {}) {
-  const words = lesson?.vocab || [];
-  const sentences = lesson?.keySentences || [];
-  if (words.length === 0 && sentences.length === 0) return [];
+export function buildStudyDeck(
+  lesson,
+  { bridgeWords = [], alsoIn = {}, levelCode = '', maxWords = 0, maxSentences = 0 } = {}
+) {
+  const semuaKata = lesson?.vocab || [];
+  const semuaKalimat = lesson?.keySentences || [];
+  if (semuaKata.length === 0 && semuaKalimat.length === 0) return [];
+
+  // Bab ulangan membawa seluruh isi level; yang ditampilkan hanya cuplikan
+  // yang tersebar, supaya tiap pelajaran terwakili tanpa seratus kartu.
+  const words = spread(semuaKata, maxWords);
+  const sentences = spread(semuaKalimat, maxSentences);
 
   const counts = {
     words: words.length,
     sentences: sentences.length,
-    bridge: bridgeWords.length
+    bridge: bridgeWords.length,
+    // Berapa yang sebenarnya ada, bila kartunya dicuplik.
+    totalWords: semuaKata.length,
+    totalSentences: semuaKalimat.length
   };
+  const review = isReview(lesson)
+    ? { isReview: true, reviewOf: lesson.reviewOf || [], sampled: words.length < semuaKata.length }
+    : { isReview: false, reviewOf: [], sampled: false };
 
   const cards = [
     {
@@ -53,6 +71,7 @@ export function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCod
       titleId: lesson.titleId,
       titleEn: lesson.titleEn,
       counts,
+      ...review,
       speak: null
     }
   ];
@@ -63,7 +82,7 @@ export function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCod
       kind: 'word',
       word,
       alsoIn: alsoIn[word.zh] || [],
-      example: exampleFor(word, sentences),
+      example: exampleFor(word, semuaKalimat),
       position: i + 1,
       of: words.length,
       speak: word.zh
@@ -101,10 +120,16 @@ export function buildStudyDeck(lesson, { bridgeWords = [], alsoIn = {}, levelCod
     titleZh: lesson.titleZh,
     titleId: lesson.titleId,
     counts,
+    ...review,
     speak: null
   });
 
   return cards;
+}
+
+/** Bab ulangan menurut kurikulum — ditandai di berkas levelnya. */
+function isReview(lesson) {
+  return !!lesson?.isReview;
 }
 
 /**
